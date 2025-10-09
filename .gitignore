@@ -1,0 +1,24 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Data files
+data/raw/*
+data/processed/*
+data/samples/*
+!data/samples/sample.csv
+
+# Jupyter checkpoints
+.ipynb_checkpoints
+
+# Virtual environments
+venv/
+.env
+
+# Secrets
+*.env
+
+# OS specific
+.DS_Store
+Thumbs.db
