@@ -207,9 +207,78 @@ make clean        # Reset outputs for fresh analysis
 - `src/` modules — Reusable functions for analysis and visualization
 - Error logs and debugging information for troubleshooting
 
-## Contributing
-This project follows best practices for data science workflows:
-- ✅ Robust error handling and logging
-- 🧪 Comprehensive data validation
-- 📚 Extensive documentation
-- 🔄 Reusable, modular components
+## 🔬 **Research Methodology**
+
+### 📈 **Progressive Analysis Approach**
+1. **Development Phase**: Start with 1K records for rapid iteration
+2. **Validation Phase**: Scale to 50K records for methodology validation  
+3. **Production Phase**: Execute full 900K dataset analysis
+4. **Optimization**: Refine based on performance and insights
+
+### 🎯 **Academic Standards**
+- **Reproducible Research**: All analyses can be re-run with single commands
+- **Comprehensive Documentation**: Each notebook includes methodology and insights
+- **Professional Reporting**: JSON exports suitable for thesis integration
+- **Version Control**: Git-based workflow with structured commits
+
+### 🔧 **Technical Excellence**
+- **Error Resilience**: Graceful handling of data loading and processing errors
+- **Memory Efficiency**: Optimized for large dataset processing
+- **Cross-Platform**: Works on Windows, Linux, and macOS
+- **Modular Design**: Reusable components for future MSR projects
+
+## 🤝 **Contributing & Development**
+
+### 🛠️ **Development Workflow**
+```bash
+# Setup development environment
+git clone <repository>
+cd MSR
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+
+# Run tests and validation
+make test-small    # Quick development testing
+make clean         # Reset for fresh analysis
+```
+
+### 📋 **Code Quality Standards**
+- ✅ **Error Handling**: Comprehensive try-catch blocks with meaningful messages
+- 🧪 **Data Validation**: Automated quality checks and health monitoring  
+- 📚 **Documentation**: Inline documentation and README maintenance
+- 🔄 **Modularity**: Reusable functions and components
+- 📊 **Logging**: Detailed execution logs for debugging and monitoring
+
+### 🎓 **Thesis Integration**
+This project structure supports direct integration into MSR thesis development:
+- **Chapter-Ready Notebooks**: Each RQ can become a thesis chapter
+- **Professional Figures**: Publication-quality visualizations  
+- **Statistical Rigor**: Comprehensive analysis with proper methodology
+- **Reproducible Results**: Reviewers can re-run all analyses
+
+---
+
+## 🏆 **Project Highlights**
+
+### ✨ **Innovation Points**
+- **Multi-Agent AI Analysis**: Comprehensive comparison of different AI coding agents
+- **Test-Centric Research**: Focus on AI contributions to software testing
+- **Automated Pipeline**: Professional-grade research automation
+- **Scalable Methodology**: Progressive analysis from samples to full dataset
+
+### 📊 **Research Impact**
+- **Novel Dataset**: Large-scale analysis of AI-generated pull requests
+- **Practical Insights**: Real-world patterns in AI-driven software development
+- **Methodological Contribution**: Reusable framework for MSR studies
+- **Industry Relevance**: Insights applicable to AI adoption in software teams
+
+### 🎯 **Academic Rigor**
+- **Structured Research Questions**: Clear hypotheses and methodologies
+- **Comprehensive Analysis**: Multiple analytical approaches per research question
+- **Professional Documentation**: Thesis-ready documentation and reporting
+- **Reproducible Science**: Complete automation for result verification
+
+---
+
+*Last Updated: October 12, 2025 | Project Status: Infrastructure Complete, Analysis Phase Ready*
