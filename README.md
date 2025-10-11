@@ -16,18 +16,26 @@ We use the **AIDev dataset** from Hugging Face (`hao-li/AIDev`) which contains c
   - `raw/aidata.csv` — AIDev dataset (753MB)
   - `processed/` — Cleaned and processed data
   - `samples/` — Sample datasets for development
-- `notebooks/` — Jupyter notebooks for analysis
+- `notebooks/` — Research Question Analysis
+  - `RQ1_Agent_Distribution.ipynb` — Agent distribution and test contribution analysis
+  - `RQ2_Test_to_Code_Ratio.ipynb` — Test-to-code ratio analysis
+  - `RQ3_Code_Change_Analysis.ipynb` — Code change analysis with GitHub API
+  - `RQ4_Description_Consistency.ipynb` — NLP description consistency analysis
+  - `RQ5_User_Adoption.ipynb` — User adoption pattern analysis
   - `ErrorAnalysis.ipynb` — Comprehensive error analysis and data quality assessment
   - `ReuseableCode.ipynb` — Enhanced reusable functions and utilities
 - `src/` — Python source code
   - `data_loader.py` — Robust data loading with fallback mechanisms
-  - `analysis.py` — Core analysis functions
-  - `plots.py` — Visualization utilities
+  - `analysis.py` — Core analysis functions for all research questions
+  - `plots.py` — Visualization utilities and research dashboards
 - `outputs/` — Generated reports and figures
-  - `error_analysis_report.json` — Detailed error analysis results
-  - `recommendations.md` — Best practices and recommendations
-  - `final_analysis_summary.json` — Comprehensive project summary
+  - `reports/` — Analysis results and insights (JSON format)
+  - `figures/` — Visualizations and charts
 - `docs/` — Reference material and documentation
+- **Automation Scripts:**
+  - `run_all.bat` — Windows batch script for automated analysis
+  - `run_all.py` — Cross-platform Python automation script
+  - `Makefile` — Make-based automation with multiple targets
 
 ## Key Features
 
@@ -84,10 +92,51 @@ else:
     df = load_aidev(from_huggingface=True, config="pull_request")
 ```
 
-### Running Analysis
-1. **Error Analysis**: Open `notebooks/ErrorAnalysis.ipynb` for comprehensive data quality assessment
-2. **Data Exploration**: Use `notebooks/ReuseableCode.ipynb` for enhanced data analysis functions
-3. **Main Analysis**: Run `main.py` for basic dataset loading and inspection
+### 🚀 Automated Analysis Pipeline
+
+#### Windows (Batch Script)
+```cmd
+# Run all research questions automatically
+run_all.bat
+```
+
+#### Cross-Platform (Python)
+```bash
+# Run complete analysis pipeline
+python run_all.py
+
+# Or activate virtual environment first
+.venv\Scripts\activate  # Windows
+source .venv/bin/activate  # Linux/Mac
+python run_all.py
+```
+
+#### Make-based Automation
+```bash
+# Complete setup and analysis
+make all
+
+# Individual targets
+make setup          # Setup environment
+make test-small     # Test with 1k rows
+make test-medium    # Test with 50k rows  
+make test-full      # Run with full dataset
+make clean          # Clean outputs
+
+# Individual research questions
+make rq1            # Agent Distribution
+make rq2            # Test-to-Code Ratio
+make rq3            # Code Change Analysis
+make rq4            # Description Consistency
+make rq5            # User Adoption
+```
+
+#### Manual Notebook Execution
+1. **RQ1 - Agent Distribution**: `notebooks/RQ1_Agent_Distribution.ipynb`
+2. **RQ2 - Test Ratios**: `notebooks/RQ2_Test_to_Code_Ratio.ipynb`
+3. **RQ3 - Code Changes**: `notebooks/RQ3_Code_Change_Analysis.ipynb`
+4. **RQ4 - Text Consistency**: `notebooks/RQ4_Description_Consistency.ipynb`
+5. **RQ5 - User Adoption**: `notebooks/RQ5_User_Adoption.ipynb`
 
 ## Data Quality Metrics
 - **Dataset Size**: 753MB (full dataset), 1000+ samples available
