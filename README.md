@@ -1,61 +1,78 @@
-# MSR 2026 Honours Project: Caution & Automated Agents
+# MSR 2026 Honours Project: AI Agents in Software Development
 
-## Overview
-This project investigates patterns in pull requests made by automated agents in open-source repositories, focusing on:
-- Test contributions by automated agents
-- Test-to-code churn ratio
-- Consistency between PR descriptions and code changes
-- Factors affecting PR quality
-- Adoption patterns among newcomers and experienced developers
+## 🎯 Overview
+This project investigates patterns in pull requests made by automated agents in open-source repositories. Through comprehensive analysis of the AIDev dataset, we address five key research questions about AI-driven software development practices.
 
-## Dataset
-We use the **AIDev dataset** from Hugging Face (`hao-li/AIDev`) which contains comprehensive pull request data from AI-generated contributions across various GitHub repositories.
+### 🔬 Research Questions
+1. **RQ1**: What is the distribution of AI agents and their test contribution patterns?
+2. **RQ2**: What is the test-to-code churn ratio for different AI agents?
+3. **RQ3**: How do agentic PRs change code (additions/deletions/modifications)?
+4. **RQ4**: How consistent are PR descriptions with actual code changes?
+5. **RQ5**: What are the adoption patterns among newcomers vs experienced developers?
 
-## Repository Structure
-- `data/` — Datasets (raw, processed, samples)
-  - `raw/aidata.csv` — AIDev dataset (753MB)
-  - `processed/` — Cleaned and processed data
-  - `samples/` — Sample datasets for development
-- `notebooks/` — Research Question Analysis
-  - `RQ1_Agent_Distribution.ipynb` — Agent distribution and test contribution analysis
-  - `RQ2_Test_to_Code_Ratio.ipynb` — Test-to-code ratio analysis
-  - `RQ3_Code_Change_Analysis.ipynb` — Code change analysis with GitHub API
-  - `RQ4_Description_Consistency.ipynb` — NLP description consistency analysis
-  - `RQ5_User_Adoption.ipynb` — User adoption pattern analysis
-  - `ErrorAnalysis.ipynb` — Comprehensive error analysis and data quality assessment
-  - `ReuseableCode.ipynb` — Enhanced reusable functions and utilities
-- `src/` — Python source code
-  - `data_loader.py` — Robust data loading with fallback mechanisms
-  - `analysis.py` — Core analysis functions for all research questions
-  - `plots.py` — Visualization utilities and research dashboards
-- `outputs/` — Generated reports and figures
-  - `reports/` — Analysis results and insights (JSON format)
-  - `figures/` — Visualizations and charts
-- `docs/` — Reference material and documentation
-- **Automation Scripts:**
-  - `run_all.bat` — Windows batch script for automated analysis
-  - `run_all.py` — Cross-platform Python automation script
-  - `Makefile` — Make-based automation with multiple targets
+## 📊 Dataset
+We analyze the **AIDev dataset** from Hugging Face (`hao-li/AIDev`) containing ~900K pull request records (753MB) with comprehensive metadata about AI-generated contributions across GitHub repositories.
 
-## Key Features
+## 📁 Repository Structure
+```
+MSR/
+├── 📊 data/                    # Datasets and samples
+│   ├── raw/aidata.csv          # AIDev dataset (753MB, ~900K records)
+│   ├── processed/              # Cleaned and processed data
+│   └── samples/                # Development samples (1K, 50K subsets)
+├── 📓 notebooks/               # Research Question Analysis
+│   ├── RQ1_Agent_Distribution.ipynb      # Agent patterns & test contributions
+│   ├── RQ2_Test_to_Code_Ratio.ipynb     # Test-to-code ratio analysis
+│   ├── RQ3_Code_Change_Analysis.ipynb   # GitHub API & change patterns
+│   ├── RQ4_Description_Consistency.ipynb # NLP text consistency analysis
+│   ├── RQ5_User_Adoption.ipynb          # User behavior & adoption patterns
+│   ├── ErrorAnalysis.ipynb              # Data quality assessment
+│   └── ReuseableCode.ipynb              # Utility functions & examples
+├── 🔧 src/                     # Core Python modules
+│   ├── data_loader.py          # Robust data loading with fallbacks
+│   ├── analysis.py             # Research question analysis functions
+│   └── plots.py                # Visualization & dashboard utilities
+├── 📈 outputs/                 # Generated results
+│   ├── reports/                # Analysis results (JSON format)
+│   └── figures/                # Visualizations and charts
+├── 📚 docs/                    # Documentation and references
+└── 🚀 Automation Scripts
+    ├── run_all.bat             # Windows batch automation
+    ├── run_all.py              # Cross-platform Python pipeline
+    └── Makefile                # Make-based workflow automation
+```
 
-### 🔧 Robust Data Loading
-- **Fallback mechanisms**: Automatic fallback from local files to Hugging Face download
-- **Error handling**: Comprehensive try-catch blocks with meaningful error messages
-- **Memory optimization**: Efficient loading with sample size options for development
-- **Progress tracking**: Clear status indicators and logging
+## ✨ Key Features
 
-### 📊 Data Quality Analysis
-- **Comprehensive error detection**: Missing values, duplicates, type inconsistencies
-- **Automated reporting**: JSON and visual reports for data quality metrics
-- **Health monitoring**: Real-time data completeness and consistency tracking
-- **Validation utilities**: Reusable functions for data structure validation
+### 🎯 **Research Question Framework**
+- **Structured Analysis**: Individual notebooks for each research question
+- **Progressive Methodology**: Scalable from 1K → 50K → 900K records
+- **Academic Standards**: Thesis-ready documentation and methodology
+- **Reproducible Results**: Automated execution with detailed reporting
 
-### 🛠️ Reusable Components
-- **DataQualityAnalyzer class**: Modular data quality assessment tool
-- **Safe operation wrappers**: Error-safe function execution utilities
-- **Validation functions**: Comprehensive data structure and content validation
-- **Cleaning pipelines**: Automated data cleaning with configurable strategies
+### 🔧 **Robust Infrastructure** 
+- **Intelligent Data Loading**: Automatic fallback (local → Hugging Face → error handling)
+- **Memory Optimization**: Efficient processing with configurable sample sizes
+- **Error Recovery**: Comprehensive try-catch blocks with meaningful feedback
+- **Progress Tracking**: Real-time status indicators and execution logging
+
+### 📊 **Comprehensive Analysis Tools**
+- **Data Quality Assessment**: Automated error detection and health monitoring
+- **Multi-Agent Comparison**: Side-by-side analysis of AI agent behaviors  
+- **Statistical Analysis**: Test-to-code ratios, consistency metrics, adoption patterns
+- **Visualization Suite**: Professional charts and research dashboards
+
+### 🤖 **AI-Specific Features**
+- **Agent Pattern Recognition**: Behavior analysis across different AI agents
+- **Test Contribution Tracking**: Automated detection of test-related changes
+- **GitHub API Integration**: Real-time code change analysis (RQ3)
+- **NLP Text Analysis**: Description consistency and quality scoring (RQ4)
+
+### 🚀 **Professional Automation**
+- **One-Click Execution**: Complete pipeline automation with single command
+- **Multi-Platform Support**: Windows batch, Python scripts, Make workflows
+- **Execution Reporting**: Detailed JSON reports with timing and success metrics
+- **Development Testing**: Progressive scaling for optimization (1K→50K→900K)
 
 ## Recent Improvements (October 2025)
 
@@ -70,85 +87,125 @@ We use the **AIDev dataset** from Hugging Face (`hao-li/AIDev`) which contains c
 - 🔧 **Reusable Functions**: Modular components for future projects
 - 📋 **Automated Reporting**: JSON exports and markdown documentation
 
-## Getting Started
+## 🚀 Getting Started
 
-### Prerequisites
+### 📋 Prerequisites
 ```bash
-# Install required packages
+# Setup virtual environment (recommended)
+python -m venv .venv
+.venv\Scripts\activate  # Windows
+# source .venv/bin/activate  # Linux/Mac
+
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-### Quick Start
-```python
-# Load data with robust error handling
-from src.data_loader import load_aidev
-import os
+### ⚡ Quick Start Options
 
-# Check if local file exists, download if needed
-local_path = "data/raw/aidata.csv"
-if os.path.exists(local_path):
-    df = load_aidev(sample_size=1000)  # Load sample for development
-else:
-    df = load_aidev(from_huggingface=True, config="pull_request")
-```
-
-### 🚀 Automated Analysis Pipeline
-
-#### Windows (Batch Script)
-```cmd
-# Run all research questions automatically
+#### **Option 1: One-Click Automation (Recommended)**
+```bash
+# Windows
 run_all.bat
-```
 
-#### Cross-Platform (Python)
-```bash
-# Run complete analysis pipeline
+# Cross-platform
 python run_all.py
 
-# Or activate virtual environment first
-.venv\Scripts\activate  # Windows
-source .venv/bin/activate  # Linux/Mac
-python run_all.py
-```
-
-#### Make-based Automation
-```bash
-# Complete setup and analysis
+# Make-based (Linux/Mac)
 make all
-
-# Individual targets
-make setup          # Setup environment
-make test-small     # Test with 1k rows
-make test-medium    # Test with 50k rows  
-make test-full      # Run with full dataset
-make clean          # Clean outputs
-
-# Individual research questions
-make rq1            # Agent Distribution
-make rq2            # Test-to-Code Ratio
-make rq3            # Code Change Analysis
-make rq4            # Description Consistency
-make rq5            # User Adoption
 ```
 
-#### Manual Notebook Execution
-1. **RQ1 - Agent Distribution**: `notebooks/RQ1_Agent_Distribution.ipynb`
-2. **RQ2 - Test Ratios**: `notebooks/RQ2_Test_to_Code_Ratio.ipynb`
-3. **RQ3 - Code Changes**: `notebooks/RQ3_Code_Change_Analysis.ipynb`
-4. **RQ4 - Text Consistency**: `notebooks/RQ4_Description_Consistency.ipynb`
-5. **RQ5 - User Adoption**: `notebooks/RQ5_User_Adoption.ipynb`
+#### **Option 2: Progressive Testing**
+```bash
+# Start small for development
+make test-small     # 1K records
+make test-medium    # 50K records  
+make test-full      # Full 900K dataset
+```
 
-## Data Quality Metrics
-- **Dataset Size**: 753MB (full dataset), 1000+ samples available
-- **Completeness**: >95% data completeness across key columns
-- **Structure**: 14 columns including PR metadata, timestamps, and agent information
-- **Quality**: Comprehensive validation and error detection implemented
+#### **Option 3: Individual Research Questions**
+```bash
+# Run specific research questions
+make rq1            # Agent Distribution Analysis
+make rq2            # Test-to-Code Ratio Analysis  
+make rq3            # Code Change Analysis
+make rq4            # Description Consistency Analysis
+make rq5            # User Adoption Analysis
+```
 
-## Documentation
-- 📊 Error analysis report: `outputs/error_analysis_report.json`
-- 📝 Best practices: `outputs/recommendations.md`
-- 🎯 Project summary: `outputs/final_analysis_summary.json`
-- 📋 Analysis logs: `outputs/error_analysis.log`
+#### **Option 4: Manual Notebook Execution**
+1. Open Jupyter: `jupyter notebook`
+2. Navigate to `notebooks/` directory
+3. Execute notebooks in order: RQ1 → RQ2 → RQ3 → RQ4 → RQ5
+
+### 🔧 **Development Setup**
+```python
+# For custom analysis or development
+from src.data_loader import load_aidev
+from src.analysis import analyze_test_contributions
+from src.plots import create_research_dashboard
+
+# Load sample data
+df = load_aidev(sample_size=1000)  # Start small
+
+# Run analysis
+df_analyzed, stats = analyze_test_contributions(df)
+
+# Create visualizations
+fig = create_research_dashboard(df_analyzed)
+```
+
+## 📊 **Current Status & Results**
+
+### ✅ **Completed Infrastructure**
+- **Data Pipeline**: Robust loading with fallback mechanisms (local → Hugging Face)
+- **Research Framework**: 5 individual notebooks with structured analysis
+- **Automation Suite**: 3 execution approaches (batch, Python, Make)
+- **Quality Assessment**: Comprehensive error detection and health monitoring
+- **Visualization Tools**: Professional charts and research dashboards
+
+### 🎯 **Research Question Progress**
+| Research Question | Status | Key Findings |
+|------------------|--------|--------------|
+| **RQ1**: Agent Distribution | ✅ Completed | ~15% test contribution rate identified |
+| **RQ2**: Test-to-Code Ratio | 🟡 Framework Ready | Ratio calculation logic implemented |
+| **RQ3**: Code Change Analysis | 🟡 API Integration Ready | GitHub API framework established |
+| **RQ4**: Description Consistency | 🟡 NLP Framework Ready | Text analysis infrastructure complete |
+| **RQ5**: User Adoption | 🟡 Classification Ready | User behavior models implemented |
+
+### 📈 **Dataset Insights** (Sample Analysis)
+- **Total Records**: ~900K pull requests (753MB dataset)
+- **Agent Distribution**: Multiple AI agents with varying contribution patterns
+- **Data Quality**: >95% completeness across key columns
+- **Test Contributions**: ~15% of PRs contain test-related changes
+- **State Distribution**: Majority of PRs are in 'closed' state
+
+### 🚀 **Automation Capabilities**
+```bash
+# Available automation commands
+make all          # Complete pipeline (setup → analysis → reporting)
+make test-small   # Development testing (1K records)
+make test-medium  # Validation testing (50K records) 
+make test-full    # Production analysis (900K records)
+make clean        # Reset outputs for fresh analysis
+```
+
+## 📚 **Documentation & Outputs**
+
+### � **Generated Reports**
+- `outputs/execution_report.json` — Automation pipeline results
+- `outputs/error_analysis_report.json` — Data quality assessment
+- `outputs/final_analysis_summary.json` — Comprehensive project summary
+- `outputs/recommendations.md` — Best practices and guidelines
+
+### 📊 **Research Outputs** 
+- `outputs/figures/` — Professional visualizations and charts
+- `outputs/reports/` — Research question results (JSON format)
+- Individual notebook results with embedded analysis and insights
+
+### 🔧 **Development Resources**
+- `checkme.txt` — Pro tips and best practices checklist
+- `src/` modules — Reusable functions for analysis and visualization
+- Error logs and debugging information for troubleshooting
 
 ## Contributing
 This project follows best practices for data science workflows:
