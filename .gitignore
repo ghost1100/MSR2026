@@ -8,6 +8,7 @@ data/raw/*
 data/processed/*
 data/samples/*
 !data/samples/sample.csv
+MSR Questions & structure updated.docx
 
 # Jupyter checkpoints
 .ipynb_checkpoints
