@@ -4,4 +4,4 @@ seaborn
 jupyter
 anthropic
 python-dotenv
-datasetsdatasets
+datasets
