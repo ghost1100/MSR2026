@@ -21,6 +21,9 @@ NOTEBOOKS = [
     ("summary.ipynb", "Summary Dashboard & Executive Report")
 ]
 
+# Optional visualization notebook (runs after main analysis if all succeed)
+VISUALIZATION_NOTEBOOK = ("MSR_Visualization_Recreation.ipynb", "Comprehensive Visualization Generation")
+
 TIMEOUT = 600  # 10 minutes per notebook
 NOTEBOOKS_DIR = Path("notebooks")
 OUTPUTS_DIR = Path("outputs")
@@ -114,15 +117,40 @@ def main():
     print("=" * 50)
     if failed_count == 0:
         print("[SUCCESS] All Research Questions Completed Successfully!")
+        print("=" * 50)
+        print()
+        
+        # Auto-generate comprehensive visualizations
+        print("🎨 Generating comprehensive visualizations...")
+        visualization_path = NOTEBOOKS_DIR / VISUALIZATION_NOTEBOOK[0]
+        
+        if visualization_path.exists():
+            print(f"[EXTRA] {VISUALIZATION_NOTEBOOK[1]}")
+            success, message = run_notebook(visualization_path, VISUALIZATION_NOTEBOOK[1])
+            results.append((success, VISUALIZATION_NOTEBOOK[0], VISUALIZATION_NOTEBOOK[1], message))
+            
+            if success:
+                print("   [SUCCESS] Comprehensive visualizations generated!")
+            else:
+                print(f"   [WARNING] Visualization generation failed: {message}")
+        else:
+            print(f"   [INFO] Visualization notebook not found: {VISUALIZATION_NOTEBOOK[0]}")
+            print("   [INFO] Skipping automatic visualization generation")
+        
+        print()
     else:
         print(f"[WARNING] {failed_count}/{len(NOTEBOOKS)} notebooks failed")
-    print("=" * 50)
-    print()
+        print("=" * 50)
+        print()
+        print("ℹ️  Skipping visualization generation due to failed notebooks")
+        print()
     
     print("📁 Results saved in:")
     print("   - notebooks/ (executed notebooks)")
     print("   - outputs/reports/ (analysis results)")
     print("   - outputs/figures/ (visualizations)")
+    if failed_count == 0:
+        print("   - outputs/ (comprehensive visualization suite)")
     print()
     
     # Generate report

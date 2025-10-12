@@ -12,3 +12,4 @@ numpy            # Fundamental package for numerical computations
 pyarrow          # Fast columnar storage for efficient caching
 fastparquet      # Alternative Parquet implementation
 plotly           # Interactive graphing library
+kaleido          # Static image export for plotly visualizations
