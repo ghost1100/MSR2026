@@ -4,6 +4,10 @@ import os
 from datasets import load_dataset
 
 def load_aidev(local_path="data/raw/aidata.csv", from_huggingface=False, config="all_pull_request", sample_size=None):
+    # Handle relative path from notebooks directory
+    if not os.path.exists(local_path) and os.path.exists(f"../{local_path}"):
+        local_path = f"../{local_path}"
+    
     if from_huggingface:
         print(f"Loading dataset from Hugging Face with config '{config}'...")
         ds = load_dataset("hao-li/AIDev", config)

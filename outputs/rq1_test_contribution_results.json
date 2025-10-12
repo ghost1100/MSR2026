@@ -1,0 +1,50 @@
+{
+  "research_question": "How frequently do coding agents contribute tests?",
+  "methodology": {
+    "keywords_searched": [
+      "test",
+      "testing",
+      "spec",
+      "unittest",
+      "pytest",
+      "jest",
+      "mocha",
+      "assert"
+    ],
+    "search_scope": [
+      "title",
+      "body"
+    ],
+    "sample_size": 1000
+  },
+  "results": {
+    "overall_test_rate": {
+      "percentage": 76.7,
+      "count": "767/1000"
+    },
+    "by_agent": {
+      "Claude_Code": {
+        "test_percentage": 76.7,
+        "test_count": "767",
+        "total_prs": 1000
+      }
+    },
+    "keyword_frequency": {
+      "test": "814",
+      "testing": "409",
+      "spec": "292",
+      "unittest": "0",
+      "pytest": "27",
+      "jest": "10",
+      "mocha": "1",
+      "assert": "26"
+    },
+    "most_common_keyword": "test"
+  },
+  "key_insights": [
+    "Overall test contribution rate: 76.7% of AI-generated PRs contain test-related content",
+    "Highest test rate: Claude_Code at 76.7%",
+    "Most test PRs: Claude_Code with 767 test-related PRs",
+    "Most common test keyword: 'test'"
+  ]
+}

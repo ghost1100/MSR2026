@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "analysis_date": "2025-10-12T03:25:35.601319",
+    "analysis_date": "2025-10-12T03:18:59.442556",
     "sample_size": 5000,
-    "load_time": 0.12833213806152344
+    "load_time": 0.13845491409301758
   },
   "rq1": {
     "agent_counts": {
@@ -26,9 +26,6 @@
         "Test_Percentage": 76.5
       }
     }
-  },
-  "rq3": {
-    "status": "github_api_required"
   },
   "rq4": {
     "avg_title_length": 56.6226,

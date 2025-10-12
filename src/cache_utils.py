@@ -15,7 +15,17 @@ class SmartCache:
     
     def __init__(self, cache_dir="data/processed"):
         self.cache_dir = Path(cache_dir)
-        self.cache_dir.mkdir(exist_ok=True)
+        # Handle relative path from notebooks directory
+        if not self.cache_dir.exists() and Path(f"../{cache_dir}").exists():
+            self.cache_dir = Path(f"../{cache_dir}")
+        elif not self.cache_dir.exists():
+            # Try to create the directory, handling relative paths
+            try:
+                self.cache_dir.mkdir(parents=True, exist_ok=True)
+            except FileNotFoundError:
+                # If we're in notebooks directory, try with ../ prefix
+                self.cache_dir = Path(f"../{cache_dir}")
+                self.cache_dir.mkdir(parents=True, exist_ok=True)
         
     def _generate_cache_key(self, operation_name, params=None):
         """Generate unique cache key based on operation and parameters"""
