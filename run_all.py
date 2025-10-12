@@ -54,8 +54,8 @@ def generate_report(results: list) -> None:
     report = {
         "execution_timestamp": timestamp,
         "total_notebooks": len(results),
-        "successful": sum(1 for success, _, _ in results if success),
-        "failed": sum(1 for success, _, _ in results if not success),
+        "successful": sum(1 for success, _, _, _ in results if success),
+        "failed": sum(1 for success, _, _, _ in results if not success),
         "results": [
             {
                 "notebook": notebook,
@@ -74,7 +74,7 @@ def generate_report(results: list) -> None:
     with open(report_path, 'w') as f:
         json.dump(report, f, indent=2)
     
-    print(f"\n📊 Execution report saved: {report_path}")
+    print(f"\nExecution report saved: {report_path}")
 
 def main():
     """Main execution pipeline."""
