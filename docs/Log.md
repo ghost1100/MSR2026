@@ -112,7 +112,7 @@ This document records daily iterations and sessions spent working on the MSR 202
 - begin researching material for dissertation
 - begin gathering data/answering questions and creating presentable visualizations
 
-**Time Investment**: ~27 hours of focused development and analysis work
+**Time Investment**: ~34 hours of focused development and analysis work
 **Lines of Code**: ~2000+ across notebooks, source modules, and automation scripts
 **Files Created/Modified**: 15+ files including notebooks, source code, documentation, and automation scripts
 
@@ -156,3 +156,85 @@ This document records daily iterations and sessions spent working on the MSR 202
 ---
 
 *This session established the complete foundation for a professional MSR thesis project with automated workflows, comprehensive analysis capabilities, and engaging academic presentation.*
+
+---
+
+## 📈 **Development Log - Session 4** 
+**Date**: 2025-01-12  
+**Focus**: Critical Bug Fixes & Multi-Agent Analysis Implementation  
+**Duration**: ~6 hours  
+**Status**: ✅ **MAJOR BREAKTHROUGH - All Issues Resolved**
+
+### 🚨 **Critical Issue Identified & Resolved**
+
+**Problem Discovery**: During notebook execution, discovered that analysis was only showing 2 out of 5 AI agents (Claude and Copilot) instead of the complete dataset containing all 5 agents (OpenAI_Codex, Copilot, Cursor, Devin, Claude_Code).
+
+**Root Cause Analysis**: 
+- Sequential data loading using `nrows` parameter was creating sampling bias
+- Data file structure had agents grouped sequentially, not randomly distributed
+- Early rows contained primarily Claude and Copilot data, missing other agents entirely
+
+### 🔧 **Technical Solutions Implemented**
+
+#### **1. Data Loading Enhancement (`src/data_loader.py`)**
+```python
+# BEFORE (Biased Sequential Sampling)
+df = pd.read_csv(data_path, nrows=sample_size)
+
+# AFTER (Unbiased Random Sampling)  
+df_full = pd.read_csv(data_path)
+df = df_full.sample(n=sample_size, random_state=42)
+```
+
+#### **2. Comprehensive Notebook Updates**
+- **All 6 Notebooks Updated**: RQ1, RQ2, RQ3, RQ4, RQ5, Summary
+- **Module Reloading Added**: `importlib.reload(sys.modules['data_loader'])`
+- **Sample Size Increased**: From 10,000 to 50,000 for better representation
+- **Agent Validation**: Added verification code to confirm all 5 agents present
+
+#### **3. Unicode Encoding Resolution**
+- **RQ2 Notebook Corruption**: Complete file recreation due to UTF-8 surrogate issues
+- **Automation Pipeline**: Fixed UnicodeEncodeError breaking nbconvert execution
+- **100% Success Rate**: All notebooks now execute cleanly in automation
+
+### 📊 **Validation Results**
+
+**Agent Distribution Achieved** (Sample of 50,000 PRs):
+- **OpenAI_Codex**: 43,651 PRs (87.3%) 
+- **Copilot**: 2,689 PRs (5.4%)
+- **Cursor**: 1,764 PRs (3.5%) 
+- **Devin**: 1,578 PRs (3.2%)
+- **Claude_Code**: 318 PRs (0.6%)
+
+**Automation Pipeline**: ✅ 100% success rate across all notebooks  
+**Data Quality**: ✅ Full dataset representation restored  
+**Research Validity**: ✅ Comprehensive multi-agent analysis now functional
+
+### 🎯 **Research Impact**
+
+**Before Fix**: Limited analysis of 2/5 agents - **INVALID RESEARCH RESULTS**  
+**After Fix**: Complete 5-agent comparative analysis - **COMPREHENSIVE MSR STUDY**
+
+This breakthrough transforms the project from a limited 2-agent study into a comprehensive multi-agent analysis covering the complete ecosystem of AI coding assistants. All research questions can now be answered with statistical validity across the full spectrum of AI tools.
+
+### 📝 **Key Files Modified**
+- `src/data_loader.py` - Enhanced with random sampling
+- `notebooks/RQ1_PR_Success_Analysis.ipynb` - Updated & validated
+- `notebooks/RQ2_Test_to_Code_Ratio.ipynb` - Recreated & fixed
+- `notebooks/RQ3_Quality_Patterns.ipynb` - Updated & validated  
+- `notebooks/RQ4_Code_Complexity.ipynb` - Updated & validated
+- `notebooks/RQ5_User_Adoption.ipynb` - Updated & validated
+- `notebooks/Summary_Analysis.ipynb` - Updated & validated
+
+### 🏆 **Achievement Summary**
+- ✅ **Data Bias Eliminated**: Random sampling ensures representative analysis
+- ✅ **Unicode Issues Resolved**: Clean automation pipeline execution  
+- ✅ **All Agents Represented**: Complete 5-agent ecosystem analysis
+- ✅ **Research Validity Restored**: Statistically sound comparative study
+- ✅ **Automation Working**: 100% reliable notebook execution pipeline
+
+**Research Status**: **READY FOR PRODUCTION ANALYSIS** 🚀
+
+---
+
+*This critical debugging session resolved fundamental data representation issues and established a robust, unbiased foundation for comprehensive multi-agent MSR analysis.*
