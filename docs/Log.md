@@ -108,7 +108,7 @@ This document records daily iterations and sessions spent working on the MSR 202
 - Install and configure NLP libraries for RQ4 text analysis
 - Begin user classification analysis for RQ5 adoption patterns
 - Scale analysis from development samples to production dataset
-- achive actual replicatable results and begin documentation
+- achieve actual replicatable results and begin documentation
 - begin researching material for dissertation
 - begin gathering data/answering questions and creating presentable visualizations
 
