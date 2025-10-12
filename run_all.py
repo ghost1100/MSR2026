@@ -17,26 +17,22 @@ NOTEBOOKS = [
     ("RQ2_Test_to_Code_Ratio.ipynb", "Test-to-Code Ratio Analysis"),
     ("RQ3_Code_Change_Analysis.ipynb", "Code Change Analysis"),
     ("RQ4_Description_Consistency.ipynb", "Description Consistency Analysis"),
-    ("RQ5_User_Adoption.ipynb", "User Adoption Analysis")
+    ("RQ5_User_Adoption.ipynb", "User Adoption Analysis"),
+    ("summary.ipynb", "Summary Dashboard & Executive Report")
 ]
 
 TIMEOUT = 600  # 10 minutes per notebook
 NOTEBOOKS_DIR = Path("notebooks")
 OUTPUTS_DIR = Path("outputs")
 
-def run_notebook(notebook_path: Path, description: str) -> tuple[bool, str]:
-    """Execute a single notebook and return success status and output."""
-    print(f"🔄 Running: {description}")
+def run_notebook(notebook_path, description):
+    """Run a single notebook and return success status"""
     print(f"   Notebook: {notebook_path}")
     
-    cmd = [
-        "jupyter", "nbconvert",
-        "--to", "notebook",
-        "--execute",
-        str(notebook_path),
-        f"--ExecutePreprocessor.timeout={TIMEOUT}",
-        "--allow-errors"
-    ]
+    # Use full Python path from virtual environment
+    python_path = r"C:/Users/Ahmed/Downloads/VScodeRepo/MSR/.venv/Scripts/python.exe"
+    cmd = [python_path, "-m", "jupyter", "nbconvert", "--to", "notebook", 
+           "--execute", "--inplace", str(notebook_path)]
     
     try:
         start_time = time.time()
@@ -44,11 +40,11 @@ def run_notebook(notebook_path: Path, description: str) -> tuple[bool, str]:
         end_time = time.time()
         
         duration = end_time - start_time
-        print(f"   ✅ Completed in {duration:.1f}s")
+        print(f"   [SUCCESS] Completed in {duration:.1f}s")
         return True, f"Success ({duration:.1f}s)"
         
     except subprocess.CalledProcessError as e:
-        print(f"   ❌ Failed: {e}")
+        print(f"   [ERROR] Failed: {e}")
         return False, f"Error: {e.stderr}"
 
 def generate_report(results: list) -> None:
@@ -101,7 +97,7 @@ def main():
         print(f"[{i}/{len(NOTEBOOKS)}] {description}")
         
         if not notebook_path.exists():
-            print(f"   ⚠️  Notebook not found: {notebook_path}")
+            print(f"   [WARNING] Notebook not found: {notebook_path}")
             results.append((False, notebook_file, description, "File not found"))
             failed_count += 1
             continue
@@ -117,9 +113,9 @@ def main():
     # Summary
     print("=" * 50)
     if failed_count == 0:
-        print("🎉 All Research Questions Completed Successfully!")
+        print("[SUCCESS] All Research Questions Completed Successfully!")
     else:
-        print(f"⚠️  {failed_count}/{len(NOTEBOOKS)} notebooks failed")
+        print(f"[WARNING] {failed_count}/{len(NOTEBOOKS)} notebooks failed")
     print("=" * 50)
     print()
     

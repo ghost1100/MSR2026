@@ -1,6 +1,7 @@
 # Reusable Analysis Functions for AIDev Dataset
 import pandas as pd
 import numpy as np
+from cache_utils import SmartCache
 
 def contains_test_keywords(text, keywords=None):
     """Check if text contains any test-related keywords"""
@@ -12,8 +13,22 @@ def contains_test_keywords(text, keywords=None):
     text_lower = str(text).lower()
     return any(keyword in text_lower for keyword in keywords)
 
-def analyze_test_contributions(df):
-    """Analyze test contributions in a DataFrame"""
+def analyze_test_contributions(df, use_cache=True):
+    """Analyze test contributions in a DataFrame with smart caching"""
+    cache = SmartCache()
+    
+    # Create cache key based on DataFrame shape and content hash
+    cache_key = f"test_analysis_{len(df)}_{hash(str(df.columns.tolist()))}"
+    
+    if use_cache:
+        cached_result, metadata = cache.load_from_cache(cache_key)
+        if cached_result is not None:
+            print(f"[CACHE] Loaded test analysis from cache")
+            df_analyzed = cached_result['df_analyzed']
+            test_by_agent = pd.DataFrame(cached_result['test_by_agent'])
+            return df_analyzed, test_by_agent
+    
+    print("[ANALYSIS] Computing test contributions analysis...")
     df = df.copy()
     df['has_test_in_title'] = df['title'].apply(lambda x: contains_test_keywords(x))
     df['has_test_in_body'] = df['body'].apply(lambda x: contains_test_keywords(x))
@@ -23,6 +38,15 @@ def analyze_test_contributions(df):
     test_by_agent = df.groupby('agent')['is_test_pr'].agg(['count', 'sum', 'mean']).round(3)
     test_by_agent.columns = ['Total_PRs', 'Test_PRs', 'Test_Ratio']
     test_by_agent['Test_Percentage'] = (test_by_agent['Test_Ratio'] * 100).round(1)
+    
+    # Cache results if enabled
+    if use_cache:
+        cache_data = {
+            'df_analyzed': df,
+            'test_by_agent': test_by_agent.to_dict('index')
+        }
+        cache.save_to_cache(cache_data, cache_key, 
+                           metadata={'operation': 'test_contributions_analysis'})
     
     return df, test_by_agent
 

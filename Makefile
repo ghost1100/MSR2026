@@ -66,6 +66,10 @@ rq5:
 	@echo "Running RQ5: User Adoption Analysis..."
 	.venv\Scripts\activate && jupyter nbconvert --to notebook --execute notebooks/RQ5_User_Adoption.ipynb
 
+summary:
+	@echo "Running Summary Dashboard..."
+	.venv\Scripts\activate && jupyter nbconvert --to notebook --execute notebooks/summary.ipynb
+
 # Help target
 help:
 	@echo "MSR Project - Available Commands:"
@@ -78,4 +82,5 @@ help:
 	@echo "  make test-full   - Run with full dataset"
 	@echo "  make clean       - Clean output directories"
 	@echo "  make rq1-rq5     - Run individual research questions"
+	@echo "  make summary     - Generate summary dashboard"
 	@echo "  make help        - Show this help"
