@@ -27,8 +27,14 @@ def load_aidev(local_path="data/raw/aidata.csv", from_huggingface=False, config=
         print(f"Loading dataset from local file: {local_path}")
         # For large files, load with low_memory=False to avoid mixed type warnings
         if sample_size:
-            df = pd.read_csv(local_path, nrows=sample_size, low_memory=False)
-            print(f"Loaded sample of {sample_size} rows")
+            # Load full dataset first, then sample randomly to preserve agent distribution
+            df_full = pd.read_csv(local_path, low_memory=False)
+            if len(df_full) <= sample_size:
+                df = df_full
+                print(f"Loaded full dataset: {len(df)} rows")
+            else:
+                df = df_full.sample(n=sample_size, random_state=42)
+                print(f"Loaded random sample of {sample_size} rows from {len(df_full)} total")
         else:
             df = pd.read_csv(local_path, low_memory=False)
     return df
