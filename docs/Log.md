@@ -6,6 +6,10 @@ This document records daily iterations and sessions spent working on the MSR 202
 - [ChatGPT Prompt Engineering](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/)
 - [The Data Science Course: Complete Data Science Bootcamp (Udemy)](https://www.udemy.com/course/the-data-science-course-complete-data-science-bootcamp/?couponCode=25BBPMXINACTIVE)
 
+## 📺 **Reference Video**
+
+- [Jupyter Notebook In 10 Minutes(Colt Steele)](https://youtu.be/H9Iu49E6Mxs?si=luL7kHgePlwM7C7t)
+
 ## **AI Usage Policy & Acknowledgment Framework**
 
 **Transparency Commitment**: All AI assistance used in this project is fully documented for academic integrity and reproducibility.
