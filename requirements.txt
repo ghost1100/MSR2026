@@ -11,3 +11,4 @@ scikit-learn     # Machine learning algorithms and tools
 numpy            # Fundamental package for numerical computations
 pyarrow          # Fast columnar storage for efficient caching
 fastparquet      # Alternative Parquet implementation
+plotly           # Interactive graphing library
