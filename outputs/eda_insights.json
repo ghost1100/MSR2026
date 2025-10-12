@@ -1,27 +1,31 @@
 {
-  "analysis_date": "2025-10-12T03:51:24.605391",
-  "sample_size": 1000,
+  "analysis_date": "2025-10-12T04:17:34.488202",
+  "sample_size": 50000,
   "large_sample_size": 10000,
   "research_insights": {
     "RQ1_Test_Frequency": {
-      "total_prs": 1000,
-      "test_prs": "767",
-      "test_percentage": 76.7,
+      "total_prs": 50000,
+      "test_prs": "46777",
+      "test_percentage": 93.554,
       "by_agent": {
-        "Claude_Code": 76.7
+        "Claude_Code": 80.2,
+        "Copilot": 80.0,
+        "Cursor": 18.0,
+        "Devin": 67.1,
+        "OpenAI_Codex": 98.5
       }
     },
     "RQ2_Test_Code_Ratio": {
-      "test_to_total_ratio": 0.767,
+      "test_to_total_ratio": 0.93554,
       "test_titles_sample": [
-        "feat: Comprehensive ruff error resolution with version alignment and governance",
-        "Add Evals frontend implementation plan and HTML prototype",
-        "Add 4 new BfDs components for Evals interface implementation"
+        "Add template name comments",
+        "Extend test retry loops",
+        "Add quadtree unit test"
       ],
       "non_test_titles_sample": [
-        "`metta code` --> `metta clip` and additional polish",
-        "\ud83d\udd27 \u6280\u672f\u503a\u52a1\u4fee\u590d\uff1a\u6d88\u9664conversion_engine.ml\u4e2d\u7684\u4e0d\u5b89\u5168\u7c7b\u578b\u8f6c\u6362 - Fix #1343",
-        "\ud83e\uddea \u6d4b\u8bd5\u8986\u76d6\u7387\u6539\u8fdb\uff1a\u65b0\u589e\u53e4\u96c5\u4f53\u9002\u7528\u6027\u68c0\u67e5\u5668\u7efc\u5408\u6d4b\u8bd5 - Fix #1342"
+        "feat: add uniapp project list with images",
+        "Update logger type hint",
+        "[Blazor] Update AuthenticationStateProvider to use declarative persistent component state"
       ]
     },
     "RQ3_Code_Changes": {
@@ -34,28 +38,28 @@
       "next_steps": "Link with GitHub API for detailed change metrics"
     },
     "RQ4_Description_Consistency": {
-      "avg_title_length": 56.3,
-      "avg_body_length": 2231.074222668004,
+      "avg_title_length": 35.38334,
+      "avg_body_length": 540.15551026174,
       "title_body_correlation": "Needs NLP analysis for consistency measurement"
     },
     "RQ5_User_Adoption": {
-      "unique_users": 512,
+      "unique_users": 15667,
       "top_users": {
-        "randallb": 57,
-        "claudeai-v1[bot]": 55,
-        "fumiya-kume": 22
+        "Copilot": 2712,
+        "devin-ai-integration[bot]": 1571,
+        "tamnd": 448
       },
-      "user_agent_combinations": "       user        agent  count\n0  0x1NotMe  Claude_Code      5\n1      106-  Claude_Code      1\n2     20m61  Claude_Code      1\n3    24taro  Claude_Code      1\n4  9alvaro0  Claude_Code      7"
+      "user_agent_combinations": "             user         agent  count\n0         00hello        Cursor      1\n1        00nesval  OpenAI_Codex      1\n2  04-impiousrust  OpenAI_Codex      1\n3        0561joni  OpenAI_Codex      1\n4         06Gagan  OpenAI_Codex      1"
     }
   },
   "key_findings": {
-    "test_pr_percentage": 76.7,
-    "most_active_agent": "Claude_Code",
-    "agent_count": 1,
-    "user_count": 512,
+    "test_pr_percentage": 93.554,
+    "most_active_agent": "OpenAI_Codex",
+    "agent_count": 5,
+    "user_count": 15667,
     "state_distribution": {
-      "closed": 904,
-      "open": 96
+      "closed": 46137,
+      "open": 3863
     }
   },
   "next_steps": [

@@ -1,5 +1,5 @@
 {
-  "execution_timestamp": "2025-10-12T03:41:44.550444",
+  "execution_timestamp": "2025-10-12T04:19:03.977677",
   "total_notebooks": 6,
   "successful": 6,
   "failed": 0,
@@ -8,37 +8,37 @@
       "notebook": "RQ1_Agent_Distribution.ipynb",
       "description": "Agent Distribution Analysis",
       "success": true,
-      "message": "Success (8.8s)"
+      "message": "Success (33.6s)"
     },
     {
       "notebook": "RQ2_Test_to_Code_Ratio.ipynb",
       "description": "Test-to-Code Ratio Analysis",
       "success": true,
-      "message": "Success (5.6s)"
+      "message": "Success (16.5s)"
     },
     {
       "notebook": "RQ3_Code_Change_Analysis.ipynb",
       "description": "Code Change Analysis",
       "success": true,
-      "message": "Success (5.4s)"
+      "message": "Success (18.9s)"
     },
     {
       "notebook": "RQ4_Description_Consistency.ipynb",
       "description": "Description Consistency Analysis",
       "success": true,
-      "message": "Success (5.6s)"
+      "message": "Success (19.0s)"
     },
     {
       "notebook": "RQ5_User_Adoption.ipynb",
       "description": "User Adoption Analysis",
       "success": true,
-      "message": "Success (5.8s)"
+      "message": "Success (16.9s)"
     },
     {
       "notebook": "summary.ipynb",
       "description": "Summary Dashboard & Executive Report",
       "success": true,
-      "message": "Success (6.6s)"
+      "message": "Success (17.1s)"
     }
   ]
 }

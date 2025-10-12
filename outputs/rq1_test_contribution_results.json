@@ -15,36 +15,56 @@
       "title",
       "body"
     ],
-    "sample_size": 1000
+    "sample_size": 50000
   },
   "results": {
     "overall_test_rate": {
-      "percentage": 76.7,
-      "count": "767/1000"
+      "percentage": 93.554,
+      "count": "46777/50000"
     },
     "by_agent": {
+      "OpenAI_Codex": {
+        "test_percentage": 98.5,
+        "test_count": "42997",
+        "total_prs": 43668
+      },
+      "Devin": {
+        "test_percentage": 67.1,
+        "test_count": "1054",
+        "total_prs": 1571
+      },
+      "Copilot": {
+        "test_percentage": 80.0,
+        "test_count": "2201",
+        "total_prs": 2751
+      },
       "Claude_Code": {
-        "test_percentage": 76.7,
-        "test_count": "767",
-        "total_prs": 1000
+        "test_percentage": 80.2,
+        "test_count": "211",
+        "total_prs": 263
+      },
+      "Cursor": {
+        "test_percentage": 18.0,
+        "test_count": "314",
+        "total_prs": 1747
       }
     },
     "keyword_frequency": {
-      "test": "814",
-      "testing": "409",
-      "spec": "292",
-      "unittest": "0",
-      "pytest": "27",
-      "jest": "10",
-      "mocha": "1",
-      "assert": "26"
+      "test": "49756",
+      "testing": "45216",
+      "spec": "3407",
+      "unittest": "283",
+      "pytest": "9862",
+      "jest": "1537",
+      "mocha": "72",
+      "assert": "297"
     },
     "most_common_keyword": "test"
   },
   "key_insights": [
-    "Overall test contribution rate: 76.7% of AI-generated PRs contain test-related content",
-    "Highest test rate: Claude_Code at 76.7%",
-    "Most test PRs: Claude_Code with 767 test-related PRs",
+    "Overall test contribution rate: 93.6% of AI-generated PRs contain test-related content",
+    "Highest test rate: OpenAI_Codex at 98.5%",
+    "Most test PRs: OpenAI_Codex with 42997 test-related PRs",
     "Most common test keyword: 'test'"
   ]
 }
