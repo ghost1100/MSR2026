@@ -1,0 +1,33 @@
+{
+  "analysis_timestamp": "2025-10-29T15:23:01.144566",
+  "dataset_summary": {
+    "total_prs": 50000,
+    "unique_agents": 5,
+    "date_range": {
+      "start": "2024-12-24T02:17:42Z",
+      "end": "2025-07-30T19:46:26Z"
+    }
+  },
+  "key_findings": {
+    "overall_test_rate": 0.93554,
+    "top_agent": {
+      "name": "OpenAI_Codex",
+      "prs": 43668,
+      "market_share": 0.87336
+    },
+    "best_test_rate_agent": {
+      "name": "OpenAI_Codex",
+      "test_rate": 0.9846340569753596
+    }
+  },
+  "visualizations_generated": [
+    "agent_distribution_analysis.png",
+    "test_contribution_analysis.png",
+    "interactive_executive_dashboard.html",
+    "advanced_statistical_analysis.png",
+    "msr_complete_analysis.png",
+    "msr_complete_analysis.pdf",
+    "msr_complete_analysis.svg",
+    "msr_complete_analysis.jpg"
+  ]
+}

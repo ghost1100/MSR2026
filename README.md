@@ -1,49 +1,51 @@
-# MSR 2026 Honours Project: AI Agents in Software Development
-## *A Cautionary Tale of Trust and Verification*
+# AI Agents in Software Development: Trust and Verification
 
-## 🎯 Project Overview
-> *"Trust, but verify"* - This project explores the delicate balance between embracing AI coding agents and maintaining critical oversight in software development.
+## Project Overview
 
-This research investigates patterns in pull requests made by automated agents across GitHub repositories, with a focus on **when their contributions can be trusted** and **where developers must exercise caution**. Through comprehensive analysis of ~900K pull requests from the AIDev dataset, we uncover the hidden dynamics of human-AI collaboration in software development.
+This research analyzes 900,000+ pull requests from AI coding agents to understand their impact on software development quality and safety. We examine whether AI-generated code can be trusted and where human oversight remains critical.
 
-### 🔍 **Central Research Theme**
-Like a modern cautionary tale, this study reveals both the promises and perils of AI-driven development. We examine three critical challenge segments that determine whether AI agents enhance or endanger software quality:
+## Research Questions
 
-1. **Testing Behavior** - *Do AI agents verify their own work?*
-2. **Code Patch Characteristics** - *Are changes explainable and safe?*  
-3. **Adoption Patterns** - *Who trusts AI, and when does it work?*
+**RQ1: Agent Distribution** - Which AI agents are most active and how do they compare?
 
-### 🔬 **Research Questions & Challenge Segments**
+**RQ2: Testing Behavior** - Do AI agents write tests for their code changes?
 
-#### **Challenge Segment 1: Testing Behavior** 🧪
-> *"Do AI agents verify their own work?"* - A core caution signal
+**RQ3: Code Changes** - What types of modifications do AI agents make?
 
-- **RQ1a**: How frequently do coding agents contribute tests?
-- **RQ1b**: What types of tests are most common (unit, integration, end-to-end)?
-- **RQ2**: What is the test-to-code churn ratio for different AI agents?
+**RQ4: Description Quality** - How well do PR descriptions match actual code changes?
 
-**Caution Indicator**: Agents that don't test their code may produce unverified, potentially dangerous changes.
+**RQ5: Adoption Patterns** - Who uses AI agents and in what contexts?
 
-#### **Challenge Segment 2: Code Patch Characteristics** ⚖️  
-> *"Understanding the risk surface - are changes small and explainable, or large and unpredictable?"*
+## Key Findings
 
-- **RQ3**: How do agentic PRs change code (additions, deletions, files touched)?
-- **RQ4**: How consistent are PR descriptions with actual code changes?
+- **OpenAI Codex dominates** with 87.3% of all AI-generated PRs
+- **High testing discipline** across agents with 93.6% test contribution rate
+- **Consistent quality patterns** regardless of which AI agent is used
+- **Description-code alignment** varies significantly by agent and PR complexity
 
-**Risk Assessment**: Large, poorly documented changes signal higher caution requirements.
+## Dataset
 
-#### **Challenge Segment 3: Adoption & Practices** 👥
-> *"Identifying safer collaboration patterns and the possibility of true human-AI partnership"*
+We use the AIDev dataset containing ~900K pull request records (753MB) from GitHub repositories. This represents the largest known collection of AI-generated code contributions.
 
-- **RQ5a**: Who adopts coding agents (newcomers vs experienced developers)?
-- **RQ5b**: What practices correlate with higher-quality PRs?
+## Repository Structure
 
-**Trust Framework**: Understanding which developer behaviors lead to safer AI collaboration.
+```
+MSR/
+├── data/                       # Datasets and processed results
+│   ├── raw/aidata.csv         # AIDev dataset (753MB)
+│   └── processed/             # Analysis cache and results
+├── notebooks/                 # Jupyter analysis notebooks (RQ1-RQ5)
+├── src/                       # Core analysis modules
+├── outputs/                   # Generated reports and visualizations
+└── Scripts for automation (run_all.py, test.bat)
+```
 
-### 📊 **Dataset & Scale**
-We analyze the **AIDev dataset** from Hugging Face (`hao-li/AIDev`) containing **~900K pull request records** (753MB) - the largest known dataset of AI-generated contributions across GitHub repositories.
+## Technology Stack
 
-## 📁 Repository Structure
+- **Python 3.12** with pandas, matplotlib, seaborn
+- **Claude API** for intelligent PR classification
+- **Jupyter Notebooks** for analysis and visualization
+- **Statistical Analysis** using scikit-learn and numpy
 ```
 MSR/
 ├── 📊 data/                    # Datasets and samples
@@ -75,37 +77,44 @@ MSR/
 ## 🛠️ **Research Methodology & Tools**
 
 ### 📋 **Classification & Analysis Strategy**
-Given the massive scale (900K+ PRs), manual labeling is impossible. We employ **Claude API as an intelligent classifier** to:
-- Automatically tag PRs by type and behavior patterns  
-- Calculate accuracy metrics for agent self-description
-- Measure consistency between PR descriptions and actual code changes
+## Getting Started
 
-### � **Technical Stack**
-| Category | Tools & Libraries | Purpose |
-|----------|------------------|---------|
-| **Data Processing** | DuckDB, Pandas | Large-scale data querying and manipulation |
-| **AI Classification** | Claude API, Python | Automated PR categorization and analysis |
-| **NLP Analysis** | NLTK, scikit-learn, embeddings | Description consistency verification |
-| **Visualization** | Matplotlib, Seaborn | Professional research dashboards |
-| **Development** | VS Code, GitHub, Jupyter | Version control and analysis environment |
-| **Optional Deployment** | Streamlit, Flask | Interactive analysis applications |
+### Prerequisites
+- Python 3.12
+- Virtual environment (recommended)
+- Claude API key (optional, for enhanced analysis)
 
-### 📈 **Visualization Strategy**
-*"Choosing the right narrative through data"*
+### Installation
+```bash
+git clone [repository-url]
+cd MSR
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+```
 
-| Data Type | Visualization | Research Application |
-|-----------|--------------|---------------------|
-| **Group Comparisons** | Bar/Grouped Bar Charts | Newcomers vs Experienced adoption rates |
-| **Temporal Trends** | Line Charts | PR frequency evolution per agent |
-| **Distributions** | Box Plots/Histograms | PR size and churn ratio patterns |
-| **Correlations** | Scatter Plots + Regression | Experience vs PR acceptance rates |
-| **Proportions** | Pie Charts | Share of AI PRs by type (features/bugs/tests) |
+### Quick Start
 
-## Recent Improvements (October 2025)
+**Complete Analysis Pipeline**
+```bash
+python run_all.py
+```
+This runs all research questions and generates comprehensive visualizations.
 
-### 🎯 **Major Achievement: Complete Automated Visualization Pipeline**
-- ✅ **100% Pipeline Success**: Enhanced from 83.3% to 100% notebook execution rate
-- ✅ **Automated Visualizations**: Comprehensive visualization generation integrated into main pipeline
+**Individual Analysis**
+```bash
+# Test with small sample
+python test.bat 1000
+
+# Complete analysis with larger sample  
+python test.bat 10000 complete
+```
+
+**AI-Enhanced Analysis (Optional)**
+```bash
+# Add ANTHROPIC_API_KEY to .env file
+python run_claude_analysis.py
+```
 - ✅ **Professional Outputs**: Publication-ready visualizations in multiple formats (PNG, PDF, SVG, HTML)
 - ✅ **Interactive Dashboards**: Plotly-based executive dashboards with dynamic exploration
 - ✅ **One-Command Pipeline**: Complete analysis + visualizations generated automatically
@@ -118,17 +127,40 @@ Given the massive scale (900K+ PRs), manual labeling is impossible. We employ **
 - 🎯 **Executive Dashboards**: Interactive plotly visualizations for dynamic data exploration
 
 ### Error Resolution & Infrastructure
-- ✅ **Import Dependency Fixed**: Resolved `calculate_test_code_ratios` import error blocking pipeline
-- ✅ **Plotly Integration**: Fixed color scheme compatibility issues and enhanced visualization robustness
-- ✅ **Unicode Handling**: Resolved UTF-8 encoding issues in notebook automation
-- ✅ **Data Structure Fixes**: Enhanced violin plot and correlation matrix generation
-- ✅ **Package Management**: Added kaleido for static plotly export functionality
+## Outputs
 
-### Enhanced Functionality
-- 🔍 **Comprehensive Error Analysis**: Detailed detection and categorization of data issues
-- 📈 **Visual Dashboards**: Interactive charts for data quality monitoring
-- 🔧 **Reusable Functions**: Modular components for future projects
-- 📋 **Automated Reporting**: JSON exports and markdown documentation
+The analysis generates:
+- Statistical reports (JSON format)
+- Visualizations (PNG, SVG, PDF formats)
+- Interactive dashboards (HTML)
+- Detailed agent comparison metrics
+
+## Current Results
+
+**Agent Ecosystem:**
+- OpenAI Codex: 87.3% of all AI PRs
+- GitHub Copilot: 5.4%
+- Cursor: 3.5%
+- Devin: 3.2%
+- Claude Code: 0.6%
+
+**Testing Behavior:**
+- 93.6% of AI PRs include test contributions
+- Consistent testing patterns across different agents
+- High correlation between testing and PR acceptance
+
+**Code Quality:**
+- Average description-code consistency score: 7.2/10
+- Larger PRs tend to have lower consistency scores
+- Agent-specific communication patterns identified
+
+## Research Impact
+
+This analysis provides evidence for:
+- The dominance of specific AI coding tools in open source
+- Generally good testing practices among AI agents
+- The need for continued human oversight in AI-generated code
+- Patterns that can inform AI tool development and usage guidelines
 
 ## 🚀 Getting Started
 
@@ -143,59 +175,21 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-### ⚡ Quick Start Options
+## Documentation
 
-#### **Option 1: One-Click Automation (Recommended)**
-```bash
-# Windows
-run_all.bat
+- `checkme.txt` - Detailed technical operations manual
+- `docs/Log.md` - Development progress and notes
+- Individual notebook documentation within each analysis file
 
-# Cross-platform
-python run_all.py
+## Contributing
 
-# Make-based (Linux/Mac)
-make all
-```
+This is an academic research project. For questions or collaboration opportunities, please refer to the project documentation or open an issue.
 
-#### **Option 2: Progressive Testing**
-```bash
-# Start small for development
-make test-small     # 1K records
-make test-medium    # 50K records  
-make test-full      # Full 900K dataset
-```
+## License
 
-#### **Option 3: Individual Research Questions**
-```bash
-# Run specific research questions
-make rq1            # Agent Distribution Analysis
-make rq2            # Test-to-Code Ratio Analysis  
-make rq3            # Code Change Analysis
-make rq4            # Description Consistency Analysis
-make rq5            # User Adoption Analysis
-```
+Academic research project - see license file for details.
 
-#### **Option 4: Manual Notebook Execution**
-1. Open Jupyter: `jupyter notebook`
-2. Navigate to `notebooks/` directory
-3. Execute notebooks in order: RQ1 → RQ2 → RQ3 → RQ4 → RQ5
 
-### 🔧 **Development Setup**
-```python
-# For custom analysis or development
-from src.data_loader import load_aidev
-from src.analysis import analyze_test_contributions
-from src.plots import create_research_dashboard
-
-# Load sample data
-df = load_aidev(sample_size=1000)  # Start small
-
-# Run analysis
-df_analyzed, stats = analyze_test_contributions(df)
-
-# Create visualizations
-fig = create_research_dashboard(df_analyzed)
-```
 
 ## 📊 **Current Findings & Comprehensive Analysis Results**
 

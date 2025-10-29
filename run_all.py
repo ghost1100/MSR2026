@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """
-MSR Project: Automated Analysis Pipeline
+MSR Project: Automated Analysis Pipeline with Claude Integration
 Executes all research question notebooks in sequence with error handling and reporting.
+Now includes Claude API integration for enhanced analysis capabilities.
 """
 
 import subprocess
 import sys
 import time
+import argparse
 from pathlib import Path
 import json
 from datetime import datetime
@@ -19,6 +21,11 @@ NOTEBOOKS = [
     ("RQ4_Description_Consistency.ipynb", "Description Consistency Analysis"),
     ("RQ5_User_Adoption.ipynb", "User Adoption Analysis"),
     ("summary.ipynb", "Summary Dashboard & Executive Report")
+]
+
+# Claude-enhanced notebooks (optional, runs if Claude API is available)
+CLAUDE_NOTEBOOKS = [
+    ("Claude_Enhanced_Analysis.ipynb", "Claude-Powered Intelligent Analysis")
 ]
 
 # Optional visualization notebook (runs after main analysis if all succeed)
@@ -80,10 +87,20 @@ def generate_report(results: list) -> None:
     print(f"\nExecution report saved: {report_path}")
 
 def main():
-    """Main execution pipeline."""
-    print("=" * 50)
-    print("MSR Project: Automated Analysis Pipeline")
-    print("=" * 50)
+    """Main execution pipeline with Claude integration options."""
+    parser = argparse.ArgumentParser(description='MSR Analysis Pipeline with Claude Integration')
+    parser.add_argument('--include-claude', action='store_true', default=False,
+                       help='Include Claude-enhanced analysis notebooks')
+    parser.add_argument('--claude-only', action='store_true', default=False,
+                       help='Run only Claude-enhanced analysis (skip standard notebooks)')
+    parser.add_argument('--no-visualization', action='store_true', default=False,
+                       help='Skip visualization generation')
+    
+    args = parser.parse_args()
+    
+    print("=" * 60)
+    print("MSR Project: Automated Analysis Pipeline with Claude Integration")
+    print("=" * 60)
     print()
     
     # Check if notebooks directory exists

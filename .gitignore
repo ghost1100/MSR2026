@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 *.pyo
 checkme.txt
+CLAUDE_INTEGRATION_SUMMARY.md
 # Data files
 data/raw/*
 data/processed/*
