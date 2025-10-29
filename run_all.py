@@ -39,13 +39,16 @@ def run_notebook(notebook_path, description):
     
     try:
         start_time = time.time()
-        result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+        result = subprocess.run(cmd, capture_output=True, text=True, check=True, timeout=300)  # 5 minute timeout
         end_time = time.time()
         
         duration = end_time - start_time
         print(f"   [SUCCESS] Completed in {duration:.1f}s")
         return True, f"Success ({duration:.1f}s)"
         
+    except subprocess.TimeoutExpired as e:
+        print(f"   [TIMEOUT] Notebook execution exceeded 5 minutes")
+        return False, "Timeout: Execution exceeded 5 minutes"
     except subprocess.CalledProcessError as e:
         print(f"   [ERROR] Failed: {e}")
         return False, f"Error: {e.stderr}"
