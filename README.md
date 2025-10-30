@@ -48,11 +48,11 @@ MSR/
 - **Statistical Analysis** using scikit-learn and numpy
 ```
 MSR/
-├── 📊 data/                    # Datasets and samples
+├── data/                       # Datasets and samples
 │   ├── raw/aidata.csv          # AIDev dataset (753MB, ~900K records)
 │   ├── processed/              # Cleaned and processed data
 │   └── samples/                # Development samples (1K, 50K subsets)
-├── 📓 notebooks/               # Research Question Analysis
+├── notebooks/                  # Research Question Analysis
 │   ├── RQ1_Agent_Distribution.ipynb      # Agent patterns & test contributions
 │   ├── RQ2_Test_to_Code_Ratio.ipynb     # Test-to-code ratio analysis
 │   ├── RQ3_Code_Change_Analysis.ipynb   # GitHub API & change patterns
@@ -60,23 +60,23 @@ MSR/
 │   ├── RQ5_User_Adoption.ipynb          # User behavior & adoption patterns
 │   ├── ErrorAnalysis.ipynb              # Data quality assessment
 │   └── ReuseableCode.ipynb              # Utility functions & examples
-├── 🔧 src/                     # Core Python modules
+├── src/                        # Core Python modules
 │   ├── data_loader.py          # Robust data loading with fallbacks
 │   ├── analysis.py             # Research question analysis functions
 │   └── plots.py                # Visualization & dashboard utilities
-├── 📈 outputs/                 # Generated results
+├── outputs/                    # Generated results
 │   ├── reports/                # Analysis results (JSON format)
 │   └── figures/                # Visualizations and charts
-├── 📚 docs/                    # Documentation and references
-└── 🚀 Automation Scripts
+├── docs/                       # Documentation and references
+└── Automation Scripts
     ├── run_all.bat             # Windows batch automation
     ├── run_all.py              # Cross-platform Python pipeline
     └── Makefile                # Make-based workflow automation
 ```
 
-## 🛠️ **Research Methodology & Tools**
+## Research Methodology & Tools
 
-### 📋 **Classification & Analysis Strategy**
+### Classification & Analysis Strategy
 ## Getting Started
 
 ### Prerequisites
@@ -115,16 +115,16 @@ python test.bat 10000 complete
 # Add ANTHROPIC_API_KEY to .env file
 python run_claude_analysis.py
 ```
-- ✅ **Professional Outputs**: Publication-ready visualizations in multiple formats (PNG, PDF, SVG, HTML)
-- ✅ **Interactive Dashboards**: Plotly-based executive dashboards with dynamic exploration
-- ✅ **One-Command Pipeline**: Complete analysis + visualizations generated automatically
+- Professional Outputs: Publication-ready visualizations in multiple formats (PNG, PDF, SVG, HTML)
+- Interactive Dashboards: Plotly-based executive dashboards with dynamic exploration
+- One-Command Pipeline: Complete analysis + visualizations generated automatically
 
-### ✨ **Enhanced Automation Features**
-- 🎨 **MSR_Visualization_Recreation.ipynb**: Comprehensive visualization suite with 8 analysis cells
-- 📊 **Statistical Analysis**: Advanced correlation matrices, quality score distributions
-- 🔧 **Robust Error Handling**: Graceful failure recovery with informative error reporting
-- 📈 **Multi-Format Export**: Automatic generation of visualizations in PNG, PDF, SVG, JPG, HTML
-- 🎯 **Executive Dashboards**: Interactive plotly visualizations for dynamic data exploration
+### Enhanced Automation Features
+- MSR_Visualization_Recreation.ipynb: Comprehensive visualization suite with 8 analysis cells
+- Statistical Analysis: Advanced correlation matrices, quality score distributions
+- Robust Error Handling: Graceful failure recovery with informative error reporting
+- Multi-Format Export: Automatic generation of visualizations in PNG, PDF, SVG, JPG, HTML
+- Executive Dashboards: Interactive plotly visualizations for dynamic data exploration
 
 ### Error Resolution & Infrastructure
 ## Outputs
@@ -162,9 +162,9 @@ This analysis provides evidence for:
 - The need for continued human oversight in AI-generated code
 - Patterns that can inform AI tool development and usage guidelines
 
-## 🚀 Getting Started
+## Getting Started
 
-### 📋 Prerequisites
+### Prerequisites
 ```bash
 # Setup virtual environment (recommended)
 python -m venv .venv
@@ -191,23 +191,23 @@ Academic research project - see license file for details.
 
 
 
-## 📊 **Current Findings & Comprehensive Analysis Results**
+## Current Findings & Comprehensive Analysis Results
 
-### 🎯 **Research Progress & Key Discoveries**
+### Research Progress & Key Discoveries
 | Challenge Segment | Status | Key Insight | Caution Level |
 |------------------|--------|-------------|---------------|
-| **Testing Behavior** | ✅ **Completed** | 93.6% test contribution rate across 50K PRs | 🟢 **Validated** |
-| **Code Characteristics** | ✅ **Analyzed** | Comprehensive visualization suite generated | 🟢 **Complete** |
-| **Adoption Patterns** | ✅ **Documented** | Full agent distribution analysis completed | 🟢 **Comprehensive** |
+| **Testing Behavior** | Completed | 93.6% test contribution rate across 50K PRs | Validated |
+| **Code Characteristics** | Analyzed | Comprehensive visualization suite generated | Complete |
+| **Adoption Patterns** | Documented | Full agent distribution analysis completed | Comprehensive |
 
-### 📈 **Comprehensive Analysis Results** *(Based on 50,000 PR Analysis)*
+### Comprehensive Analysis Results *(Based on 50,000 PR Analysis)*
 - **Total PRs Analyzed**: 50,000 across 5 AI agents
 - **Overall Test Rate**: 93.6% (significantly higher than preliminary estimates)
 - **Agent Coverage**: Complete analysis of OpenAI_Codex, Copilot, Cursor, Devin, Claude_Code
 - **Visualization Output**: 15+ professional visualizations in multiple formats
 - **Interactive Dashboards**: Plotly-based executive summary with dynamic exploration
 
-### 📊 **Agent Performance Metrics**
+### Agent Performance Metrics
 | Agent | PR Count | Test Rate | Market Share | Quality Score |
 |-------|----------|-----------|--------------|---------------|
 | **OpenAI_Codex** | 43,651 | 93.6% | 87.3% | High |
@@ -216,67 +216,67 @@ Academic research project - see license file for details.
 | **Devin** | 1,578 | Variable | 3.2% | Tracked |
 | **Claude_Code** | 318 | Variable | 0.6% | Measured |
 
-### 🎨 **Generated Visualization Suite**
+### Generated Visualization Suite
 - **Agent Distribution Analysis** - Comprehensive market share and behavior patterns
 - **Test Contribution Analysis** - Statistical analysis of testing behavior
 - **Advanced Statistical Analysis** - Correlation matrices and quality metrics
 - **Interactive Executive Dashboard** - Plotly-based dynamic exploration tool
 - **Complete Analysis Summary** - Multi-format professional outputs (PNG, PDF, SVG, JPG, HTML)
 
-### 📈 **Dataset Quality & Reliability**
+### Dataset Quality & Reliability
 - **Scale**: ~900K pull requests across diverse repositories
 - **Completeness**: >95% data integrity across critical fields
 - **Agent Diversity**: Complete 5-agent ecosystem analysis
 - **Temporal Coverage**: Comprehensive timeline of AI adoption
 - **Processing Efficiency**: 100% automation pipeline success rate
 
-### 🚨 **Preliminary Cautionary Findings**
+### Preliminary Cautionary Findings
 1. **Test Coverage Gap**: Only ~15% of AI-generated PRs include test contributions
 2. **Verification Blind Spot**: Significant proportion of changes lack proper validation
 3. **Experience Correlation**: Higher AI reliance among inexperienced developers
 4. **Quality Variance**: Substantial differences in output quality between agents
 
-## 📚 **Documentation & Outputs**
+## Documentation & Outputs
 
-### � **Generated Reports**
+### Generated Reports
 - `outputs/execution_report.json` — Automation pipeline results
 - `outputs/error_analysis_report.json` — Data quality assessment
 - `outputs/final_analysis_summary.json` — Comprehensive project summary
 - `outputs/recommendations.md` — Best practices and guidelines
 
-### 📊 **Research Outputs** 
+### Research Outputs 
 - `outputs/figures/` — Professional visualizations and charts
 - `outputs/reports/` — Research question results (JSON format)
 - Individual notebook results with embedded analysis and insights
 
-### 🔧 **Development Resources**
+### Development Resources
 - `checkme.txt` — Pro tips and best practices checklist
 - `src/` modules — Reusable functions for analysis and visualization
 - Error logs and debugging information for troubleshooting
 
-## 🔬 **Research Methodology**
+## Research Methodology
 
-### 📈 **Progressive Analysis Approach**
+### Progressive Analysis Approach
 1. **Development Phase**: Start with 1K records for rapid iteration
 2. **Validation Phase**: Scale to 50K records for methodology validation  
 3. **Production Phase**: Execute full 900K dataset analysis
 4. **Optimization**: Refine based on performance and insights
 
-### 🎯 **Academic Standards**
+### Academic Standards
 - **Reproducible Research**: All analyses can be re-run with single commands
 - **Comprehensive Documentation**: Each notebook includes methodology and insights
 - **Professional Reporting**: JSON exports suitable for thesis integration
 - **Version Control**: Git-based workflow with structured commits
 
-### 🔧 **Technical Excellence**
+### Technical Excellence
 - **Error Resilience**: Graceful handling of data loading and processing errors
 - **Memory Efficiency**: Optimized for large dataset processing
 - **Cross-Platform**: Works on Windows, Linux, and macOS
 - **Modular Design**: Reusable components for future MSR projects
 
-## 🤝 **Contributing & Development**
+## Contributing & Development
 
-### 🛠️ **Development Workflow**
+### Development Workflow
 ```bash
 # Setup development environment
 git clone <repository>
@@ -290,14 +290,14 @@ make test-small    # Quick development testing
 make clean         # Reset for fresh analysis
 ```
 
-### 📋 **Code Quality Standards**
-- ✅ **Error Handling**: Comprehensive try-catch blocks with meaningful messages
-- 🧪 **Data Validation**: Automated quality checks and health monitoring  
-- 📚 **Documentation**: Inline documentation and README maintenance
-- 🔄 **Modularity**: Reusable functions and components
-- 📊 **Logging**: Detailed execution logs for debugging and monitoring
+### Code Quality Standards
+- Error Handling: Comprehensive try-catch blocks with meaningful messages
+- Data Validation: Automated quality checks and health monitoring  
+- Documentation: Inline documentation and README maintenance
+- Modularity: Reusable functions and components
+- Logging: Detailed execution logs for debugging and monitoring
 
-### 🎓 **Thesis Integration**
+### Thesis Integration
 This project structure supports direct integration into MSR thesis development:
 - **Chapter-Ready Notebooks**: Each RQ can become a thesis chapter
 - **Professional Figures**: Publication-quality visualizations  
@@ -306,24 +306,24 @@ This project structure supports direct integration into MSR thesis development:
 
 ---
 
-## 🏆 **Project Impact & Academic Contribution**
+## Project Impact & Academic Contribution
 
-### ✨ **Narrative Innovation**
+### Narrative Innovation
 This research presents AI development collaboration as a **modern cautionary tale** - engaging readers through storytelling while maintaining rigorous academic standards. Like traditional cautionary tales that teach important life lessons, this study provides critical insights that will "stick with developers till their career's end."
 
-### 🎯 **Research Innovation Points**
+### Research Innovation Points
 - **First Large-Scale AI Behavior Analysis**: Comprehensive study of 900K+ AI-generated contributions
 - **Novel Caution Framework**: Systematic approach to identifying AI collaboration risks
 - **Multi-Dimensional Risk Assessment**: Testing behavior + code characteristics + adoption patterns
 - **Practical Safety Guidelines**: Actionable insights for safer human-AI collaboration
 
-### 📊 **Expected Academic Impact**
+### Expected Academic Impact
 - **Methodological Contribution**: Reusable framework for MSR studies on AI-human collaboration
 - **Industry Relevance**: Direct applicability to software teams adopting AI tools
 - **Policy Implications**: Evidence-based recommendations for AI tool governance
 - **Educational Value**: Teaching materials for safe AI adoption practices
 
-### 🚨 **Cautionary Conclusions** *(Preliminary)*
+### Cautionary Conclusions *(Preliminary)*
 > *"Trust in AI agents must be earned through verification, not granted through convenience. This research reveals where that trust should be placed... and where caution must prevail."*
 
 1. **Verification Imperative**: AI contributions require enhanced human oversight
@@ -333,16 +333,16 @@ This research presents AI development collaboration as a **modern cautionary tal
 
 ---
 
-## 🎓 **Academic Standards & Reproducibility**
+## Academic Standards & Reproducibility
 
-### 📚 **Thesis-Ready Framework**
+### Thesis-Ready Framework
 This project structure supports seamless integration into MSR thesis development:
 - **Chapter-Aligned Notebooks**: Each research question maps to thesis chapters
 - **Publication-Quality Figures**: Professional visualizations for academic papers
 - **Comprehensive Methodology**: Detailed documentation of all analytical approaches
 - **Reproducible Pipeline**: Complete automation for result verification
 
-### 🔬 **Research Methodology Rigor**
+### Research Methodology Rigor
 - **Systematic Approach**: Structured analysis framework with clear hypotheses
 - **Multi-Method Validation**: Quantitative analysis + qualitative insights
 - **Bias Mitigation**: Multiple validation approaches and cross-verification
@@ -350,6 +350,6 @@ This project structure supports seamless integration into MSR thesis development
 
 ---
 
-*🎭 "In the grand narrative of software development, AI agents are neither heroes nor villains - they are powerful tools whose impact depends entirely on how wisely we wield them. This research illuminates the path to that wisdom."*
+*"In the grand narrative of software development, AI agents are neither heroes nor villains - they are powerful tools whose impact depends entirely on how wisely we wield them. This research illuminates the path to that wisdom."*
 
-**Last Updated**: October 12, 2025 | **Project Status**: 🎉 **PRODUCTION-READY AUTOMATED PIPELINE** | **Theme**: Comprehensive MSR Analysis with Automated Visualization Generation
+**Last Updated**: October 12, 2025 | **Project Status**: PRODUCTION-READY AUTOMATED PIPELINE | **Theme**: Comprehensive MSR Analysis with Automated Visualization Generation

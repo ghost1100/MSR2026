@@ -28,25 +28,25 @@ def test_agent_representation():
             print(f"  {agent}: {count:,} PRs ({percentage:.1f}%)")
         
         if df['agent'].nunique() == 5:
-            print("✅ SUCCESS: All 5 agents represented!")
+            print("[SUCCESS] All 5 agents represented!")
         else:
-            print("❌ ISSUE: Missing agents")
+            print("[ERROR] Missing agents")
     
     return df['agent'].nunique() == 5
 
 def main():
-    print("🔍 MSR Project - Agent Representation Validation")
+    print("MSR Project - Agent Representation Validation")
     print("=" * 60)
     
     # Test the data loader
     success = test_agent_representation()
     
-    print(f"\n📊 VALIDATION SUMMARY")
+    print(f"\nVALIDATION SUMMARY")
     print("=" * 30)
     
     if success:
-        print("🎉 ALL TESTS PASSED!")
-        print("✅ Updated notebooks will now show all 5 agents:")
+        print("ALL TESTS PASSED!")
+        print("[SUCCESS] Updated notebooks will now show all 5 agents:")
         print("   • OpenAI_Codex (87.3% - dominant agent)")
         print("   • Copilot (5.4%)")
         print("   • Cursor (3.5%)")

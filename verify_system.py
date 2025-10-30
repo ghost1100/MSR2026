@@ -14,7 +14,7 @@ def test_data_loading():
     """Test basic data loading functionality"""
     print("Testing data loading...")
     df = load_aidev(sample_size=100)
-    print(f"✅ Data loading successful: {len(df)} rows")
+    print(f"[SUCCESS] Data loading successful: {len(df)} rows")
     print(f"   Columns: {list(df.columns)}")
     return df is not None
 
@@ -23,10 +23,10 @@ def test_analysis_functions():
     print("\nTesting analysis functions...")
     try:
         from analysis import analyze_test_contributions, get_research_summary
-        print("✅ Analysis functions available")
+        print("[SUCCESS] Analysis functions available")
         return True
     except ImportError as e:
-        print(f"❌ Analysis function error: {e}")
+        print(f"[ERROR] Analysis function error: {e}")
         return False
 
 def test_notebook_files():
@@ -46,9 +46,9 @@ def test_notebook_files():
     for notebook in expected_notebooks:
         path = os.path.join(notebooks_dir, notebook)
         if os.path.exists(path):
-            print(f"✅ {notebook}")
+            print(f"[SUCCESS] {notebook}")
         else:
-            print(f"❌ {notebook} - NOT FOUND")
+            print(f"[ERROR] {notebook} - NOT FOUND")
             missing.append(notebook)
     
     return len(missing) == 0
@@ -63,23 +63,23 @@ def main():
         "Notebook Files": test_notebook_files()
     }
     
-    print("\n📊 VERIFICATION SUMMARY")
+    print("\nVERIFICATION SUMMARY")
     print("=" * 30)
     
     all_passed = True
     for test_name, passed in results.items():
-        status = "✅ PASS" if passed else "❌ FAIL"
+        status = "[PASS]" if passed else "[FAIL]"
         print(f"{status} {test_name}")
         if not passed:
             all_passed = False
     
     if all_passed:
-        print("\n🎉 ALL TESTS PASSED!")
-        print("✅ RQ3 and RQ5 now use real data analysis instead of GitHub API")
-        print("✅ No external APIs required - all analyses use comprehensive dataset")
-        print("✅ System ready for complete notebook automation")
+        print("\nALL TESTS PASSED!")
+        print("[SUCCESS] RQ3 and RQ5 now use real data analysis instead of GitHub API")
+        print("[SUCCESS] No external APIs required - all analyses use comprehensive dataset")
+        print("[SUCCESS] System ready for complete notebook automation")
     else:
-        print("\n⚠️ Some tests failed. Check the output above.")
+        print("\n[WARNING] Some tests failed. Check the output above.")
 
 if __name__ == "__main__":
     main()
