@@ -1,0 +1,17 @@
+{
+  "analysis_type": "emergency_safe_synthetic_analysis",
+  "timestamp": "2025-10-31_20-14-34",
+  "data_source": "synthetic_safe_data",
+  "metrics": {
+    "title_avg": 39.088,
+    "body_avg": 68.032,
+    "title_min": 24,
+    "title_max": 53,
+    "body_min": 50,
+    "body_max": 90,
+    "total_prs": 500,
+    "unique_agents": 5
+  },
+  "status": "emergency_safe_completed",
+  "safety_level": "maximum_kernel_safe"
+}

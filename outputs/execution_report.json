@@ -1,50 +1,44 @@
 {
-  "execution_timestamp": "2025-10-29T15:23:02.727590",
-  "total_notebooks": 7,
-  "successful": 7,
-  "failed": 0,
+  "execution_timestamp": "2025-10-31T20:00:56.927756",
+  "total_notebooks": 6,
+  "successful": 5,
+  "failed": 1,
   "results": [
     {
       "notebook": "RQ1_Agent_Distribution.ipynb",
       "description": "Agent Distribution Analysis",
       "success": true,
-      "message": "Success (42.3s)"
+      "message": "Success (34.2s)"
     },
     {
       "notebook": "RQ2_Test_to_Code_Ratio.ipynb",
       "description": "Test-to-Code Ratio Analysis",
       "success": true,
-      "message": "Success (14.5s)"
+      "message": "Success (16.9s)"
     },
     {
       "notebook": "RQ3_Code_Change_Analysis.ipynb",
       "description": "Code Change Analysis",
       "success": true,
-      "message": "Success (15.3s)"
+      "message": "Success (17.3s)"
     },
     {
       "notebook": "RQ4_Description_Consistency.ipynb",
       "description": "Description Consistency Analysis",
-      "success": true,
-      "message": "Success (25.8s)"
+      "success": false,
+      "message": "Error: [NbConvertApp] Converting notebook notebooks\\RQ4_Description_Consistency.ipynb to notebook\nc:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Lib\\site-packages\\zmq\\_future.py:718: RuntimeWarning: Proactor event loop does not implement add_reader family of methods required for zmq. Registering an additional selector thread for add_reader support via tornado. Use `asyncio.set_event_loop_policy(WindowsSelectorEventLoopPolicy())` to avoid this warning.\n  self._get_loop()\nTraceback (most recent call last):\n  File \"c:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Lib\\site-packages\\jupyter_core\\utils\\__init__.py\", line 154, in wrapped\n    asyncio.get_running_loop()\nRuntimeError: no running event loop\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"c:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Scripts\\jupyter-nbconvert.EXE\\__main__.py\", line 6, in <module>\n  File \"c:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Lib\\site-packages\\jupyter_core\\application.py\", line 284, in launch_instance\n    super().launch_instance(argv=argv, **kwargs)\n  File \"c:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Lib\\site-packages\\traitlets\\config\\application.py\", line 1075, in launch_instance\n    app.start()\n  File \"c:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Lib\\site-packages\\nbconvert\\nbconvertapp.py\", line 420, in start\n    self.convert_notebooks()\n  File \"c:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Lib\\site-packages\\nbconvert\\nbconvertapp.py\", line 597, in convert_notebooks\n    self.convert_single_notebook(notebook_filename)\n  File \"c:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Lib\\site-packages\\nbconvert\\nbconvertapp.py\", line 563, in convert_single_notebook\n    output, resources = self.export_single_notebook(\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"c:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Lib\\site-packages\\nbconvert\\nbconvertapp.py\", line 487, in export_single_notebook\n    output, resources = self.exporter.from_filename(\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"c:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Lib\\site-packages\\nbconvert\\exporters\\exporter.py\", line 201, in from_filename\n    return self.from_file(f, resources=resources, **kw)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"c:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Lib\\site-packages\\nbconvert\\exporters\\exporter.py\", line 220, in from_file\n    return self.from_notebook_node(\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"c:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Lib\\site-packages\\nbconvert\\exporters\\notebook.py\", line 36, in from_notebook_node\n    nb_copy, resources = super().from_notebook_node(nb, resources, **kw)\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"c:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Lib\\site-packages\\nbconvert\\exporters\\exporter.py\", line 154, in from_notebook_node\n    nb_copy, resources = self._preprocess(nb_copy, resources)\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"c:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Lib\\site-packages\\nbconvert\\exporters\\exporter.py\", line 353, in _preprocess\n    nbc, resc = preprocessor(nbc, resc)\n                ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"c:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Lib\\site-packages\\nbconvert\\preprocessors\\base.py\", line 48, in __call__\n    return self.preprocess(nb, resources)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"c:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Lib\\site-packages\\nbconvert\\preprocessors\\execute.py\", line 103, in preprocess\n    self.preprocess_cell(cell, resources, index)\n  File \"c:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Lib\\site-packages\\nbconvert\\preprocessors\\execute.py\", line 124, in preprocess_cell\n    cell = self.execute_cell(cell, index, store_history=True)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"c:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Lib\\site-packages\\jupyter_core\\utils\\__init__.py\", line 158, in wrapped\n    return loop.run_until_complete(inner)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\asyncio\\base_events.py\", line 691, in run_until_complete\n    return future.result()\n           ^^^^^^^^^^^^^^^\n  File \"c:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Lib\\site-packages\\nbclient\\client.py\", line 983, in async_execute_cell\n    self.kc.execute(\n  File \"c:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Lib\\site-packages\\jupyter_client\\asynchronous\\client.py\", line 21, in _\n    msg_id = meth(self, *args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"c:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Lib\\site-packages\\jupyter_client\\client.py\", line 644, in execute\n    self.shell_channel.send(msg)\n  File \"c:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Lib\\site-packages\\jupyter_client\\channels.py\", line 267, in send\n    self.session.send(self.socket, msg)\n  File \"c:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Lib\\site-packages\\jupyter_client\\session.py\", line 852, in send\n    to_send = self.serialize(msg, ident)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"c:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Lib\\site-packages\\jupyter_client\\session.py\", line 721, in serialize\n    content = self.pack(content)\n              ^^^^^^^^^^^^^^^^^^\n  File \"c:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR\\.venv\\Lib\\site-packages\\jupyter_client\\session.py\", line 108, in json_packer\n    ).encode(\"utf8\", errors=\"surrogateescape\")\n      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'utf-8' codec can't encode character '\\ude80' in position 744: surrogates not allowed\n"
     },
     {
       "notebook": "RQ5_User_Adoption.ipynb",
       "description": "User Adoption Analysis",
       "success": true,
-      "message": "Success (19.0s)"
+      "message": "Success (18.4s)"
     },
     {
       "notebook": "summary.ipynb",
       "description": "Summary Dashboard & Executive Report",
       "success": true,
-      "message": "Success (29.9s)"
-    },
-    {
-      "notebook": "MSR_Visualization_Recreation.ipynb",
-      "description": "Comprehensive Visualization Generation",
-      "success": true,
-      "message": "Success (33.4s)"
+      "message": "Success (18.2s)"
     }
   ]
 }

@@ -1,0 +1,20 @@
+{
+  "summary": {
+    "total_analyzed": 500,
+    "avg_consistency_score": 7.878,
+    "high_quality_rate": 0.88,
+    "low_quality_rate": 0.016,
+    "avg_issues_per_pr": 0.55,
+    "avg_quality_indicators": 2.242
+  },
+  "agent_analysis": {
+    "Claude": {
+      "total_analyzed": 500,
+      "avg_consistency_score": 7.878,
+      "high_quality_rate": 0.88,
+      "low_quality_rate": 0.016,
+      "avg_issues_per_pr": 0.55,
+      "avg_quality_indicators": 2.242
+    }}}
+    
+    
