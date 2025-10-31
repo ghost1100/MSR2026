@@ -1,5 +1,5 @@
 {
-  "analysis_timestamp": "2025-10-29T15:23:01.144566",
+  "analysis_timestamp": "2025-10-31T21:14:52.440729",
   "dataset_summary": {
     "total_prs": 50000,
     "unique_agents": 5,
@@ -9,7 +9,7 @@
     }
   },
   "key_findings": {
-    "overall_test_rate": 0.93554,
+    "overall_test_rate": 0.93558,
     "top_agent": {
       "name": "OpenAI_Codex",
       "prs": 43668,
@@ -17,7 +17,7 @@
     },
     "best_test_rate_agent": {
       "name": "OpenAI_Codex",
-      "test_rate": 0.9846340569753596
+      "test_rate": 0.9846111569112393
     }
   },
   "visualizations_generated": [
