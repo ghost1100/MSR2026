@@ -29,26 +29,26 @@ def run_notebook(notebook_path):
         end_time = time.time()
         
         if result.returncode == 0:
-            print(f"✅ SUCCESS: {os.path.basename(notebook_path)} ({end_time - start_time:.1f}s)")
+            print(f"SUCCESS: {os.path.basename(notebook_path)} ({end_time - start_time:.1f}s)")
             return True
         else:
-            print(f"❌ FAILED: {os.path.basename(notebook_path)}")
+            print(f"FAILED: {os.path.basename(notebook_path)}")
             print(f"Error: {result.stderr}")
             return False
             
     except Exception as e:
-        print(f"❌ ERROR running {os.path.basename(notebook_path)}: {str(e)}")
+        print(f"ERROR running {os.path.basename(notebook_path)}: {str(e)}")
         return False
 
 def main():
-    print("🚀 MSR Project - Notebook Automation Suite")
+    print("MSR Project - Notebook Automation Suite")
     print("=" * 60)
     
     # Get the notebooks directory
     notebooks_dir = os.path.join(os.path.dirname(__file__), "notebooks")
     
     if not os.path.exists(notebooks_dir):
-        print(f"❌ Notebooks directory not found: {notebooks_dir}")
+        print(f"ERROR: Notebooks directory not found: {notebooks_dir}")
         return
     
     # List of notebooks to run in order

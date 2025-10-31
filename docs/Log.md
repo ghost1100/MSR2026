@@ -6,11 +6,11 @@ This document records daily iterations and sessions spent working on the MSR 202
 - [ChatGPT Prompt Engineering](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/)
 - [The Data Science Course: Complete Data Science Bootcamp (Udemy)](https://www.udemy.com/course/the-data-science-course-complete-data-science-bootcamp/?couponCode=25BBPMXINACTIVE)
 
-## 📺 **Reference Video**
+## Reference Video
 
 - [Jupyter Notebook In 10 Minutes(Colt Steele)](https://youtu.be/H9Iu49E6Mxs?si=luL7kHgePlwM7C7t)
 
-## **AI Usage Policy & Acknowledgment Framework**
+## AI Usage Policy & Acknowledgment Framework
 
 **Transparency Commitment**: All AI assistance used in this project is fully documented for academic integrity and reproducibility.
 
@@ -33,19 +33,19 @@ This document records daily iterations and sessions spent working on the MSR 202
 
 **Summary of work performed today:**
 
-### 🚀 **Initial Setup & Problem Resolution**
+### Initial Setup & Problem Resolution
 - **Issue Encountered**: FileNotFoundError when attempting to load AIDev dataset locally
 - **Root Cause**: Missing local data file (data/raw/aidata.csv) with no fallback mechanism
 - **Resolution**: Implemented robust data loading with intelligent fallback (local → Hugging Face → error handling)
 - **Configuration Fix**: Resolved Hugging Face dataset config requirements (specified "pull_request" config)
 
-### 📊 **Data Infrastructure Development**
+### Data Infrastructure Development
 - Created comprehensive data loading system (`src/data_loader.py`)
 - Implemented memory-efficient sample loading for development (1K → 50K → 900K progression)
 - Established error handling with meaningful user feedback
 - Built data quality assessment framework with automated health monitoring
 
-### 🔧 **Analysis Framework Creation**
+### Analysis Framework Creation
 - Developed core analysis functions (`src/analysis.py`) with research question focus:
   - `analyze_test_contributions()` - Test behavior analysis for RQ1/RQ2
   - `calculate_test_code_ratios()` - Test-to-code ratio calculations
@@ -54,7 +54,7 @@ This document records daily iterations and sessions spent working on the MSR 202
 - Created visualization suite (`src/plots.py`) with professional research dashboards
 - Built reusable utilities for data validation and error detection
 
-### 📓 **Research Question Structure Implementation**
+### Research Question Structure Implementation
 **Completed Notebooks:**
 1. **ErrorAnalysis.ipynb** - Comprehensive data quality assessment and error documentation
 2. **ReuseableCode.ipynb** - Enhanced utility functions and development patterns
@@ -66,7 +66,7 @@ This document records daily iterations and sessions spent working on the MSR 202
 6. **RQ4_Description_Consistency.ipynb** - NLP text analysis for PR description consistency
 7. **RQ5_User_Adoption.ipynb** - User classification and adoption pattern analysis
 
-### 🤖 **Professional Automation Pipeline**
+### Professional Automation Pipeline
 **Created Three Automation Approaches:**
 1. **Windows Batch Script** (`run_all.bat`) - Simple execution with progress tracking
 2. **Cross-Platform Python Script** (`run_all.py`) - Advanced automation with JSON reporting

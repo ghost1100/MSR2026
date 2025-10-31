@@ -14,7 +14,7 @@ sys.path.append('src')
 
 def test_data_loading():
     """Test data loading pipeline"""
-    print("🧪 Testing Data Loading Pipeline...")
+    print("Testing Data Loading Pipeline...")
     print("=" * 50)
     
     try:
@@ -24,20 +24,20 @@ def test_data_loading():
         print("\n[TEST 1] Minimal sample loading...")
         df_small = load_aidev(sample_size=100)
         if df_small is not None:
-            print(f"✅ Minimal sample loaded: {len(df_small)} rows")
+            print(f"PASS: Minimal sample loaded: {len(df_small)} rows")
             print(f"   Columns: {len(df_small.columns)}")
             print(f"   Required columns present: {'agent' in df_small.columns and 'title' in df_small.columns}")
             agents_found = df_small['agent'].nunique()
             print(f"   Agents in sample: {agents_found}")
         else:
-            print("❌ Minimal sample loading failed")
+            print("FAIL: Minimal sample loading failed")
             return False
         
         # Test 2: Moderate sample to verify agent distribution
         print("\n[TEST 2] Moderate sample for agent validation...")
         df_medium = load_aidev(sample_size=5000)  # Reduced from 10000
         if df_medium is not None:
-            print(f"✅ Moderate sample loaded: {len(df_medium)} rows")
+            print(f"PASS: Moderate sample loaded: {len(df_medium)} rows")
             agents_found = df_medium['agent'].nunique()
             print(f"   Agents found: {agents_found}/5")
             
@@ -48,22 +48,22 @@ def test_data_loading():
                 print(f"   {agent}: {count:,} PRs ({pct:.1f}%)")
             
             if agents_found >= 4:  # Allow for 4+ agents as acceptable
-                print("✅ Good agent representation achieved!")
+                print("PASS: Good agent representation achieved")
                 return True
             else:
-                print(f"⚠️  Limited agent diversity ({agents_found} agents)")
+                print(f"WARNING: Limited agent diversity ({agents_found} agents)")
                 return True  # Still pass if basic loading works
         else:
-            print("❌ Moderate sample loading failed")
+            print("FAIL: Moderate sample loading failed")
             return False
             
     except Exception as e:
-        print(f"❌ Data loading test failed: {str(e)}")
+        print(f"FAIL: Data loading test failed: {str(e)}")
         return False
 
 def test_analysis_functions():
     """Test analysis functions"""
-    print("\n🧪 Testing Analysis Functions...")
+    print("\nTesting Analysis Functions...")
     print("=" * 50)
     
     try:
@@ -73,14 +73,14 @@ def test_analysis_functions():
         # Load smaller test data
         df = load_aidev(sample_size=1000)  # Reduced sample size
         if df is None:
-            print("❌ Cannot test analysis - data loading failed")
+            print("FAIL: Cannot test analysis - data loading failed")
             return False
         
         # Test analysis functions
         print("Testing test contribution analysis...")
         df_analyzed, test_stats = analyze_test_contributions(df)
         
-        print(f"✅ Analysis completed successfully")
+        print(f"PASS: Analysis completed successfully")
         print(f"   Total PRs analyzed: {len(df_analyzed)}")
         print(f"   Test PRs found: {test_stats['Test_PRs'].sum()}")
         print(f"   Agents in analysis: {len(test_stats)}")
@@ -88,19 +88,19 @@ def test_analysis_functions():
         # Test research summary
         print("\nTesting research summary...")
         summary = get_research_summary(df_analyzed)
-        print(f"✅ Research summary generated")
+        print(f"PASS: Research summary generated")
         print(f"   Dataset size: {summary['dataset_size']}")
         print(f"   Unique agents: {summary['unique_agents']}")
         
         return True
         
     except Exception as e:
-        print(f"❌ Analysis functions test failed: {str(e)}")
+        print(f"FAIL: Analysis functions test failed: {str(e)}")
         return False
 
 def test_file_structure():
     """Test project file structure"""
-    print("\n🧪 Testing File Structure...")
+    print("\nTesting File Structure...")
     print("=" * 50)
     
     required_files = [
@@ -126,21 +126,21 @@ def test_file_structure():
     
     for file_path in all_files:
         if os.path.exists(file_path):
-            print(f"✅ {file_path}")
+            print(f"PASS: {file_path}")
         else:
-            print(f"❌ {file_path} - MISSING")
+            print(f"FAIL: {file_path} - MISSING")
             missing_files.append(file_path)
     
     if missing_files:
-        print(f"\n❌ Missing {len(missing_files)} files")
+        print(f"\nFAIL: Missing {len(missing_files)} files")
         return False
     else:
-        print(f"\n✅ All {len(all_files)} required files present")
+        print(f"\nPASS: All {len(all_files)} required files present")
         return True
 
 def test_notebooks_basic():
     """Test basic notebook structure"""
-    print("\n🧪 Testing Notebook Structure...")
+    print("\nTesting Notebook Structure...")
     print("=" * 50)
     
     notebooks = [
@@ -160,26 +160,26 @@ def test_notebooks_basic():
                 with open(notebook, 'r', encoding='utf-8') as f:
                     content = f.read()
                     if 'VSCode.Cell' in content:
-                        print(f"✅ {os.path.basename(notebook)} - Valid structure")
+                        print(f"PASS: {os.path.basename(notebook)} - Valid structure")
                     else:
-                        print(f"❌ {os.path.basename(notebook)} - Invalid structure")
+                        print(f"FAIL: {os.path.basename(notebook)} - Invalid structure")
                         all_valid = False
             except Exception as e:
-                print(f"❌ {os.path.basename(notebook)} - Read error: {str(e)}")
+                print(f"FAIL: {os.path.basename(notebook)} - Read error: {str(e)}")
                 all_valid = False
         else:
-            print(f"❌ {os.path.basename(notebook)} - Missing")
+            print(f"FAIL: {os.path.basename(notebook)} - Missing")
             all_valid = False
     
     return all_valid
 
 def main():
     """Run comprehensive test suite"""
-    print("🚀 MSR PROJECT COMPREHENSIVE TEST SUITE")
+    print("MSR PROJECT COMPREHENSIVE TEST SUITE")
     print("=" * 60)
-    print(f"📅 Test Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print(f"🔧 Python: {sys.version}")
-    print(f"📂 Working Directory: {os.getcwd()}")
+    print(f"Test Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"Python: {sys.version}")
+    print(f"Working Directory: {os.getcwd()}")
     
     # Run all tests
     test_results = {}
@@ -193,7 +193,7 @@ def main():
     end_time = time.time()
     
     # Generate summary
-    print("\n📊 TEST RESULTS SUMMARY")
+    print("\nTEST RESULTS SUMMARY")
     print("=" * 60)
     
     passed_tests = sum(test_results.values())
@@ -201,17 +201,17 @@ def main():
     success_rate = (passed_tests / total_tests) * 100
     
     for test_name, result in test_results.items():
-        status = "✅ PASS" if result else "❌ FAIL"
-        print(f"{status} {test_name.replace('_', ' ').title()}")
+        status = "PASS" if result else "FAIL"
+        print(f"{status}: {test_name.replace('_', ' ').title()}")
     
-    print(f"\n🎯 Results: {passed_tests}/{total_tests} tests passed ({success_rate:.1f}%)")
-    print(f"⏱️  Total time: {end_time - start_time:.2f} seconds")
+    print(f"\nResults: {passed_tests}/{total_tests} tests passed ({success_rate:.1f}%)")
+    print(f"Total time: {end_time - start_time:.2f} seconds")
     
     if success_rate == 100:
-        print("\n🎉 ALL TESTS PASSED! MSR project is ready for production.")
+        print("\nALL TESTS PASSED! MSR project is ready for production.")
         overall_status = "SUCCESS"
     else:
-        print(f"\n⚠️  Some tests failed. Please review and fix issues.")
+        print(f"\nSome tests failed. Please review and fix issues.")
         overall_status = "PARTIAL"
     
     # Save test report
@@ -231,7 +231,7 @@ def main():
     with open("outputs/test_report.json", "w") as f:
         json.dump(test_report, f, indent=2)
     
-    print(f"📋 Test report saved: outputs/test_report.json")
+    print(f"Test report saved: outputs/test_report.json")
     
     return success_rate == 100
 

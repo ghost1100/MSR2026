@@ -52,10 +52,10 @@ def main():
         print("   • Cursor (3.5%)")
         print("   • Devin (3.2%)")
         print("   • Claude_Code (0.6%)")
-        print("\n🚀 Ready for comprehensive multi-agent analysis!")
-        print("📋 Updated notebooks: RQ1, RQ2, RQ3, RQ4, RQ5, Summary")
+        print("\nReady for comprehensive multi-agent analysis!")
+        print("Updated notebooks: RQ1, RQ2, RQ3, RQ4, RQ5, Summary")
     else:
-        print("⚠️ Issues detected. Check data loader configuration.")
+        print("WARNING: Issues detected. Check data loader configuration.")
 
 if __name__ == "__main__":
     main()

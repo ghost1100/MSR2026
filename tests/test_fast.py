@@ -191,9 +191,9 @@ def test_dependencies():
     for package in required_packages:
         try:
             __import__(package)
-            print(f"✓ {package}")
+            print(f"PASS: {package}")
         except ImportError:
-            print(f"✗ {package} - MISSING")
+            print(f"FAIL: {package} - MISSING")
             missing_packages.append(package)
     
     if missing_packages:

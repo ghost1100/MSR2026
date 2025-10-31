@@ -23,14 +23,14 @@ def run_enhanced_analysis(use_claude=True, sample_size=2000, output_dir='outputs
         sample_size (int): Number of PRs to analyze (for Claude analysis)
         output_dir (str): Directory to save results
     """
-    print("🚀 Starting Enhanced MSR Analysis")
-    print(f"🔬 Analysis mode: {'Claude-Enhanced' if use_claude else 'Statistical Only'}")
-    print(f"📊 Sample size: {sample_size}")
+    print("Starting Enhanced MSR Analysis")
+    print(f"Analysis mode: {'Claude-Enhanced' if use_claude else 'Statistical Only'}")
+    print(f"Sample size: {sample_size}")
     
     # Load data
-    print("\n📂 Loading data...")
+    print("\nLoading data...")
     df = load_data_efficiently()
-    print(f"✅ Loaded {len(df)} records")
+    print(f"Loaded {len(df)} records")
     
     # Create output directory
     output_path = Path(output_dir)
@@ -39,7 +39,7 @@ def run_enhanced_analysis(use_claude=True, sample_size=2000, output_dir='outputs
     figures_path.mkdir(exist_ok=True)
     
     # Basic statistical analysis
-    print("\n📊 Running basic statistical analysis...")
+    print("\nRunning basic statistical analysis...")
     basic_stats = {
         'total_prs': len(df),
         'unique_agents': df['agent'].nunique(),
@@ -58,18 +58,18 @@ def run_enhanced_analysis(use_claude=True, sample_size=2000, output_dir='outputs
     # Claude analysis (if enabled)
     if use_claude:
         try:
-            print(f"\n🤖 Running Claude-Enhanced Analysis (sample size: {sample_size})...")
+            print(f"\nRunning Claude-Enhanced Analysis (sample size: {sample_size})...")
             claude_results = create_claude_enhanced_analysis(df, sample_size=sample_size)
             results['claude_analysis'] = claude_results
             
-            print("✅ Claude analysis completed successfully!")
-            print(f"   📊 Classified {claude_results['sample_size']} PRs")
-            print(f"   🎯 Mean confidence: {claude_results['confidence_stats']['mean_confidence']:.2f}")
-            print(f"   🏆 High confidence rate: {claude_results['confidence_stats']['high_confidence_rate']:.1%}")
+            print("Claude analysis completed successfully!")
+            print(f"   Classified {claude_results['sample_size']} PRs")
+            print(f"   Mean confidence: {claude_results['confidence_stats']['mean_confidence']:.2f}")
+            print(f"   High confidence rate: {claude_results['confidence_stats']['high_confidence_rate']:.1%}")
             
         except Exception as e:
-            print(f"❌ Claude analysis failed: {e}")
-            print("📊 Continuing with statistical analysis only...")
+            print(f"ERROR: Claude analysis failed: {e}")
+            print("Continuing with statistical analysis only...")
             results['claude_error'] = str(e)
     
     # Save results
@@ -101,12 +101,12 @@ def run_enhanced_analysis(use_claude=True, sample_size=2000, output_dir='outputs
         # Save detailed classified data
         classified_data_file = output_path / 'claude_classified_data.csv'
         results['claude_analysis']['classified_data'].to_csv(classified_data_file, index=False)
-        print(f"💾 Classified data saved to: {classified_data_file}")
+        print(f"Classified data saved to: {classified_data_file}")
     
     with open(results_file, 'w') as f:
         json.dump(json_results, f, indent=2)
     
-    print(f"\n💾 Results saved to: {results_file}")
+    print(f"\nResults saved to: {results_file}")
     return results
 
 def main():
@@ -132,10 +132,10 @@ def main():
             sample_size=args.sample_size,
             output_dir=args.output_dir
         )
-        print("\n🎉 Analysis completed successfully!")
+        print("\nAnalysis completed successfully!")
         
     except Exception as e:
-        print(f"\n❌ Analysis failed: {e}")
+        print(f"\nAnalysis failed: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":

@@ -54,7 +54,7 @@ def test_notebook_files():
     return len(missing) == 0
 
 def main():
-    print("🧪 MSR Project - Quick Verification")
+    print("MSR Project - System Verification")
     print("=" * 50)
     
     results = {
