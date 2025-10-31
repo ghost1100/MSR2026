@@ -6,7 +6,7 @@ import pandas as pd
 import os
 from datasets import load_dataset
 
-def load_aidev(local_path="data/raw/aidata.csv", from_huggingface=False, config="all_pull_request", sample_size=None):
+def load_aidev(local_path="data/raw/aidata.csv", from_huggingface=False, config="all_pull_request", sample_size=10000):
     """
     Load AIDev dataset containing AI-generated pull request data
     
@@ -14,7 +14,7 @@ def load_aidev(local_path="data/raw/aidata.csv", from_huggingface=False, config=
         local_path: Path to local CSV file (relative to project root)
         from_huggingface: If True, download from HuggingFace instead of using local file
         config: HuggingFace dataset configuration name
-        sample_size: Number of rows to randomly sample (None = load all)
+        sample_size: Number of rows to randomly sample (10000 = default, None = load all)
     
     Returns:
         pandas.DataFrame: Loaded dataset with columns like 'title', 'body', 'agent', etc.

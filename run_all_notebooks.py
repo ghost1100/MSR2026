@@ -54,7 +54,7 @@ def main():
     # List of notebooks to run in order
     notebooks = [
         "RQ1_Agent_Distribution.ipynb",
-        "RQ2_Test_to_Code_Ratio.ipynb", 
+        "RQ2_Test_to_Code_Ratio.ipynb",
         "RQ3_Code_Change_Analysis.ipynb",
         "RQ4_Description_Consistency.ipynb",
         "RQ5_User_Adoption.ipynb",
