@@ -1,26 +1,87 @@
-# Python cache
+# Academic MSR Project .gitignore
+# Keeps only files essential for academic submission and functionality
+
+# ===== PYTHON & DEVELOPMENT =====
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# ===== JUPYTER & NOTEBOOKS =====
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# ===== DATA FILES (Keep structure, ignore content) =====
+# Keep folder structure but ignore large data files
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/samples/*
+!data/samples/.gitkeep
+
+# ===== OUTPUTS & CACHE =====
+# Generated outputs (can be regenerated)
+outputs/reports/*.json
+outputs/figures/*.png
+outputs/figures/*.pdf
+outputs/figures/*.svg
+outputs/figures/*.html
+*.cache
+cache/
+
+# ===== SECRETS & ENVIRONMENT =====
+.env
+.env.*
+*.key
+config/secrets.py
+
+# ===== DEVELOPMENT & TESTING =====
+# Test outputs and temporary files
+tests/outputs/
+tests/temp/
+*.log
+*.tmp
+
+# ===== NON-ACADEMIC FILES =====
+# Remove development convenience files
 checkme.txt
 CLAUDE_INTEGRATION_SUMMARY.md
-# Data files
-data/raw/*
-data/processed/*
-data/samples/*
-!data/samples/sample.csv
-MSR Questions & structure updated.docx
+test.bat
+run_all.bat
+Makefile
+complete_analysis.py
+analysis_with_visuals.py
 
-# Jupyter checkpoints
-.ipynb_checkpoints
-
-# Virtual environments
-venv/
-.env
-
-# Secrets
-*.env
-
-# OS specific
+# ===== OS & EDITOR =====
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ===== ACADEMIC SUBMISSION KEEPS =====
+# Keep these essential files:
+# README.md
+# CHECKME.md  
+# requirements.txt
+# src/
+# notebooks/
+# docs/
+# main.py
+# run_*.py (core runners)
+# tests/ (organized test folder)
