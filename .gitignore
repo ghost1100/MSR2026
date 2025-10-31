@@ -5,62 +5,23 @@
 __pycache__/
 *.pyc
 *.pyo
-*.pyd
-.Python
-env/
-venv/
-.venv/
-ENV/
-env.bak/
-venv.bak/
-
-# ===== JUPYTER & NOTEBOOKS =====
-.ipynb_checkpoints/
-*/.ipynb_checkpoints/*
-
-# ===== DATA FILES (Keep structure, ignore content) =====
-# Keep folder structure but ignore large data files
+checkme.txt
+CLAUDE_INTEGRATION_SUMMARY.md
 data/raw/*
 !data/raw/.gitkeep
 data/processed/*
 !data/processed/.gitkeep
 data/samples/*
-!data/samples/.gitkeep
+!data/samples/sample.csv
+MSR Questions & structure updated.docx
 
-# ===== OUTPUTS & CACHE =====
-# Generated outputs (can be regenerated)
-outputs/reports/*.json
-outputs/figures/*.png
-outputs/figures/*.pdf
-outputs/figures/*.svg
-outputs/figures/*.html
-*.cache
-cache/
+# Jupyter checkpoints
+.ipynb_checkpoints
 
-# ===== SECRETS & ENVIRONMENT =====
-.env
-.env.*
-*.key
-config/secrets.py
-
-# ===== DEVELOPMENT & TESTING =====
-# Test outputs and temporary files
-tests/outputs/
-tests/temp/
-*.log
-*.tmp
-
-# ===== NON-ACADEMIC FILES =====
-# Remove development convenience files
-checkme.txt
-CLAUDE_INTEGRATION_SUMMARY.md
-test.bat
-run_all.bat
-Makefile
-complete_analysis.py
-analysis_with_visuals.py
-
-# ===== OS & EDITOR =====
+# Virtual environments
+venv/
+# Secrets
+*.env
 .DS_Store
 .DS_Store?
 ._*
@@ -74,8 +35,8 @@ Thumbs.db
 *.swo
 *~
 
-# ===== ACADEMIC SUBMISSION KEEPS =====
-# Keep these essential files:
+
+# Keeping these essential files:
 # README.md
 # CHECKME.md  
 # requirements.txt
