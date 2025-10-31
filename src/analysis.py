@@ -1,17 +1,17 @@
 
-# Reusable Analysis Functions for AIDev Dataset
+# Analysis functions for MSR project
 import pandas as pd
 import numpy as np
+from datetime import datetime
 
-def contains_test_keywords(text, keywords=None):
-    """Check if text contains any test-related keywords"""
-    if keywords is None:
-        keywords = ['test', 'testing', 'spec', 'unittest', 'pytest', 'jest', 'mocha', 'assert']
-
-    if pd.isna(text):
+def contains_test_keywords(text):
+    """Check if text contains test-related keywords"""
+    if pd.isna(text) or not isinstance(text, str):
         return False
-    text_lower = str(text).lower()
-    return any(keyword in text_lower for keyword in keywords)
+
+    test_keywords = ['test', 'testing', 'spec', 'unittest', 'pytest', 'jest', 'mocha', 'assert']
+    text_lower = text.lower()
+    return any(keyword in text_lower for keyword in test_keywords)
 
 def analyze_test_contributions(df):
     """Analyze test contributions in a DataFrame"""

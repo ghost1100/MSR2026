@@ -1,0 +1,31 @@
+{
+  "RQ1_Test_Frequency": {
+    "total_prs": 50000,
+    "test_prs": "46777",
+    "test_percentage": 93.554,
+    "by_agent": {
+      "Claude_Code": 80.2,
+      "Copilot": 80.0,
+      "Cursor": 18.0,
+      "Devin": 67.1,
+      "OpenAI_Codex": 98.5
+    }
+  },
+  "RQ2_TestCode_Ratio": {
+    "note": "Requires GitHub API for detailed file analysis",
+    "sample_insights": "Based on PR titles/descriptions only",
+    "preliminary_test_indicators": {
+      "true": 46777,
+      "false": 3223
+    }
+  },
+  "RQ3_Code_Changes": {
+    "note": "Requires GitHub API for detailed analysis",
+    "agents_active": 5,
+    "total_sample_size": 50000,
+    "date_range": {
+      "earliest": "2024-12-24 02:17:42+00:00",
+      "latest": "2025-07-30 19:46:26+00:00"
+    }
+  }
+}

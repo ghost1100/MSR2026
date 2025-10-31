@@ -24,47 +24,47 @@
     },
     "by_agent": {
       "OpenAI_Codex": {
-        "test_percentage": 98.5,
+        "test_percentage": 98.46340569753596,
         "test_count": "42997",
         "total_prs": 43668
       },
       "Devin": {
-        "test_percentage": 67.1,
+        "test_percentage": 67.09102482495226,
         "test_count": "1054",
         "total_prs": 1571
       },
       "Copilot": {
-        "test_percentage": 80.0,
+        "test_percentage": 80.00727008360596,
         "test_count": "2201",
         "total_prs": 2751
       },
       "Claude_Code": {
-        "test_percentage": 80.2,
+        "test_percentage": 80.22813688212928,
         "test_count": "211",
         "total_prs": 263
       },
       "Cursor": {
-        "test_percentage": 18.0,
+        "test_percentage": 17.97366914710933,
         "test_count": "314",
         "total_prs": 1747
       }
     },
     "keyword_frequency": {
-      "test": "49756",
-      "testing": "45216",
-      "spec": "3407",
-      "unittest": "283",
-      "pytest": "9862",
-      "jest": "1537",
-      "mocha": "72",
-      "assert": "297"
+      "test": 117874,
+      "testing": 47641,
+      "spec": 5595,
+      "unittest": 338,
+      "pytest": 10923,
+      "jest": 1887,
+      "mocha": 81,
+      "assert": 450
     },
     "most_common_keyword": "test"
   },
   "key_insights": [
-    "Overall test contribution rate: 93.6% of AI-generated PRs contain test-related content",
-    "Highest test rate: OpenAI_Codex at 98.5%",
-    "Most test PRs: OpenAI_Codex with 42997 test-related PRs",
-    "Most common test keyword: 'test'"
+    "Overall test contribution rate: 93.6%",
+    "Best performing agent: OpenAI_Codex (98.5%)",
+    "Lowest performing agent: Cursor (18.0%)",
+    "Most common test keyword: test"
   ]
 }

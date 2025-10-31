@@ -1,5 +1,5 @@
 {
-  "analysis_date": "2025-10-31T20:13:52.007155",
+  "analysis_date": "2025-10-31T20:54:02.176136",
   "sample_size": 50000,
   "large_sample_size": 10000,
   "research_insights": {
@@ -15,41 +15,22 @@
         "OpenAI_Codex": 98.5
       }
     },
-    "RQ2_Test_Code_Ratio": {
-      "test_to_total_ratio": 0.93554,
-      "test_titles_sample": [
-        "Add template name comments",
-        "Extend test retry loops",
-        "Add quadtree unit test"
-      ],
-      "non_test_titles_sample": [
-        "feat: add uniapp project list with images",
-        "Update logger type hint",
-        "[Blazor] Update AuthenticationStateProvider to use declarative persistent component state"
-      ]
+    "RQ2_TestCode_Ratio": {
+      "note": "Requires GitHub API for detailed file analysis",
+      "sample_insights": "Based on PR titles/descriptions only",
+      "preliminary_test_indicators": {
+        "true": 46777,
+        "false": 3223
+      }
     },
     "RQ3_Code_Changes": {
-      "note": "Requires GitHub API integration for additions/deletions data",
-      "available_fields": [
-        "title",
-        "body",
-        "html_url"
-      ],
-      "next_steps": "Link with GitHub API for detailed change metrics"
-    },
-    "RQ4_Description_Consistency": {
-      "avg_title_length": 35.38334,
-      "avg_body_length": 540.15551026174,
-      "title_body_correlation": "Needs NLP analysis for consistency measurement"
-    },
-    "RQ5_User_Adoption": {
-      "unique_users": 15667,
-      "top_users": {
-        "Copilot": 2712,
-        "devin-ai-integration[bot]": 1571,
-        "tamnd": 448
-      },
-      "user_agent_combinations": "             user         agent  count\n0         00hello        Cursor      1\n1        00nesval  OpenAI_Codex      1\n2  04-impiousrust  OpenAI_Codex      1\n3        0561joni  OpenAI_Codex      1\n4         06Gagan  OpenAI_Codex      1"
+      "note": "Requires GitHub API for detailed analysis",
+      "agents_active": 5,
+      "total_sample_size": 50000,
+      "date_range": {
+        "earliest": "2024-12-24 02:17:42+00:00",
+        "latest": "2025-07-30 19:46:26+00:00"
+      }
     }
   },
   "key_findings": {
