@@ -118,7 +118,7 @@
     "latex-workshop.synctex.afterBuild.enabled": true,
     "latex-workshop.latex.build.forceRecipeUsage": false,
     "latex-workshop.latex.clean.enabled": true,
-    "latex-workshop.latex.outDir": "./",
+    "latex-workshop.latex.outDir": "%DIR%",
     "latex-workshop.latex.magic.args": [
         "-synctex=1",
         "-interaction=nonstopmode",
@@ -127,5 +127,7 @@
     ],
     "latex-workshop.latex.magic.bib.args": [
         "%DOCFILE%"
-    ]
+    ],
+    "latex-workshop.latex.rootFile.doNotPrompt": true,
+    "latex-workshop.latex.rootFile.useSubFile": false
 }

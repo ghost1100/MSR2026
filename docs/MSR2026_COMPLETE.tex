@@ -1,5 +1,6 @@
 \documentclass[conference]{IEEEtran}
 \IEEEoverridecommandlockouts
+\usepackage[utf8]{inputenc}
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
@@ -31,7 +32,7 @@ Edinburgh, Scotland \\
 \maketitle
 
 \begin{abstract}
-The widespread adoption of AI coding assistants has fundamentally transformed software development practices, yet their impact on software testing remains poorly understood. We present the largest empirical study to date, analyzing all 932,791 pull requests from the MSR 2026 Challenge dataset to examine testing behaviors across five major AI agents: OpenAI Codex, GitHub Copilot, Cursor, Devin, and Claude Code. Our comprehensive analysis reveals striking behavioral differences: OpenAI Codex demonstrates near-universal test inclusion at 98.5\% of contributions, while Cursor adopts a rapid-development approach with only 18.7\% test inclusion. These differences are statistically robust (χ² = 389,069, p < 0.001, Cramér's V = 0.646) and represent the largest effect size documented in AI-assisted development research. Despite dramatic testing variations, acceptance rates remain remarkably consistent (78.6-94.4\%), indicating sophisticated team adaptation strategies. Our findings challenge assumptions about AI tool interchangeability and demonstrate that agent selection fundamentally shapes software quality practices. Key contributions include: (1) the first population-level analysis of AI agent testing behaviors, (2) identification of distinct behavioral signatures across nearly one million observations, (3) empirical evidence that teams successfully adapt to agent limitations, and (4) strategic guidance for AI-aware software engineering practices.
+The widespread adoption of AI coding assistants has fundamentally transformed software development practices, yet their impact on software testing remains poorly understood. We present the largest empirical study to date, analyzing all 932,791 pull requests from the MSR 2026 Challenge dataset to examine testing behaviors across five major AI agents: OpenAI Codex, GitHub Copilot, Cursor, Devin, and Claude Code. Our comprehensive analysis reveals striking behavioral differences: OpenAI Codex demonstrates near-universal test inclusion at 98.5\% of contributions, while Cursor adopts a rapid-development approach with only 18.7\% test inclusion. These differences are statistically robust ($\chi^2 = 389,069$, p < 0.001, Cramer's V = 0.646) and represent the largest effect size documented in AI-assisted development research. Despite dramatic testing variations, acceptance rates remain remarkably consistent (78.6-94.4\%), indicating sophisticated team adaptation strategies. Our findings challenge assumptions about AI tool interchangeability and demonstrate that agent selection fundamentally shapes software quality practices. Key contributions include: (1) the first population-level analysis of AI agent testing behaviors, (2) identification of distinct behavioral signatures across nearly one million observations, (3) empirical evidence that teams successfully adapt to agent limitations, and (4) strategic guidance for AI-aware software engineering practices.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -85,7 +86,7 @@ This paper makes several novel contributions:
 \begin{enumerate}
     \item \textbf{First population-scale empirical study} analyzing all 932,791 AI-assisted pull requests without sampling limitations
     \item \textbf{Identification of behavioral signatures} showing dramatic variation (18.7\% to 98.5\%) in test contribution rates with unprecedented statistical power
-    \item \textbf{Robust statistical evidence} (χ² = 389,069, p < 0.001, Cramér's V = 0.646) that agent selection fundamentally impacts software quality practices
+    \item \textbf{Robust statistical evidence} ($\chi^2$ = 389,069, p < 0.001, Cramer's V = 0.646) that agent selection fundamentally impacts software quality practices
     \item \textbf{Practical insights} for evidence-based AI tool selection and workflow design
     \item \textbf{Methodological framework} for evaluating AI agent effectiveness in real-world software engineering contexts
 \end{enumerate}
@@ -129,11 +130,11 @@ This distribution reflects real-world adoption patterns while providing sufficie
 
 \subsection{Statistical Framework}
 
-\textbf{Statistical Power}: With 932,791 observations, this study achieves statistical power exceeding 99.9\% for detecting even small behavioral differences. Effect sizes are quantified using Cramér's V to assess practical significance alongside statistical significance.
+\textbf{Statistical Power}: With 932,791 observations, this study achieves statistical power exceeding 99.9\% for detecting even small behavioral differences. Effect sizes are quantified using Cramer's V to assess practical significance alongside statistical significance.
 
-\textbf{Hypothesis Testing}: We employ chi-square tests of independence to evaluate relationships between AI agent choice and testing behavior, with appropriate corrections for multiple comparisons (Bonferroni adjustment maintaining family-wise α = 0.05).
+\textbf{Hypothesis Testing}: We employ chi-square tests of independence to evaluate relationships between AI agent choice and testing behavior, with appropriate corrections for multiple comparisons (Bonferroni adjustment maintaining family-wise $\alpha$ = 0.05).
 
-\textbf{Effect Size Interpretation}: Cramér's V provides standardized measures of association strength, with our observed value of 0.646 indicating a large effect according to Cohen's conventions (0.1 = small, 0.3 = medium, 0.5 = large).
+\textbf{Effect Size Interpretation}: Cramer's V provides standardized measures of association strength, with our observed value of 0.646 indicating a large effect according to Cohen's conventions (0.1 = small, 0.3 = medium, 0.5 = large).
 
 \subsection{Test Detection Methodology}
 
@@ -218,7 +219,28 @@ Cursor & 32,627 & 18.7 & 89.1 & 12,894 & 43.6 chars \\
     \item \textbf{Population Effect}: 93.8\% overall test rate (875,192/932,791 PRs) indicates widespread industry testing adoption
 \end{itemize}
 
-\textbf{Statistical Significance}: Chi-square analysis reveals unprecedented statistical power ($\chi^2 = 389,069$, $p < 0.001$, Cramér's V = 0.646), representing a large effect size with definitive empirical evidence of behavioral differences.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.48\textwidth]{../outputs/figures/complete_dataset_test_contribution_rates.png}
+\caption{Test contribution rates across AI coding agents from complete dataset analysis. OpenAI Codex achieves 98.5\% while Cursor achieves 18.7\%, demonstrating dramatic behavioral differences across 932,791 observations.}
+\label{fig:test_contribution_rates}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.48\textwidth]{../outputs/figures/complete_dataset_agent_distribution.png}
+\caption{Market share distribution of AI coding agents in the complete 932,791 PR dataset. OpenAI Codex dominates with 87.3\% market share, while other agents serve specialized niches.}
+\label{fig:agent_distribution}
+\end{figure}
+
+\textbf{Statistical Significance}: Chi-square analysis reveals unprecedented statistical power ($\chi^2 = 389,069$, $p < 0.001$, Cramer's V = 0.646), representing a large effect size with definitive empirical evidence of behavioral differences.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.48\textwidth]{../outputs/figures/complete_dataset_comprehensive_analysis.png}
+\caption{Comprehensive statistical analysis of AI agent behaviors showing test contribution rates, user adoption patterns, and quality metrics across the complete dataset of 932,791 pull requests.}
+\label{fig:comprehensive_analysis}
+\end{figure}
 
 \subsection{RQ2: Quality Metrics and Acceptance Patterns}
 
@@ -250,17 +272,15 @@ Population-level analysis identifies five distinct behavioral signatures embedde
 \textbf{Population Validation}: These behavioral signatures persist across the complete dataset, eliminating sampling bias concerns and providing definitive evidence of inherent AI system design differences.
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=0.48\textwidth]{advanced_statistical_analysis.png}
-\caption{Advanced statistical analysis showing Chi-square test results, effect sizes, and confidence intervals. The analysis confirms highly significant differences between AI agents with large practical effect sizes.}
-\label{fig:statistical_analysis}
-\end{figure}
-
-The summary dashboard (Figure~\ref{fig:behavior_signatures}) illustrates these distinct patterns across all agents.
+    \centering
+    \includegraphics[width=0.48\textwidth]{../outputs/figures/advanced_statistical_analysis.png}
+    \caption{Advanced statistical analysis showing Chi-square test results, effect sizes, and confidence intervals. The analysis confirms highly significant differences between AI agents with large practical effect sizes.}
+    \label{fig:statistical_analysis}
+\end{figure}The summary dashboard (Figure~\ref{fig:behavior_signatures}) illustrates these distinct patterns across all agents.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.48\textwidth]{summary_dashboard.png}
+    \includegraphics[width=0.48\textwidth]{../outputs/figures/summary_dashboard.png}
     \caption{AI Agent Behavioral Signatures: Test contribution rates reveal distinct approaches ranging from comprehensive testing (OpenAI Codex) to rapid prototyping (Cursor).}
     \label{fig:behavior_signatures}
 \end{figure}
@@ -279,6 +299,13 @@ The remarkable consistency in acceptance rates (89.1\% - 94.6\%) across 932,791 
 \end{itemize}
 
 \textbf{Temporal Stability}: Month-by-month analysis across the complete dataset reveals consistent behavioral patterns, indicating stable integration practices rather than adaptation artifacts. This stability across hundreds of thousands of observations confirms the robustness of organizational adaptation mechanisms.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{../outputs/figures/msr_complete_analysis.png}
+\caption{Complete MSR analysis summary showing all key findings from 932,791 pull requests: agent distribution, testing behaviors, user adoption patterns, and statistical validation results with unprecedented empirical coverage.}
+\label{fig:complete_analysis}
+\end{figure}
 
 \textbf{Scale Evidence}: The 299,294 unique developers successfully maintaining quality standards across dramatically different AI behaviors represents unprecedented evidence of effective human-AI collaboration at scale.
 
@@ -312,7 +339,7 @@ This study advances fundamental understanding of AI-human collaboration in softw
 
 \textbf{Quality-Velocity Tradeoff Optimization}: Different agents optimize different dimensions of the software development process, enabling strategic alignment with project requirements. This multi-objective optimization represents a new paradigm in development tool selection.
 
-\textbf{Population-Scale Validation}: The unprecedented statistical power (99.9\%+) and large effect size (Cramér's V = 0.646) provide definitive empirical validation of AI behavioral differences, establishing the foundation for evidence-based AI integration practices.
+\textbf{Population-Scale Validation}: The unprecedented statistical power (99.9\%+) and large effect size (Cramer's V = 0.646) provide definitive empirical validation of AI behavioral differences, establishing the foundation for evidence-based AI integration practices.
 
 \subsection{Limitations and Threats to Validity}
 
@@ -355,7 +382,7 @@ Despite these limitations, the unprecedented scale (932,791 observations) and st
 \textbf{Statistical Validity}:
 \begin{itemize}
     \item \textbf{Multiple Comparisons}: Bonferroni correction maintains family-wise error rate across statistical tests
-    \item \textbf{Effect Size Robustness}: Large effect sizes (Cramér's V = 0.646) indicate robust practical significance
+    \item \textbf{Effect Size Robustness}: Large effect sizes (Cramer's V = 0.646) indicate robust practical significance
     \item \textbf{Population Coverage}: Complete dataset analysis eliminates sampling bias and provides definitive statistical validation
 \end{itemize}
 
@@ -380,7 +407,7 @@ This comprehensive empirical study represents the largest analysis of AI-assiste
 \textbf{Key Empirical Findings}:
 \begin{enumerate}
     \item \textbf{Behavioral Architecture}: AI agents exhibit distinct, embedded behavioral signatures reflecting fundamental design philosophies, with testing rates varying by 79.8 percentage points (18.7\% to 98.5\%)
-    \item \textbf{Statistical Robustness}: Unprecedented statistical power (χ² = 389,069, p < 0.001, Cramér's V = 0.646) provides definitive evidence of large practical effect sizes
+    \item \textbf{Statistical Robustness}: Unprecedented statistical power ($\chi^2$ = 389,069, p < 0.001, Cramer's V = 0.646) provides definitive evidence of large practical effect sizes
     \item \textbf{Organizational Adaptation}: 299,294 unique developers successfully maintain consistent quality standards (89.1\% - 94.6\% acceptance rates) despite dramatic agent differences
     \item \textbf{Population Validity}: Complete dataset analysis eliminates sampling bias and provides the most robust empirical foundation for AI-assisted development research
     \item \textbf{Strategic Implications}: Evidence-based tool selection and agent-aware process engineering represent critical organizational capabilities
