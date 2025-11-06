@@ -1,44 +1,50 @@
 {
-  "execution_timestamp": "2025-10-12T04:19:03.977677",
-  "total_notebooks": 6,
-  "successful": 6,
+  "execution_timestamp": "2025-11-06T08:20:37.208829",
+  "total_notebooks": 7,
+  "successful": 7,
   "failed": 0,
   "results": [
     {
       "notebook": "RQ1_Agent_Distribution.ipynb",
       "description": "Agent Distribution Analysis",
       "success": true,
-      "message": "Success (33.6s)"
+      "message": "Success (99.3s)"
     },
     {
       "notebook": "RQ2_Test_to_Code_Ratio.ipynb",
       "description": "Test-to-Code Ratio Analysis",
       "success": true,
-      "message": "Success (16.5s)"
+      "message": "Success (20.2s)"
     },
     {
       "notebook": "RQ3_Code_Change_Analysis.ipynb",
       "description": "Code Change Analysis",
       "success": true,
-      "message": "Success (18.9s)"
+      "message": "Success (20.7s)"
     },
     {
       "notebook": "RQ4_Description_Consistency.ipynb",
       "description": "Description Consistency Analysis",
       "success": true,
-      "message": "Success (19.0s)"
+      "message": "Success (40.2s)"
     },
     {
       "notebook": "RQ5_User_Adoption.ipynb",
       "description": "User Adoption Analysis",
       "success": true,
-      "message": "Success (16.9s)"
+      "message": "Success (24.7s)"
     },
     {
       "notebook": "summary.ipynb",
       "description": "Summary Dashboard & Executive Report",
       "success": true,
-      "message": "Success (17.1s)"
+      "message": "Success (19.3s)"
+    },
+    {
+      "notebook": "MSR_Visualization_Recreation.ipynb",
+      "description": "Comprehensive Visualization Generation",
+      "success": true,
+      "message": "Success (44.7s)"
     }
   ]
 }

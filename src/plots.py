@@ -11,13 +11,13 @@ def plot_agent_distribution(df, figsize=(12, 8)):
     # Agent counts
     agent_counts = df['agent'].value_counts()
     agent_counts.plot(kind='pie', ax=axes[0], autopct='%1.1f%%', startangle=90)
-    axes[0].set_title('🤖 Agent Distribution')
+    axes[0].set_title(' Agent Distribution')
     axes[0].set_ylabel('')
     
     # State distribution
     state_counts = df['state'].value_counts()
     state_counts.plot(kind='bar', ax=axes[1], color=['lightgreen', 'lightcoral', 'lightblue'])
-    axes[1].set_title('📊 PR State Distribution')
+    axes[1].set_title(' PR State Distribution')
     axes[1].set_xlabel('PR State')
     axes[1].set_ylabel('Count')
     axes[1].tick_params(axis='x', rotation=45)
@@ -37,13 +37,13 @@ def plot_test_analysis(df, figsize=(15, 12)):
     test_counts = df['is_test_pr'].value_counts()
     test_counts.index = ['Non-Test PRs', 'Test PRs']
     test_counts.plot(kind='pie', ax=axes[0,0], autopct='%1.1f%%', colors=['lightcoral', 'lightgreen'])
-    axes[0,0].set_title('🧪 Test vs Non-Test PRs')
+    axes[0,0].set_title(' Test vs Non-Test PRs')
     axes[0,0].set_ylabel('')
     
     # Test PRs by Agent
     test_by_agent = df.groupby('agent')['is_test_pr'].sum()
     test_by_agent.plot(kind='bar', ax=axes[0,1], color='skyblue')
-    axes[0,1].set_title('🤖 Test PRs by Agent')
+    axes[0,1].set_title(' Test PRs by Agent')
     axes[0,1].set_xlabel('Agent')
     axes[0,1].set_ylabel('Number of Test PRs')
     axes[0,1].tick_params(axis='x', rotation=45)
@@ -51,7 +51,7 @@ def plot_test_analysis(df, figsize=(15, 12)):
     # Test percentage by Agent
     test_pct_by_agent = df.groupby('agent')['is_test_pr'].mean() * 100
     test_pct_by_agent.plot(kind='bar', ax=axes[1,0], color='orange')
-    axes[1,0].set_title('📊 Test Contribution Rate by Agent (%)')
+    axes[1,0].set_title(' Test Contribution Rate by Agent (%)')
     axes[1,0].set_xlabel('Agent')
     axes[1,0].set_ylabel('Test PR Percentage')
     axes[1,0].tick_params(axis='x', rotation=45)
@@ -59,7 +59,7 @@ def plot_test_analysis(df, figsize=(15, 12)):
     # Agent vs State heatmap
     agent_state_crosstab = pd.crosstab(df['agent'], df['state'])
     sns.heatmap(agent_state_crosstab, annot=True, fmt='d', ax=axes[1,1], cmap='Blues')
-    axes[1,1].set_title('🔥 Agent vs PR State Heatmap')
+    axes[1,1].set_title(' Agent vs PR State Heatmap')
     
     plt.tight_layout()
     return fig
@@ -82,7 +82,7 @@ def plot_timeline_analysis(df, figsize=(15, 12)):
         # Monthly trends
         monthly_total = df.groupby('created_month').size()
         monthly_total.plot(kind='line', ax=axes[0,0], marker='o', color='blue')
-        axes[0,0].set_title('📈 PRs per Month')
+        axes[0,0].set_title(' PRs per Month')
         axes[0,0].set_xlabel('Month')
         axes[0,0].set_ylabel('Number of PRs')
         axes[0,0].tick_params(axis='x', rotation=45)
@@ -91,7 +91,7 @@ def plot_timeline_analysis(df, figsize=(15, 12)):
         dow_order = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
         dow_counts = df['created_dow'].value_counts().reindex(dow_order)
         dow_counts.plot(kind='bar', ax=axes[0,1], color='green')
-        axes[0,1].set_title('📅 PRs by Day of Week')
+        axes[0,1].set_title(' PRs by Day of Week')
         axes[0,1].set_xlabel('Day of Week')
         axes[0,1].set_ylabel('Number of PRs')
         axes[0,1].tick_params(axis='x', rotation=45)
@@ -99,14 +99,14 @@ def plot_timeline_analysis(df, figsize=(15, 12)):
         # Hourly patterns
         hourly_counts = df['created_hour'].value_counts().sort_index()
         hourly_counts.plot(kind='bar', ax=axes[1,0], color='orange')
-        axes[1,0].set_title('🕐 PRs by Hour of Day')
+        axes[1,0].set_title(' PRs by Hour of Day')
         axes[1,0].set_xlabel('Hour')
         axes[1,0].set_ylabel('Number of PRs')
         
         # Agent activity over time
         agent_timeline = df.groupby(['created_month', 'agent']).size().unstack(fill_value=0)
         agent_timeline.plot(kind='line', ax=axes[1,1], marker='o')
-        axes[1,1].set_title('🤖 Agent Activity Over Time')
+        axes[1,1].set_title(' Agent Activity Over Time')
         axes[1,1].set_xlabel('Month')
         axes[1,1].set_ylabel('Number of PRs')
         axes[1,1].legend(title='Agent')
@@ -127,7 +127,7 @@ def create_research_dashboard(df, figsize=(20, 15)):
     df_analyzed, test_by_agent = analyze_test_contributions(df)
     
     fig, axes = plt.subplots(3, 3, figsize=figsize)
-    fig.suptitle('🎯 AIDev Dataset Research Dashboard', fontsize=16, fontweight='bold')
+    fig.suptitle(' AIDev Dataset Research Dashboard', fontsize=16, fontweight='bold')
     
     # Row 1: Basic distributions
     agent_counts = df_analyzed['agent'].value_counts()
@@ -183,8 +183,8 @@ def create_research_dashboard(df, figsize=(20, 15)):
     • Users: {df_analyzed['user'].nunique() if 'user' in df_analyzed.columns else 'N/A'}
     • States: {', '.join(df_analyzed['state'].unique())}
     """
-    axes[2,2].text(0.1, 0.5, summary_text, transform=axes[2,2].transAxes, 
-                   fontsize=10, verticalalignment='center')
+    axes[2,2].text(0.1, 0.5, summary_text, transform=axes[2,2].transAxes,
+                fontsize=10, verticalalignment='center')
     axes[2,2].set_xlim(0, 1)
     axes[2,2].set_ylim(0, 1)
     axes[2,2].axis('off')

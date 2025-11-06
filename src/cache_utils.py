@@ -161,7 +161,7 @@ class SmartCache:
                 return cache_data.get("data"), cache_data.get("metadata", {})
                 
         except Exception as e:
-            print(f"⚠️ Error loading cache {cache_key}: {e}")
+            print(f" Error loading cache {cache_key}: {e}")
             return None, None
     
     def smart_cache_operation(self, operation_func, cache_key, force_refresh=False, **kwargs):
@@ -180,10 +180,10 @@ class SmartCache:
         if not force_refresh:
             data, metadata = self.load_from_cache(cache_key)
             if data is not None:
-                print(f"✅ Loaded {cache_key} from cache (created: {metadata.get('cached_at', 'unknown')})")
+                print(f" Loaded {cache_key} from cache (created: {metadata.get('cached_at', 'unknown')})")
                 return data
         
-        print(f"🔄 Computing {cache_key}...")
+        print(f" Computing {cache_key}...")
         result = operation_func(**kwargs)
         
         # Cache the result
@@ -219,7 +219,7 @@ class SmartCache:
                 file_path.unlink()
                 removed_count += 1
         
-        print(f"🗑️ Removed {removed_count} cache files")
+        print(f" Removed {removed_count} cache files")
         return removed_count
 
 # Convenience functions for common caching patterns
@@ -252,15 +252,15 @@ def example_usage():
     
     # Example 1: Cache expensive operation
     result1 = cache.smart_cache_operation(
-        example_expensive_operation, 
-        "expensive_op_1000", 
+        example_expensive_operation,
+        "expensive_op_1000",
         data_size=1000
     )
     
     # Example 2: Load from cache on second call
     result2 = cache.smart_cache_operation(
-        example_expensive_operation, 
-        "expensive_op_1000", 
+        example_expensive_operation,
+        "expensive_op_1000",
         data_size=1000
     )
     

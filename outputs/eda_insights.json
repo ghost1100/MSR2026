@@ -1,0 +1,72 @@
+{
+  "analysis_date": "2025-11-06T08:17:45.833136",
+  "sample_size": 932791,
+  "large_sample_size": 10000,
+  "research_insights": {
+    "RQ1_Test_Frequency": {
+      "total_prs": 932791,
+      "test_prs": "872104",
+      "test_percentage": 93.49404100168205,
+      "by_agent": {
+        "Claude_Code": 76.8,
+        "Copilot": 79.7,
+        "Cursor": 18.8,
+        "Devin": 66.6,
+        "OpenAI_Codex": 98.5
+      }
+    },
+    "RQ2_Test_Code_Ratio": {
+      "test_to_total_ratio": 0.9349404100168205,
+      "test_titles_sample": [
+        "feat: Comprehensive ruff error resolution with version alignment and governance",
+        "Add Evals frontend implementation plan and HTML prototype",
+        "Add 4 new BfDs components for Evals interface implementation"
+      ],
+      "non_test_titles_sample": [
+        "`metta code` --> `metta clip` and additional polish",
+        "\ud83d\udd27 \u6280\u672f\u503a\u52a1\u4fee\u590d\uff1a\u6d88\u9664conversion_engine.ml\u4e2d\u7684\u4e0d\u5b89\u5168\u7c7b\u578b\u8f6c\u6362 - Fix #1343",
+        "\ud83e\uddea \u6d4b\u8bd5\u8986\u76d6\u7387\u6539\u8fdb\uff1a\u65b0\u589e\u53e4\u96c5\u4f53\u9002\u7528\u6027\u68c0\u67e5\u5668\u7efc\u5408\u6d4b\u8bd5 - Fix #1342"
+      ]
+    },
+    "RQ3_Code_Changes": {
+      "note": "Requires GitHub API integration for additions/deletions data",
+      "available_fields": [
+        "title",
+        "body",
+        "html_url"
+      ],
+      "next_steps": "Link with GitHub API for detailed change metrics"
+    },
+    "RQ4_Description_Consistency": {
+      "avg_title_length": 35.3774933264722,
+      "avg_body_length": 534.2671603799926,
+      "title_body_correlation": "Needs NLP analysis for consistency measurement"
+    },
+    "RQ5_User_Adoption": {
+      "unique_users": 72189,
+      "top_users": {
+        "Copilot": 49842,
+        "devin-ai-integration[bot]": 29746,
+        "tamnd": 8913
+      },
+      "user_agent_combinations": "         user         agent  count\n0  00012122Cs   Claude_Code      0\n1  00012122Cs       Copilot      0\n2  00012122Cs        Cursor      0\n3  00012122Cs         Devin      0\n4  00012122Cs  OpenAI_Codex      3"
+    }
+  },
+  "key_findings": {
+    "test_pr_percentage": 93.49404100168205,
+    "most_active_agent": "OpenAI_Codex",
+    "agent_count": 5,
+    "user_count": 72189,
+    "state_distribution": {
+      "closed": 859927,
+      "open": 72864
+    }
+  },
+  "next_steps": [
+    "Scale analysis to full dataset (~900k rows)",
+    "Integrate GitHub API for detailed code change metrics",
+    "Implement NLP analysis for description consistency",
+    "Analyze user history for adoption patterns",
+    "Create visualizations for paper/presentation"
+  ]
+}

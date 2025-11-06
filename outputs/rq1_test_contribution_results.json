@@ -15,56 +15,56 @@
       "title",
       "body"
     ],
-    "sample_size": 50000
+    "sample_size": 932791
   },
   "results": {
     "overall_test_rate": {
-      "percentage": 93.554,
-      "count": "46777/50000"
+      "percentage": 93.49404100168205,
+      "count": "872104/932791"
     },
     "by_agent": {
-      "OpenAI_Codex": {
-        "test_percentage": 98.5,
-        "test_count": "42997",
-        "total_prs": 43668
-      },
-      "Devin": {
-        "test_percentage": 67.1,
-        "test_count": "1054",
-        "total_prs": 1571
+      "Claude_Code": {
+        "test_percentage": 76.8,
+        "test_count": "3943",
+        "total_prs": 5137
       },
       "Copilot": {
-        "test_percentage": 80.0,
-        "test_count": "2201",
-        "total_prs": 2751
+        "test_percentage": 79.7,
+        "test_count": "40188",
+        "total_prs": 50447
       },
-      "Claude_Code": {
-        "test_percentage": 80.2,
-        "test_count": "211",
-        "total_prs": 263
+      "OpenAI_Codex": {
+        "test_percentage": 98.5,
+        "test_count": "801962",
+        "total_prs": 814522
       },
       "Cursor": {
-        "test_percentage": 18.0,
-        "test_count": "314",
-        "total_prs": 1747
+        "test_percentage": 18.8,
+        "test_count": "6191",
+        "total_prs": 32941
+      },
+      "Devin": {
+        "test_percentage": 66.6,
+        "test_count": "19820",
+        "total_prs": 29744
       }
     },
     "keyword_frequency": {
-      "test": "49756",
-      "testing": "45216",
-      "spec": "3407",
-      "unittest": "283",
-      "pytest": "9862",
-      "jest": "1537",
-      "mocha": "72",
-      "assert": "297"
+      "test": "925932",
+      "testing": "841572",
+      "spec": "65005",
+      "unittest": "5289",
+      "pytest": "184142",
+      "jest": "28889",
+      "mocha": "1205",
+      "assert": "5868"
     },
     "most_common_keyword": "test"
   },
   "key_insights": [
-    "Overall test contribution rate: 93.6% of AI-generated PRs contain test-related content",
+    "Overall test contribution rate: 93.5% of AI-generated PRs contain test-related content",
     "Highest test rate: OpenAI_Codex at 98.5%",
-    "Most test PRs: OpenAI_Codex with 42997 test-related PRs",
+    "Most test PRs: OpenAI_Codex with 801962 test-related PRs",
     "Most common test keyword: 'test'"
   ]
 }
