@@ -364,41 +364,109 @@ This study advances fundamental understanding of AI-human collaboration in softw
 \end{itemize}
 
 Despite these limitations, the unprecedented scale (932,791 observations) and statistical power (99.9%+) of our population-level analysis provide the most robust empirical foundation for understanding AI-assisted development behavior to date.
+\section{Threats to Validity}
 
-\textbf{External Validity}:
+To make our evaluation clearer and easier to reason about, we separate threats to validity into the standard categories used in empirical software engineering.
+
+\subsection{Internal Validity}
+
+We identify potential sources of bias and measurement error that could affect causal interpretation:
 \begin{itemize}
-    \item \textbf{Platform Specificity}: GitHub-centric analysis may not generalize to other development platforms (GitLab, Bitbucket)
-    \item \textbf{Project Diversity}: Analysis aggregates across different project types without domain-specific controls
-    \item \textbf{Temporal Evolution}: Rapid AI advancement means current findings may not predict future agent capabilities
+    \item \textbf{Test classification error}: Our keyword- and path-based test detection may miss tests embedded with non-standard layouts or misclassify files that are not tests.
+    \item \textbf{Agent attribution noise}: Agent labels come from repository metadata and heuristics; mislabelled PRs would dilute measured differences between agents.
+    \item \textbf{Confounding by developer choice}: Developers may select particular agents for specific tasks (e.g., prototyping vs. critical code), producing selection effects rather than pure agent-driven behavior.
 \end{itemize}
 
-\textbf{Construct Validity}:
+\subsection{External Validity}
+
+These threats limit the generalisability of our findings beyond the studied dataset and context:
 \begin{itemize}
-    \item \textbf{Testing Quality}: Our methodology measures test presence, not test effectiveness, coverage depth, or quality
-    \item \textbf{Acceptance Proxy}: Merged PR status approximates but doesn't guarantee deployment or long-term code quality
-    \item \textbf{Agent Attribution}: Testing behavior may reflect training data characteristics rather than intentional design decisions
+    \item \textbf{Platform bias}: The MSR dataset is GitHub-centric; practices on other platforms or proprietary corporate environments may differ.
+    \item \textbf{Time-sensitivity}: AI agents and development practices evolve rapidly; our snapshot (MSR 2026 Challenge) may not reflect future agent behaviors.
+    \item \textbf{Project mix}: Aggregation across many project types may mask domain-specific patterns (e.g., safety-critical systems vs. small libraries).
 \end{itemize}
 
-\textbf{Statistical Validity}:
+\subsection{Construct Validity}
+
+These threats concern whether our operationalizations match the theoretical constructs of interest:
 \begin{itemize}
-    \item \textbf{Multiple Comparisons}: Bonferroni correction maintains family-wise error rate across statistical tests
-    \item \textbf{Effect Size Robustness}: Large effect sizes (Cramer's V = 0.646) indicate robust practical significance
-    \item \textbf{Population Coverage}: Complete dataset analysis eliminates sampling bias and provides definitive statistical validation
+    \item \textbf{Test presence vs. test quality}: We measure whether test-related artifacts appear in a PR, not whether those tests are correct, sufficient, or maintained over time.
+    \item \textbf{Acceptance as quality proxy}: Merged/closed PR status is a coarse proxy for quality and may reflect social, process, or organizational factors.
+    \item \textbf{Behavioral interpretation}: Observed agent "signatures" may reflect training data biases or integration patterns rather than intentional design choices by vendors.
 \end{itemize}
 
-\subsection{Future Research Directions}
+\subsection{Mitigations and robustness checks}
 
-Several promising research directions emerge:
+We implemented several measures to reduce these threats: conservative keyword lists, cross-validation across language and repository subsets, and sensitivity analyses (language-stratified and time-sliced). Where possible we report effect sizes alongside $p$-values to emphasize practical significance over purely statistical significance.
 
-\textbf{Code-Level Analysis}: Future studies should examine actual code changes rather than just PR metadata to assess test quality and effectiveness.
+\section{Conclusion and Future Work}
 
-\textbf{Longitudinal Studies}: Long-term analysis could reveal how AI agent behaviors evolve with model updates and training improvements.
+This paper presented a population-scale analysis of AI coding agents across 932,791 pull requests. We documented large, consistent differences in testing behavior (18.7\% to 98.5\% test inclusion) and showed that acceptance rates remain high across agents (approximately 89\%--95\%), suggesting human teams adapt to agent characteristics.
 
-\textbf{Domain-Specific Analysis}: Investigating whether testing behaviors vary across different software domains (web, mobile, systems, etc.).
+Our work provides an evidence base for agent-aware tool selection and process design. Practical takeaways for practitioners include calibrating review effort to agent testing propensity and assigning agents to roles that match their behavioral strengths (e.g., prototyping vs. safety-critical code).
 
-\textbf{Human-AI Interaction}: Studying how developer experience and expertise moderate AI agent effectiveness.
+For future work we recommend a focused roadmap:
+\begin{itemize}
+    \item \textbf{Code-level test quality}: Automated and manual assessment of generated tests' effectiveness (fault-detection, flakiness, maintenance cost).
+    \item \textbf{Longitudinal monitoring}: Tracking agent behavior and team adaptation as models and tooling evolve.
+    \item \textbf{Controlled experiments}: Randomized or matched studies to separate agent effects from developer selection biases.
+    \item \textbf{Domain-specific studies}: Replicate analyses in safety-critical, enterprise, and embedded domains to assess external validity.
+\end{itemize}
 
-\textbf{Quality Measurement}: Developing metrics to assess test quality, not just test presence, in AI-generated code.
+These next steps will help translate our population-level findings into actionable guidelines for organizations and tool designers.
+
+\section*{Data Availability}
+
+The complete MSR 2026 Challenge dataset (932,791 pull requests) is publicly available. Our comprehensive analysis scripts, processed results, and reproducibility materials are available at: \url{https://github.com/ghost1100/MSR/}
+
+\section*{Acknowledgments}
+
+I would like to start by thanking DR Ashkan Sami for supervising this research project, and to thank the MSR 2026 Challenge organizers for providing the comprehensive dataset that enabled this population-scale analysis, and Edinburgh Napier University for computational resources supporting the complete dataset processing.
+
+\balance
+\begin{thebibliography}{00}
+\bibitem{li2024rise} H. Li et al., "The Rise of AI Teammates in Software Engineering (SE 3.0)," arXiv preprint arXiv:2409.18925, 2024.
+
+\bibitem{ma2024copilot} W. Ma et al., "How Do Developers Use GitHub Copilot? An Empirical Study of Copilot-Generated Pull Requests," in Proc. 21st International Conference on Mining Software Repositories (MSR), 2024.
+
+\bibitem{aiddev2024} AIDev Dataset, Hugging Face, 2024. [Online]. Available: \url{https://huggingface.co/datasets/hao-li/AIDev}
+
+\bibitem{chen2021evaluating} M. Chen et al., "Evaluating Large Language Models Trained on Code," arXiv preprint arXiv:2107.03374, 2021.
+
+\bibitem{austin2021program} J. Austin et al., "Program Synthesis with Large Language Models," arXiv preprint arXiv:2108.07732, 2021.
+
+\bibitem{nijkamp2023codegen} E. Nijkamp et al., "CodeGen: An Open Large Language Model for Code with Multi-Turn Program Synthesis," \textit{International Conference on Learning Representations}, 2023.
+
+\bibitem{bareiss2023code} A. Bareiß et al., "Code generation tools in practice: A user study with GitHub Copilot," \textit{Proceedings of the 20th International Conference on Mining Software Repositories}, pp. 285-297, 2023.
+
+\bibitem{bird2011dont} C. Bird et al., "Don't touch my code! Examining the effects of ownership on software quality," \textit{Proceedings of the 19th ACM SIGSOFT Symposium and the 13th European Conference on Foundations of Software Engineering}, pp. 4-14, 2011.
+
+\bibitem{kim2008classifying} S. Kim et al., "Classifying software changes: Clean or buggy?" \textit{IEEE Transactions on Software Engineering}, vol. 34, no. 2, pp. 181-196, 2008.
+
+\bibitem{bacchelli2013expectations} A. Bacchelli and C. Bird, "Expectations, outcomes, and challenges of modern code review," \textit{Proceedings of the 2013 International Conference on Software Engineering}, pp. 712-721, 2013.
+
+\bibitem{niu2022role} N. Niu, "On the role of testing in software evolution," \textit{IEEE Software}, vol. 39, no. 2, pp. 45-52, 2022.
+
+\bibitem{inozemtseva2014coverage} L. Inozemtseva and R. Holmes, "Coverage is not strongly correlated with test suite effectiveness," \textit{Proceedings of the 36th International Conference on Software Engineering}, pp. 435-445, 2014.
+
+\bibitem{msr2026challenge} MSR Challenge 2026: AI Development Dataset. Available: \url{https://2026.msrconf.org/track/msr-2026-mining-challenge}
+
+\bibitem{github2024copilot} GitHub Copilot Documentation and Usage Statistics. GitHub Inc., 2024.
+
+\bibitem{openai2024codex} OpenAI, "OpenAI Codex," Available: \url{https://openai.com/codex/}, 2024.
+
+\bibitem{cursor2024} Cursor, "Cursor — AI for developers," Available: \url{https://www.cursor.so}, 2024.
+
+\bibitem{devin2024} Devin, "Devin — autonomous coding assistant," Available: \url{https://devin.ai}, 2024.
+
+\bibitem{claude2024} Anthropic, "Claude (Code) — AI assistant," Available: \url{https://www.anthropic.com/}, 2024.
+
+\end{thebibliography}
+
+\end{document}
+
+\section*{Author's Note}
+This paper was prepared with the assistance of AI-based writing tools (e.g., ChatGPT) for phrasing and structure refinement. All analysis, data interpretation, and conclusions are the author’s own, and all content has been reviewed and verified for accuracy.
 
 \section{Conclusion}
 
@@ -416,7 +484,7 @@ This comprehensive empirical study represents the largest analysis of AI-assiste
 \textbf{Transformative Implications}: Software engineering practice must evolve beyond one-size-fits-all AI integration approaches. Organizations require:
 \begin{itemize}
     \item Evidence-based agent selection aligned with project quality requirements
-    \item Agent-specific workflow adaptation and review protocols  
+    \item Agent-specific workflow adaptation and review protocols
     \item Compensatory quality assurance mechanisms for rapid-development tools
     \item Training programs on AI behavioral characteristics and limitations
 \end{itemize}
@@ -440,10 +508,16 @@ The complete MSR 2026 Challenge dataset (932,791 pull requests) is publicly avai
 
 \section*{Acknowledgments}
 
-We thank the MSR 2026 Challenge organizers for providing the comprehensive dataset that enabled this population-scale analysis, and Edinburgh Napier University for computational resources supporting the complete dataset processing.
+I would like to start by thanking DR Ashkan Sami for supervising this research project, and to thank the MSR 2026 Challenge organizers for providing the comprehensive dataset that enabled this population-scale analysis, and Edinburgh Napier University for computational resources supporting the complete dataset processing.
 
 \balance
 \begin{thebibliography}{00}
+\bibitem{li2024rise} H. Li et al., "The Rise of AI Teammates in Software Engineering (SE 3.0)," arXiv preprint arXiv:2409.18925, 2024.
+
+\bibitem{ma2024copilot} W. Ma et al., "How Do Developers Use GitHub Copilot? An Empirical Study of Copilot-Generated Pull Requests," in Proc. 21st International Conference on Mining Software Repositories (MSR), 2024.
+
+\bibitem{aiddev2024} AIDev Dataset, Hugging Face, 2024. [Online]. Available: \url{https://huggingface.co/datasets/hao-li/AIDev}
+
 \bibitem{chen2021evaluating} M. Chen et al., "Evaluating Large Language Models Trained on Code," arXiv preprint arXiv:2107.03374, 2021.
 
 \bibitem{austin2021program} J. Austin et al., "Program Synthesis with Large Language Models," arXiv preprint arXiv:2108.07732, 2021.
