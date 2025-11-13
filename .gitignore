@@ -9,6 +9,7 @@ data/processed/*
 data/samples/*
 !data/samples/sample.csv
 MSR Questions & structure updated.docx
+mylog.md
 
 # Jupyter checkpoints
 .ipynb_checkpoints
