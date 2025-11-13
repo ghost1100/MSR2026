@@ -148,7 +148,7 @@ pip install -r requirements.txt
 - `python-dotenv` - Environment variable management
 
 ### Optional Dependencies
-- `anthropic` - Claude API integration (for extended analysis) due to replication purposes and claude API keys being a subscription based resource I decided to focus more on implementation without it as much as possible, and that's where free tier Artificial intelegance came in handy assisting me in figuiring out better more robust work arounds to problems in ways I did not expect.
+- `anthropic` - Claude API integration (for extended analysis) due to replication purposes and claude API keys being a subscription based resource I decided to focus more on implementation without it as much as possible, and that's where free tier Artificial intelegance came in handy, assisting me in figuiring out better more robust work arounds to problems in ways I did not expect.
 ## Getting Started
 
 ### Quick Start Options
@@ -355,3 +355,52 @@ The era of generic AI integration is over. Evidence-based, agent-aware software 
 
 **Last Updated**: November 6, 2025 | **Dataset**: Complete MSR 2026 Challenge (932,791 records)
 | **Proportions** | Pie Charts | Share of AI PRs by type (features/bugs/tests) |
+
+## Chi-square & Cramér's V — what they are and how we use them
+
+This project reports two closely related statistics when assessing categorical associations between AI agent identity and testing behavior: the Chi-square (χ²) test of independence and Cramér's V (an effect-size measure). Below is a concise, practical summary of each, why both are necessary, how we compute them here, and where to find the generated outputs in this repository.
+
+- Chi-square (χ²) test of independence
+    - What it is: A non-parametric test that evaluates whether two categorical variables are independent. It compares observed counts in a contingency table to the counts expected if the variables were independent.
+    - Why we use it: It tells us whether there is a statistically significant relationship between an AI agent (which agent created the PR) and whether a PR is test-related. With very large samples (like our full dataset), p-values become very small for even minor differences — so the χ² tells us whether an association exists, not how important it is.
+    - How we compute it here: we build a contingency table with pandas (pd.crosstab(df['agent'], df['is_test_pr'])) and call scipy.stats.chi2_contingency to obtain the χ² statistic, p-value, degrees of freedom, and expected counts.
+    - Where the result is produced/saved: the main implementation is in `comprehensive_full_analysis.py` (see the statistical significance section). Running the full analysis writes the statistics into `outputs/comprehensive_full_dataset_analysis.json` under `statistical_analysis.chi_square` and `p_value`, and these figures are echoed in console output when the script runs.
+
+- Cramér's V (effect size)
+    - What it is: A normalized measure of association derived from χ² for contingency tables. It ranges from 0 (no association) to 1 (perfect association). For an r x c table, it is defined as
+
+        V = sqrt(χ² / (n * (k - 1)))
+
+        where n is the total sample size and k = min(number_of_rows, number_of_columns).
+    - Why we use it: Because statistical significance alone is not enough with large samples — Cramér's V quantifies the practical magnitude of the association so readers can judge how meaningful the relationship is in real terms.
+    - Interpretation (used in this repo): commonly used thresholds are shown as guidance (not absolute):
+        - V < 0.10: negligible
+        - 0.10 ≤ V < 0.30: small
+        - 0.30 ≤ V < 0.50: medium
+        - V ≥ 0.50: large
+    - How we compute it here: after obtaining χ² (from scipy), we compute V as shown above. The computation and interpretation logic are implemented in `comprehensive_full_analysis.py` which also prints a short interpretation string (e.g., "negligible", "small", "medium", "large").
+    - Where the result is produced/saved: the computed Cramér's V is saved to `outputs/comprehensive_full_dataset_analysis.json` under `statistical_analysis.cramers_v` (and also shown in console output). Other pipeline outputs that summarize results (for example `outputs/reports/complete_analysis_*.json`) can also include these statistics depending on which analysis pipeline was run.
+
+Why both are reported together
+- χ² (and its p-value) answers "Is there evidence of an association?". With large n, even very small differences can be statistically significant.
+- Cramér's V answers "How big is that association in practice?". Reporting both avoids over-interpreting trivially significant results.
+
+Files and places to look (quick reference)
+- Implementation and primary runner: `comprehensive_full_analysis.py` — builds the contingency table, runs scipy.stats.chi2_contingency, computes Cramér's V, prints the results, and saves them.
+- Smaller, modular helpers: `src/analysis.py` contains helper utilities used by smaller analyses (test-detection helpers and per-agent summaries). For the full-sample χ² and V we rely on the complete-analysis script.
+- Notebooks: `notebooks/RQ1_Agent_Distribution.ipynb` and `notebooks/RQ2_Test_to_Code_Ratio.ipynb` display and visualize agent/test relationships and may replicate or visualize the same χ²/ V results for specific subsets.
+- Outputs:
+    - `outputs/comprehensive_full_dataset_analysis.json` — primary JSON that contains the `statistical_analysis` block with `chi_square`, `p_value`, `cramers_v`, `effect_size`, `degrees_of_freedom`, and `sample_size`.
+    - `outputs/reports/complete_analysis_*.json` — other analysis/visualization report files generated by auxiliary pipelines; some runs export the same statistics here as well.
+
+How to reproduce the numbers locally
+```powershell
+# Windows (from the repo root)
+python comprehensive_full_analysis.py
+# or run the cross-platform pipeline
+python run_all.py
+```
+
+Notes & caveats
+- Large sample sizes amplify statistical power — always examine effect sizes (Cramér's V) alongside p-values.
+- For multi-way comparisons and many agent categories we also consider multiple-comparison corrections (Bonferroni) elsewhere in analysis where appropriate; χ² + V remain the primary pairwise/contingency diagnostics for categorical associations.
