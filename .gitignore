@@ -2,12 +2,7 @@
 __pycache__/
 *.pyc
 *.pyo
-checkme.txt
 # Data files
-data/raw/*
-data/processed/*
-data/samples/*
-!data/samples/sample.csv
 MSR Questions & structure updated.docx
 mylog.md
 
