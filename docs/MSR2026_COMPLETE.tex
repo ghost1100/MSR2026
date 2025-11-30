@@ -140,23 +140,11 @@ This distribution reflects real-world adoption patterns while providing sufficie
 
 We implement comprehensive keyword-based test identification across multiple dimensions:
 
-\textbf{File Path Analysis}: Detection of test directories and naming conventions
-\begin{verbatim}
-test_patterns = ['test/', 'tests/', 'spec/', '__tests__/', 
-                 'testing/', 'e2e/', 'integration/']
-\end{verbatim}
+\textbf{File Path Analysis}: Detection of test directories (\texttt{test/}, \texttt{tests/}, \texttt{spec/}, \texttt{\_\_tests\_\_/}, \texttt{testing/}, \texttt{e2e/}, \texttt{integration/}) and naming conventions.
 
-\textbf{Naming Conventions}: Recognition of standard test file formats
-\begin{verbatim}
-test_files = ['*test.py', '*spec.js', 'Test*.java', 
-              '*_test.go', '*Test.cs', 'test_*.rb']
-\end{verbatim}
+\textbf{Naming Conventions}: Standard test file formats (\texttt{*test.py}, \texttt{*spec.js}, \texttt{Test*.java}, \texttt{*\_test.go}, \texttt{*Test.cs}, \texttt{test\_*.rb}).
 
-\textbf{Framework Indicators}: Identification of testing framework usage
-\begin{verbatim}
-frameworks = ['pytest', 'jest', 'junit', 'rspec', 'mocha', 
-              'cypress', 'selenium', 'testng', 'nunit']
-\end{verbatim}
+\textbf{Framework Indicators}: Testing frameworks (\texttt{pytest}, \texttt{jest}, \texttt{junit}, \texttt{rspec}, \texttt{mocha}, \texttt{cypress}, \texttt{selenium}, \texttt{testng}, \texttt{nunit}).
 
 \textbf{Content Analysis}: Scanning PR titles and descriptions for test-related terminology using a comprehensive vocabulary of 47 testing-related keywords.
 
@@ -222,14 +210,14 @@ Cursor & 32,627 & 18.7 & 89.1 & 12,894 & 43.6 chars \\
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.48\textwidth]{../outputs/figures/complete_dataset_test_contribution_rates.png}
-\caption{Test contribution rates across AI coding agents from complete dataset analysis. OpenAI Codex achieves 98.5\% while Cursor achieves 18.7\%, demonstrating dramatic behavioral differences across 932,791 observations.}
+\caption{Test contribution rates by AI agent. Bar chart shows percentage of pull requests containing test-related content for each agent. OpenAI Codex: 98.5\%, GitHub Copilot: 81.3\%, Claude Code: 79.8\%, Devin: 68.4\%, Cursor: 18.7\%. Data from 932,791 pull requests.}
 \label{fig:test_contribution_rates}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.48\textwidth]{../outputs/figures/complete_dataset_agent_distribution.png}
-\caption{Market share distribution of AI coding agents in the complete 932,791 PR dataset. OpenAI Codex dominates with 87.3\% market share, while other agents serve specialized niches.}
+\caption{Agent market share distribution with legend showing counts and percentages.}
 \label{fig:agent_distribution}
 \end{figure}
 
@@ -238,7 +226,7 @@ Cursor & 32,627 & 18.7 & 89.1 & 12,894 & 43.6 chars \\
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.48\textwidth]{../outputs/figures/complete_dataset_comprehensive_analysis.png}
-\caption{Comprehensive statistical analysis of AI agent behaviors showing test contribution rates, user adoption patterns, and quality metrics across the complete dataset of 932,791 pull requests.}
+\caption{Multi-panel analysis of agent behaviors. Four panels show: (1) test contribution rates (\%), (2) number of unique users, (3) PR acceptance rates (\%), and (4) average PR title length (characters). Despite large testing differences, acceptance rates remain consistent (89--95\%).}
 \label{fig:comprehensive_analysis}
 \end{figure}
 
@@ -274,14 +262,14 @@ Population-level analysis identifies five distinct behavioral signatures embedde
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.48\textwidth]{../outputs/figures/advanced_statistical_analysis.png}
-    \caption{Advanced statistical analysis showing Chi-square test results, effect sizes, and confidence intervals. The analysis confirms highly significant differences between AI agents with large practical effect sizes.}
+    \caption{Statistical validation of behavioral differences. Shows Chi-square test results (\(\chi^2 = 389,069\), \(p < 0.001\)), effect size (Cramer's V = 0.646), and 95\% confidence intervals for each agent's test contribution rate. Large effect size confirms practical significance.}
     \label{fig:statistical_analysis}
 \end{figure}The summary dashboard (Figure~\ref{fig:behavior_signatures}) illustrates these distinct patterns across all agents.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.48\textwidth]{../outputs/figures/summary_dashboard.png}
-    \caption{AI Agent Behavioral Signatures: Test contribution rates reveal distinct approaches ranging from comprehensive testing (OpenAI Codex) to rapid prototyping (Cursor).}
+    \caption{Behavioral signatures summary. Categorizes agents by testing approach: Testing-Centric (Codex: 98.5\%), Balanced (Copilot: 81.3\%, Claude: 79.8\%), Adaptive (Devin: 68.4\%), and Rapid Development (Cursor: 18.7\%). Patterns reflect fundamental design philosophies.}
     \label{fig:behavior_signatures}
 \end{figure}
 
@@ -303,7 +291,7 @@ The remarkable consistency in acceptance rates (89.1\% - 94.6\%) across 932,791 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\textwidth]{../outputs/figures/msr_complete_analysis.png}
-\caption{Complete MSR analysis summary showing all key findings from 932,791 pull requests: agent distribution, testing behaviors, user adoption patterns, and statistical validation results with unprecedented empirical coverage.}
+\caption{Executive summary dashboard. Six-panel visualization integrating: (1) agent distribution pie chart, (2) test contribution bar chart, (3) user adoption counts, (4) acceptance rate comparison, (5) statistical validation metrics (\(\chi^2\), Cramer's V), and (6) temporal stability analysis. Demonstrates consistent patterns across 932,791 PRs from 299,294 developers.}
 \label{fig:complete_analysis}
 \end{figure}
 
@@ -429,8 +417,6 @@ I would like to start by thanking DR Ashkan Sami for supervising this research p
 
 \bibitem{ma2024copilot} W. Ma et al., "How Do Developers Use GitHub Copilot? An Empirical Study of Copilot-Generated Pull Requests," in Proc. 21st International Conference on Mining Software Repositories (MSR), 2024.
 
-\bibitem{aiddev2024} AIDev Dataset, Hugging Face, 2024. [Online]. Available: \url{https://huggingface.co/datasets/hao-li/AIDev}
-
 \bibitem{chen2021evaluating} M. Chen et al., "Evaluating Large Language Models Trained on Code," arXiv preprint arXiv:2107.03374, 2021.
 
 \bibitem{austin2021program} J. Austin et al., "Program Synthesis with Large Language Models," arXiv preprint arXiv:2108.07732, 2021.
@@ -451,86 +437,13 @@ I would like to start by thanking DR Ashkan Sami for supervising this research p
 
 \bibitem{msr2026challenge} MSR Challenge 2026: AI Development Dataset. Available: \url{https://2026.msrconf.org/track/msr-2026-mining-challenge}
 
-\end{thebibliography}
+\bibitem{parra2025towards} E. Parra and S. Willingham, "Towards Implementing and Evaluating AI-Assisted Pull Requests in Software Engineering Education," \textit{Software Engineering Education Conference, Proceedings}, pp. 13--18, 2025. DOI: 10.1109/CSEET66350.2025.00008
 
-\end{document}
+\bibitem{pearce2022asleep} H. Pearce, B. Ahmad, B. Tan, B. Dolan-Gavitt, and R. Karri, "Asleep at the Keyboard? Assessing the Security of GitHub Copilot's Code Contributions," \textit{Proceedings - IEEE Symposium on Security and Privacy}, vol. 2022-May, pp. 754-768, 2022. DOI: 10.1109/SP46214.2022.9833571
 
-\section*{Author's Note}
-This paper was prepared with the assistance of AI-based writing tools (e.g., ChatGPT) for phrasing and structure refinement. All analysis, data interpretation, and conclusions are the author’s own, and all content has been reviewed and verified for accuracy, originality, and compliance with academic integrity standards, Portions of this paper’s text were drafted with the assistance of a large language model (OpenAI GPT-5). All data analysis, interpretation, and code were conducted by the author, ensuring full scientific accountability.
+\bibitem{xie2018intelligent} T. Xie, "Intelligent software engineering: Synergy between AI and software engineering," \textit{ACM International Conference Proceeding Series}, 2018. DOI: 10.1145/3172871.3172891
 
-\section{Conclusion}
-
-This comprehensive empirical study represents the largest analysis of AI-assisted development behavior to date, examining all 932,791 pull requests in the MSR 2026 Challenge dataset without sampling limitations. Our findings reveal profound behavioral differences that fundamentally challenge assumptions about AI tool interchangeability in software engineering.
-
-\textbf{Key Empirical Findings}:
-\begin{enumerate}
-    \item \textbf{Behavioral Architecture}: AI agents exhibit distinct, embedded behavioral signatures reflecting fundamental design philosophies, with testing rates varying by 79.8 percentage points (18.7\% to 98.5\%)
-    \item \textbf{Statistical Robustness}: Unprecedented statistical power ($\chi^2$ = 389,069, p < 0.001, Cramer's V = 0.646) provides definitive evidence of large practical effect sizes
-    \item \textbf{Organizational Adaptation}: 299,294 unique developers successfully maintain consistent quality standards (89.1\% - 94.6\% acceptance rates) despite dramatic agent differences
-    \item \textbf{Population Validity}: Complete dataset analysis eliminates sampling bias and provides the most robust empirical foundation for AI-assisted development research
-    \item \textbf{Strategic Implications}: Evidence-based tool selection and agent-aware process engineering represent critical organizational capabilities
-\end{enumerate}
-
-\textbf{Transformative Implications}: Software engineering practice must evolve beyond one-size-fits-all AI integration approaches. Organizations require:
-\begin{itemize}
-    \item Evidence-based agent selection aligned with project quality requirements
-    \item Agent-specific workflow adaptation and review protocols
-    \item Compensatory quality assurance mechanisms for rapid-development tools
-    \item Training programs on AI behavioral characteristics and limitations
-\end{itemize}
-
-\textbf{Research Contributions}: This study establishes several foundational contributions:
-\begin{itemize}
-    \item The first population-scale empirical analysis of AI-assisted development (932,791 observations)
-    \item Identification of distinct AI behavioral architectures embedded within system design
-    \item Evidence of successful organizational adaptation to diverse AI capabilities at unprecedented scale
-    \item Methodological framework for evaluating AI tool effectiveness in real-world software engineering contexts
-    \item Empirical foundation for strategic, agent-aware development practices
-\end{itemize}
-
-\textbf{Future Research Directions}: This comprehensive baseline enables focused investigation of code-level quality metrics, longitudinal agent evolution, domain-specific behavior patterns, and human-AI collaboration optimization strategies.
-
-The era of generic AI integration is over. Evidence-based, agent-aware software engineering represents the future of effective AI-human collaboration in software development. This study provides the empirical foundation organizations need to make strategic, informed decisions about AI tool adoption and workflow adaptation in an increasingly AI-driven development ecosystem.
-
-\section*{Data Availability}
-
-The complete MSR 2026 Challenge dataset (932,791 pull requests) is publicly available. Our comprehensive analysis scripts, processed results, and reproducibility materials are available at: \url{https://github.com/ghost1100/MSR/}
-
-\section*{Acknowledgments}
-
-I would like to start by thanking DR Ashkan Sami for supervising this research project, and to thank the MSR 2026 Challenge organizers for providing the comprehensive dataset that enabled this population-scale analysis, and Edinburgh Napier University for computational resources supporting the complete dataset processing.
-
-\balance
-\begin{thebibliography}{00}
-\bibitem{li2024rise} H. Li et al., "The Rise of AI Teammates in Software Engineering (SE 3.0)," arXiv preprint arXiv:2409.18925, 2024.
-
-\bibitem{ma2024copilot} W. Ma et al., "How Do Developers Use GitHub Copilot? An Empirical Study of Copilot-Generated Pull Requests," in Proc. 21st International Conference on Mining Software Repositories (MSR), 2024.
-
-\bibitem{aiddev2024} AIDev Dataset, Hugging Face, 2024. [Online]. Available: \url{https://huggingface.co/datasets/hao-li/AIDev}
-
-\bibitem{chen2021evaluating} M. Chen et al., "Evaluating Large Language Models Trained on Code," arXiv preprint arXiv:2107.03374, 2021.
-
-\bibitem{austin2021program} J. Austin et al., "Program Synthesis with Large Language Models," arXiv preprint arXiv:2108.07732, 2021.
-
-\bibitem{nijkamp2023codegen} E. Nijkamp et al., "CodeGen: An Open Large Language Model for Code with Multi-Turn Program Synthesis," \textit{International Conference on Learning Representations}, 2023.
-
-\bibitem{bareiss2023code} A. Bareiß et al., "Code generation tools in practice: A user study with GitHub Copilot," \textit{Proceedings of the 20th International Conference on Mining Software Repositories}, pp. 285-297, 2023.
-
-\bibitem{bird2011dont} C. Bird et al., "Don't touch my code! Examining the effects of ownership on software quality," \textit{Proceedings of the 19th ACM SIGSOFT Symposium and the 13th European Conference on Foundations of Software Engineering}, pp. 4-14, 2011.
-
-\bibitem{kim2008classifying} S. Kim et al., "Classifying software changes: Clean or buggy?" \textit{IEEE Transactions on Software Engineering}, vol. 34, no. 2, pp. 181-196, 2008.
-
-\bibitem{bacchelli2013expectations} A. Bacchelli and C. Bird, "Expectations, outcomes, and challenges of modern code review," \textit{Proceedings of the 2013 International Conference on Software Engineering}, pp. 712-721, 2013.
-
-\bibitem{niu2022role} N. Niu, "On the role of testing in software evolution," \textit{IEEE Software}, vol. 39, no. 2, pp. 45-52, 2022.
-
-\bibitem{inozemtseva2014coverage} L. Inozemtseva and R. Holmes, "Coverage is not strongly correlated with test suite effectiveness," \textit{Proceedings of the 36th International Conference on Software Engineering}, pp. 435-445, 2014.
-
-\bibitem{msr2026challenge} MSR Challenge 2026: AI Development Dataset. Available: \url{https://2026.msrconf.org/track/msr-2026-mining-challenge}
-
-\bibitem{github2024copilot} GitHub Copilot Documentation and Usage Statistics. GitHub Inc., 2024.
-
-\bibitem{openai2024codex} OpenAI, "OpenAI Codex," Available: \url{https://openai.com/codex/}, 2024.
+\bibitem{zhang2021ideal} R. Zhang, N. J. McNeese, G. Freeman, and G. Musick, "``An Ideal Human'': Expectations of AI Teammates in Human-AI Teaming," \textit{Proceedings of the ACM on Human-Computer Interaction}, vol. 4, 2021. DOI: 10.1145/3432945
 
 \end{thebibliography}
 
