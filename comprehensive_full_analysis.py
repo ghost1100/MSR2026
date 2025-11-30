@@ -226,21 +226,38 @@ def generate_visualizations(df, behavioral_analysis, output_dir):
     plt.close()
     
     # 2. Agent market share distribution
-    fig, ax = plt.subplots(figsize=(10, 8))
+    fig, ax = plt.subplots(figsize=(12, 10))
     agent_counts = df['agent'].value_counts()
     colors = sns.color_palette("Set3", len(agent_counts))
     
-    wedges, texts, autotexts = ax.pie(agent_counts.values, labels=agent_counts.index,
-                                    autopct='%1.1f%%', colors=colors, startangle=90,
-                                    textprops={'fontsize': 12, 'fontweight': 'bold'})
+    # Create pie chart with improved text positioning to avoid overlap
+    wedges, texts, autotexts = ax.pie(agent_counts.values, 
+                                    autopct='%1.1f%%', 
+                                    colors=colors, 
+                                    startangle=90,
+                                    pctdistance=0.85,
+                                    explode=[0.05, 0.02, 0.02, 0.02, 0.02],  # Slightly separate slices
+                                    textprops={'fontsize': 11, 'fontweight': 'bold'})
+    
+    # Move labels outside to avoid overlap
+    for text in texts:
+        text.set_fontsize(12)
+        text.set_fontweight('bold')
+    
+    # Create legend instead of labels on the pie
+    legend_labels = [f'{agent}: {count:,} ({count/agent_counts.sum()*100:.1f}%)' 
+                    for agent, count in agent_counts.items()]
+    ax.legend(legend_labels, loc='center left', bbox_to_anchor=(1, 0, 0.5, 1),
+             fontsize=11, frameon=True, title='AI Agents', title_fontsize=12)
+    
     ax.set_title('AI Agent Market Share Distribution\n(Complete Dataset: 932,791 Pull Requests)',
                 fontsize=16, fontweight='bold', pad=20)
     
-    # Enhance text readability
+    # Enhance percentage text readability
     for autotext in autotexts:
         autotext.set_color('white')
         autotext.set_fontweight('bold')
-        autotext.set_fontsize(12)
+        autotext.set_fontsize(11)
     
     plt.savefig(figures_dir / 'complete_dataset_agent_distribution.png',
                 dpi=300, bbox_inches='tight', facecolor='white')
