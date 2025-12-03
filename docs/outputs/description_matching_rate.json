@@ -1,0 +1,13 @@
+{
+  "threshold": 0.2,
+  "sample_size": 3000,
+  "overall_matching_rate_pct": 70.06666666666666,
+  "per_agent_matching_rate_pct": {
+    "Claude_Code": 73.6842,
+    "Copilot": 88.3117,
+    "Cursor": 51.3043,
+    "Devin": 90.0,
+    "OpenAI_Codex": 69.1869
+  },
+  "notes": "Cosine similarity between title and body TF-IDF vectors; match if >= threshold."
+}
