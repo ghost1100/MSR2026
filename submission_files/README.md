@@ -44,6 +44,8 @@ This study reveals both the promises and perils of AI-driven development. We exa
 
 We analyze the complete MSR 2026 Challenge dataset containing 932,791 pull request records (754MB) - representing the largest empirical analysis of AI-generated contributions across GitHub repositories.
 
+**Important**: Due to file size limitations, the main dataset file is not included in the repository. Please see `GET_DATASET.md` for download instructions.
+
 ## Repository Structure
 
 ```
