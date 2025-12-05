@@ -22,14 +22,14 @@ Edinburgh, Scotland \\
 \maketitle
 
 \begin{abstract}
-Observational datasets of AI-assisted pull requests offer population-scale insights but face methodological challenges that can invalidate behavioral inferences. We analyze validity threats in the AIDev dataset (932,791 PRs) and demonstrate how agent attribution uncertainty, statistical clustering violations, measurement bias, and confounding limit interpretability. Through empirical examples, we show how apparent behavioral differences (98.5\% vs. 19\% test rates) may reflect artifacts rather than capabilities. We provide a methodological framework with requirements for reliable inference from observational AI tool data. This work aims to improve research rigor while acknowledging the value of large-scale observational studies.
+Observational datasets of AI-assisted pull requests face methodological challenges that can invalidate behavioral inferences. We identify four critical validity threats in such datasets: agent attribution uncertainty, statistical clustering violations, measurement bias, and confounding effects. Using AIDev as a case study, we demonstrate how these threats manifest in practice and establish methodological requirements for reliable inference from observational AI tool data. This framework aims to improve research rigor by identifying necessary conditions for valid behavioral research using observational datasets.
 \end{abstract}
 
 \section{Introduction}
 
 Large-scale datasets of AI-assisted pull requests offer insights into real-world tool usage but face methodological challenges that can invalidate behavioral inferences. This study identifies and demonstrates validity threats in observational AI tool datasets, using AIDev (932,791 PRs) as a case study.
 
-We focus on four critical threats: (1) agent attribution reliability, (2) statistical clustering violations, (3) measurement bias, and (4) confounding effects. Through empirical examples, we show how apparent behavioral differences may reflect artifacts rather than capabilities.
+We identify four critical validity threats: (1) agent attribution reliability, (2) statistical clustering violations, (3) measurement bias, and (4) confounding effects. We demonstrate how these threats manifest in observational datasets and render behavioral inference unreliable.
 
 \textbf{Contributions}: A methodological framework identifying validity requirements for reliable inference from observational AI tool datasets, with constructive recommendations for improving research practices.
 
@@ -68,7 +68,7 @@ Devin & 1 & 29,744 \\
 \end{tabular}
 \end{table}
 
-Copilot shows 133 PRs per user versus Codex at 13—likely reflecting labeling inconsistencies rather than usage patterns.
+Such extreme disparities in contribution patterns suggest systematic labeling inconsistencies rather than genuine usage differences.
 
 \subsection{Clustering Evidence}
 
@@ -79,7 +79,7 @@ Copilot shows 133 PRs per user versus Codex at 13—likely reflecting labeling i
 \label{fig:clustering}
 \end{figure}
 
-The fat-tailed distribution violates independence assumptions for statistical tests.
+Such clustering patterns violate independence assumptions required for valid statistical inference.
 
 \subsection{Measurement Bias Examples}
 
@@ -91,50 +91,27 @@ Language bias: JavaScript frameworks (Jest, Mocha) more detectable than Go testi
 
 \section{Case Study: Validity Threats in Practice}
 
-\subsection{Attribution Analysis}
+\subsection{Attribution Reliability Demonstration}
 
-Examining user distributions reveals systematic inconsistencies suggesting attribution problems rather than genuine usage patterns. The 350× difference in per-user PRs between Copilot (133.1) and Codex (13.2) during overlapping timeframes indicates labeling issues.
+User distribution analysis reveals systematic inconsistencies indicating attribution problems. Such disparities in contribution patterns suggest labeling issues rather than reflecting actual usage.
 
-\subsection{Statistical Clustering}
+\subsection{Statistical Clustering Demonstration}
 
-User contributions follow a fat-tailed distribution with substantial clustering within repositories and organizations, violating independence assumptions required for valid hypothesis testing.
+Distribution analysis reveals substantial clustering within repositories and organizations, violating independence assumptions required for valid statistical inference.
 
-\subsection{Measurement Validation}
+\subsection{Measurement Bias Demonstration}
 
-Keyword-based test detection achieved ~94\% accuracy on manual validation (n=200) but showed systematic biases: language preferences (JavaScript frameworks more detectable), context sensitivity ("test new feature" vs. "test suite"), and cultural variations in terminology.
+Validation of keyword-based detection reveals systematic biases across languages and contexts, with accuracy varying by framework conventions and cultural terminology differences.
 
-\subsection{Confounding Evidence}
+\subsection{Confounding Demonstration}
 
-Extreme variation in per-user contribution rates and temporal concentration during tool transitions suggest that observed differences reflect selection effects and organizational practices rather than tool capabilities.
+Temporal concentration and organizational patterns indicate that apparent differences likely reflect selection effects and contextual factors rather than tool characteristics.
 
-\section{Observed Patterns}
+\section{Implications for Observational Research}
 
-Table~\ref{tab:rates} shows substantial variation in test-related PR percentages across agents, but these patterns likely reflect the validity threats identified above.
+\textbf{Critical Disclaimer}: This paper does not present behavioral results. Any numerical examples are used solely to illustrate how validity threats distort inference and should not be interpreted as evidence of agent behavior.
 
-\begin{table}[h]
-\centering
-\caption{Test-related PR rates by agent (interpretation limited by validity threats)}
-\label{tab:rates}
-\begin{tabular}{@{}lrr@{}}
-\toprule
-\textbf{Agent} & \textbf{Total PRs} & \textbf{Test \%} \\
-\midrule
-OpenAI Codex & 814,522 & 98.5 \\
-GitHub Copilot & 50,447 & 79.8 \\
-Claude Code & 5,137 & 77.4 \\
-Cursor & 32,941 & 19.0 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.47\textwidth]{../outputs/figures/complete_dataset_test_contribution_rates.png}
-\caption{Test-related PR rates by agent (validity limitations apply)}
-\label{fig:rates}
-\end{figure}
-
-The large effect size (Cramér's V ≈ 0.646) likely reflects systematic measurement and attribution artifacts rather than genuine behavioral differences.
+The combination of attribution uncertainty, clustering violations, measurement bias, and confounding effects renders behavioral inference from such datasets unreliable. Apparent patterns in observational data likely reflect methodological artifacts rather than genuine tool capabilities.
 
 \section{Methodological Requirements}
 
@@ -172,11 +149,11 @@ Code generation studies emphasize functional correctness \cite{chen2021evaluatin
 
 \section{Conclusion}
 
-This study demonstrates fundamental validity threats in observational AI tool datasets that prevent reliable behavioral inference. Through analysis of AIDev, we show how attribution uncertainty, clustering violations, measurement bias, and confounding can create misleading patterns.
+This study demonstrates fundamental validity threats that prevent reliable behavioral inference from observational AI tool datasets. We identify four critical threats—attribution uncertainty, clustering violations, measurement bias, and confounding—and show how they manifest in practice.
 
-The 79-point difference in test rates between tools likely reflects artifacts rather than capabilities. Our methodological framework establishes requirements for valid inference: attribution verification, clustering control, measurement validation, and confounding assessment.
+Our methodological framework establishes requirements for valid inference: attribution verification, clustering control, measurement validation, and confounding assessment. Without these safeguards, apparent patterns in observational data likely reflect methodological artifacts.
 
-We emphasize that this critique targets methodology, not individual researchers or datasets. Observational studies provide valuable descriptive insights, but behavioral claims require controlled experimental designs. This framework aims to improve research rigor in this rapidly evolving field.
+This critique targets methodology, not researchers or datasets. While observational studies provide valuable descriptive insights, behavioral claims require controlled experimental designs that address these fundamental validity threats.
 
 \section*{Acknowledgments}
 We thank H. Li et al. for releasing AIDev and colleagues for feedback. Any errors are our own.

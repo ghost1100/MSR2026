@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.5)  5 DEC 2025 20:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.5)  5 DEC 2025 20:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -203,27 +203,14 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-))
-(C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/algorithms\algorithmic.
-sty
-Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
- (C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty
-Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
-)
+)) (C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.st
+y
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+
 (C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks25
 )
-\c@ALC@unique=\count280
-\c@ALC@line=\count281
-\c@ALC@rem=\count282
-\c@ALC@depth=\count283
-\ALC@tlm=\skip54
-\algorithmicindent=\skip55
-)
-(C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
-Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
-
 (C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
 Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
 
@@ -241,27 +228,8 @@ File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen173
 \Gin@req@width=\dimen174
-) (C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/base\textcomp.sty
-Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 )
-(C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
-Package: xcolor 2023/11/15 v3.01 LaTeX color extensions (UK)
-
-(C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
-File: color.cfg 2016/01/02 v1.6 sample color configuration
-)
-Package xcolor Info: Driver file: pdftex.def on input line 274.
-(C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx)
-Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1350.
-Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1354.
-Package xcolor Info: Model `RGB' extended on input line 1366.
-Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1368.
-Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1369.
-Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1370.
-Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1371.
-Package xcolor Info: Model `Gray' substituted by `gray' on input line 1372.
-Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
-) (C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
+(C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \heavyrulewidth=\dimen175
 \lightrulewidth=\dimen176
@@ -273,74 +241,61 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen182
 \cmidrulekern=\dimen183
 \defaultaddspace=\dimen184
-\@cmidla=\count284
-\@cmidlb=\count285
+\@cmidla=\count280
+\@cmidlb=\count281
 \@aboverulesep=\dimen185
 \@belowrulesep=\dimen186
-\@thisruleclass=\count286
-\@lastruleclass=\count287
+\@thisruleclass=\count282
+\@lastruleclass=\count283
 \@thisrulewidth=\dimen187
-) (C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/multirow\multirow.sty
-Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
-\multirow@colwidth=\skip56
-\multirow@cntb=\count288
-\multirow@dima=\skip57
-\bigstrutjot=\dimen188
-) (C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
+)
+(C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-(C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
-Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count289
-\float@exts=\toks26
-\float@box=\box55
-\@float@everytoks=\toks27
-\@floatcapt=\box56
-)
 (C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/preprint\balance.sty
 Package: balance 1999/02/23 4.3 (PWD)
-\oldvsize=\dimen189
+\oldvsize=\dimen188
 )
 (C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 tex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count290
-\l__pdf_internal_box=\box57
+\l__color_backend_stack_int=\count284
+\l__pdf_internal_box=\box55
 ) (MSR2026_COMPLETE.aux)
 \openout1 = `MSR2026_COMPLETE.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
 
 -- Lines per column: 56 (exact).
 
 (C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count291
-\scratchdimen=\dimen190
-\scratchbox=\box58
-\nofMPsegments=\count292
-\nofMParguments=\count293
-\everyMPshowfont=\toks28
-\MPscratchCnt=\count294
-\MPscratchDim=\dimen191
-\MPnumerator=\count295
-\makeMPintoPDFobject=\count296
-\everyMPtoPDFconversion=\toks29
+\scratchcounter=\count285
+\scratchdimen=\dimen189
+\scratchbox=\box56
+\nofMPsegments=\count286
+\nofMParguments=\count287
+\everyMPshowfont=\toks26
+\MPscratchCnt=\count288
+\MPscratchDim=\dimen190
+\MPnumerator=\count289
+\makeMPintoPDFobject=\count290
+\everyMPtoPDFconversion=\toks27
 )
 (C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
 ase.sty
@@ -352,94 +307,83 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Underfull \hbox (badness 4328) in paragraph at lines 62--63
-[]\OT1/ptm/m/n/10 This study's pri-mary con-tri-bu-tion is method-olog-i-cal:
- []
+LaTeX Font Info:    Trying to load font information for U+msa on input line 58.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 65.
-
-(C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+ (C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 65.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 58.
 
 
 (C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+<../outputs/figures/complete_dataset_agent_distribution.png, id=1, 824.3598pt x
+ 620.5584pt>
+File: ../outputs/figures/complete_dataset_agent_distribution.png Graphic file (
+type png)
+<use ../outputs/figures/complete_dataset_agent_distribution.png>
+Package pdftex.def Info: ../outputs/figures/complete_dataset_agent_distribution
+.png  used on input line 77.
+(pdftex.def)             Requested size: 242.52063pt x 182.56128pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 [1{C:/Users/Ahmed/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Ah
 med/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 
 
 ]
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 1
-20.
-
-(C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
-[2]
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 1
-78.
- (C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
-File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-)
-[3]
-Underfull \hbox (badness 1406) in paragraph at lines 202--203
-[]\OT1/ptm/m/n/10 File pat-terns: test[]*.py, *[]test.py, *.spec.js, *.test.js,
-
+Underfull \hbox (badness 2173) in paragraph at lines 124--125
+[]\OT1/ptm/b/n/10 Measurement Val-i-da-tion\OT1/ptm/m/n/10 : Man-ual val-i-da-t
+ion (n$\OMS/cmsy/m/n/10 ^^U$\OT1/ptm/m/n/10 500)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 233--234
-[]\OT1/ptm/b/n/10 Language bias\OT1/ptm/m/n/10 : Key-word list skewed to-ward
+Underfull \hbox (badness 2261) in paragraph at lines 156--157
+[]\OT1/ptm/m/n/10 This cri-tique tar-gets method-ol-ogy, not re-searchers or
  []
 
+[2 <../outputs/figures/complete_dataset_agent_distribution.png>]
 
-Underfull \hbox (badness 10000) in paragraph at lines 233--234
-\OT1/ptm/m/n/10 Python/JavaScript/Java; may un-der-rep-re-sent other
- []
+** Conference Paper **
+Before submitting the final camera ready copy, remember to:
 
-[4]
-! Misplaced \noalign.
-\midrule ->\noalign 
-                    {\ifnum 0=`}\fi \@aboverulesep =\aboverulesep \global \@...
-l.288 \midrule
-              
-? cd "c:\Users\Ahmed\Downloads\VScodeRepo\MSR2026\docs" && pdflatex MSR2026_COM
-PLETE_FIXED.tex
-Type <return> to proceed, S to scroll future error messages,
-R to run without stopping, Q to run quietly,
-I to insert something, E to edit your file,
-1 or ... or 9 to ignore the next 1 to 9 tokens of input,
-H for help, X to quit.
-? echo. | pdflatex MSR2026_COMPLETE_FIXED.tex
- 
+ 1. Manually equalize the lengths of two columns on the last page
+ of your paper;
+
+ 2. Ensure that any PostScript and/or PDF output post-processing
+ uses only Type 1 fonts and that every step in the generation
+ process uses the appropriate paper size.
+
+
+Overfull \vbox (1.47685pt too high) has occurred while \output is active []
+
+
+[3] (MSR2026_COMPLETE.aux)
+ ***********
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-04>
+ ***********
+ ) 
 Here is how much of TeX's memory you used:
- 4614 strings out of 474486
- 73919 string characters out of 5743755
- 1945542 words of memory out of 5000000
- 26837 multiletter control sequences out of 15000+600000
- 594817 words of font info for 109 fonts, out of 8000000 for 9000
+ 3695 strings out of 474486
+ 60228 string characters out of 5743755
+ 1939542 words of memory out of 5000000
+ 25950 multiletter control sequences out of 15000+600000
+ 597309 words of font info for 109 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,9n,65p,941b,266s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
-ex10.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
-nts/cm/cmmi10.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmmi7.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmr10.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/Ahmed/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Ahmed/AppData/Local/P
-rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Ahmed/AppDat
-a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Ahme
-d/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/Ah
-med/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Ah
-med/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/A
-hmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/A
-hmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on MSR2026_COMPLETE.pdf (4 pages, 174903 bytes).
+ 57i,8n,65p,643b,265s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmsy10.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/
+utmb8a.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/
+utmbi8a.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times
+/utmr8a.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times
+/utmri8a.pfb>
+Output written on MSR2026_COMPLETE.pdf (3 pages, 305904 bytes).
 PDF statistics:
- 81 PDF objects out of 1000 (max. 8388607)
+ 41 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
