@@ -32,7 +32,7 @@ Edinburgh, Scotland \\
 \maketitle
 
 \begin{abstract}
-We analyze 932,791 pull requests from the AIDev dataset to examine \emph{associations} between AI agents and testing behavior across OpenAI Codex, GitHub Copilot, Cursor, Devin, and Claude Code. We observe substantial variation: Codex shows near-universal test inclusion (98.5\%), while Cursor shows 19.0\%. Differences are statistically significant ($\chi^2 = 389{,}069$, $p < 0.001$, Cramér's V = 0.646) with a large association. Because the data are observational, we avoid causal claims; confounders (developer selection, project types, organizational practices) may drive observed patterns. Acceptance rates vary across agents (78.6--94.4\%), but our data cannot attribute reasons. Contributions: (1) population-level measurement of testing associations, (2) documentation of variation, (3) methodological considerations for future controlled studies, and (4) practical implications for agent-aware workflows.
+We analyze 932,791 pull requests from the AIDev dataset labeled with different AI agents (OpenAI Codex, GitHub Copilot, Cursor, Devin, Claude Code) and observe substantial variation in test-related content (19.0\% to 98.5\%). However, fundamental validity limitations compromise interpretation: agent labels are unreliable (based on metadata/self-reports with unknown accuracy), statistical tests are invalid due to clustering violations, and severe confounding by developer selection and project characteristics cannot be ruled out. The observed patterns likely reflect dataset artifacts, measurement error, and selection effects rather than genuine agent differences. This study demonstrates critical methodological challenges in observational AI tool research and highlights the need for controlled experimental designs with reliable agent attribution. No practical recommendations can be made from these results.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -59,28 +59,28 @@ This study addresses these questions through analysis of the AIDev dataset conta
 
 We observe substantial testing rate variation: OpenAI Codex shows 98.5\% test inclusion while Cursor shows 18.7\%. While these patterns are statistically significant (p < 0.001, Cramér's V = 0.646), establishing whether they reflect agent capabilities, user selection, or other factors requires future controlled studies.
 
-Key contributions include:
+This study's primary contribution is methodological: demonstrating why observational analysis of AI tool behavior is fundamentally unreliable without proper experimental controls. Specific limitations identified include:
 
 \begin{itemize}
-    \item \textbf{Population-level measurement}: Analysis of testing behavior across 932,791 PRs from the complete available dataset
-    \item \textbf{Behavioral documentation}: Characterization of substantial testing rate variation (18.7\% to 98.5\%) across agents
-    \item \textbf{Methodological framework}: Explicit discussion of confounders and limitations in observational AI tool research
-    \item \textbf{Practical implications}: Evidence-informed considerations for AI tool selection and workflow design
+    \item \textbf{Agent attribution uncertainty}: Labels based on unreliable metadata make group comparisons meaningless
+    \item \textbf{Statistical test violations}: Clustering in data invalidates standard significance tests
+    \item \textbf{Measurement artifacts}: Keyword-based test detection introduces systematic error
+    \item \textbf{Severe confounding}: Selection effects likely explain observed patterns
 \end{itemize}
 
-These findings suggest agent choice is strongly associated with testing patterns, motivating controlled studies to establish causal mechanisms and inform evidence-based integration practices.
+These findings demonstrate that reliable inference about AI tool behavior requires controlled experimental designs with verified agent attribution, not observational analysis of convenience datasets.
 
 \subsection{Research Questions}
 
 We address four research questions using the complete dataset of 932,791 pull requests, emphasizing measurement and association rather than causal claims:
 
-\textbf{RQ1: What is the distribution of test-related content across AI agents?} We measure the percentage of PRs containing test-related keywords, file paths, or frameworks for each agent, quantifying variation and statistical significance.
+Given the fundamental validity limitations identified in this dataset, we reframe our research questions:
 
-\textbf{RQ2: How do PR-level metrics vary across agents?} We examine acceptance rates (closed/merged status), unique user counts, and PR description characteristics to document observable outcome differences.
+\textbf{RQ1: What methodological challenges prevent valid inference about AI agent behavior from observational data?} We identify specific threats including label unreliability, statistical assumption violations, and confounding.
 
-\textbf{RQ3: Are agent-testing associations consistent with distinct behavioral patterns?} We interpret observed associations in light of potential agent architectures, while acknowledging that confounders (developer selection, project types, organizational culture) may explain observed patterns.
+\textbf{RQ2: To what extent do measurement artifacts and selection effects explain observed patterns?} We examine how dataset characteristics may generate spurious associations.
 
-\textbf{RQ4: What observable patterns exist in PR acceptance across agents?} We analyze whether acceptance rates vary systematically with agent choice, acknowledging that multiple factors beyond test inclusion could explain acceptance differences.
+\textbf{RQ3: What experimental design requirements are necessary for valid AI tool comparisons?} We specify conditions needed for reliable causal inference about agent behavior.
 
 These RQs focus on measurement and description rather than causal inference, appropriate for observational data without experimental controls.
 
@@ -265,9 +265,11 @@ Rather than artificially cleaning the dataset, we preserve these authentic chara
 
 \section{Results}
 
+\textbf{Critical Validity Limitations}: Before presenting results, we emphasize fundamental limitations that compromise causal interpretation: (1) Agent labels are unreliable and based on metadata/self-reports with unknown accuracy, (2) Statistical tests assume independence but our data are heavily clustered by repository/user/project, (3) Test detection is keyword-based with estimated 8\% false positive rate, (4) Confounding by developer selection, project type, and organizational practices cannot be ruled out, (5) Results may largely reflect dataset collection artifacts rather than agent behavior.
+
 \subsection{RQ1: Test Contribution Behavior Analysis}
 
-Table~\ref{tab:main_results} presents our primary findings from the complete dataset of 932,791 pull requests. The most striking result is the dramatic variation in test contribution rates across AI agents, representing fundamental architectural differences in testing philosophy.
+Table~\ref{tab:main_results} presents our primary findings from the complete dataset of 932,791 pull requests. We observe substantial variation in test-related content across different agent labels, though the causes of this variation remain unclear due to confounding factors.
 
 \begin{table}[H]
 \centering
@@ -280,8 +282,9 @@ Table~\ref{tab:main_results} presents our primary findings from the complete dat
 OpenAI Codex & 814,522 & 98.5 & 93.4 & 61,653 & 32.6 chars \\
 GitHub Copilot & 50,447 & 79.6 & 79.7 & 379 & 67.8 chars \\
 Claude Code & 5,137 & 76.7 & 92.2 & 1,643 & 56.6 chars \\
-Devin & 29,744 & 66.6 & 94.4 & 1 & 49.1 chars \\
 Cursor & 32,941 & 18.7 & 78.6 & 9,658 & 38.7 chars \\
+\midrule
+\multicolumn{6}{l}{\textit{Devin excluded: 29,744 PRs from 1 user (ungeneralizable)}}
 \midrule
 \textbf{Overall} & \textbf{932,791} & \textbf{93.5} & \textbf{91.0} & \textbf{72,189} & \textbf{N/A} \\
 \bottomrule
@@ -290,7 +293,7 @@ Cursor & 32,941 & 18.7 & 78.6 & 9,658 & 38.7 chars \\
 
 \textbf{Key Statistical Findings}:
 \begin{itemize}
-    \item \textbf{OpenAI Codex}: 98.5\% test contribution rate (801,982/814,522 PRs) demonstrates near-universal testing discipline across 61,653 unique developers
+    \item \textbf{OpenAI Codex}: 98.5\% test rate appears implausibly high for real-world software development. This likely reflects: (a) dataset collection bias toward test-heavy repositories, (b) mislabeling of Copilot contributions as Codex, (c) systematic differences in repository types where Codex labels appear, or (d) keyword detection artifacts. This statistic should not be interpreted as genuine agent behavior without validation.
     \item \textbf{Cursor}: 19.0\% test contribution rate (6,246/32,941 PRs) confirms feature-focused development approach
     \item \textbf{Range}: 79.5 percentage point difference between highest and lowest performers
     \item \textbf{Population Effect}: 93.5\% overall test rate (872,360/932,791 PRs) indicates widespread industry testing adoption
@@ -314,15 +317,15 @@ Cursor & 32,941 & 18.7 & 78.6 & 9,658 & 38.7 chars \\
 
 \textit{Step 1 - Contingency Table Construction}: We constructed a $5\times2$ table crossing agent identity (5 levels: Codex, Copilot, Claude, Devin, Cursor) with test status (2 levels: contains tests, no tests). Total cells: 10.
 
-\textit{Step 2 - Chi-Square Calculation}: Using Pearson's chi-square test of independence implemented via \texttt{scipy.stats.chi2\_contingency()}, we obtained:
+\textit{Step 2 - Statistical Analysis Limitations}: Standard chi-square tests are \textbf{invalid} for our data due to severe clustering violations (PRs clustered by repository, user, project). The naive chi-square calculation yields:
 \begin{itemize}
-    \item $\chi^2 = 389,069$ (extremely large test statistic)
-    \item df = $(5-1)\times(2-1) = 4$ degrees of freedom
-    \item $p < 0.001$ (practically zero, below machine precision)
-    \item All expected cell frequencies $> 1000$, satisfying chi-square assumptions
+    \item $\chi^2 = 389,069$ (artificially inflated by clustering)
+    \item $p < 0.001$ (meaningless due to independence violation)
+    \item Test assumes 932,791 independent observations, but actual effective sample size is much smaller
+    \item \textbf{Proper analysis would require cluster-robust methods or mixed-effects models}
 \end{itemize}
 
-\textit{Step 3 - Effect Size Computation}: Cramér's V = $\sqrt{\chi^2 / (n \times (min(r,c)-1))}$ = $\sqrt{389,069 / (932,791 \times 1)}$ = 0.646
+\textit{Step 3 - Effect Size Limitations}: Cramér's V = 0.646 is \textbf{not interpretable} due to: (a) severe sample size imbalance across agents, (b) clustering violations artificially inflating the statistic, (c) unknown measurement error in agent labels, (d) potential dataset collection artifacts. This value cannot be compared to Cohen's conventions which assume proper experimental design.
 
 \textit{Step 4 - Interpretation}: 
 \begin{itemize}
@@ -341,7 +344,7 @@ Cursor & 32,941 & 18.7 & 78.6 & 9,658 & 38.7 chars \\
     \item \textbf{Measurement error}: Test detection is keyword-based and may include false positives/negatives
 \end{itemize}
 
-\textit{Conclusion}: The relationship between AI agent choice and testing behavior shows strong statistical association and large effect size. However, this is correlation, not causation—controlled studies are needed to establish whether agents cause behavioral differences.
+\textit{Conclusion}: Due to fundamental validity limitations (unreliable labels, clustering violations, confounding), we \textbf{cannot make valid statistical inferences} about agent-testing relationships. The observed patterns may reflect dataset artifacts, measurement error, or confounding factors rather than genuine agent differences. Proper causal inference requires controlled experimental designs with reliable agent attribution.
 
 \begin{figure}[H]
 \centering
@@ -431,15 +434,7 @@ Our findings document substantial associations between agent choice and testing 
 
 \textbf{Informed Tool Evaluation}: The observed 79.8 percentage-point range in testing rates (18.7\% to 98.5\%) provides one signal for evaluating AI tools. However, organizations should consider: (a) whether observed differences reflect agent capabilities versus typical use cases, (b) whether testing rates predict actual code quality, and (c) how agent characteristics interact with project needs. Our data cannot establish whether choosing high-testing agents improves outcomes.
 
-\textbf{Process Considerations}: The documented testing behavior variation provides one signal for tool evaluation, but organizations should exercise caution in interpretation:
-\begin{itemize}
-    \item Testing presence does not guarantee testing quality or effectiveness
-    \item Observed patterns may reflect user selection rather than agent capabilities  
-    \item Usage contexts (prototyping vs. production) may confound apparent agent effects
-    \item Multiple confounding variables remain uncontrolled in our observational data
-\end{itemize}
-
-\textit{Critical limitation}: Our data cannot support specific organizational recommendations. Any process changes require local validation through controlled evaluation within specific organizational contexts.
+\textbf{No Practical Implications}: Due to fundamental validity flaws (unreliable agent attribution, statistical test violations, severe confounding), this study \textbf{cannot inform tool selection or organizational practices}. The observed patterns may be entirely artifactual. Organizations should not base decisions on these results.
 
 \textbf{Research Agenda}: Key unanswered questions include:
 \begin{enumerate}
@@ -455,13 +450,11 @@ Answering these requires controlled experiments, longitudinal studies tracking d
 
 This study contributes to understanding AI-assisted development through:
 
-\textbf{Association Measurement}: We document substantial testing behavior variation (18.7\% to 98.5\%) associated with agent choice across 932,791 observations. The large effect size (Cramér's V = 0.646) indicates agent identity is a strong predictor, though causality remains unestablished.
+\textbf{Negative Result}: This study demonstrates that observational analysis of AI tool datasets cannot reliably measure agent behavior due to fundamental validity threats. The observed variation (19.0\% to 98.5\%) likely reflects measurement artifacts and selection effects rather than genuine agent differences.
 
-\textbf{Methodological Transparency}: We explicitly address confounders (developer selection, project types, organizational culture), measurement limitations (keyword-based test detection, agent attribution uncertainty), and causal inference challenges in observational AI tool research. This provides a template for future work.
+\textbf{Methodological Warning}: Using entire datasets does not eliminate bias or improve validity when agent labels are unreliable and confounding is severe. Large sample sizes can actually amplify systematic errors and create false confidence in spurious associations.
 
-\textbf{Reproducible Population Analysis}: Complete dataset analysis (no sampling) with published code enables replication and extension, advancing open science in empirical software engineering.
-
-\textbf{Hypothesis Generation}: Observed patterns generate testable hypotheses for controlled studies: Do agents with different testing propensities produce different bug rates? Do developers change testing behavior when switching agents? How do teams calibrate reviews based on agent characteristics?
+\textbf{Requirements for Valid Research}: Future studies must address: (1) verified agent attribution through controlled conditions, (2) randomized agent assignment to eliminate selection bias, (3) validated measurement instruments, (4) proper statistical methods for clustered data, and (5) control groups without AI assistance.
 
 \subsection{Limitations and Threats to Validity}
 
@@ -540,17 +533,18 @@ We implemented several measures to reduce these threats: conservative keyword li
 
 \section{Conclusion and Future Work}
 
-This paper analyzed 932,791 pull requests to measure testing behavior associations across five AI coding agents. We documented substantial variation in test inclusion rates (18.7\% to 98.5\%) that is statistically significant (p < 0.001) with a large effect size (Cramér's V = 0.646). Acceptance rates also vary (78.6\% to 94.4\%), though our observational data cannot establish whether differences reflect quality, usage context, or other factors.
+This paper attempted to analyze testing behavior across AI coding agents using 932,791 pull requests, but fundamental validity limitations prevent reliable conclusions. Agent labels are unreliable, statistical tests are invalid due to clustering, and severe confounding makes causal inference impossible.
 
-\textbf{Key Findings}:
+\textbf{Key Limitations Identified}:
 \begin{itemize}
-    \item Agent choice strongly predicts testing behavior, though causality remains unestablished
-    \item Confounders (developer selection, project types, organizational practices) cannot be ruled out
-    \item Test-acceptance relationships are non-linear and require further investigation
-    \item Several agents have insufficient users for robust generalization (Devin: 1 user; Copilot: 379 users)
+    \item Agent attribution based on unreliable metadata invalidates group comparisons
+    \item Statistical significance tests violated due to data clustering (repositories, users, projects)
+    \item Measurement error in keyword-based test detection introduces systematic bias
+    \item Confounding by selection effects cannot be distinguished from agent effects
+    \item Sample size imbalances (Devin: 1 user, Copilot: 379 users) make comparisons meaningless
 \end{itemize}
 
-\textbf{Practical Implications}: Organizations evaluating AI tools should consider observed testing patterns alongside other factors (cost, IDE integration, learning curve, vendor lock-in). However, testing rates alone do not establish quality or suitability. Controlled evaluation within organizational contexts remains necessary.
+\textbf{Methodological Implications}: This study demonstrates why observational analysis of AI tool behavior is fundamentally unreliable. Valid inference requires: (1) controlled experimental designs with verified agent attribution, (2) proper statistical methods accounting for clustering, (3) reliable measurement instruments, and (4) control for confounding factors. Convenience datasets cannot support tool evaluation or organizational recommendations.
 
 \textbf{Future Research Priorities}:
 \begin{itemize}
