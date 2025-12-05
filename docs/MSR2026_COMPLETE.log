@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.5)  5 DEC 2025 20:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.5)  5 DEC 2025 20:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -328,24 +328,6 @@ Package pdftex.def Info: ../outputs/figures/complete_dataset_agent_distribution
 (pdftex.def)             Requested size: 242.52063pt x 182.56128pt.
 
 
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.84 \\
-       [2pt]
-? cd "c:\Users\Ahmed\Downloads\VScodeRepo\MSR2026\docs" && pdflatex MSR2026_4p.
-tex && pdflatex MSR2026_COMPLETE.tex
-Type <return> to proceed, S to scroll future error messages,
-R to run without stopping, Q to run quietly,
-I to insert something, E to edit your file,
-1 or ... or 9 to ignore the next 1 to 9 tokens of input,
-H for help, X to quit.
-? R
-OK, entering \nonstopmode...
-
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [1{C:/Users/Ahmed/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Ah
@@ -364,15 +346,15 @@ Type  H <return>  for immediate help.
 l.126 ...ment Validation}: Manual validation (n≥
                                                   500) across languages and ...
 
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-Underfull \hbox (badness 2261) in paragraph at lines 158--159
-[]\OT1/ptm/m/n/10 This cri-tique tar-gets method-ol-ogy, not re-searchers or
- []
-
-[2 <../outputs/figures/complete_dataset_agent_distribution.png>]
+? cd "c:\Users\Ahmed\Downloads\VScodeRepo\MSR2026\docs" && pdflatex MSR2026_COM
+PLETE.tex
+Type <return> to proceed, S to scroll future error messages,
+R to run without stopping, Q to run quietly,
+I to insert something, E to edit your file,
+1 or ... or 9 to ignore the next 1 to 9 tokens of input,
+H for help, X to quit.
+? R
+OK, entering \nonstopmode...
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -384,7 +366,12 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[3] (MSR2026_COMPLETE.aux)
+
+Package balance Warning: You have called \balance in second column
+(balance)                Columns might not be balanced.
+
+[2 <../outputs/figures/complete_dataset_agent_distribution.png>]
+(MSR2026_COMPLETE.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
@@ -393,7 +380,7 @@ L3 programming layer <2024-01-04>
 Here is how much of TeX's memory you used:
  3691 strings out of 474486
  60174 string characters out of 5743755
- 1940542 words of memory out of 5000000
+ 1941542 words of memory out of 5000000
  25946 multiletter control sequences out of 15000+600000
  596255 words of font info for 104 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -403,9 +390,9 @@ b><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.p
 fb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.p
 fb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.
 pfb>
-Output written on MSR2026_COMPLETE.pdf (3 pages, 297639 bytes).
+Output written on MSR2026_COMPLETE.pdf (2 pages, 297408 bytes).
 PDF statistics:
- 36 PDF objects out of 1000 (max. 8388607)
+ 33 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
