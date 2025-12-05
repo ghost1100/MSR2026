@@ -83,17 +83,17 @@ This paper makes several descriptive contributions:
 
 Recent studies have examined AI-generated code quality \cite{chen2021evaluating}, with Chen et al. introducing HumanEval benchmarks for code generation models. Austin et al. \cite{austin2021program} explored program synthesis capabilities, while Nijkamp et al. \cite{nijkamp2023codegen} developed CodeGen for multi-turn programming tasks.
 
-However, these studies focus primarily on functional correctness rather than testing practices. Our work fills this gap by examining test generation behavior across different AI agents.
+These studies focus primarily on functional correctness. Our work provides dataset documentation and descriptive baselines for the MSR research community.
 
 \subsection{Empirical Software Engineering}
 
-Traditional empirical studies have examined human testing practices \cite{bird2011dont}, bug prediction \cite{kim2008classifying}, and code review effectiveness \cite{bacchelli2013expectations}. Recent work by Bareiß et al. \cite{bareiss2023code} conducted user studies with GitHub Copilot, but focused on developer productivity rather than testing behavior.
+Traditional empirical studies have examined code review effectiveness \cite{bacchelli2013expectations} and developer productivity \cite{bareiss2023code}. Recent work has utilized large-scale datasets to understand software development patterns.
 
-Our study extends this literature by providing the first systematic comparison of AI agent testing practices at scale.
+Our study contributes dataset documentation and descriptive analysis for future MSR research.
 
 \subsection{Software Testing and Quality}
 
-Niu \cite{niu2022role} examined testing's role in software evolution, while Inozemtseva and Holmes \cite{inozemtseva2014coverage} studied coverage metrics' effectiveness. These studies establish testing as crucial for software quality, making our investigation of AI testing behavior particularly relevant.
+Niu \cite{niu2022role} examined software evolution patterns, while Inozemtseva and Holmes \cite{inozemtseva2014coverage} studied coverage metrics. These studies demonstrate the importance of careful dataset analysis in empirical software engineering research.
 
 \section{Methodology}
 
@@ -129,7 +129,7 @@ def contains_test_keyword(row):
                for keyword in test_keywords)
 \end{verbatim}
 
-This approach detects explicit mentions of testing terminology. It does not indicate testing behavior, quality, or intent---only the presence of keywords.
+This approach detects explicit mentions of testing-related terminology in PR metadata. It indicates only keyword presence in text fields.
 
 \subsection{Descriptive Analysis Framework}
 
@@ -141,7 +141,7 @@ We employed purely descriptive analysis:
 
 \textbf{Missing Data Analysis}: Identified null values, empty fields, and data quality issues.
 
-\textbf{No Inferential Statistics}: We explicitly avoid chi-square tests, p-values, or causal claims as the data does not support behavioral inference.
+\textbf{No Inferential Statistics}: We use only descriptive statistics. This analysis makes no causal claims or inferential comparisons.
 
 \subsection{Data Quality Assessment}
 
@@ -160,7 +160,7 @@ We document these characteristics without modification to provide transparency a
 
 \subsection{RQ1: Agent Distribution and Metadata Patterns}
 
-Table~\ref{tab:main_results} presents descriptive statistics for the 50,000 PR sample. The keyword detection analysis shows variation in the frequency of testing-related terms across different agent labels.
+Table~\ref{tab:main_results} presents descriptive statistics for the 50,000 PR sample, showing keyword occurrence frequencies and metadata characteristics by agent label.
 
 \begin{table}[H]
 \centering
@@ -181,25 +181,25 @@ Cursor & 1,747 & 18.0 & 88.7 & 687 & 42.1 chars \\
 \end{tabular}
 \end{table}
 
-\noindent \textit{Note: "Keyword \%" indicates the percentage of PRs containing testing-related keywords in titles or descriptions. This reflects only keyword frequency, not testing behavior or quality.}
+\noindent \textit{Note: "Keyword \%" indicates the percentage of PRs containing testing-related keywords in titles or descriptions.}
 
-\textbf{Descriptive Observations}:
+\textbf{Descriptive Statistics}:
 \begin{itemize}
     \item \textbf{OpenAI Codex}: 98.5\% of PRs contain testing keywords (42,997/43,668 PRs)
-    \item \textbf{Cursor}: 18.0\% of PRs contain testing keywords (314/1,747 PRs)  
-    \item \textbf{Range}: 80.5 percentage point difference in keyword frequency
+    \item \textbf{GitHub Copilot}: 80.0\% of PRs contain testing keywords (2,201/2,751 PRs)
+    \item \textbf{Claude Code}: 80.2\% of PRs contain testing keywords (211/263 PRs)
+    \item \textbf{Devin}: 67.1\% of PRs contain testing keywords (1,054/1,571 PRs)
+    \item \textbf{Cursor}: 18.0\% of PRs contain testing keywords (314/1,747 PRs)
     \item \textbf{Overall}: 93.6\% of sampled PRs (46,777/50,000) contain testing keywords
 \end{itemize}
 
-\textbf{Important Limitation}: These percentages reflect only keyword presence in text fields, not actual testing behavior, quality, or intent.
-
 \subsection{RQ2: Metadata Characteristics}
 
-The dataset shows consistent closure rates across agent labels (88.7\% - 94.3\%), with most PRs marked as closed in the dataset.
+\textbf{Closure Status}: PR closure rates by agent label are: OpenAI Codex (93.1\%), GitHub Copilot (91.8\%), Claude Code (94.3\%), Devin (89.4\%), and Cursor (88.7\%).
 
-\textbf{User Distribution}: OpenAI Codex appears in PRs from 13,421 unique users, while Claude Code appears in PRs from 124 users. This reflects the distribution patterns present in the dataset.
+\textbf{User Counts}: Unique user counts by agent label are: OpenAI Codex (13,421 users), GitHub Copilot (1,203 users), Claude Code (124 users), Devin (542 users), and Cursor (687 users).
 
-\textbf{Title Length Patterns}: Average title length varies across agent labels, with OpenAI Codex PRs averaging 67.2 characters and Cursor PRs averaging 42.1 characters.
+\textbf{Title Lengths}: Average title lengths by agent label are: OpenAI Codex (67.2 characters), GitHub Copilot (53.4 characters), Claude Code (59.1 characters), Devin (48.3 characters), and Cursor (42.1 characters).
 
 \subsection{RQ3: Data Quality Observations}
 
@@ -228,7 +228,7 @@ The following baseline statistics may assist future researchers:
 
 \subsection{Summary of Descriptive Findings}
 
-The 50,000 PR sample contains 15,667 unique users (3.19 PRs per user average). The dataset spans December 2024 through July 2025 with generally consistent temporal distribution. Agent label distribution shows strong imbalance, with most PRs labeled as OpenAI Codex. These characteristics should inform sampling and analysis strategies in future research.
+The 50,000 PR sample contains 15,667 unique users (3.19 PRs per user average). The dataset spans December 2024 through July 2025. Agent label distribution shows OpenAI Codex representing 87.3\% of entries. These characteristics may inform sampling and analysis strategies in future research.
 
 \section{Discussion}
 
@@ -236,13 +236,13 @@ The 50,000 PR sample contains 15,667 unique users (3.19 PRs per user average). T
 
 Our descriptive analysis reveals several important dataset properties:
 
-\textbf{Agent Label Imbalance}: The 87.3\% concentration in OpenAI Codex labels creates significant imbalance that affects statistical analysis. Researchers should account for this when designing comparative studies or sampling strategies.
+\textbf{Agent Label Distribution}: OpenAI Codex represents 87.3\% of the dataset sample. Researchers should consider this distribution when designing sampling strategies.
 
-\textbf{Keyword Frequency Variation}: The 80.5 percentage point difference in testing keyword frequency (98.5\% to 18.0\%) represents a notable characteristic of the dataset. This variation reflects different patterns in PR title and description content.
+\textbf{Keyword Frequencies}: Testing-related keyword frequencies are documented in Table~\ref{tab:main_results} for reference in future research.
 
-\textbf{Data Quality Considerations}: Missing descriptions (3.7\%), timestamp anomalies, and duplicate titles highlight the need for preprocessing and validation steps in future analyses.
+\textbf{Data Quality Considerations}: Missing descriptions (3.7\%), timestamp anomalies, and duplicate titles should be considered in preprocessing steps for future analyses.
 
-\textbf{User Distribution}: The 15,667 unique users across 50,000 PRs suggests some users contribute multiple PRs, which may affect independence assumptions in statistical modeling.
+\textbf{User Counts}: The dataset contains 15,667 unique users across 50,000 PRs, which may affect independence assumptions in statistical modeling.
 
 \subsection{Methodological Implications}
 
@@ -293,12 +293,12 @@ This descriptive analysis suggests several research directions:
 
 \section{Conclusion}
 
-This descriptive analysis of 50,000 pull requests from the MSR 2026 dataset documents agent distribution patterns, metadata characteristics, and data quality issues. Testing-related keyword frequency varies substantially across agent labels, ranging from 18.0\% (Cursor) to 98.5\% (OpenAI Codex).
+This descriptive analysis of 50,000 pull requests from the MSR 2026 dataset documents agent distribution, metadata characteristics, and data quality issues. Testing-related keyword frequencies are documented by agent label in Table~\ref{tab:main_results}.
 
 \textbf{Key Documentation}:
 \begin{enumerate}
-    \item Agent label distribution shows strong imbalance (87.3\% OpenAI Codex)
-    \item Testing keyword frequency varies by 80.5 percentage points across labels
+    \item Agent label distribution documented (87.3\% OpenAI Codex)
+    \item Testing keyword frequencies documented by agent label
     \item Data quality issues include missing descriptions (3.7\%) and timestamp anomalies
     \item 15,667 unique users contributed to the 50,000 PR sample
     \item Baseline statistics are established for future research reference

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.5)  5 DEC 2025 21:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.5)  5 DEC 2025 21:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -369,32 +369,14 @@ Underfull \hbox (badness 4467) in paragraph at lines 77--78
 ucible
  []
 
-
-LaTeX Warning: Citation `austin2021program' on page 1 undefined on input line 8
-4.
-
-
-LaTeX Warning: Citation `nijkamp2023codegen' on page 1 undefined on input line 
-84.
-
 [1{C:/Users/Ahmed/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Ah
 med/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 
 
 ]
-
-LaTeX Warning: Citation `bacchelli2013expectations' on page 2 undefined on inpu
-t line 90.
-
-
-LaTeX Warning: Citation `niu2022role' on page 2 undefined on input line 96.
-
-
-LaTeX Warning: Citation `inozemtseva2014coverage' on page 2 undefined on input 
-line 96.
-
 LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 1
 02.
+
 (C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
@@ -438,16 +420,18 @@ Overfull \hbox (12.0pt too wide) in paragraph at lines 130--130
  []
 
 
-LaTeX Warning: Reference `tab:main_results' on page 2 undefined on input line 1
-63.
-
-
 Overfull \hbox (14.85492pt too wide) in paragraph at lines 169--182
  [][] 
  []
 
 
-Underfull \hbox (badness 4765) in paragraph at lines 189--190
+Underfull \hbox (badness 7722) in paragraph at lines 191--192
+[]\OT1/ptm/b/n/10 Devin\OT1/ptm/m/n/10 : 67.1% of PRs con-tain test-ing key-wor
+ds
+ []
+
+
+Underfull \hbox (badness 4765) in paragraph at lines 192--193
 []\OT1/ptm/b/n/10 Cursor\OT1/ptm/m/n/10 : 18.0% of PRs con-tain test-ing key-wo
 rds
  []
@@ -456,6 +440,12 @@ rds
 Underfull \hbox (badness 1881) in paragraph at lines 226--227
 []\OT1/ptm/b/n/10 Data Com-plete-ness\OT1/ptm/m/n/10 : 96.3% PRs have de-scrip-
 tions,
+ []
+
+
+Underfull \hbox (badness 1675) in paragraph at lines 239--240
+[]\OT1/ptm/b/n/10 Agent La-bel Dis-tri-bu-tion\OT1/ptm/m/n/10 : Ope-nAI Codex r
+ep-re-sents
  []
 
 
@@ -481,19 +471,12 @@ Before submitting the final camera ready copy, remember to:
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 4562 strings out of 474486
- 72938 string characters out of 5743755
+ 4559 strings out of 474486
+ 72893 string characters out of 5743755
  1947542 words of memory out of 5000000
- 26787 multiletter control sequences out of 15000+600000
+ 26784 multiletter control sequences out of 15000+600000
  597824 words of font info for 111 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,8n,65p,869b,294s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -504,7 +487,7 @@ cmsy7.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier
 /utmbi8a.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/time
 s/utmr8a.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/time
 s/utmri8a.pfb>
-Output written on MSR2026_COMPLETE.pdf (4 pages, 109342 bytes).
+Output written on MSR2026_COMPLETE.pdf (4 pages, 108283 bytes).
 PDF statistics:
  46 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
