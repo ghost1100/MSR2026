@@ -1,0 +1,15 @@
+pandas           # Data analysis and manipulation library
+matplotlib       # Plotting and visualization library
+seaborn          # Statistical data visualization based on matplotlib
+jupyter          # Interactive notebooks for code, text, and visualizations
+anthropic        # API client for Anthropic AI models
+python-dotenv    # Loads environment variables from .env files
+datasets         # Access and manage datasets, especially for ML/NLP
+requests         # HTTP library for making web requests
+nltk             # Natural Language Toolkit for text processing
+scikit-learn     # Machine learning algorithms and tools
+numpy            # Fundamental package for numerical computations
+pyarrow          # Fast columnar storage for efficient caching
+fastparquet      # Alternative Parquet implementation
+plotly           # Interactive graphing library
+kaleido          # Static image export for plotly visualizations

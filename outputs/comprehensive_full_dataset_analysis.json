@@ -1,0 +1,90 @@
+{
+  "dataset_info": {
+    "total_records": 932791,
+    "unique_agents": 5,
+    "unique_users": 72189,
+    "memory_usage_mb": 1609.977931022644,
+    "analysis_date": "2025-11-30T22:20:01.219838"
+  },
+  "agent_distribution": {
+    "counts": {
+      "OpenAI_Codex": 814522,
+      "Copilot": 50447,
+      "Cursor": 32941,
+      "Devin": 29744,
+      "Claude_Code": 5137
+    },
+    "percentages": {
+      "OpenAI_Codex": 87.32095399719766,
+      "Copilot": 5.408178252148659,
+      "Cursor": 3.5314448788635397,
+      "Devin": 3.1887100111386153,
+      "Claude_Code": 0.5507128606515286
+    }
+  },
+  "test_behavior": {
+    "overall_test_rate": 93.48782310292445,
+    "total_test_prs": 872046,
+    "total_non_test_prs": 60745,
+    "agent_behavior": {
+      "OpenAI_Codex": {
+        "total_prs": 814522,
+        "test_prs": 801959,
+        "test_rate": 0.9846,
+        "avg_title_length": 32.5992,
+        "avg_body_length": 313.3592,
+        "closed_rate": 0.9343,
+        "unique_users": 61653,
+        "test_percentage": 98.46000000000001
+      },
+      "Copilot": {
+        "total_prs": 50447,
+        "test_prs": 40177,
+        "test_rate": 0.7964,
+        "avg_title_length": 67.8149,
+        "avg_body_length": 3328.4924,
+        "closed_rate": 0.7972,
+        "unique_users": 379,
+        "test_percentage": 79.64
+      },
+      "Claude_Code": {
+        "total_prs": 5137,
+        "test_prs": 3940,
+        "test_rate": 0.767,
+        "avg_title_length": 56.6297,
+        "avg_body_length": 2168.669,
+        "closed_rate": 0.9215,
+        "unique_users": 1643,
+        "test_percentage": 76.7
+      },
+      "Devin": {
+        "total_prs": 29744,
+        "test_prs": 19798,
+        "test_rate": 0.6656,
+        "avg_title_length": 49.1195,
+        "avg_body_length": 1538.5643,
+        "closed_rate": 0.9436,
+        "unique_users": 1,
+        "test_percentage": 66.56
+      },
+      "Cursor": {
+        "total_prs": 32941,
+        "test_prs": 6172,
+        "test_rate": 0.1874,
+        "avg_title_length": 38.678,
+        "avg_body_length": 552.8669,
+        "closed_rate": 0.7856,
+        "unique_users": 9658,
+        "test_percentage": 18.740000000000002
+      }
+    }
+  },
+  "statistical_analysis": {
+    "chi_square": 389068.70409738756,
+    "p_value": 0.0,
+    "cramers_v": 0.645834105397417,
+    "effect_size": "large",
+    "degrees_of_freedom": 4,
+    "sample_size": 932791
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "metadata": {
+    "analysis_date": "2025-10-12T03:18:59.442556",
+    "sample_size": 5000,
+    "load_time": 0.13845491409301758
+  },
+  "rq1": {
+    "agent_counts": {
+      "Claude_Code": 5000
+    },
+    "agent_percentages": {
+      "Claude_Code": 100.0
+    },
+    "total_prs": 5000,
+    "unique_agents": 1
+  },
+  "rq2": {
+    "total_prs": 5000,
+    "test_prs": "3826",
+    "test_ratio": 76.52,
+    "by_agent": {
+      "Claude_Code": {
+        "Total_PRs": 5000,
+        "Test_PRs": 3826,
+        "Test_Ratio": 0.765,
+        "Test_Percentage": 76.5
+      }
+    }
+  },
+  "rq4": {
+    "avg_title_length": 56.6226,
+    "avg_body_length": 2160.7830741264393,
+    "avg_title_words": 7.4046,
+    "avg_body_words": 271.31003837608563
+  },
+  "rq5": {
+    "unique_users": 1604
+  }
+}

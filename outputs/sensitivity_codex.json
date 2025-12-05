@@ -1,0 +1,94 @@
+{
+  "baseline": {
+    "per_agent": {
+      "Claude_Code": {
+        "total_prs": 5137,
+        "test_prs": 3974,
+        "test_pct": 77.3603270391279
+      },
+      "Copilot": {
+        "total_prs": 50447,
+        "test_prs": 40243,
+        "test_pct": 79.77283089182706
+      },
+      "Cursor": {
+        "total_prs": 32941,
+        "test_prs": 6246,
+        "test_pct": 18.961173006283964
+      },
+      "Devin": {
+        "total_prs": 29744,
+        "test_prs": 19915,
+        "test_pct": 66.95467993544916
+      },
+      "OpenAI_Codex": {
+        "total_prs": 814522,
+        "test_prs": 801982,
+        "test_pct": 98.46044674054231
+      }
+    },
+    "overall": {
+      "total_prs": 932791,
+      "test_prs": 872360,
+      "test_pct": 93.52148552033628
+    }
+  },
+  "exclude_codex": {
+    "per_agent": {
+      "Claude_Code": {
+        "total_prs": 5137,
+        "test_prs": 3974,
+        "test_pct": 77.3603270391279
+      },
+      "Copilot": {
+        "total_prs": 50447,
+        "test_prs": 40243,
+        "test_pct": 79.77283089182706
+      },
+      "Cursor": {
+        "total_prs": 32941,
+        "test_prs": 6246,
+        "test_pct": 18.961173006283964
+      },
+      "Devin": {
+        "total_prs": 29744,
+        "test_prs": 19915,
+        "test_pct": 66.95467993544916
+      }
+    },
+    "overall": {
+      "total_prs": 118269,
+      "test_prs": 70378,
+      "test_pct": 59.50671773668501
+    }
+  },
+  "reclassify_codex_to_copilot": {
+    "per_agent": {
+      "Claude_Code": {
+        "total_prs": 5137,
+        "test_prs": 3974,
+        "test_pct": 77.3603270391279
+      },
+      "Copilot": {
+        "total_prs": 864969,
+        "test_prs": 842225,
+        "test_pct": 97.37054160322509
+      },
+      "Cursor": {
+        "total_prs": 32941,
+        "test_prs": 6246,
+        "test_pct": 18.961173006283964
+      },
+      "Devin": {
+        "total_prs": 29744,
+        "test_prs": 19915,
+        "test_pct": 66.95467993544916
+      }
+    },
+    "overall": {
+      "total_prs": 932791,
+      "test_prs": 872360,
+      "test_pct": 93.52148552033628
+    }
+  }
+}
