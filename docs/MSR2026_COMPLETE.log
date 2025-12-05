@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.5)  5 DEC 2025 18:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.5)  5 DEC 2025 20:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -352,12 +352,16 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 35.
+Underfull \hbox (badness 4328) in paragraph at lines 62--63
+[]\OT1/ptm/m/n/10 This study's pri-mary con-tri-bu-tion is method-olog-i-cal:
+ []
 
- (C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+LaTeX Font Info:    Trying to load font information for U+msa on input line 65.
+
+(C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 35.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 65.
 
 
 (C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -396,202 +400,46 @@ Underfull \hbox (badness 10000) in paragraph at lines 233--234
 \OT1/ptm/m/n/10 Python/JavaScript/Java; may un-der-rep-re-sent other
  []
 
-
-Overfull \hbox (7.79082pt too wide) in paragraph at lines 276--289
- [][] 
- []
-
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 293--294
-[]\OT1/ptm/b/n/10 OpenAI Codex\OT1/ptm/m/n/10 : 98.5% test con-tri-bu-tion rate
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 293--294
-\OT1/ptm/m/n/10 (801,982/814,522 PRs) demon-strates near-universal
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 296--297
-[]\OT1/ptm/b/n/10 Population Ef-fect\OT1/ptm/m/n/10 : 93.5% over-all test rate
- []
-
-<../outputs/figures/complete_dataset_test_contribution_rates.png, id=30, 860.01
-3pt x 572.3784pt>
-File: ../outputs/figures/complete_dataset_test_contribution_rates.png Graphic f
-ile (type png)
-<use ../outputs/figures/complete_dataset_test_contribution_rates.png>
-Package pdftex.def Info: ../outputs/figures/complete_dataset_test_contribution_
-rates.png  used on input line 301.
-(pdftex.def)             Requested size: 247.6778pt x 164.84135pt.
-<../outputs/figures/complete_dataset_agent_distribution.png, id=32, 824.3598pt 
-x 620.5584pt>
-File: ../outputs/figures/complete_dataset_agent_distribution.png Graphic file (
-type png)
-<use ../outputs/figures/complete_dataset_agent_distribution.png>
-Package pdftex.def Info: ../outputs/figures/complete_dataset_agent_distribution
-.png  used on input line 308.
-(pdftex.def)             Requested size: 247.6778pt x 186.44356pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \hbox (badness 7203) in paragraph at lines 317--319
-[]\OT1/ptm/m/it/10 Step 2 - Chi-Square Cal-cu-la-tion\OT1/ptm/m/n/10 : Us-ing P
-ear-son's
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 317--319
-\OT1/ptm/m/n/10 chi-square test of in-de-pen-dence im-ple-mented via
- []
-
-
-Underfull \hbox (badness 5147) in paragraph at lines 325--326
-[]\OT1/ptm/m/it/10 Step 3 - Ef-fect Size Com-pu-ta-tion\OT1/ptm/m/n/10 : Cram[]
-er's V =
- []
-
-[5 <../outputs/figures/complete_dataset_test_contribution_rates.png> <../output
-s/figures/complete_dataset_agent_distribution.png>]
-<../outputs/figures/complete_dataset_comprehensive_analysis.png, id=38, 1149.57
-48pt x 865.5537pt>
-File: ../outputs/figures/complete_dataset_comprehensive_analysis.png Graphic fi
-le (type png)
-<use ../outputs/figures/complete_dataset_comprehensive_analysis.png>
-Package pdftex.def Info: ../outputs/figures/complete_dataset_comprehensive_anal
-ysis.png  used on input line 348.
-(pdftex.def)             Requested size: 247.6778pt x 186.47342pt.
-<../outputs/figures/advanced_statistical_analysis.png, id=39, 1149.093pt x 866.
-0355pt>
-File: ../outputs/figures/advanced_statistical_analysis.png Graphic file (type p
-ng)
-<use ../outputs/figures/advanced_statistical_analysis.png>
-Package pdftex.def Info: ../outputs/figures/advanced_statistical_analysis.png  
-used on input line 384.
-(pdftex.def)             Requested size: 247.6778pt x 186.65651pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [6 <../outputs/figures/complete_dataset_comprehensive_analysis.png>]
-<../outputs/figures/summary_dashboard.png, id=44, 1433.8368pt x 848.4498pt>
-File: ../outputs/figures/summary_dashboard.png Graphic file (type png)
-<use ../outputs/figures/summary_dashboard.png>
-Package pdftex.def Info: ../outputs/figures/summary_dashboard.png  used on inpu
-t line 391.
-(pdftex.def)             Requested size: 247.6778pt x 146.55194pt.
-
-Underfull \hbox (badness 2894) in paragraph at lines 412--413
-[]\OT1/ptm/b/n/10 Repository het-ero-gene-ity\OT1/ptm/m/n/10 : Agents con-cen-t
-rated in
- []
-
-<../outputs/figures/msr_complete_analysis.png, id=45, 1134.639pt x 768.9528pt>
-File: ../outputs/figures/msr_complete_analysis.png Graphic file (type png)
-<use ../outputs/figures/msr_complete_analysis.png>
-Package pdftex.def Info: ../outputs/figures/msr_complete_analysis.png  used on 
-input line 421.
-(pdftex.def)             Requested size: 464.39685pt x 314.72122pt.
-
-Overfull \hbox (212.39685pt too wide) in paragraph at lines 421--422
- [][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [7 <../outputs/figures/advanced_statistical_analysis.png> <../outputs/figures/
-summary_dashboard.png> <../outputs/figures/msr_complete_analysis.png>]
-Underfull \hbox (badness 6944) in paragraph at lines 464--465
-[]\OT1/ptm/b/n/10 Hypothesis Gen-er-a-tion\OT1/ptm/m/n/10 : Ob-served pat-terns
- gen-er-ate
- []
-
-[8]
-Underfull \hbox (badness 2088) in paragraph at lines 523--525
-[]\OT1/ptm/m/n/10 These threats con-cern whether our op-er-a-tional-iza-tions
- []
-
-[9]
-Underfull \hbox (badness 2903) in paragraph at lines 572--573
-[]\OT1/ptm/m/n/10 The AIDev dataset (932,791 pull re-quests) an-a-lyzed
- []
-
-
-Underfull \hbox (badness 2277) in paragraph at lines 572--573
-\OT1/ptm/m/n/10 in this study is pub-licly avail-able on Hug-ging-Face at
- []
-
-
-Underfull \hbox (badness 5970) in paragraph at lines 572--573
-\OT1/pcr/m/n/10 hao-li/AIDev \OT1/ptm/m/n/10 (con-fig-u-ra-tion: \OT1/pcr/m/n/1
-0 all_pull_request\OT1/ptm/m/n/10 ).
- []
-
-
-Underfull \hbox (badness 4072) in paragraph at lines 584--585
-[]\OT1/ptm/m/n/8 M. Chen et al., "Eval-u-at-ing Large Lan-guage Mod-els Trained
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 584--585
-\OT1/ptm/m/n/8 on Code," arXiv preprint arXiv:2107.03374, 2021. DOI:
- []
-
-
-** Conference Paper **
-Before submitting the final camera ready copy, remember to:
-
- 1. Manually equalize the lengths of two columns on the last page
- of your paper;
-
- 2. Ensure that any PostScript and/or PDF output post-processing
- uses only Type 1 fonts and that every step in the generation
- process uses the appropriate paper size.
-
-
-Overfull \vbox (1.18077pt too high) has occurred while \output is active []
-
-
-[10] (MSR2026_COMPLETE.aux)
- ***********
-LaTeX2e <2023-11-01> patch level 1
-L3 programming layer <2024-01-04>
- ***********
- ) 
+! Misplaced \noalign.
+\midrule ->\noalign 
+                    {\ifnum 0=`}\fi \@aboverulesep =\aboverulesep \global \@...
+l.288 \midrule
+              
+? cd "c:\Users\Ahmed\Downloads\VScodeRepo\MSR2026\docs" && pdflatex MSR2026_COM
+PLETE_FIXED.tex
+Type <return> to proceed, S to scroll future error messages,
+R to run without stopping, Q to run quietly,
+I to insert something, E to edit your file,
+1 or ... or 9 to ignore the next 1 to 9 tokens of input,
+H for help, X to quit.
+? echo. | pdflatex MSR2026_COMPLETE_FIXED.tex
+ 
 Here is how much of TeX's memory you used:
- 4683 strings out of 474486
- 76971 string characters out of 5743755
- 1947542 words of memory out of 5000000
- 26897 multiletter control sequences out of 15000+600000
- 599683 words of font info for 118 fonts, out of 8000000 for 9000
+ 4614 strings out of 474486
+ 73919 string characters out of 5743755
+ 1945542 words of memory out of 5000000
+ 26837 multiletter control sequences out of 15000+600000
+ 594817 words of font info for 109 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,8n,65p,1011b,294s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmex10.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmmi10.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmmi7.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/Ahmed/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Ahmed/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/Ahmed/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/Ahm
-ed/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Us
-ers/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb
-><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
-mr9.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmsy10.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmsy7.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/ty
-pe1/urw/courier/ucrr8a.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/
-type1/urw/times/utmb8a.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/
-type1/urw/times/utmbi8a.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts
-/type1/urw/times/utmr8a.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts
-/type1/urw/times/utmri8a.pfb>
-Output written on MSR2026_COMPLETE.pdf (10 pages, 2342252 bytes).
+ 57i,9n,65p,941b,266s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
+ex10.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
+nts/cm/cmmi10.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmmi7.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmr10.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/Ahmed/AppData/Local/Programs
+/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Ahmed/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Ahmed/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Ahme
+d/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/Ah
+med/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Ah
+med/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/A
+hmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/A
+hmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on MSR2026_COMPLETE.pdf (4 pages, 174903 bytes).
 PDF statistics:
- 139 PDF objects out of 1000 (max. 8388607)
+ 81 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

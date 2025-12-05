@@ -8,7 +8,7 @@
 
 \begin{document}
 
-\title{Testing Behavior in AI-Assisted Development: A Population Study of 932{,}791 Pull Requests}
+\title{Validity Challenges in Inferring AI Tool Behavior from Observational Pull Request Datasets}
 
 \author{\IEEEauthorblockN{Ahmed Mursal}
 \IEEEauthorblockA{\textit{School of Computing}\\Edinburgh Napier University, UK\\40646515@live.napier.ac.uk}}
@@ -16,32 +16,51 @@
 \maketitle
 
 \begin{abstract}
-We analyze 932{,}791 pull requests (PRs) from the public AIDev dataset to quantify associations between AI coding agents and testing behavior. We observe substantial variation in the percentage of PRs containing test-related artifacts: OpenAI Codex shows near-universal test presence (\~98.5\%), while Cursor shows \~19.0\%. This association is large (Cram\'er\'s V \~ 0.646). The data are observational: differences may reflect developer selection effects, project mix, and organizational practices rather than intrinsic agent properties. We provide a reproducible pipeline and two robustness checks (excluding the single Devin user; Codex label sensitivity), and we discuss threats to validity. Our findings offer population-level measurements to inform future controlled studies on AI-assisted testing.
+Observational datasets of AI-assisted pull requests face methodological challenges that can invalidate behavioral inferences. We analyze validity threats in the AIDev dataset (932,791 PRs) and demonstrate how agent attribution uncertainty, statistical clustering violations, measurement bias, and confounding limit interpretability. Through empirical examples, we show how apparent behavioral differences (98.5\% vs. 19\% test rates) may reflect artifacts rather than capabilities. We provide a methodological framework with requirements for reliable inference from observational AI tool data.
 \end{abstract}
 
 \section{Introduction}
-AI coding assistants are widely used, yet their relationship with software testing is not well understood. We study testing behavior at scale across five agents annotated in AIDev: OpenAI Codex, GitHub Copilot, Cursor, Devin, and Claude Code. Our goal is descriptive: measure associations and report effect sizes while avoiding causal claims.
+Large-scale datasets of AI-assisted pull requests offer insights into real-world tool usage but face methodological challenges that can invalidate behavioral inferences. This study identifies and demonstrates validity threats in observational AI tool datasets, using AIDev (932,791 PRs) as a case study.
 
-We address: (1) How often PRs contain test-related content per agent? (2) Do associations remain under simple robustness checks? (3) What are key validity threats for interpreting observational evidence?
+We focus on four critical threats: (1) agent attribution reliability, (2) statistical clustering violations, (3) measurement bias, and (4) confounding effects. Through empirical examples, we show how apparent behavioral differences may reflect artifacts rather than capabilities.
 
-\textbf{Upfront caveats.} \emph{Devin} appears as a single detected user in this dataset and is excluded from aggregate summaries unless explicitly stated. \emph{OpenAI Codex} labeling likely overlaps with Copilot-era usage during 2021--2023; we treat Codex labels as proxies and include sensitivity checks (exclude Codex; reassign Codex to Copilot).
+\textbf{Contribution}: A methodological framework identifying validity requirements for reliable inference from observational AI tool datasets.
 
-\textbf{Temporal note.} The dataset spans roughly 2021--2023. Public Codex API access ended in March 2023; observed patterns partly reflect that period. Results describe associations in this timeframe and may not generalize to later model versions.
+\section{Validity Threats in Observational AI Tool Research}
+Observational AI tool datasets face four primary validity threats:
 
-\section{Data and Method}
-\textbf{Dataset.} We analyze the AIDev dataset (config: all\_pull\_request), with 932{,}791 PRs and 72{,}189 unique users spanning five annotated agents. Agent labels originate from repository metadata and self-report; they indicate likely involvement and may include noise. We treat labels as proxies rather than definitive authorship.
+\textbf{Attribution Reliability}: Metadata and self-reports may misclassify tool usage due to incomplete records, mixed usage, or detection errors.
 
-\textbf{Agent attribution caveat.} ``OpenAI Codex'' likely includes direct API use and Copilot-era contributions labeled as Codex during collection. To probe sensitivity, we both exclude Codex and reassign Codex to Copilot (Section~III).
+\textbf{Statistical Clustering}: Users, repositories, and organizations create correlated observations that violate independence assumptions, inflating significance tests.
 
-\textbf{Test detection.} A PR is deemed test-related if its title/body contains testing markers such as: test, testing, spec, unittest, pytest, jest, mocha, rspec, junit, testng, nunit, e2e, integration test, selenium, cypress. We apply case-insensitive substring matching to prioritize recall. Manual spot-checking (n=200) suggested ~94\% accuracy and high recall. This detects test presence, not test quality.
+\textbf{Measurement Bias}: Keyword-based outcome detection produces systematic errors, particularly across different languages and practices.
 
-\textbf{Detector details.} Beyond keywords, we incorporate filename/path hints (e.g., ``tests/'' directories, ``*\_test.py'', ``*.spec.js''), framework imports (pytest, unittest, jest, JUnit, TestNG, NUnit, RSpec), and assertion cues (assert/expect/Assertions.*). Strong signals are prioritized to reduce name-only false positives. Validation on 200 PRs: \~94\% accuracy, \~92\% precision, $>$95\% recall.
+\textbf{Confounding Effects}: Developers select tools based on projects, experience, and context, making tool effects impossible to isolate without controls.
 
-\textbf{Description consistency.} We compute TF--IDF cosine similarity between PR title and body (sample of 3k PRs), reporting a ``matching rate'' above a fixed threshold to approximate intent coherence.
+\section{Empirical Demonstrations}
+\subsection{Attribution Evidence}
+Table~\ref{tab:attribution} shows extreme user count imbalances suggesting attribution problems.
 
-  \textbf{Statistics.} We construct a 5×2 table (agent × test/non-test) and compute Pearson's chi-square and Cram\'er's V. For our 2-category outcome, $V = \sqrt{\chi^2/(n\cdot (\min(r,c)-1))}$. Given observational data and clustering, we treat p-values as descriptive and emphasize effect sizes.
+\begin{table}[h]
+\centering
+\caption{Agent attribution patterns revealing reliability concerns}
+\label{tab:attribution}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+\textbf{Agent} & \textbf{Users} & \textbf{PRs/User} \\
+\midrule
+OpenAI Codex & 61,653 & 13.2 \\
+GitHub Copilot & 379 & 133.1 \\
+Claude Code & 1,643 & 3.1 \\
+Cursor & 9,658 & 3.4 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-\section{Results}
+Copilot shows 133 PRs per user versus Codex at 13—likely reflecting labeling inconsistencies.
+
+\subsection{Observed Patterns}
+\textbf{Note}: These patterns likely reflect validity threats rather than genuine differences.
 
 \textbf{Critical Limitations}: Agent labels are unreliable (metadata/self-reports), statistical tests invalid due to clustering, test detection has ~8\% false positive rate, and severe confounding prevents causal inference.
 \textbf{Per-agent testing rates.} Table~\ref{tab:rates} summarizes per-agent totals and test percentages. We observe a broad range (\~19\% to \~98.5\%) and a large association (Cramér's V \~ 0.646).
@@ -90,18 +109,29 @@ Acceptance (merged/closed) varies across agents but does not exhibit a simple re
 \section{Related Work}
 Recent code-generation studies emphasize functional correctness and security \cite{chen2021evaluating}, while empirical work reports developer experiences with assistants such as Copilot \cite{bareiss2023code}. Classic testing literature cautions that coverage does not imply effectiveness \cite{inozemtseva2014coverage}. Broader empirical software engineering has explored ownership and review dynamics \cite{bird2011dont,bacchelli2013expectations}, and change classification \cite{kim2008classifying}. Our population-level analysis complements these by focusing on observed testing presence across agents in the wild.
 
-\section{Practical Implications}
-\textbf{No Valid Practical Implications}: Due to unreliable agent labels, statistical violations, and severe confounding, this study cannot inform tool selection or organizational practices. The patterns may be entirely artifactual.
+\section{Implications}
+\textbf{For Researchers}: Prioritize controlled experiments for behavioral inference. When using observational data, implement comprehensive validity checks and avoid causal claims.
+
+\textbf{For Practitioners}: Interpret observational studies as suggestive rather than definitive. Focus on controlled evaluations for important decisions.
 
 \section{Threats and Ethics}
 \textbf{Attribution noise.} Agent labels are derived from metadata/self-report. Misclassification likely attenuates differences rather than fabricating \~80-point gaps.
 
 \textbf{Selection effects.} Developers and organizations may choose agents by task and context; associations may reflect usage patterns, not capabilities.
 
-\textbf{Construct limits.} We measure test presence, not correctness or coverage. Merge status is a coarse outcome proxy. Repository, language, and team factors are unobserved and may confound associations.\section{Limitations}
-\textbf{Fundamental Invalidity}: (1) Agent labels unreliable (unknown accuracy of metadata/self-reports invalidates all comparisons), (2) Statistical tests invalid (clustering violations make p-values meaningless), (3) Effect sizes uninterpretable (sample imbalances and measurement error), (4) Severe confounding (selection effects likely explain all patterns).
+\textbf{Construct limits.} We measure test presence, not correctness or coverage. Merge status is a coarse outcome proxy. Repository, language, and team factors are unobserved and may confound associations.\section{Methodological Requirements}
+Valid behavioral inference requires:
 
-\textbf{Study Cannot Support Any Claims}: The combination of label unreliability, statistical violations, and confounding makes this analysis fundamentally unable to distinguish agent effects from artifacts. Results should not inform any decisions.
+\textbf{Attribution Verification}: Independent validation achieving >90\% accuracy with balanced errors across groups.
+
+\textbf{Clustering Control}: Multilevel modeling or cluster-robust methods accounting for user, repository, and organizational structure.
+
+\textbf{Measurement Validation}: Manual validation (n$\geq$500) across languages and contexts, with bias quantification.
+
+\textbf{Confounding Assessment}: Collection of developer, project, and temporal covariates with appropriate analytical controls.
+
+\section{Limitations}
+\textbf{Validity Threats}: Agent labels are unreliable, statistical tests are invalid due to clustering, and severe confounding prevents causal inference. This analysis cannot distinguish agent effects from artifacts.
 
 \textbf{Ethics.} We analyze public data; results are aggregate-only. We avoid judging individuals or vendors and emphasize correlational rather than causal interpretation.
 
@@ -109,7 +139,7 @@ Recent code-generation studies emphasize functional correctness and security \ci
 We provide scripts to recompute key statistics directly from the raw CSV (chunked processing), plus a sensitivity script for Codex labeling. Figures are generated from the same pipeline. Data source: AIDev (HuggingFace, config: all\_pull\_request). Repository link: \url{https://github.com/ghost1100/MSR2026}.
 
 \section{Conclusion}
-This study attempted to measure AI agent testing behavior but fundamental validity limitations prevent reliable conclusions. Agent label unreliability, statistical test violations, and severe confounding make the results uninterpretable. The observed patterns likely reflect dataset artifacts rather than agent behavior. Valid research requires controlled experimental designs with verified agent attribution.
+This study demonstrates validity threats in observational AI tool datasets that prevent reliable behavioral inference. Through analysis of AIDev, we show how attribution uncertainty, clustering violations, measurement bias, and confounding create misleading patterns. Our methodological framework establishes requirements for valid inference. This critique targets methodology, not researchers or datasets, aiming to improve research rigor in AI tool evaluation.
 
 \section*{Acknowledgments}
 We thank H. Li et al. for releasing AIDev and colleagues for feedback. Any errors are our own.

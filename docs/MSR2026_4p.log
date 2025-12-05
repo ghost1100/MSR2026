@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.5)  5 DEC 2025 18:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.5)  5 DEC 2025 20:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -223,69 +223,40 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Underfull \hbox (badness 10000) in paragraph at lines 32--33
-[]\OT1/ptm/b/n/10 Dataset. \OT1/ptm/m/n/10 We an-a-lyze the AIDev dataset (con-
-fig:
- []
 
-
-Underfull \hbox (badness 2181) in paragraph at lines 32--33
-\OT1/ptm/m/n/10 all[]pull[]request), with 932,791 PRs and 72,189 unique
- []
+LaTeX Warning: Reference `tab:attribution' on page 1 undefined on input line 42
+.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 38.
+(Font)              <8> on input line 48.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 38.
+(Font)              <6> on input line 48.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 48.
 
-Underfull \hbox (badness 4779) in paragraph at lines 38--39
-[]\OT1/ptm/b/n/10 Detector de-tails. \OT1/ptm/m/n/10 Be-yond key-words, we in-c
-or-po-rate
- []
-
-
-Underfull \hbox (badness 1502) in paragraph at lines 38--39
-\OT1/ptm/m/n/10 file-name/path hints (e.g., ``tests/'' di-rec-to-ries, ``*[]tes
-t.py'',
- []
-
-
-Underfull \hbox (badness 5036) in paragraph at lines 38--39
-\OT1/ptm/m/n/10 nit, TestNG, NUnit, RSpec), and as-ser-tion cues (as-
- []
-
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 4
-2.
-(C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
-File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-)
-Underfull \hbox (badness 10000) in paragraph at lines 46--48
+Underfull \hbox (badness 10000) in paragraph at lines 65--67
 []\OT1/ptm/b/n/10 Critical Lim-i-ta-tions\OT1/ptm/m/n/10 : Agent la-bels are un
 -re-li-able
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 46--48
+Underfull \hbox (badness 10000) in paragraph at lines 65--67
 \OT1/ptm/m/n/10 (metadata/self-reports), sta-tis-ti-cal tests in-valid due to
  []
 
 
-Underfull \hbox (badness 1769) in paragraph at lines 46--48
+Underfull \hbox (badness 1769) in paragraph at lines 65--67
 \OT1/ptm/m/n/10 se-vere con-found-ing pre-vents causal in-fer-ence. \OT1/ptm/b/
 n/10 Per-agent
  []
 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 53.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 53.
 <../outputs/figures/complete_dataset_test_contribution_rates.png, id=1, 860.013
 pt x 572.3784pt>
 File: ../outputs/figures/complete_dataset_test_contribution_rates.png Graphic f
 ile (type png)
 <use ../outputs/figures/complete_dataset_test_contribution_rates.png>
 Package pdftex.def Info: ../outputs/figures/complete_dataset_test_contribution_
-rates.png  used on input line 69.
+rates.png  used on input line 88.
 (pdftex.def)             Requested size: 242.52063pt x 161.40898pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -296,7 +267,7 @@ File: ../outputs/figures/complete_dataset_agent_distribution.png Graphic file (
 type png)
 <use ../outputs/figures/complete_dataset_agent_distribution.png>
 Package pdftex.def Info: ../outputs/figures/complete_dataset_agent_distribution
-.png  used on input line 76.
+.png  used on input line 95.
 (pdftex.def)             Requested size: 242.52063pt x 182.56128pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -306,19 +277,41 @@ med/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 
 
 ]
-Underfull \hbox (badness 1406) in paragraph at lines 85--86
+Underfull \hbox (badness 1406) in paragraph at lines 104--105
 []\OT1/ptm/b/n/10 Description--title match-ing. \OT1/ptm/m/n/10 On a 3k sam-ple
 , over-all
  []
 
 
-Underfull \hbox (badness 7415) in paragraph at lines 97--98
+Underfull \hbox (badness 7415) in paragraph at lines 118--119
 []\OT1/ptm/b/n/10 Attribution noise. \OT1/ptm/m/n/10 Agent la-bels are de-rived
  from
  []
 
-[2 <../outputs/figures/complete_dataset_test_contribution_rates.png> <../output
-s/figures/complete_dataset_agent_distribution.png>]
+
+! LaTeX Error: Unicode character ≥ (U+2265)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.129 ...ment Validation}: Manual validation (n≥
+                                                  500) across languages and ...
+
+? cd "c:\Users\Ahmed\Downloads\VScodeRepo\MSR2026\docs" && pdflatex MSR2026_4p.
+tex && pdflatex MSR2026_COMPLETE.tex
+Type <return> to proceed, S to scroll future error messages,
+R to run without stopping, Q to run quietly,
+I to insert something, E to edit your file,
+1 or ... or 9 to ignore the next 1 to 9 tokens of input,
+H for help, X to quit.
+? Q
+OK, entering \batchmode...
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 139.
+ [2 <../outputs/figures/complete_dataset_test_contribution_rates.png> <../outpu
+ts/figures/complete_dataset_agent_distribution.png>]
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -330,33 +323,34 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[3] (MSR2026_4p.aux)
+ [3] (MSR2026_4p.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 2397 strings out of 474486
- 44307 string characters out of 5743755
- 1942542 words of memory out of 5000000
- 24689 multiletter control sequences out of 15000+600000
- 593511 words of font info for 95 fonts, out of 8000000 for 9000
+ 2372 strings out of 474486
+ 43903 string characters out of 5743755
+ 1941542 words of memory out of 5000000
+ 24668 multiletter control sequences out of 15000+600000
+ 593197 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,8n,65p,833b,261s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmex10.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmmi10.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmr10.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Ahmed/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Ahmed/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/Ahmed/AppData/Local/Prog
-rams/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Ahmed/AppData/Local/Prog
-rams/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on MSR2026_4p.pdf (3 pages, 561768 bytes).
+ 57i,8n,65p,666b,261s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pf
+b><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.p
+fb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.p
+fb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.
+pfb>
+Output written on MSR2026_4p.pdf (3 pages, 514258 bytes).
 PDF statistics:
- 63 PDF objects out of 1000 (max. 8388607)
+ 38 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
