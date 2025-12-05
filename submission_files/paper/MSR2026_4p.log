@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.5)  5 DEC 2025 20:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.5)  5 DEC 2025 20:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -178,8 +178,7 @@ tex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count272
 \l__pdf_internal_box=\box53
-)
-No file MSR2026_4p.aux.
+) (MSR2026_4p.aux)
 \openout1 = `MSR2026_4p.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
@@ -196,6 +195,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
 LaTeX Font Info:    ... okay on input line 9.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
 LaTeX Font Info:    ... okay on input line 9.
+
 -- Lines per column: 56 (exact).
 
 (C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
@@ -223,79 +223,62 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Underfull \hbox (badness 10000) in paragraph at lines 34--35
-[]\OT1/ptm/b/n/10 Dataset. \OT1/ptm/m/n/10 We an-a-lyze the AIDev dataset (con-
-fig:
- []
-
-
-Underfull \hbox (badness 2181) in paragraph at lines 34--35
-\OT1/ptm/m/n/10 all[]pull[]request), with 932,791 PRs and 72,189 unique
- []
-
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 40.
+(Font)              <7> on input line 70.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 40.
+(Font)              <5> on input line 70.
+ [1{C:/Users/Ahmed/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/A
+hmed/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 
-Underfull \hbox (badness 4779) in paragraph at lines 40--41
-[]\OT1/ptm/b/n/10 Detector de-tails. \OT1/ptm/m/n/10 Be-yond key-words, we in-c
-or-po-rate
+
+]
+Underfull \hbox (badness 1931) in paragraph at lines 116--117
+[]\OT1/ptm/b/n/10 Matched Sam-pling. \OT1/ptm/m/n/10 Con-trol for con-founders 
+through
  []
 
 
-Underfull \hbox (badness 1502) in paragraph at lines 40--41
-\OT1/ptm/m/n/10 file-name/path hints (e.g., ``tests/'' di-rec-to-ries, ``*[]tes
-t.py'',
- []
+** Conference Paper **
+Before submitting the final camera ready copy, remember to:
+
+ 1. Manually equalize the lengths of two columns on the last page
+ of your paper;
+
+ 2. Ensure that any PostScript and/or PDF output post-processing
+ uses only Type 1 fonts and that every step in the generation
+ process uses the appropriate paper size.
 
 
-Underfull \hbox (badness 5036) in paragraph at lines 40--41
-\OT1/ptm/m/n/10 nit, TestNG, NUnit, RSpec), and as-ser-tion cues (as-
- []
+Package balance Warning: You have called \balance in second column
+(balance)                Columns might not be balanced.
 
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 4
-4.
-(C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
-File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-)
-
-LaTeX Warning: Reference `tab:rates' on page 1 undefined on input line 50.
-
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 56.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 56.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
+[2] (MSR2026_4p.aux)
+ ***********
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-04>
+ ***********
 
 
-LaTeX Warning: File `../outputs/figures/complete_dataset_test_contribution_rate
-s.png' not found on input line 72.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-
-! Package pdftex.def Error: File `../outputs/figures/complete_dataset_test_cont
-ribution_rates.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.72 ...plete_dataset_test_contribution_rates.png}
-                                                  
-? echo.
- 
+ ) 
 Here is how much of TeX's memory you used:
- 2380 strings out of 474486
- 45191 string characters out of 5743755
- 1933542 words of memory out of 5000000
- 24688 multiletter control sequences out of 15000+600000
- 582568 words of font info for 85 fonts, out of 8000000 for 9000
+ 2328 strings out of 474486
+ 42653 string characters out of 5743755
+ 1942542 words of memory out of 5000000
+ 24632 multiletter control sequences out of 15000+600000
+ 588543 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,8n,65p,783b,261s stack positions out of 10000i,1000n,20000p,200000b,200000s
-No pages of output.
+ 57i,8n,65p,691b,261s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmsy7.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/u
+tmb8a.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/u
+tmbi8a.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/
+utmr8a.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/
+utmri8a.pfb>
+Output written on MSR2026_4p.pdf (2 pages, 77443 bytes).
 PDF statistics:
- 0 PDF objects out of 1000 (max. 8388607)
+ 35 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
