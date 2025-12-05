@@ -22,14 +22,14 @@ Edinburgh, Scotland \\
 \maketitle
 
 \begin{abstract}
-Observational datasets of AI-assisted pull requests face methodological challenges that can invalidate behavioral inferences. We identify four critical validity threats in such datasets: agent attribution uncertainty, statistical clustering violations, measurement bias, and confounding effects. Using AIDev as a case study, we demonstrate how these threats manifest in practice and establish methodological requirements for reliable inference from observational AI tool data. This framework aims to improve research rigor by identifying necessary conditions for valid behavioral research using observational datasets.
+Observational datasets of AI-assisted pull requests face methodological challenges that can invalidate behavioral inferences. We analyze validity threats in the AIDev dataset and demonstrate how agent attribution uncertainty, statistical clustering violations, measurement bias, and confounding limit interpretability. We provide a methodological framework with requirements for reliable inference from observational AI tool data. This work aims to improve research rigor by identifying necessary conditions for valid behavioral research using observational datasets.
 \end{abstract}
 
 \section{Introduction}
 
 Large-scale datasets of AI-assisted pull requests offer insights into real-world tool usage but face methodological challenges that can invalidate behavioral inferences. This study identifies and demonstrates validity threats in observational AI tool datasets, using AIDev (932,791 PRs) as a case study.
 
-We identify four critical validity threats: (1) agent attribution reliability, (2) statistical clustering violations, (3) measurement bias, and (4) confounding effects. We demonstrate how these threats manifest in observational datasets and render behavioral inference unreliable.
+We identify four critical threats: (1) agent attribution reliability, (2) statistical clustering violations, (3) measurement bias, and (4) confounding effects. We demonstrate how these threats manifest in observational datasets and render behavioral inference unreliable.
 
 \textbf{Contributions}: A methodological framework identifying validity requirements for reliable inference from observational AI tool datasets, with constructive recommendations for improving research practices.
 
@@ -89,7 +89,9 @@ Such clustering patterns violate independence assumptions required for valid sta
 
 Language bias: JavaScript frameworks (Jest, Mocha) more detectable than Go testing conventions.
 
-\section{Case Study: Validity Threats in Practice}
+\section{Methodological Framework Application}
+
+This paper does not present behavioral findings. Any numerical examples referenced in earlier literature or preliminary exploration are excluded here because the underlying attribution, clustering, and measurement issues render such comparisons uninterpretable. Our objective is solely to illustrate how validity threats arise and how they undermine inference, not to draw conclusions about AI agent behavior.
 
 \subsection{Attribution Reliability Demonstration}
 
@@ -106,12 +108,6 @@ Validation of keyword-based detection reveals systematic biases across languages
 \subsection{Confounding Demonstration}
 
 Temporal concentration and organizational patterns indicate that apparent differences likely reflect selection effects and contextual factors rather than tool characteristics.
-
-\section{Implications for Observational Research}
-
-\textbf{Critical Disclaimer}: This paper does not present behavioral results. Any numerical examples are used solely to illustrate how validity threats distort inference and should not be interpreted as evidence of agent behavior.
-
-The combination of attribution uncertainty, clustering violations, measurement bias, and confounding effects renders behavioral inference from such datasets unreliable. Apparent patterns in observational data likely reflect methodological artifacts rather than genuine tool capabilities.
 
 \section{Methodological Requirements}
 
