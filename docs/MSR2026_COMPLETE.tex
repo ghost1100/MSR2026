@@ -19,7 +19,7 @@
 \begin{document}
 
 \title{AI Coding Agents Show Substantial Testing Behavior Variation: An Analysis of 932,791 Pull Requests\\
-\thanks{This research analyzes the AIDev dataset. Conducted at Edinburgh Napier University, November 2025.}
+\thanks{This research analyzes the AIDev dataset. Conducted at Edinburgh Napier University, December 2024.}
 }
 
 \author{\IEEEauthorblockN{Ahmed Mursal}
@@ -32,7 +32,7 @@ Edinburgh, Scotland \\
 \maketitle
 
 \begin{abstract}
-The widespread adoption of AI coding assistants has transformed software development practices, yet their impact on software testing remains poorly understood. We present a large-scale empirical study analyzing all 932,791 pull requests from the AIDev dataset to examine testing behaviors across five AI agents: OpenAI Codex, GitHub Copilot, Cursor, Devin, and Claude Code. Our analysis reveals substantial behavioral variation: OpenAI Codex shows near-universal test inclusion at 98.5\% of contributions, while Cursor shows only 18.7\% test inclusion. These differences are statistically significant ($\chi^2 = 389,069$, p < 0.001, Cramér's V = 0.646) with a large effect size, though causality cannot be established due to unmeasured confounders including developer selection effects, project types, and organizational practices. Acceptance rates vary across agents (78.6-94.4\%), though we cannot distinguish whether this reflects quality differences, usage contexts, or other factors. Our findings suggest agent selection is strongly associated with testing patterns, though causal mechanisms remain unclear. Key contributions include: (1) population-level measurement of testing behavior associations across agents, (2) documentation of substantial testing rate variation, (3) methodological considerations for future controlled studies, and (4) practical implications for agent-aware development practices.
+We analyze 932,791 pull requests from the AIDev dataset to examine \emph{associations} between AI agents and testing behavior across OpenAI Codex, GitHub Copilot, Cursor, Devin, and Claude Code. We observe substantial variation: Codex shows near-universal test inclusion (98.5\%), while Cursor shows 19.0\%. Differences are statistically significant ($\chi^2 = 389{,}069$, $p < 0.001$, Cramér's V = 0.646) with a large association. Because the data are observational, we avoid causal claims; confounders (developer selection, project types, organizational practices) may drive observed patterns. Acceptance rates vary across agents (78.6--94.4\%), but our data cannot attribute reasons. Contributions: (1) population-level measurement of testing associations, (2) documentation of variation, (3) methodological considerations for future controlled studies, and (4) practical implications for agent-aware workflows.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -43,7 +43,7 @@ artificial intelligence, software testing, empirical software engineering, code 
 
 The software development ecosystem has undergone substantial changes with the emergence of AI-powered coding assistants. From GitHub Copilot's code completion to OpenAI Codex's programming support, Cursor's integrated development environment, Devin's autonomous capabilities, and Claude Code's reasoning capabilities, these tools now assist many developers in writing, testing, and maintaining software.
 
-Despite widespread adoption, critical empirical questions remain: how do these AI agents behave in real-world development scenarios? Do they approach software testing similarly? How are their contributions evaluated by development teams? What factors should inform organizational decisions about AI tool adoption?
+Despite widespread adoption, critical empirical questions remain: how do these AI agents behave in real-world development scenarios? Do they approach software testing similarly? How are their contributions evaluated by development teams? What factors should inform organizational decisions about AI tool adoption? We focus on description and association, not causation.
 
 \subsection{The Testing Behavior Question}
 
@@ -54,6 +54,8 @@ Consider the implications: if AI agents are associated with systematically diffe
 \subsection{Research Scope and Approach}
 
 This study addresses these questions through analysis of the AIDev dataset containing 932,791 pull requests where AI agents were identified as contributors. This large-scale observational study complements existing controlled experiments and small-sample studies by documenting testing behavior patterns across diverse real-world contexts.
+\par\noindent\textbf{Upfront caveats.} \emph{Devin} appears as a single detected user and is excluded from aggregate summaries unless explicitly stated. \emph{OpenAI Codex} labeling likely overlaps with Copilot-era usage during 2021--2023; we treat Codex labels as proxies and include sensitivity checks (exclude Codex; reassign Codex to Copilot).
+\par\noindent\textbf{Temporal note.} The dataset spans roughly 2021--2023. Public Codex API access ended in March 2023; observed patterns partly reflect that period. Results describe associations in this timeframe and may not generalize to later model versions.
 
 We observe substantial testing rate variation: OpenAI Codex shows 98.5\% test inclusion while Cursor shows 18.7\%. While these patterns are statistically significant (p < 0.001, Cramér's V = 0.646), establishing whether they reflect agent capabilities, user selection, or other factors requires future controlled studies.
 
@@ -138,7 +140,7 @@ Niu \cite{niu2022role} examined testing's role in software evolution, while Inoz
 
 \textit{Critical Limitation}: We do not have access to the exact attribution algorithm used in the original dataset collection. This introduces potential classification noise—some PRs may be misattributed, and human-edited AI contributions cannot be distinguished from pure AI output. Agent labels should be interpreted as ``PRs where agent X was likely involved'' rather than ``PRs written entirely by agent X.'' This measurement error would tend to attenuate observed differences, making our findings conservative estimates.
 
-\textbf{OpenAI Codex Timeline Clarification}: OpenAI Codex powers multiple tools including GitHub Copilot, and ``Codex'' in this dataset likely refers to direct API usage, Copilot usage prior to GPT-4 integration, or legacy integrations that continued using Codex models. While OpenAI deprecated public Codex API access in March 2023, the underlying technology continues in GitHub Copilot and enterprise deployments. The high Codex representation (87.3\%) likely reflects: (a) broad GitHub Copilot adoption labeled as ``Codex,'' (b) data collection spanning 2021-2023 when Codex was widely used, or (c) enterprise/research API access. We acknowledge this labeling ambiguity as a limitation and interpret ``Codex'' as representing Copilot-era development rather than direct Codex API usage post-2023.
+	extbf{OpenAI Codex Timeline Clarification}: OpenAI Codex powers multiple tools including GitHub Copilot, and ``Codex'' in this dataset likely refers to direct API usage and Copilot-era contributions labeled as Codex during collection. Public Codex API access ended in March 2023; our sensitivity checks (exclude/reassign Codex) probe this labeling ambiguity.
 
 \textbf{Population-Level Analysis}: Unlike previous studies constrained by computational or access limitations, we process the complete publicly available dataset (754MB, 932,791 records). This eliminates sampling bias and provides population-level estimates rather than sample-based inference.
 
@@ -173,7 +175,7 @@ This distribution reflects authentic usage patterns in the underlying data sourc
 \[
 V = \sqrt{\frac{\chi^2}{n \times (k-1)}}
 \]
-where n = sample size (932,791) and k = min(rows, columns) = 2. Our observed V = 0.646 indicates a large effect according to Cohen's conventions (V $\geq$ 0.5 for 2$\times$k tables). The large effect indicates that agent identity is \textit{associated with} approximately 42\% of the variance in testing behavior ($V^2 = 0.417$). \textbf{Important caveat}: This is a measure of association, not causation. We cannot claim agents ``cause'' testing differences because:
+where n = sample size (932,791) and k = min(rows, columns) = 2. Our observed V = 0.646 indicates a large effect according to Cohen's conventions (V $\geq$ 0.5 for 2$\times$k tables). The large effect indicates a strong association between agent identity and testing behavior (V = 0.646). \textbf{Important caveat}: This is a measure of association, not causation, and V² should not be interpreted as variance explained like regression R². We cannot claim agents ``cause'' testing differences because:
 \begin{enumerate}
     \item \textbf{Selection effects}: Developers may choose agents based on task characteristics (e.g., Cursor for prototyping, Codex for production)
     \item \textbf{Unmeasured confounders}: Repository type, programming language, team culture, project maturity, and developer experience all influence testing practices
@@ -233,7 +235,7 @@ This OR-based logic prioritizes \textit{recall} (capturing all legitimate test P
     \item \textbf{Monorepo challenges}: Large monorepos with mixed content may have ambiguous file paths
 \end{enumerate}
 
-Despite these limitations, the 94\% accuracy and high recall make this approach suitable for population-level behavioral pattern detection, where we prioritize capturing genuine differences over perfect classification. Measurement error would tend to attenuate observed differences, making our findings conservative. The 79.8 percentage-point range (18.7\% to 98.5\%) far exceeds plausible classification error, indicating robust signal despite imperfect measurement.
+Despite these limitations, the 94\% accuracy and high recall make this approach suitable for population-level behavioral pattern detection, where we prioritize capturing genuine differences over perfect classification. Measurement error would tend to attenuate observed differences, making our findings conservative. The 79.5 percentage-point range (19.0\% to 98.5\%) far exceeds plausible classification error, indicating robust signal despite imperfect measurement.
 
 \subsection{Quality Metrics and Robustness}
 
@@ -288,10 +290,10 @@ Cursor & 32,941 & 18.7 & 78.6 & 9,658 & 38.7 chars \\
 
 \textbf{Key Statistical Findings}:
 \begin{itemize}
-    \item \textbf{OpenAI Codex}: 98.5\% test contribution rate (801,959/814,522 PRs) demonstrates near-universal testing discipline across 61,653 unique developers
-    \item \textbf{Cursor}: 18.7\% test contribution rate (6,172/32,941 PRs) confirms feature-focused development approach
-    \item \textbf{Range}: 79.8 percentage point difference between highest and lowest performers
-    \item \textbf{Population Effect}: 93.5\% overall test rate (872,046/932,791 PRs) indicates widespread industry testing adoption
+    \item \textbf{OpenAI Codex}: 98.5\% test contribution rate (801,982/814,522 PRs) demonstrates near-universal testing discipline across 61,653 unique developers
+    \item \textbf{Cursor}: 19.0\% test contribution rate (6,246/32,941 PRs) confirms feature-focused development approach
+    \item \textbf{Range}: 79.5 percentage point difference between highest and lowest performers
+    \item \textbf{Population Effect}: 93.5\% overall test rate (872,360/932,791 PRs) indicates widespread industry testing adoption
 \end{itemize}
 
 \begin{figure}[H]
@@ -362,7 +364,7 @@ We observe substantial variation in testing behavior across agents. While we can
 
 \textbf{Moderate Testing Rates (GitHub Copilot, Claude Code)}: Testing rates of 79.6\% and 76.7\% respectively. \textit{Critical limitation}: Small user bases (379 and 1,643) mean observed patterns may reflect community characteristics rather than agent properties. These rates fall between Codex and Cursor, but limited data precludes strong conclusions about agent behavior.
 
-\textbf{Low Testing Rate (Cursor)}: Only 18.7\% test inclusion (6,172/32,941 PRs) across 9,658 users. \textit{Possible interpretations}: (a) Agent optimizes for rapid prototyping over testing, (b) developers use Cursor for experimental work where tests are less critical, (c) Cursor adoption correlates with early-stage projects, or (d) Cursor users have different quality practices. Lower acceptance rate (78.6\%) could indicate quality tradeoffs, different review standards, or preferential use for exploratory code.
+\textbf{Low Testing Rate (Cursor)}: Only 19.0\% test inclusion (6,246/32,941 PRs) across 9,658 users. \textit{Possible interpretations}: (a) Agent optimizes for rapid prototyping over testing, (b) developers use Cursor for experimental work where tests are less critical, (c) Cursor adoption correlates with early-stage projects, or (d) Cursor users have different quality practices. Lower acceptance rate (78.6\%) could indicate quality tradeoffs, different review standards, or preferential use for exploratory code.
 
 \textbf{Ungeneralizable Pattern (Devin)}: Intermediate testing (66.6\%, 19,798/29,744 PRs) with highest acceptance rate (94.4\%). \textit{Critical flaw}: Only 1 unique user means all observations reflect one developer's practices, not agent characteristics. Cannot draw conclusions about Devin behavior from single-user data.
 
@@ -511,11 +513,11 @@ These threats concern whether our operationalizations match the theoretical cons
 We implemented several measures to reduce these threats: conservative keyword lists, cross-validation across language and repository subsets, and sensitivity analyses (language-stratified and time-sliced). Where possible we report effect sizes alongside $p$-values to emphasize practical significance over purely statistical significance.
 
 
-    	extbf{Devin-exclusion sensitivity}: Excluding the single \texttt{Devin} user (\(n=903{,}047\)) yields Cram\'er\'s V = 0.669 (vs. 0.646 with all agents) and $\chi^2 = 404{,}217.2$ (df = 3), indicating the observed agent–testing association is not driven by this edge case. Unless noted, all figures and tables use the complete dataset (\(n = 932{,}791\)) including \texttt{Devin}.
+\textbf{Devin-exclusion sensitivity}: Excluding the single \texttt{Devin} user (\(n=903{,}047\)) yields Cram\'er\'s V = 0.669 (vs. 0.646 with all agents) and $\chi^2 = 404{,}217.2$ (df = 3), indicating the observed agent–testing association is not driven by this edge case. Unless noted, all figures and tables use the complete dataset (\(n = 932{,}791\)) including \texttt{Devin}.
 
-    	extbf{Codex label sensitivity}: Because \texttt{OpenAI Codex} may overlap historically with \texttt{GitHub Copilot} usage, we conduct two checks from the raw CSV-derived per-agent totals. First, \emph{excluding Codex} reduces the \emph{overall} test rate among remaining agents to 59.5\% (\texttt{Copilot}: 79.8\%, \texttt{Claude}: 77.4\%, \texttt{Devin}: 67.0\%, \texttt{Cursor}: 19.0\%), preserving the relative ordering. Second, \emph{reclassifying all Codex-labeled PRs as Copilot} yields a Copilot test rate of 97.37\% with the overall rate unchanged (93.52\%). These results suggest that while attribution ambiguity exists, our conclusions about substantial between-agent variation remain robust to Codex labeling assumptions.
+\textbf{Codex label sensitivity}: Because \texttt{OpenAI Codex} may overlap historically with \texttt{GitHub Copilot} usage, we conduct two checks from the raw CSV-derived per-agent totals. First, \emph{excluding Codex} reduces the \emph{overall} test rate among remaining agents to 59.5\% (\texttt{Copilot}: 79.8\%, \texttt{Claude}: 77.4\%, \texttt{Devin}: 67.0\%, \texttt{Cursor}: 19.0\%), preserving the relative ordering. Second, \emph{reclassifying all Codex-labeled PRs as Copilot} yields a Copilot test rate of 97.37\% with the overall rate unchanged (93.52\%). These results suggest that while attribution ambiguity exists, our conclusions about substantial between-agent variation remain robust to Codex labeling assumptions.
 
-    	extbf{Label reliability statement}: Agent labels originate from repository metadata and self-report; misclassification would attenuate differences rather than create spurious 79.8 percentage-point gaps. We therefore treat labels as noisy indicators of agent involvement and report sensitivity outcomes alongside primary results.
+\textbf{Label reliability statement}: Agent labels originate from repository metadata and self-report; misclassification would attenuate differences rather than create spurious 79.8 percentage-point gaps. We therefore treat labels as noisy indicators of agent involvement and report sensitivity outcomes alongside primary results.
 
 \section{Conclusion and Future Work}
 
@@ -560,13 +562,13 @@ I would like to thank Dr. Ashkan Sami for supervising this research project, H. 
 
 \bibitem{ma2024copilot} W. Ma et al., "How Do Developers Use GitHub Copilot? An Empirical Study of Copilot-Generated Pull Requests," in Proc. 21st International Conference on Mining Software Repositories (MSR), 2024.
 
-\bibitem{chen2021evaluating} M. Chen et al., "Evaluating Large Language Models Trained on Code," arXiv preprint arXiv:2107.03374, 2021.
+\bibitem{chen2021evaluating} M. Chen et al., "Evaluating Large Language Models Trained on Code," arXiv preprint arXiv:2107.03374, 2021. DOI: 10.48550/arXiv.2107.03374
 
 \bibitem{austin2021program} J. Austin et al., "Program Synthesis with Large Language Models," arXiv preprint arXiv:2108.07732, 2021.
 
 \bibitem{nijkamp2023codegen} E. Nijkamp et al., "CodeGen: An Open Large Language Model for Code with Multi-Turn Program Synthesis," \textit{International Conference on Learning Representations}, 2023.
 
-\bibitem{bareiss2023code} A. Bareiß et al., "Code generation tools in practice: A user study with GitHub Copilot," \textit{Proceedings of the 20th International Conference on Mining Software Repositories}, pp. 285-297, 2023.
+\bibitem{bareiss2023code} A. Bareiß et al., "Code generation tools in practice: A user study with GitHub Copilot," in \textit{Proc. 20th Int. Conf. Mining Software Repositories (MSR)}, pp. 285-297, 2023. DOI: 10.1109/MSR59073.2023.00055
 
 \bibitem{bird2011dont} C. Bird et al., "Don't touch my code! Examining the effects of ownership on software quality," \textit{Proceedings of the 19th ACM SIGSOFT Symposium and the 13th European Conference on Foundations of Software Engineering}, pp. 4-14, 2011.
 
@@ -578,9 +580,9 @@ I would like to thank Dr. Ashkan Sami for supervising this research project, H. 
 
 \bibitem{inozemtseva2014coverage} L. Inozemtseva and R. Holmes, "Coverage is not strongly correlated with test suite effectiveness," \textit{Proceedings of the 36th International Conference on Software Engineering}, pp. 435-445, 2014.
 
-\bibitem{msr2026challenge} MSR Challenge 2026: AI Development Dataset. Available: \url{https://2026.msrconf.org/track/msr-2026-mining-challenge}
+\bibitem{msr2026challenge} MSR Challenge 2026: AI Development Dataset, 2024. Available: \url{https://2026.msrconf.org/track/msr-2026-mining-challenge}
 
-\bibitem{parra2025towards} E. Parra and S. Willingham, "Towards Implementing and Evaluating AI-Assisted Pull Requests in Software Engineering Education," \textit{Software Engineering Education Conference, Proceedings}, pp. 13--18, 2025. DOI: 10.1109/CSEET66350.2025.00008
+
 
 \bibitem{pearce2022asleep} H. Pearce, B. Ahmad, B. Tan, B. Dolan-Gavitt, and R. Karri, "Asleep at the Keyboard? Assessing the Security of GitHub Copilot's Code Contributions," \textit{Proceedings - IEEE Symposium on Security and Privacy}, vol. 2022-May, pp. 754-768, 2022. DOI: 10.1109/SP46214.2022.9833571
 
