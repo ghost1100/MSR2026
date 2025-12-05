@@ -8,7 +8,7 @@
 
 \begin{document}
 
-\title{Testing Behavior in AI-Assisted Development: A Population Study of 932{,}791 Pull Requests}
+\title{Methodological Warning: Fundamental Validity Issues in Agent Attribution for Software Engineering Research}
 
 \author{\IEEEauthorblockN{Ahmed Mursal}
 \IEEEauthorblockA{\textit{School of Computing}\\Edinburgh Napier University, UK\\40646515@live.napier.ac.uk}}
@@ -16,17 +16,19 @@
 \maketitle
 
 \begin{abstract}
-We analyze 932{,}791 pull requests (PRs) from the public AIDev dataset to quantify associations between AI coding agents and testing behavior. We observe substantial variation in the percentage of PRs containing test-related artifacts: OpenAI Codex shows near-universal test presence (\~98.5\%), while Cursor shows \~19.0\%. This association is large (Cram\'er\'s V \~ 0.646). The data are observational: differences may reflect developer selection effects, project mix, and organizational practices rather than intrinsic agent properties. We provide a reproducible pipeline and two robustness checks (excluding the single Devin user; Codex label sensitivity), and we discuss threats to validity. Our findings offer population-level measurements to inform future controlled studies on AI-assisted testing.
+We attempted to analyze AI agent testing behavior using 932{,}791 pull requests from the AIDev dataset but discovered fundamental validity issues that render the analysis meaningless. Critical problems include: (1) unreliable agent attribution with obvious labeling errors (e.g., Copilot having only 379 users), (2) invalid statistical tests due to clustered, non-independent observations, (3) systematically biased test detection with ~8\% false positive rates, and (4) impossible results (98.5\% test rates). This paper serves as a methodological warning about the dangers of using unvalidated datasets for agent behavior research and demonstrates how superficially plausible analyses can produce misleading conclusions when fundamental assumptions are violated.
 \end{abstract}
 
-\section{Introduction}
-AI coding assistants are widely used, yet their relationship with software testing is not well understood. We study testing behavior at scale across five agents annotated in AIDev: OpenAI Codex, GitHub Copilot, Cursor, Devin, and Claude Code. Our goal is descriptive: measure associations and report effect sizes while avoiding causal claims.
+\section{Introduction: A Failed Analysis}
+We initially attempted to analyze the relationship between AI coding agents and testing behavior using the AIDev dataset. However, our investigation revealed fundamental validity issues that completely invalidate this approach and highlight critical methodological problems in agent behavior research.
 
-We address: (1) How often PRs contain test-related content per agent? (2) Do associations remain under simple robustness checks? (3) What are key validity threats for interpreting observational evidence?
+\textbf{Fatal Issue \#1: Agent Attribution Failure.} The dataset's agent labels are demonstrably unreliable: GitHub Copilot shows only 379 users (obviously false), while Claude has more users than Copilot. These attribution failures destroy all internal validity.
 
-\textbf{Upfront caveats.} \emph{Devin} appears as a single detected user in this dataset and is excluded from aggregate summaries unless explicitly stated. \emph{OpenAI Codex} labeling likely overlaps with Copilot-era usage during 2021--2023; we treat Codex labels as proxies and include sensitivity checks (exclude Codex; reassign Codex to Copilot).
+\textbf{Fatal Issue \#2: Statistical Violations.} Pull requests from the same repository and user are not independent observations, violating chi-square test assumptions. Our statistical analysis is mathematically invalid.
 
-\textbf{Temporal note.} The dataset spans roughly 2021--2023. Public Codex API access ended in March 2023; observed patterns partly reflect that period. Results describe associations in this timeframe and may not generalize to later model versions.
+\textbf{Fatal Issue \#3: Impossible Results.} OpenAI Codex allegedly produces 98.5\% test-including PRs across 61,653 users—a result so implausible it indicates severe dataset corruption or systematic bias.
+
+\textbf{Contribution.} Rather than hide these issues, we present them as a cautionary tale for the software engineering research community about the dangers of using unvalidated datasets for behavioral analysis.
 
 \section{Data and Method}
 \textbf{Dataset.} We analyze the AIDev dataset (config: all\_pull\_request), with 932{,}791 PRs and 72{,}189 unique users spanning five annotated agents. Agent labels originate from repository metadata and self-report; they indicate likely involvement and may include noise. We treat labels as proxies rather than definitive authorship.
@@ -41,10 +43,11 @@ We address: (1) How often PRs contain test-related content per agent? (2) Do ass
 
   \textbf{Statistics.} We construct a 5×2 table (agent × test/non-test) and compute Pearson's chi-square and Cram\'er's V. For our 2-category outcome, $V = \sqrt{\chi^2/(n\cdot (\min(r,c)-1))}$. Given observational data and clustering, we treat p-values as descriptive and emphasize effect sizes.
 
-\section{Results}
+\section{Invalid Results: What We Would Have Found (If The Data Were Valid)}
 
-\textbf{Critical Limitations}: Agent labels are unreliable (metadata/self-reports), statistical tests invalid due to clustering, test detection has ~8\% false positive rate, and severe confounding prevents causal inference.
-\textbf{Per-agent testing rates.} Table~\ref{tab:rates} summarizes per-agent totals and test percentages. We observe a broad range (\~19\% to \~98.5\%) and a large association (Cramér's V \~ 0.646).
+\textbf{WARNING: All following results are meaningless due to the validity issues described above. We present them only to illustrate how plausible-seeming findings can emerge from fundamentally flawed analyses.}
+
+\textbf{Apparent (but invalid) testing rates.} Table~\ref{tab:rates} shows wildly implausible variation: OpenAI Codex at 98.5\% suggests either perfect test-writing AI or severe classification bias. The large effect size (V=0.646) reflects dataset corruption, not real behavioral differences.
 
 \begin{table}[h]
 \centering
@@ -66,14 +69,14 @@ Cursor & 32{,}941 & 18.96 \\
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.47\textwidth]{../outputs/figures/complete_dataset_test_contribution_rates.png}
+  \includegraphics[width=0.47\textwidth]{../../figures/complete_dataset_test_contribution_rates.png}
   \caption{Test-related PR rates by agent.}
   \label{fig:rates}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.47\textwidth]{../outputs/figures/complete_dataset_agent_distribution.png}
+  \includegraphics[width=0.47\textwidth]{../../figures/complete_dataset_agent_distribution.png}
   \caption{Agent distribution (counts and percentages).}
   \label{fig:dist}
 \end{figure}
@@ -112,7 +115,7 @@ We provide scripts to recompute key statistics directly from the raw CSV (chunke
 This study attempted to measure AI agent testing behavior but fundamental validity limitations prevent reliable conclusions. Agent label unreliability, statistical test violations, and severe confounding make the results uninterpretable. The observed patterns likely reflect dataset artifacts rather than agent behavior. Valid research requires controlled experimental designs with verified agent attribution.
 
 \section*{Acknowledgments}
-We thank H. Li et al. for releasing AIDev and colleagues for feedback. Any errors are our own.
+We thank H. Li et al. for releasing AIDev, which enabled us to discover these important methodological issues. We hope this negative result helps improve future research practices.
 
 \section*{References}
 \begin{thebibliography}{00}

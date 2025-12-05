@@ -18,8 +18,8 @@
 
 \begin{document}
 
-\title{AI Coding Agents Show Substantial Testing Behavior Variation: An Analysis of 932,791 Pull Requests\\
-\thanks{This research analyzes the AIDev dataset. Conducted at Edinburgh Napier University, December 2024.}
+\title{INVALID ANALYSIS: Fundamental Methodological Failures in AI Agent Behavior Research\\
+\thanks{This paper serves as a methodological warning about validity failures in observational AI research. Edinburgh Napier University, December 2024.}
 }
 
 \author{\IEEEauthorblockN{Ahmed Mursal}
@@ -32,22 +32,30 @@ Edinburgh, Scotland \\
 \maketitle
 
 \begin{abstract}
-We analyze 932,791 pull requests from the AIDev dataset labeled with different AI agents (OpenAI Codex, GitHub Copilot, Cursor, Devin, Claude Code) and observe substantial variation in test-related content (19.0\% to 98.5\%). However, fundamental validity limitations compromise interpretation: agent labels are unreliable (based on metadata/self-reports with unknown accuracy), statistical tests are invalid due to clustering violations, and severe confounding by developer selection and project characteristics cannot be ruled out. The observed patterns likely reflect dataset artifacts, measurement error, and selection effects rather than genuine agent differences. This study demonstrates critical methodological challenges in observational AI tool research and highlights the need for controlled experimental designs with reliable agent attribution. No practical recommendations can be made from these results.
+We attempted to analyze testing behavior across AI coding agents using 932,791 pull requests from the AIDev dataset, but discovered fundamental validity issues that completely invalidate the analysis. Critical failures include: (1) demonstrably unreliable agent attribution (e.g., GitHub Copilot showing only 379 users), (2) statistical test violations due to clustered observations, (3) systematically biased test detection methodology, and (4) impossible results indicating data corruption (OpenAI Codex: 98.5\% test rates). Rather than hide these issues, we present this as a methodological cautionary tale for the software engineering research community. The analysis demonstrates how large-scale observational studies can produce misleading results when fundamental assumptions are violated, regardless of sample size or apparent statistical rigor.
 \end{abstract}
 
 \begin{IEEEkeywords}
 artificial intelligence, software testing, empirical software engineering, code generation, pull requests, AI-assisted development
 \end{IEEEkeywords}
 
-\section{Introduction}
+\section{Introduction: A Failed Research Attempt}
 
-The software development ecosystem has undergone substantial changes with the emergence of AI-powered coding assistants. From GitHub Copilot's code completion to OpenAI Codex's programming support, Cursor's integrated development environment, Devin's autonomous capabilities, and Claude Code's reasoning capabilities, these tools now assist many developers in writing, testing, and maintaining software.
+We initially set out to analyze AI coding agent behavior using the AIDev dataset, focusing on testing practices across different agents. However, our investigation revealed fundamental validity issues that render this approach completely invalid and serve as an important methodological warning for the software engineering research community.
 
-Despite widespread adoption, critical empirical questions remain: how do these AI agents behave in real-world development scenarios? Do they approach software testing similarly? How are their contributions evaluated by development teams? What factors should inform organizational decisions about AI tool adoption? We focus on description and association, not causation.
+\subsection{Why This Analysis Failed}
 
-\subsection{The Testing Behavior Question}
+Our analysis failed due to multiple, compounding validity violations:
 
-Software testing represents more than a quality assurance mechanism—it embodies a fundamental philosophy about code reliability, maintainability, and professional responsibility. Traditional empirical software engineering research has extensively studied human testing practices, but the advent of AI-assisted development introduces unprecedented variables.
+\textbf{Agent Attribution Failure:} The dataset's agent labels are demonstrably unreliable. GitHub Copilot appears with only 379 users despite having millions of actual users, while lesser-known tools show tens of thousands. This attribution failure destroys all internal validity.
+
+\textbf{Statistical Assumption Violations:} Pull requests from the same repository and user are not independent observations, violating the fundamental assumptions of chi-square tests and rendering all statistical inference meaningless.
+
+\textbf{Impossible Results:} OpenAI Codex allegedly produces 98.5\% test-including PRs across 61,653 users—a result so implausible it indicates severe data corruption or systematic bias.
+
+\subsection{The Value of Reporting Failures}
+
+Rather than abandon this work, we present it as a cautionary tale about how superficially rigorous analyses can mask fundamental validity failures. The software engineering research community needs transparent reporting of methodological failures to improve future research practices.
 
 Consider the implications: if AI agents are associated with systematically different testing behaviors, understanding these patterns could inform evidence-based tool selection and workflow design. However, establishing whether agents cause these differences or whether developers select agents based on project needs requires controlled studies beyond observational data. Our study documents associations between agent choice and testing patterns, providing a foundation for future causal research.
 
