@@ -20,9 +20,11 @@ Observational datasets of AI-assisted pull requests face methodological challeng
 \end{abstract}
 
 \section{Introduction}
-Large-scale datasets of AI-assisted pull requests offer insights into real-world tool usage but face methodological challenges that can invalidate behavioral inferences. This study identifies and demonstrates validity threats in observational AI tool datasets, using AIDev (932,791 PRs) as a case study.
+Large-scale datasets of AI-assisted pull requests offer insights into real-world tool usage but face methodological challenges that can invalidate behavioral inferences. This study identifies and demonstrates validity threats in observational AI tool datasets, using the AIDev dataset as an illustrative case study.
 
-We identify four critical validity threats: (1) agent attribution reliability, (2) statistical clustering violations, (3) measurement bias, and (4) confounding effects. We demonstrate how these threats render behavioral inference unreliable.
+We identify four critical threats: (1) agent attribution reliability, (2) statistical clustering violations, (3) measurement bias, and (4) confounding effects. We demonstrate how these threats render behavioral inference unreliable.
+
+This paper does not analyze or interpret behavioral differences across AI tools. Any dataset-derived examples are used solely to illustrate methodological threats, not to draw conclusions about agent behavior.
 
 \textbf{Contribution}: A methodological framework identifying validity requirements for reliable inference from observational AI tool datasets.
 
@@ -56,6 +58,7 @@ Cursor & 9,658 & 3.4 \\
 \bottomrule
 \end{tabular}
 \end{table}
+\footnotesize{\textit{Note: These values are used solely to illustrate attribution inconsistencies and are not interpreted as reflecting real tool usage.}}
 
 Such extreme disparities in contribution patterns suggest systematic labeling inconsistencies rather than genuine usage differences.
 
@@ -96,7 +99,7 @@ Valid behavioral inference requires:
 
 
 \section{Conclusion}
-This study demonstrates validity threats that prevent reliable behavioral inference from observational AI tool datasets. We identify four critical threats and establish methodological requirements for valid inference. Without these safeguards, apparent patterns likely reflect methodological artifacts. This critique targets methodology, not researchers or datasets, aiming to improve research rigor in AI tool evaluation.
+This study demonstrates validity threats that prevent reliable behavioral inference from observational AI tool datasets. We identify four critical threats and establish methodological requirements for valid inference. Without these safeguards, apparent patterns likely reflect methodological artifacts. This critique targets methodology, not researchers or datasets, aiming to improve research rigor in AI tool evaluation. Future work should prioritize verified attribution, statistically valid sampling structures, and mixed-methods evaluation to enable trustworthy AI tool assessment.
 
 \section*{Acknowledgments}
 We thank H. Li et al. for releasing AIDev and colleagues for feedback. Any errors are our own.

@@ -27,9 +27,11 @@ Observational datasets of AI-assisted pull requests face methodological challeng
 
 \section{Introduction}
 
-Large-scale datasets of AI-assisted pull requests offer insights into real-world tool usage but face methodological challenges that can invalidate behavioral inferences. This study identifies and demonstrates validity threats in observational AI tool datasets, using AIDev (932,791 PRs) as a case study.
+Large-scale datasets of AI-assisted pull requests offer insights into real-world tool usage but face methodological challenges that can invalidate behavioral inferences. This study identifies and demonstrates validity threats in observational AI tool datasets, using the AIDev dataset as an illustrative case study.
 
 We identify four critical threats: (1) agent attribution reliability, (2) statistical clustering violations, (3) measurement bias, and (4) confounding effects. We demonstrate how these threats manifest in observational datasets and render behavioral inference unreliable.
+
+This paper does not analyze or interpret behavioral differences across AI tools. Any dataset-derived examples are used solely to illustrate methodological threats, not to draw conclusions about agent behavior.
 
 \textbf{Contributions}: A methodological framework identifying validity requirements for reliable inference from observational AI tool datasets, with constructive recommendations for improving research practices.
 
@@ -67,6 +69,7 @@ Devin & 1 & 29,744 \\
 \bottomrule
 \end{tabular}
 \end{table}
+\footnotesize{\textit{Note: These values are used solely to illustrate attribution inconsistencies and are not interpreted as reflecting real tool usage.}}
 
 Such extreme disparities in contribution patterns suggest systematic labeling inconsistencies rather than genuine usage differences.
 
@@ -78,6 +81,7 @@ Such extreme disparities in contribution patterns suggest systematic labeling in
 \caption{Distribution of contributions showing clustering patterns}
 \label{fig:clustering}
 \end{figure}
+\footnotesize{\textit{Note: Shown only to demonstrate clustering structure; not used to support behavioral inference.}}
 
 Such clustering patterns violate independence assumptions required for valid statistical inference.
 
@@ -117,7 +121,7 @@ Valid behavioral inference requires:
 
 \textbf{Clustering Control}: Multilevel modeling or cluster-robust methods accounting for user, repository, and organizational structure.
 
-\textbf{Measurement Validation}: Manual validation (n$\geq$500) across languages and contexts, with bias quantification and correction.
+\textbf{Measurement Validation}: Manual validation (n≥500) across languages and contexts, with bias quantification and correction.
 
 \textbf{Confounding Assessment}: Collection of developer, project, and temporal covariates with appropriate analytical controls (matching, instrumental variables).
 
@@ -149,7 +153,7 @@ This study demonstrates fundamental validity threats that prevent reliable behav
 
 Our methodological framework establishes requirements for valid inference: attribution verification, clustering control, measurement validation, and confounding assessment. Without these safeguards, apparent patterns in observational data likely reflect methodological artifacts.
 
-This critique targets methodology, not researchers or datasets. While observational studies provide valuable descriptive insights, behavioral claims require controlled experimental designs that address these fundamental validity threats.
+This critique targets methodology, not researchers or datasets. While observational studies provide valuable descriptive insights, behavioral claims require controlled experimental designs that address these fundamental validity threats. Future work should prioritize verified attribution, statistically valid sampling structures, and mixed-methods evaluation to enable trustworthy AI tool assessment.
 
 \section*{Acknowledgments}
 We thank H. Li et al. for releasing AIDev and colleagues for feedback. Any errors are our own.

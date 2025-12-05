@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.5)  5 DEC 2025 20:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.5)  5 DEC 2025 20:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -224,28 +224,24 @@ fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 48.
+(Font)              <8> on input line 50.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 48.
+(Font)              <6> on input line 50.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 48.
+(Font)              <5> on input line 50.
+ [1{C:/Users/Ahmed/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/A
+hmed/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
+]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 87.
+(Font)              <7> on input line 91.
 
-Underfull \hbox (badness 2173) in paragraph at lines 87--88
+Underfull \hbox (badness 2173) in paragraph at lines 91--92
 []\OT1/ptm/b/n/10 Measurement Val-i-da-tion\OT1/ptm/m/n/10 : Man-ual val-i-da-t
 ion (n$\OMS/cmsy/m/n/10 ^^U$\OT1/ptm/m/n/10 500)
  []
 
-[1{C:/Users/Ahmed/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Ah
-med/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
-
-
-]
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -270,14 +266,14 @@ Here is how much of TeX's memory you used:
  24646 multiletter control sequences out of 15000+600000
  593197 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,8n,65p,520b,261s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,8n,65p,624b,261s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmsy10.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/
 utmb8a.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/
 utmbi8a.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times
 /utmr8a.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times
 /utmri8a.pfb>
-Output written on MSR2026_4p.pdf (2 pages, 72576 bytes).
+Output written on MSR2026_4p.pdf (2 pages, 73021 bytes).
 PDF statistics:
  35 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
