@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.5)  5 DEC 2025 20:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.5)  5 DEC 2025 20:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -262,8 +262,7 @@ tex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count284
 \l__pdf_internal_box=\box55
-)
-No file MSR2026_COMPLETE.aux.
+) (MSR2026_COMPLETE.aux)
 \openout1 = `MSR2026_COMPLETE.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
@@ -280,6 +279,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
+
 -- Lines per column: 56 (exact).
 
 (C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
@@ -311,23 +311,75 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 
 
 ]
-Underfull \hbox (badness 2903) in paragraph at lines 98--99
+Underfull \hbox (badness 1735) in paragraph at lines 56--57
+[]\OT1/ptm/m/n/10 However, this ap-peal cre-ates a dan-ger-ous il-lu-sion of
+ []
+
+
+Underfull \hbox (badness 2903) in paragraph at lines 114--115
  \OT1/ptm/m/it/10 1) At-tri-bu-tion Fail-ure Ex-am-ples: [][] \OT1/ptm/m/n/10 E
 x-am-i-na-tion of the
  []
 
-
-Underfull \hbox (badness 2653) in paragraph at lines 130--131
+[2]
+Underfull \hbox (badness 2653) in paragraph at lines 146--147
 []\OT1/ptm/b/n/10 Ecosystem Blind-ness. \OT1/ptm/m/n/10 Lan-guages with dif-fer
 -ent test-
  []
 
 
-Underfull \hbox (badness 1917) in paragraph at lines 130--131
+Underfull \hbox (badness 1917) in paragraph at lines 146--147
 \OT1/ptm/m/n/10 ing con-ven-tions (property-based test-ing, con-tract test-ing,
 
  []
 
+
+Underfull \hbox (badness 1931) in paragraph at lines 194--195
+[]\OT1/ptm/b/n/10 Labeling In-con-sis-tency. \OT1/ptm/m/n/10 Dif-fer-ent la-bel
+-ing ap-proaches
+ []
+
+
+Underfull \hbox (badness 1502) in paragraph at lines 198--199
+[]\OT1/ptm/b/n/10 Organizational Vari-a-tion. \OT1/ptm/m/n/10 Dif-fer-ent cor-p
+o-rate poli-cies
+ []
+
+LaTeX Font Info:    Trying to load font information for U+msa on input line 226
+.
+(C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 226
+.
+
+(C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 238--239
+[]\OT1/ptm/b/n/10 Statistical Mis-ap-pli-ca-tion. \OT1/ptm/m/n/10 Ap-ply-ing in
+dependence-
+ []
+
+
+Underfull \hbox (badness 1603) in paragraph at lines 246--247
+[]\OT1/ptm/m/n/10 Before con-duct-ing ob-ser-va-tional AI tool re-search, re-
+ []
+
+
+Underfull \hbox (badness 1946) in paragraph at lines 318--319
+[]\OT1/ptm/b/n/10 Systematic Re-views. \OT1/ptm/m/n/10 Meta-analyses com-bine e
+v-i-dence
+ []
+
+[4]
+Underfull \hbox (badness 3826) in paragraph at lines 330--331
+[]\OT1/ptm/b/n/10 Metrics Re-search. \OT1/ptm/m/n/10 Many pro-posed soft-ware m
+et-rics
+ []
+
+[5]
 
 ! LaTeX Error: Unicode character ≠ (U+2260)
                not set up for use with LaTeX.
@@ -336,8 +388,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.172 \textbf{Sample Size ≠ Validity.}
-                                         Measurement error, attribution fail...
+l.426 \textbf{Dataset Size ≠ Validity.}
+                                          The appeal of large observational ...
 
 ? pdflatex MSR2026_COMPLETE.tex
 Type <return> to proceed, S to scroll future error messages,
@@ -348,21 +400,23 @@ H for help, X to quit.
 ? echo.
  
 Here is how much of TeX's memory you used:
- 3614 strings out of 474486
- 58612 string characters out of 5743755
- 1938542 words of memory out of 5000000
- 25895 multiletter control sequences out of 15000+600000
- 588543 words of font info for 85 fonts, out of 8000000 for 9000
+ 3652 strings out of 474486
+ 59421 string characters out of 5743755
+ 1941542 words of memory out of 5000000
+ 25918 multiletter control sequences out of 15000+600000
+ 590242 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,8n,65p,786b,265s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb>
-<C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb
-><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb
-><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pf
-b>
-Output written on MSR2026_COMPLETE.pdf (1 page, 64299 bytes).
+<C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
+r10.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmsy10.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/
+times/utmb8a.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw/
+times/utmbi8a.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw
+/times/utmr8a.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/urw
+/times/utmri8a.pfb>
+Output written on MSR2026_COMPLETE.pdf (5 pages, 105595 bytes).
 PDF statistics:
- 27 PDF objects out of 1000 (max. 8388607)
+ 49 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
