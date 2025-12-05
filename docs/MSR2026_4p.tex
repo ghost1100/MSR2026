@@ -65,23 +65,23 @@ Cursor & 32{,}941 & 18.96 \\
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.47\textwidth]{figures/complete_dataset_test_contribution_rates.png}
+  \includegraphics[width=0.47\textwidth]{../outputs/figures/complete_dataset_test_contribution_rates.png}
   \caption{Test-related PR rates by agent.}
   \label{fig:rates}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.47\textwidth]{figures/complete_dataset_agent_distribution.png}
+  \includegraphics[width=0.47\textwidth]{../outputs/figures/complete_dataset_agent_distribution.png}
   \caption{Agent distribution (counts and percentages).}
   \label{fig:dist}
 \end{figure}
 
-    	extbf{Acceptance.} Acceptance (merged/closed) varies by agent. We avoid causal interpretations because usage contexts differ (e.g., prototyping vs. production). We find no monotonic relationship between testing percentage and acceptance percentage, suggesting multiple interacting factors.
+\textbf{Acceptance.} Acceptance (merged/closed) varies by agent. We avoid causal interpretations because usage contexts differ (e.g., prototyping vs. production). We find no monotonic relationship between testing percentage and acceptance percentage, suggesting multiple interacting factors.
 
-	extbf{Robustness.} Excluding the single Devin user (n=903{,}047) increases Cramér's V to 0.669. Treating all Codex-labeled PRs as Copilot yields a Copilot rate of 97.37\% and leaves the overall rate unchanged (93.52\%). Excluding Codex (to examine the smaller-agent subset) preserves relative ordering and yields 59.5\% overall for the remaining agents.
+\textbf{Robustness.} Excluding the single Devin user (n=903{,}047) increases Cramér's V to 0.669. Treating all Codex-labeled PRs as Copilot yields a Copilot rate of 97.37\% and leaves the overall rate unchanged (93.52\%). Excluding Codex (to examine the smaller-agent subset) preserves relative ordering and yields 59.5\% overall for the remaining agents.
 
-	extbf{Description--title matching.} On a 3k sample, overall matching rate is \~70.07\%. By agent: Copilot \~88.31\%, Devin \~90.0\% (single user caveat), Claude \~77\%, Codex \~71--74\%, Cursor \~51.30\%. These associations support the interpretation that Cursor PRs skew more exploratory, while Copilot/Codex-era PRs communicate intent more consistently.
+\textbf{Description--title matching.} On a 3k sample, overall matching rate is \~70.07\%. By agent: Copilot \~88.31\%, Devin \~90.0\% (single user caveat), Claude \~77\%, Codex \~71--74\%, Cursor \~51.30\%. These associations may reflect different usage contexts rather than inherent agent characteristics.
 
 \section{Acceptance Patterns}
 Acceptance (merged/closed) varies across agents but does not exhibit a simple relationship with testing percentages. Multiple mediating factors (repository policies, task type, developer experience) likely contribute. Observational data cannot disentangle these influences without additional controls. We therefore report acceptance descriptively and do not infer mechanisms.
@@ -90,7 +90,9 @@ Acceptance (merged/closed) varies across agents but does not exhibit a simple re
 Recent code-generation studies emphasize functional correctness and security \cite{chen2021evaluating}, while empirical work reports developer experiences with assistants such as Copilot \cite{bareiss2023code}. Classic testing literature cautions that coverage does not imply effectiveness \cite{inozemtseva2014coverage}. Broader empirical software engineering has explored ownership and review dynamics \cite{bird2011dont,bacchelli2013expectations}, and change classification \cite{kim2008classifying}. Our population-level analysis complements these by focusing on observed testing presence across agents in the wild.
 
 \section{Practical Implications}
-Organizations may treat agent choice as one input when designing workflows. For example, teams could tailor review policies or add safeguards where testing presence is historically lower, and validate whether such adjustments improve outcomes. Because our results are correlational, any process changes should be evaluated locally with A/B-style checks before broad adoption.
+\textbf{Limitations for Practice}: Our observational data cannot support specific organizational recommendations. Testing presence does not guarantee testing quality. Observed patterns may reflect user selection rather than agent capabilities.
+
+\textbf{Evaluation Considerations}: Organizations evaluating AI tools should consider testing behavior patterns as one signal among many (cost, integration, learning curve). However, controlled evaluation within specific organizational contexts remains necessary before making process changes.
 
 \section{Threats and Ethics}
 \textbf{Attribution noise.} Agent labels are derived from metadata/self-report. Misclassification likely attenuates differences rather than fabricating \~80-point gaps.
@@ -98,9 +100,13 @@ Organizations may treat agent choice as one input when designing workflows. For 
 \textbf{Selection effects.} Developers and organizations may choose agents by task and context; associations may reflect usage patterns, not capabilities.
 
 \textbf{Construct limits.} We measure test presence, not correctness or coverage. Merge status is a coarse outcome proxy. Repository, language, and team factors are unobserved and may confound associations.\section{Limitations}
-Our keyword-based detection favors recall and may include some false positives. The dataset aggregates across many repositories and time periods; heterogeneity may mask domain-specific patterns. Agent labels are proxies subject to noise; our sensitivity checks mitigate but cannot eliminate this threat. Finally, we do not assess the quality or maintainability of detected tests.
+\textbf{What We Cannot Establish}: (1) Causation - agents may not cause testing differences; developers may select agents based on task needs. (2) Quality - test presence does not indicate correctness or effectiveness. (3) Organizational behavior - no evidence teams adapt processes to agent characteristics.
 
-\textbf{Ethics.} We analyze public data; results are aggregate-only. We avoid judging individuals or vendors and refrain from causal claims.
+\textbf{Measurement Limitations}: Keyword-based detection may include false positives/negatives. Agent labels depend on metadata/self-reports. Multiple confounders (language, project type, team culture) remain uncontrolled. Dataset aggregation may mask domain-specific patterns.
+
+\textbf{Statistical Caveats}: Large sample size makes tiny effects significant; we report effect sizes for practical significance. No multiple comparison corrections applied. Association strength (V=0.646) does not establish causation.
+
+\textbf{Ethics.} We analyze public data; results are aggregate-only. We avoid judging individuals or vendors and emphasize correlational rather than causal interpretation.
 
 \section{Reproducibility and Availability}
 We provide scripts to recompute key statistics directly from the raw CSV (chunked processing), plus a sensitivity script for Codex labeling. Figures are generated from the same pipeline. Data source: AIDev (HuggingFace, config: all\_pull\_request). Repository link: \url{https://github.com/ghost1100/MSR2026}.

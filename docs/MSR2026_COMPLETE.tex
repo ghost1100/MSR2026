@@ -324,15 +324,24 @@ Cursor & 32,941 & 18.7 & 78.6 & 9,658 & 38.7 chars \\
 
 \textit{Step 3 - Effect Size Computation}: Cramér's V = $\sqrt{\chi^2 / (n \times (min(r,c)-1))}$ = $\sqrt{389,069 / (932,791 \times 1)}$ = 0.646
 
-	extit{Step 4 - Interpretation}: 
+\textit{Step 4 - Interpretation}: 
 \begin{itemize}
-    \item The p-value $< 0.001$ indicates we can reject the null hypothesis (independence)
-    \item The V = 0.646 effect size is classified as ``large'' (Cohen's convention: V $\geq$ 0.5)
+    \item The p-value $< 0.001$ indicates we can reject the null hypothesis of independence between agent choice and testing behavior
+    \item The V = 0.646 effect size is classified as ``large'' (Cohen's convention: V $\geq$ 0.5), indicating strong association
     \item We report V as association strength; $V^2$ should not be interpreted as variance explained like regression $R^2$
-    \item With $n = 932{,}791$, even tiny effects would be significant; the large effect size indicates practical importance
+    \item With $n = 932{,}791$, even tiny effects would achieve significance; the large effect size suggests practical importance
+    \item \textbf{Causation caveat}: Statistical association does not establish that agents cause testing differences
 \end{itemize}
 
-\textit{Conclusion}: The relationship between AI agent and testing behavior is both statistically significant (definitive evidence) and practically important (large effect). This is not a sampling artifact—we analyzed the complete available population.
+\textit{Statistical Limitations}: 
+\begin{itemize}
+    \item \textbf{Confounding}: We cannot control for developer selection, project type, organizational culture, or task characteristics
+    \item \textbf{Multiple comparisons}: No correction applied for multiple agent comparisons; individual comparisons should be interpreted cautiously
+    \item \textbf{Effect heterogeneity}: Aggregate effects may mask important subgroup differences (e.g., by programming language or repository type)
+    \item \textbf{Measurement error}: Test detection is keyword-based and may include false positives/negatives
+\end{itemize}
+
+\textit{Conclusion}: The relationship between AI agent choice and testing behavior shows strong statistical association and large effect size. However, this is correlation, not causation—controlled studies are needed to establish whether agents cause behavioral differences.
 
 \begin{figure}[H]
 \centering
@@ -343,7 +352,7 @@ Cursor & 32,941 & 18.7 & 78.6 & 9,658 & 38.7 chars \\
 
 \subsection{RQ2: Quality Metrics and Acceptance Patterns}
 
-Despite dramatic testing behavior differences, acceptance rates remain remarkably consistent across all agents (89.1\% - 94.6\%). This consistency across 932,791 observations suggests that development teams successfully adapt their review processes to leverage different agent capabilities effectively.
+Despite dramatic testing behavior differences, acceptance rates vary across agents (78.6\% - 94.4\%). This variation across 932,791 observations could reflect multiple factors including code quality, usage context, review standards, or project characteristics.
 
 \textbf{User Adoption Analysis}: The complete dataset reveals authentic adoption patterns across 72,189 unique developers:
 \begin{itemize}
@@ -422,15 +431,15 @@ Our findings document substantial associations between agent choice and testing 
 
 \textbf{Informed Tool Evaluation}: The observed 79.8 percentage-point range in testing rates (18.7\% to 98.5\%) provides one signal for evaluating AI tools. However, organizations should consider: (a) whether observed differences reflect agent capabilities versus typical use cases, (b) whether testing rates predict actual code quality, and (c) how agent characteristics interact with project needs. Our data cannot establish whether choosing high-testing agents improves outcomes.
 
-\textbf{Process Considerations}: The documented testing behavior variation suggests organizations might consider agent characteristics when designing processes. Potential approaches include:
+\textbf{Process Considerations}: The documented testing behavior variation provides one signal for tool evaluation, but organizations should exercise caution in interpretation:
 \begin{itemize}
-    \item Investigating whether review effort should vary based on agent testing patterns
-    \item Evaluating whether supplementary checks benefit low-test-rate agents
-    \item Considering how agent selection aligns with development phase (prototyping vs. production)
-    \item Understanding observed patterns through developer education
+    \item Testing presence does not guarantee testing quality or effectiveness
+    \item Observed patterns may reflect user selection rather than agent capabilities  
+    \item Usage contexts (prototyping vs. production) may confound apparent agent effects
+    \item Multiple confounding variables remain uncontrolled in our observational data
 \end{itemize}
 
-\textit{Critical caveat}: These are speculative recommendations requiring validation. Controlled studies or organizational case studies must establish whether agent-aware processes improve outcomes.
+\textit{Critical limitation}: Our data cannot support specific organizational recommendations. Any process changes require local validation through controlled evaluation within specific organizational contexts.
 
 \textbf{Research Agenda}: Key unanswered questions include:
 \begin{enumerate}
@@ -456,11 +465,21 @@ This study contributes to understanding AI-assisted development through:
 
 \subsection{Limitations and Threats to Validity}
 
+\textbf{What This Study Cannot Establish}:
+\begin{itemize}
+    \item \textbf{Causation}: We cannot prove agents cause testing differences vs. developers selecting agents based on task needs
+    \item \textbf{Quality}: Test presence does not indicate test correctness, coverage adequacy, or maintainability
+    \item \textbf{Organizational adaptation}: No evidence that teams adjust review processes based on agent characteristics
+    \item \textbf{Code quality}: Acceptance rates may reflect usage context rather than code quality differences
+    \item \textbf{Agent capabilities}: Observed patterns may reflect training data or user behavior rather than intentional agent design
+\end{itemize}
+
 \textbf{Internal Validity}:
 \begin{itemize}
-    \item \textbf{Test Classification}: Keyword-based detection may miss sophisticated testing practices embedded within non-obvious file structures or implicit quality assurance approaches
-    \item \textbf{Agent Attribution}: Dataset labeling accuracy depends on GitHub metadata and user declarations, potentially introducing classification noise
-    \item \textbf{Behavioral Confounding}: Observed differences might reflect user selection effects rather than pure agent behavior
+    \item \textbf{Test Classification}: Keyword-based detection may miss sophisticated testing practices or misclassify non-test files
+    \item \textbf{Agent Attribution}: Dataset labeling depends on GitHub metadata and self-reports, introducing potential classification noise
+    \item \textbf{Selection Bias}: Developers may systematically choose different agents for different types of work (prototyping vs. production)
+    \item \textbf{Confounding Variables}: Programming language, repository maturity, team culture, project type, and developer experience are uncontrolled
 \end{itemize}
 
 \textbf{External Validity}:
