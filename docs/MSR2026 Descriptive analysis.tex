@@ -2,12 +2,12 @@
 \IEEEoverridecommandlockouts
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
-\usepackage{algorithmic}
-\usepackage{graphicx}
-\usepackage{textcomp}
-\usepackage{xcolor}
+
+
+
+
 \usepackage{booktabs}
-\usepackage{multirow}
+
 \usepackage{url}
 \usepackage{float}
 \usepackage{balance}
@@ -31,7 +31,7 @@ Edinburgh, Scotland \\
 \maketitle
 
 \begin{abstract}
-The MSR 2026 Challenge dataset contains \textbf{42,179} pull requests from AI-assisted development. This paper characterizes this dataset through systematic analysis of the complete aidata.csv file. We document real agent distribution: \textbf{GitHub Copilot 87.8\%} (37,042 PRs) and \textbf{Claude Code 12.2\%} (5,137 PRs). Analysis reveals \textbf{1,934 unique users} with average 21.8 PRs per user, high data completeness (99.3\%), and 81.7\% closure rate. The top contributor accounts for 36,596 PRs while median user contributes 1 PR. This characterization enables informed empirical research design and methodological decisions for the MSR 2026 Challenge dataset.
+The MSR 2026 Challenge dataset contains \textbf{42,179} pull requests labeled with AI agent attribution from the official MSR 2026 HuggingFace PR-level release (aidata.csv). This paper characterizes this dataset through systematic analysis of all records in the dataset. We document real agent distribution: \textbf{GitHub Copilot 87.8\%} (37,042 PRs) and \textbf{Claude Code 12.2\%} (5,137 PRs). Analysis reveals \textbf{1,934 unique users} with average 21.8 PRs per user, high completeness of core text fields (99.3\%, though label validity and PR authenticity remain unverified), and 81.7\% closure rate. The top contributor accounts for 36,596 PRs while median user contributes 1 PR. This characterization enables informed empirical research design and methodological decisions for the MSR 2026 Challenge dataset.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -40,13 +40,13 @@ dataset analysis, descriptive statistics, data quality, pull requests, MSR chall
 
 \section{Introduction}
 
-Large-scale software engineering datasets require rigorous characterization before use in empirical research. The MSR 2026 Challenge dataset, containing \textbf{42,179 pull requests} with AI agent labels from the aidata.csv file, presents valuable opportunities for dataset-level descriptive analysis and characterization.
+Large-scale software engineering datasets require rigorous characterization before use in empirical research. The official MSR 2026 HuggingFace PR-level release (aidata.csv), containing \textbf{42,179 pull requests} with AI agent labels, presents valuable opportunities for dataset-level descriptive analysis and characterization.
 
-This paper provides a comprehensive characterization of the MSR 2026 dataset structure based on genuine analysis of the complete aidata.csv file. Through systematic analysis of all 42,179 records, we document the distributional properties, user patterns, and data quality characteristics that inform empirical research design.
+This paper provides a comprehensive characterization of the dataset structure based on genuine analysis of the official MSR 2026 HuggingFace PR-level release (aidata.csv). Through systematic analysis of all 42,179 records, we document the distributional properties, user patterns, and data quality characteristics that inform empirical research design.
 
-Our analysis reveals important structural properties: \textbf{GitHub Copilot dominates with 87.8\% of contributions} (37,042 PRs), while \textbf{Claude Code provides 12.2\%} (5,137 PRs). The dataset spans \textbf{1,934 unique users} with substantial contribution variation—from single-PR contributors (median) to one user contributing 36,596 PRs. 
+Our analysis reveals important structural properties: PRs labeled as \textbf{'GitHub Copilot' account for 87.8\% of records} (37,042 PRs), while \textbf{'Claude Code' labels represent 12.2\%} (5,137 PRs). However, because 86.7\% of all PRs originate from a single system-associated account, these records cannot be assumed to represent independent tool usage. The dataset spans \textbf{1,934 unique users} with substantial contribution variation—from single-PR contributors (median) to one user contributing 36,596 PRs. 
 
-A notable characteristic of this dataset is the extreme contribution concentration: one user account contributes 36,596 of the 42,179 pull requests (86.7\%). This concentration likely reflects automated or system-generated activity rather than individual developer behavior, and must be considered when designing empirical studies. Understanding these distributional patterns is essential for appropriate statistical analysis and methodological design.
+A notable characteristic of this dataset is the extreme contribution concentration: one user account contributes 36,596 of the 42,179 pull requests (86.7\%). This concentration likely reflects automation or institutional data collection rather than individual developer behavior, and must be considered when designing empirical studies. Understanding these distributional patterns is essential for appropriate statistical analysis and methodological design.
 
 \subsection{Motivation}
 
@@ -64,7 +64,7 @@ We systematically characterize the MSR 2026 dataset through four research questi
 
 \textbf{RQ1}: \textit{What are the structural and distributional properties of the dataset, including label imbalances and user patterns?}
 
-\textbf{RQ2}: \textit{What data quality issues exist, including missing fields, timestamp anomalies, duplicate content, and metadata inconsistencies?}
+\textbf{RQ2}: \textit{What data quality issues exist, including missing fields and metadata completeness patterns?}
 
 \textbf{RQ3}: \textit{What are the distributions of key metadata fields (title lengths, description availability, closure rates) and how do they vary across labels?}
 
@@ -74,11 +74,11 @@ We systematically characterize the MSR 2026 dataset through four research questi
 
 This paper makes several descriptive contributions:
 \begin{enumerate}
-    \item \textbf{Real dataset characterization} documenting actual distributions and metadata patterns across all 42,179 pull requests from aidata.csv
-    \item \textbf{Genuine statistical analysis} computing real agent distributions, user patterns, and data quality metrics
-    \item \textbf{Authentic baselines} providing verified reference statistics for future research
+    \item \textbf{Empirical dataset characterization} documenting actual distributions and metadata patterns across all 42,179 pull requests from aidata.csv
+    \item \textbf{Observed statistical analysis} computing agent distributions, user patterns, and data quality metrics
+    \item \textbf{Directly computed baselines} providing verified reference statistics for future research
     \item \textbf{Methodological documentation} based on actual dataset properties
-    \item \textbf{Reproducible analysis framework} with code and visualizations derived from real data
+    \item \textbf{Replication materials} with code and visualizations derived from real data
 \end{enumerate}
 
 \section{Related Work}
@@ -105,11 +105,11 @@ This methodological perspective motivates our focus on dataset characterization 
 
 \subsection{Dataset and Analysis Scope}
 
-We analyzed the complete MSR 2026 Challenge dataset containing \textbf{42,179 pull requests} loaded from the aidata.csv file (524.4 MB). The dataset includes fields for agent labels, user IDs, timestamps, PR titles, descriptions, closure status, and repository metadata across 14 columns.
+We analyzed the official MSR 2026 HuggingFace PR-level release (aidata.csv) containing \textbf{42,179 pull requests} (147.3 MB). The dataset includes fields for agent labels, user IDs, timestamps, PR titles, descriptions, closure status, and repository metadata across 14 columns.
 
 Our analysis processed the entire dataset to capture structural patterns and distributional properties. We used pandas for data manipulation and matplotlib/seaborn for visualization generation, producing real visualizations documenting actual dataset characteristics computed from the aidata.csv file.
 
-\begin{table}[H]
+\begin{table}[t]
 \centering
 \caption{MSR 2026 Dataset Overview}
 \label{tab:dataset_overview}
@@ -131,13 +131,13 @@ Closure Rate & 81.7\% \\
 
 \subsection{Real Dataset Distributions}
 
-The complete aidata.csv dataset shows a two-agent distribution:
+The dataset shows a two-agent distribution:
 \begin{itemize}
     \item \textbf{GitHub Copilot}: 37,042 PRs (87.8\%)
     \item \textbf{Claude Code}: 5,137 PRs (12.2\%)
 \end{itemize}
 
-This binary distribution reflects the specific AI agents captured in the MSR 2026 dataset, with GitHub Copilot representing the dominant presence. The 7:1 ratio between agents provides sufficient representation for exploratory comparative analysis while avoiding extreme imbalance issues.
+This binary distribution reflects the specific AI agents captured in the MSR 2026 dataset, with GitHub Copilot representing the dominant presence. While both labels are numerically represented, extreme user-level clustering severely limits any valid comparative behavioral analysis between agents.
 
 \subsection{Data Quality Assessment Methods}
 
@@ -145,7 +145,7 @@ We systematically assessed data quality through multiple approaches:
 
 \textbf{User Pattern Analysis}: Examined user ID distributions per agent to identify suspicious patterns like single-user dominance or bot accounts.
 
-\textbf{Metadata Distribution Analysis}: Computed descriptive statistics for title lengths, body lengths, closure rates, and test keyword patterns across agent categories.
+\textbf{Metadata Distribution Analysis}: Computed descriptive statistics for title lengths, body lengths, and closure rates across agent categories.
 
 \textbf{Structural Assessment}: Analyzed label imbalances, category sizes, and user-to-PR ratios to identify potential data collection artifacts.
 
@@ -163,16 +163,11 @@ We computed comprehensive descriptive statistics for all metadata fields:
 
 \subsection{RQ1: Structural and Distributional Properties}
 
-Analysis of the complete aidata.csv reveals clear distributional properties based on real data:
+Analysis of the dataset reveals clear distributional properties based on real data:
 
-\textbf{Binary Agent Distribution}: The dataset contains two AI agents with a manageable imbalance ratio of approximately 7:1: GitHub Copilot with 37,042 PRs (87.8\%) and Claude Code with 5,137 PRs (12.2\%). This distribution provides sufficient representation for exploratory comparative analysis while maintaining statistical validity. Figure~\ref{fig:agent_distribution} shows the real distribution computed from aidata.csv.
+\textbf{Binary Agent Distribution}: The dataset contains two AI agents with a moderate class imbalance (7.2:1): GitHub Copilot with 37,042 PRs (87.8\%) and Claude Code with 5,137 PRs (12.2\%). While both labels are numerically represented, extreme user-level clustering severely limits any valid comparative behavioral analysis between agents.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.8\columnwidth]{real_agent_distribution.png}
-\caption{Real Agent Distribution in MSR 2026 Dataset (n=42,179) computed from aidata.csv}
-\label{fig:agent_distribution}
-\end{figure}
+\noindent\textit{Observed Agent Label Distribution visualization available in the replication repository:} \url{https://github.com/ghost1100/MSR}
 
 \textbf{User Distribution Analysis}: The complete dataset spans \textbf{1,934 unique users} with extreme contribution concentration:
 \begin{itemize}
@@ -184,14 +179,14 @@ Analysis of the complete aidata.csv reveals clear distributional properties base
 
 \textbf{User Concentration Analysis}: The extreme dominance of a single user requires careful interpretation. The "Copilot" user account may represent:
 \begin{itemize}
-    \item Automated PR generation by the Copilot system itself
+    \item Automated or institutionally generated PR activity associated with the Copilot label
     \item A bot or system account rather than human developer activity
     \item Batch data collection artifacts requiring methodological consideration
 \end{itemize}
 
-\begin{table}[H]
+\begin{table}[t]
 \centering
-\caption{Agent Distribution Summary (Computed from aidata.csv)}
+\caption{Agent Distribution Summary}
 \label{tab:agent_distribution}
 \begin{tabular}{@{}lrrrr@{}}
 \toprule
@@ -205,7 +200,7 @@ Claude Code & 5,137 & 12.2\% & 4,152 & 985 \\
 \end{tabular}
 \end{table}
 
-\begin{table}[H]
+\begin{table}[t]
 \centering
 \caption{User Contribution Statistics}
 \label{tab:user_stats}
@@ -223,7 +218,7 @@ Users with 1 PR only & 1,689 (87.3\%) \\
 \end{tabular}
 \end{table}
 
-\begin{table}[H]
+\begin{table}[t]
 \centering
 \caption{Data Completeness Summary}
 \label{tab:completeness}
@@ -244,14 +239,14 @@ State & 0 (0\%) & 42,179 (100\%) \\
 
 \subsection{RQ2: Data Quality Assessment}
 
-Real data quality analysis of the complete aidata.csv reveals good overall quality with specific considerations:
+Empirical data quality analysis of the dataset reveals good field-level completeness with specific considerations. We did not observe systematic timestamp anomalies or large-scale duplicate records in the dataset:
 
 \textbf{Missing Data Assessment}: The dataset demonstrates high completeness across key fields:
 \begin{itemize}
     \item \textbf{Missing titles}: 1 record (0.002\% of 42,179 total)
     \item \textbf{Missing body content}: 300 records (0.71\% of dataset)  
     \item \textbf{Empty fields}: No empty titles or body content detected
-    \item \textbf{Overall completeness}: 99.3\% complete data coverage
+    \item \textbf{Overall field completeness}: 99.3\% complete data coverage (though label validity remains unverified)
 \end{itemize}
 
 \textbf{User Contribution Distribution}: Analysis reveals characteristic patterns in real-world usage:
@@ -262,7 +257,7 @@ Real data quality analysis of the complete aidata.csv reveals good overall quali
     \item \textbf{Distribution characteristics}: Highly skewed toward few high-volume contributors
 \end{itemize}
 
-These patterns reflect realistic open-source contribution distributions where few contributors generate most content.
+While skewed contribution distributions are common in open-source projects, the extreme dominance observed here (86.7\% from one account) exceeds typical human contribution patterns and likely reflects automation or institutional data collection rather than individual developer behavior.
 
 \subsection{RQ3: Metadata Characteristics and Patterns}
 
@@ -291,20 +286,13 @@ Analysis of metadata fields reveals key distributional properties from the real 
     \item \textbf{User distribution}: Long-tail pattern typical of open source development
 \end{itemize}
 
-Figure~\ref{fig:user_activity} shows the real user activity distribution computed from aidata.csv.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=\columnwidth]{real_user_activity_distribution.png}
-\caption{Real User Activity Distribution showing contribution patterns from aidata.csv}
-\label{fig:user_activity}
-\end{figure}
+The observed user activity distribution shows extreme concentration patterns.
 
 \subsection{RQ4: Methodological Implications and Recommendations}
 
-The real dataset analysis provides important guidance for empirical research design:
+The dataset analysis provides important guidance for empirical research design:
 
-\textbf{Sample Size Adequacy}: With 42,179 total records distributed across two agents (37,042 Copilot, 5,137 Claude Code), the dataset provides sufficient statistical power for comparative analysis while maintaining manageable computational requirements.
+\textbf{Sample Size Adequacy}: With 42,179 total records distributed across two label categories (37,042 Copilot-labeled, 5,137 Claude-labeled), the dataset provides sufficient statistical power for exploratory structural analysis while maintaining manageable computational requirements, though extreme user clustering limits behavioral generalizations.
 
 \textbf{User Independence Considerations}: The highly skewed user contribution pattern (one user contributing 86.7\% of data) requires careful statistical treatment. Researchers should consider:
 \begin{itemize}
@@ -315,11 +303,11 @@ The real dataset analysis provides important guidance for empirical research des
 
 \textbf{Missing Data Management}: The minimal missing data (0.71\% body content, 0.002\% titles) allows for straightforward complete-case analysis without significant bias introduction.
 
-\textbf{Comparative Analysis Feasibility}: The 7:1 ratio between Copilot and Claude Code provides adequate representation for exploratory comparative studies while avoiding extreme imbalance issues that plague other datasets.
+\textbf{Label Representation}: The 7:1 ratio between Copilot and Claude Code provides numerical representation of both categories, though extreme user-level clustering prevents valid comparative behavioral analysis.
 
-\begin{table}[H]
+\begin{table}[t]
 \centering
-\caption{Real Dataset Quality Assessment}
+\caption{Dataset Quality Assessment}
 \label{tab:quality_assessment}
 \begin{tabular}{@{}lr@{}}
 \toprule
@@ -341,11 +329,11 @@ Closure rate & 81.7\% \\
 
 \subsection{Dataset Characteristics and Research Implications}
 
-The real analysis of aidata.csv reveals important characteristics that inform empirical research design:
+The empirical analysis of aidata.csv reveals important characteristics that inform empirical research design:
 
-\textbf{Manageable Agent Distribution}: The 87.8\% Copilot vs. 12.2\% Claude Code distribution provides adequate representation for comparative analysis. While imbalanced, the 7:1 ratio is within reasonable bounds for statistical comparison, unlike more extreme imbalances that render analysis invalid.
+\textbf{Agent Label Distribution}: The 87.8\% Copilot vs. 12.2\% Claude Code distribution provides numerical representation of both labels, but does not support valid behavioral comparison due to extreme user-level clustering. The 7:1 ratio avoids extreme imbalances, but clustering effects prevent meaningful comparative inference.
 
-\textbf{User Contribution Patterns}: The highly skewed user distribution (one user contributing 86.7\% of data) reflects realistic open-source development patterns where few contributors generate most activity. This requires methodological consideration but does not invalidate analysis when properly handled through clustering or stratified approaches.
+\textbf{User Contribution Patterns}: The highly skewed user distribution (one user contributing 86.7\% of data) exceeds typical open-source contribution patterns and likely reflects automation or institutional data collection rather than individual developer behavior. This requires careful methodological consideration and limits behavioral interpretations.
 
 \textbf{Data Quality Adequacy}: With 99.3\% data completeness and minimal missing fields, the dataset supports robust empirical analysis without extensive preprocessing or imputation requirements.
 
@@ -353,7 +341,7 @@ The real analysis of aidata.csv reveals important characteristics that inform em
 
 The dataset characteristics suggest several important methodological guidelines:
 
-\textbf{Statistical Power Considerations}: The 42,179 total records provide substantial statistical power for most analyses while remaining computationally manageable. The binary agent distribution simplifies comparative analysis while avoiding multi-class complexity.
+\textbf{Sample Size Considerations}: The 42,179 total records provide large numerical coverage for descriptive and structural analyses while remaining computationally manageable. The binary label distribution simplifies structural analysis while avoiding multi-class complexity.
 
 \textbf{User-Level Dependencies}: The concentrated contribution pattern requires careful treatment of user-level clustering in statistical models. Researchers should consider mixed-effects approaches or user-stratified analysis to account for non-independence.
 
@@ -363,19 +351,19 @@ The dataset characteristics suggest several important methodological guidelines:
 
 The real dataset characteristics enable several valuable research directions:
 
-\textbf{Comparative Analysis Feasibility}: The 7:1 Copilot to Claude Code ratio provides adequate statistical power for exploratory comparative studies of AI agent behavior while avoiding extreme imbalance issues.
+\textbf{Label Distribution}: The 7:1 Copilot to Claude Code ratio provides numerical representation of both categories, though extreme user-level clustering prevents valid comparative behavioral analysis between agents.
 
 \textbf{User-Stratified Analysis}: The concentration of contributions (one user with 86.7\% of data) suggests analyzing high-volume vs. occasional users separately to understand different usage patterns and effectiveness measures.
 
-\textbf{Longitudinal Studies}: With temporal metadata across 42,179 PRs, the dataset supports analysis of AI tool adoption patterns, learning curves, and usage evolution over time.
+\textbf{Temporal Metadata}: The dataset contains temporal metadata that may support limited structural time-based inspection, though batch automation and clustering constrain behavioral time-series inference.
 
 \subsection{Recommendations for Empirical Research}
 
-Based on the real analysis, we recommend:
+Based on the empirical analysis, we recommend:
 
 \begin{enumerate}
     \item \textbf{Account for User Clustering}: Use mixed-effects models or user-stratified analysis to handle the concentrated contribution pattern
-    \item \textbf{Leverage Binary Comparison}: The two-agent structure simplifies comparative analysis while providing sufficient contrast
+    \item \textbf{Leverage Binary Label Structure}: The two-agent structure simplifies structural analysis while providing sufficient contrast
     \item \textbf{Minimal Preprocessing Required}: The high data completeness (99.3\%) allows direct analysis without extensive imputation
     \item \textbf{Consider Temporal Patterns}: Exploit the longitudinal nature for studying adoption and learning effects
 \end{enumerate}
@@ -399,7 +387,7 @@ Based on the real analysis, we recommend:
 \textbf{Dataset Scope Limitations}:
 \begin{itemize}
     \item \textbf{GitHub-Specific}: Data reflects GitHub pull request patterns, not broader development practices
-    \item \textbf{Collection Period}: Eight-month span (December 2024-July 2025) may not represent steady-state usage
+    \item \textbf{Collection Period}: Limited temporal span may not represent steady-state usage
 
 \end{itemize}
 
@@ -423,7 +411,7 @@ This characterization enables several research opportunities while highlighting 
 
 \textbf{User Clustering Effects}: The extreme concentration of contributions (86.7\% from one user) creates severe clustering that violates independence assumptions in statistical analysis. This concentration may reflect automated generation rather than diverse human usage, threatening the validity of behavioral inferences.
 
-\textbf{Agent Label Validity}: Agent labels are taken as provided without independent verification. The "Copilot" user generating 36,596 PRs may represent system-generated data rather than authentic tool usage, affecting label accuracy.
+
 
 \textbf{Temporal Dependencies}: PRs may exhibit temporal clustering or batch generation patterns that create dependencies between observations, violating assumptions required for standard statistical approaches.
 
@@ -437,7 +425,7 @@ This characterization enables several research opportunities while highlighting 
 
 \subsection{Construct Validity}
 
-\textbf{AI Agent Attribution}: The binary classification (Copilot vs. Claude Code) may not capture the complexity of multi-tool environments where developers use multiple AI assistants or hybrid approaches.
+\textbf{AI Agent Attribution}: The binary classification (Copilot vs. Claude Code) may not capture the complexity of multi-tool environments where developers use multiple AI assistants or hybrid approaches. Agent labels are taken as provided without independent verification, and the extreme concentration in the "Copilot" user account may represent system-generated data rather than authentic tool usage.
 
 \textbf{PR Representation}: Pull requests may not accurately represent all AI-assisted development activity, as developers may use AI tools for code that never reaches the PR stage or gets squashed into larger commits.
 
@@ -445,22 +433,15 @@ This characterization enables several research opportunities while highlighting 
 
 \section{Conclusion}
 
-This comprehensive characterization of the MSR 2026 dataset based on real analysis of the aidata.csv file provides essential insights for empirical research design. Analysis of all 42,179 pull requests reveals manageable distributional properties and adequate data quality for robust empirical studies.
+This comprehensive characterization of the official MSR 2026 HuggingFace PR-level release provides essential insights for empirical research design. Analysis of all 42,179 pull requests reveals manageable distributional properties and adequate data quality for robust empirical studies.
 
-\textbf{Key Findings}:
-\begin{enumerate}
-    \item Manageable two-agent distribution (87.8\% Copilot, 12.2\% Claude Code) supports comparative analysis
-    \item High data completeness (99.3\%) minimizes missing data concerns  
-    \item Concentrated user contributions (86.7\% from one user) require methodological consideration but don't invalidate analysis
-    \item Adequate sample sizes (42,179 total) provide sufficient statistical power
-    \item Realistic closure patterns (81.7\%) reflect authentic development activity
-\end{enumerate}
+\textbf{Key Findings}: The dataset provides adequate field-level completeness for exploratory structural analysis, though extreme user concentration (86.7\% from one account) prevents behavioral generalizations about tool effectiveness.
 
-\textbf{Methodological Implications}: The dataset may support empirical research when appropriate statistical methods account for extreme user-level clustering and agent imbalance. The binary agent structure enables comparative analysis, though the extreme user concentration requires careful methodological treatment.
+\textbf{Methodological Implications}: The dataset may support exploratory, methodologically constrained analyses after explicitly accounting for extreme user-level clustering. The binary label structure enables limited structural analysis, though the extreme user concentration prevents generalizable behavioral conclusions about tool effectiveness.
 
-\textbf{Research Contribution}: This real analysis replaces fabricated statistics with genuine dataset characterization, enabling informed research design and preventing methodological errors based on incorrect assumptions about dataset properties.
+\textbf{Research Contribution}: This analysis provides empirically computed dataset characteristics, enabling informed research design and preventing methodological errors based on incorrect assumptions about dataset properties.
 
-\textbf{Future Directions}: The documented characteristics support development of robust empirical studies examining AI tool effectiveness, user adoption patterns, and comparative agent performance using appropriate statistical frameworks for clustered and imbalanced data.
+\textbf{Future Directions}: The documented characteristics support development of methodologically constrained analyses examining workflow-level and process-level differences under strict controls for user clustering and automation.
 
 \section*{Data Availability}
 
