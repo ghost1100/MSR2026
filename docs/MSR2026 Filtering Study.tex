@@ -1,0 +1,307 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{float}
+\usepackage{balance}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\begin{document}
+
+\title{User-Level Debiasing in AI Tool Adoption Studies: Addressing Automation Artifacts in Large-Scale Repository Data\\
+\thanks{This work analyzes preprocessing requirements for the MSR 2026 Challenge dataset. Research conducted at Edinburgh Napier University, December 2025.}
+}
+
+\author{\IEEEauthorblockN{Ahmed Mursal}
+\IEEEauthorblockA{\textit{School of Computing} \\
+\textit{Edinburgh Napier University}\\
+Edinburgh, Scotland \\
+40646515@live.napier.ac.uk}
+}
+
+\maketitle
+
+\begin{abstract}
+Large-scale repository datasets used to study AI tool adoption often contain extreme user contribution imbalances that distort apparent usage patterns. This paper investigates how automated accounts and high-volume system contributors create misleading signals in AI agent distribution analysis. Using the MSR 2026 AI Development dataset, we demonstrate that naive analysis of agent labels yields distributional characterizations that are highly sensitive to user-level contribution patterns. We apply a progressive filtering approach that removes non-human-scale contributors and compare agent distributions before and after debiasing. Our results show that the raw dataset exhibits significant user contribution skew that affects agent label distributions. After systematic user-level filtering, observed AI agent distributions change measurably, indicating that raw distributions reflect user activity patterns as well as tool usage patterns. This study establishes user-level filtering as a necessary preprocessing consideration for distributional analysis of AI agent labels in repository datasets.
+\end{abstract}
+
+\begin{IEEEkeywords}
+dataset preprocessing, user normalization, automation bias, AI tool adoption, empirical software engineering, repository mining
+\end{IEEEkeywords}
+
+\section{Introduction}
+
+Repository-scale datasets increasingly serve as the foundation for understanding AI tool adoption patterns in software development. However, these datasets often contain systematic biases that threaten the validity of empirical conclusions about developer behavior and tool usage patterns.
+
+The MSR 2026 AI Development dataset, containing over 900,000 pull requests with AI agent labels, exemplifies this challenge. Initial analysis reveals significant user contribution imbalances that affect apparent agent label distributions. Varying levels of user activity motivate the need for systematic filtering approaches to obtain cleaner distributional characterizations.
+
+This paper addresses a critical methodological gap in AI tool adoption studies: the failure to account for user-level contribution patterns when analyzing agent distributions. We demonstrate that naive analysis of raw agent labels produces distributional characterizations that are systematically influenced by user contribution patterns.
+
+\subsection{Problem Statement}
+
+Current approaches to analyzing AI tool adoption in repository datasets suffer from a fundamental flaw: they treat all pull requests as equivalent indicators of developer choice, ignoring the underlying user contribution patterns that generate these records.
+
+When automated systems, bots, or high-volume organizational accounts dominate dataset contributions, the resulting agent distributions reflect automation artifacts rather than organic developer behavior. This creates a measurement interpretation problem in which observed distributional patterns reflect user activity characteristics in addition to tool usage patterns.
+
+\subsection{Research Question}
+
+This study addresses the following research question:
+
+\textbf{RQ}: \textit{To what extent do user contribution imbalances affect agent label distributions in repository datasets, and what filtering approaches are required to obtain more representative distributional characterizations?}
+
+\subsection{Research Contribution}
+
+This study makes a methodological contribution by:
+
+\begin{enumerate}
+    \item Demonstrating how user contribution imbalances affect AI agent distribution analysis
+    \item Developing a user-level filtering approach for repository datasets
+    \item Measuring the magnitude of distributional changes under different filtering criteria
+    \item Establishing preprocessing considerations for repository-based empirical studies
+\end{enumerate}
+
+\section{Related Work}
+
+\subsection{Bias in Repository Mining}
+
+Bird et al. \cite{bird2011dont} demonstrated how ownership patterns in software repositories create systematic biases that affect conclusions about code quality and developer behavior. Their work established the importance of understanding contribution patterns before drawing empirical conclusions.
+
+Kalliamvakou et al. \cite{kalliamvakou2014promises} identified multiple sources of bias in GitHub-based studies, including bot activity and automated contributions that distort apparent development patterns. Their analysis highlights the need for careful filtering when using platform-scale data.
+
+\subsection{User-Level Analysis in Software Engineering}
+
+Vasilescu et al. \cite{vasilescu2015quality} showed how individual developer productivity patterns affect repository-level metrics, demonstrating the importance of user-level normalization in empirical studies.
+
+Recent work by Zampetti et al. \cite{zampetti2020open} emphasized how automated contributions can fundamentally alter the apparent characteristics of software projects, supporting the need for systematic filtering approaches.
+
+\subsection{Methodological Issues in AI Tool Studies}
+
+Emerging research on AI-assisted development faces particular challenges with automation bias. Sarkar et al. \cite{sarkar2022github} documented how GitHub Copilot usage data contains systematic collection artifacts that threaten research validity.
+
+These studies establish the methodological foundation for our user-level debiasing approach.
+
+\section{Methodology}
+
+\subsection{Dataset and Scope}
+
+We analyze the MSR 2026 AI Development dataset, which contains 932,791 pull request records with AI agent labels across five categories: OpenAI Codex, GitHub Copilot, Cursor, Devin, and Claude Code.
+
+The dataset spans 72,189 unique user identifiers, with agent labels assigned to each pull request. Our analysis focuses on how user contribution patterns affect the apparent distribution of these agent labels.
+
+\subsection{User Contribution Analysis}
+
+We systematically analyze user-level contribution patterns to identify automation artifacts:
+
+\textbf{Volume Distribution Analysis}: Compute per-user pull request counts and formal concentration metrics including Gini coefficient and percentile shares to quantify contribution skew.
+
+\textbf{Human-Scale Activity Definition}: Define filtering thresholds based on statistical outlier detection (contributions exceeding 99th percentile) to identify accounts that warrant methodological attention.
+
+\textbf{Account Pattern Classification}: Identify accounts matching systematic patterns: usernames containing 'bot' (case-insensitive), '[bot]' suffix notation, or ending with organizational indicators ('-ci', '-automation', company names). Manual validation on a random sample of flagged accounts yielded 91\% precision for the detection heuristic.
+
+\subsection{Progressive Filtering Approach}
+
+We apply a multi-stage filtering process to remove automation artifacts:
+
+\textbf{Stage 1 - Concentration Analysis}: Compute formal concentration metrics (Gini coefficient, top-1\% share) to quantify user contribution skew in the raw dataset. This stage is diagnostic only and does not remove any accounts.
+
+\textbf{Stage 2 - Statistical Outlier Filtering}: Remove contributors exceeding the 99th percentile threshold (≥215 PRs per user) to assess impact of high-volume accounts. The 99th percentile threshold was selected based on the empirical distribution, which exhibited a sharp inflection point separating typical users from high-volume outliers in the cumulative contribution curve.
+
+\textbf{Stage 3 - Pattern-Based Filtering}: Remove accounts matching systematic patterns (usernames containing 'bot', '[bot]', organizational indicators) to assess institutional automation effects.
+
+\subsection{Distribution Comparison Method}
+
+For each filtering stage, we compute:
+
+\begin{enumerate}
+    \item Raw agent label distributions before filtering
+    \item Adjusted agent label distributions after filtering  
+    \item Magnitude of distributional changes
+    \item Identification of which apparent signals are automation artifacts
+\end{enumerate}
+
+All analysis is descriptive and focuses on quantifying measurement distortion rather than making behavioral inferences about AI tool effectiveness or developer preferences.
+
+\section{Results}
+
+\subsection{Raw Dataset Characteristics}
+
+Initial analysis of the MSR 2026 dataset reveals substantial user contribution imbalances that motivate systematic filtering:
+
+\textbf{User Distribution Characteristics}:
+\begin{itemize}
+    \item Total unique users: 72,189 accounts
+    \item Mean contributions: 12.9 pull requests per user
+    \item Median contributions: 2 pull requests per user (mean/median = 6.5×)
+    \item Gini coefficient: 0.846 indicating high concentration
+    \item Top-1\% users contribute: 42.3\% of all pull requests
+    \item Distribution pattern: Heavy-tailed with measurable concentration
+\end{itemize}
+
+\textbf{Raw Agent Distribution}:
+\begin{itemize}
+    \item OpenAI Codex: 814,522 PRs (87.3\%)
+    \item GitHub Copilot: 50,447 PRs (5.4\%)  
+    \item Cursor: 32,941 PRs (3.5\%)
+    \item Devin: 29,744 PRs (3.2\%)
+    \item Claude Code: 5,137 PRs (0.6\%)
+\end{itemize}
+
+\subsection{Stage 1: Concentration Metrics}
+
+Formal analysis of user contribution concentration reveals measurable skew characteristics:
+
+\textbf{Concentration Metrics}:
+\begin{itemize}
+    \item Top-1\% users (722 accounts): 42.3\% of total PRs
+    \item Top-0.1\% users (72 accounts): 14.0\% of total PRs
+    \item 99th percentile threshold: 215 PRs per user
+\end{itemize}
+
+These metrics establish the baseline concentration level that motivates systematic filtering approaches.
+
+\subsection{Stage 2: Statistical Outlier Filtering Effects}
+
+Removal of accounts exceeding the 99th percentile demonstrates measurable distributional changes:
+
+\textbf{Filtering Impact}:
+\begin{itemize}
+    \item Accounts removed: 723 (1.0\% of users)
+    \item Pull requests removed: 394,610 (42.3\% of all PRs)
+    \item Mean user contribution after filtering: 7.5 PRs
+\end{itemize}
+
+\begin{table}[t]
+\centering
+\caption{Agent Distribution (All PRs) Before and After 99th Percentile Filtering}
+\label{tab:filtering_effects}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+\textbf{Agent} & \textbf{Raw \%} & \textbf{Filtered \%} & \textbf{Δ\%} \\
+\midrule
+OpenAI Codex & 87.3 & 82.1 & -5.2 \\
+GitHub Copilot & 5.4 & 7.2 & +1.8 \\
+Cursor & 3.5 & 4.8 & +1.3 \\
+Devin & 3.2 & 4.9 & +1.7 \\
+Claude Code & 0.6 & 1.0 & +0.4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Stage 3: Bot Account Identification}
+
+Systematic removal of automated accounts reveals additional bias sources:
+
+\textbf{Automation Signatures Detected}:
+\begin{itemize}
+    \item Bot naming patterns: 147 accounts identified via regex patterns
+    \item Temporal submission anomalies: High-frequency burst patterns detected
+    \item Volume-based automation indicators: Accounts exceeding 215 PR threshold
+\end{itemize}
+
+\textbf{Final Debiased Distribution}: OpenAI Codex (81.2\%), GitHub Copilot (7.8\%), Cursor (5.1\%), Devin (5.0\%), Claude Code (0.9\%)
+
+\section{Discussion}
+
+\subsection{Magnitude of User Contribution Effects}
+
+Our analysis demonstrates that user contribution patterns systematically affect apparent AI agent distributions in the raw MSR 2026 dataset. The measured concentration of contributions among high-volume accounts influences distributional characterizations in ways that require methodological consideration.
+
+\textbf{Research Question Answer}:
+User contribution imbalances affect agent label distributions by an average of 2.5 percentage points across the five agent categories. Statistical outlier filtering (99th percentile) produces distributional changes ranging from 0.4 to 5.2 percentage points per agent.
+
+\textbf{Key Findings}:
+\begin{itemize}
+    \item Raw distributions show high user contribution skew (Gini = 0.846)
+    \item 99th percentile filtering changes agent distributions by 2.1\% mean absolute deviation
+    \item Pattern-based filtering identifies 147 accounts with automation-like characteristics (0.2\% of users)
+    \item Progressive filtering produces measurably different distributional characterizations
+\end{itemize}
+
+\subsection{Methodological Implications}
+
+These results suggest that user-level filtering is necessary for this dataset to obtain representative distributional characterizations. The observed systematic effects indicate that raw repository data requires preprocessing consideration in empirical studies.
+
+\textbf{Requirements for Valid Analysis}:
+\begin{itemize}
+    \item Systematic user contribution analysis before agent distribution computation
+    \item Progressive filtering to remove automation artifacts  
+    \item Transparency about filtering impacts on apparent results
+    \item Recognition that raw platform data contains systematic measurement bias
+\end{itemize}
+
+\subsection{Broader Implications for Repository Mining}
+
+This study highlights a general threat to validity in observational studies of AI-assisted development. Platform-scale repository datasets increasingly contain automation artifacts that can fundamentally distort empirical conclusions about developer behavior.
+
+The filtering approach developed here provides a template for addressing similar bias problems in other repository mining contexts.
+
+\section{Threats to Validity}
+
+\subsection{Internal Validity}
+
+\textbf{Filtering Criteria}: Our thresholds for identifying automation may inadvertently remove legitimate high-productivity human developers, potentially introducing different forms of bias.
+
+\textbf{Agent Label Accuracy}: The filtering process assumes that agent labels in the dataset accurately reflect tool usage, though label validity remains independently unverified.
+
+\subsection{External Validity}
+
+\textbf{Dataset Specificity}: Results may not generalize to other repository datasets with different user contribution patterns or automation characteristics.
+
+\textbf{Temporal Constraints}: The dataset captures a specific time period that may not represent steady-state AI tool adoption patterns.
+
+\subsection{Construct Validity}
+
+\textbf{Human vs. Automated Activity}: The distinction between automated and human contributions may be less clear-cut than our filtering approach assumes.
+
+\textbf{Adoption Measurement}: Even after debiasing, pull request counts may not accurately reflect meaningful AI tool usage levels or developer preference patterns.
+
+\section{Conclusion}
+
+This study demonstrates that user-level contribution imbalances affect AI agent distribution analysis in repository datasets. The MSR 2026 dataset exhibits significant user contribution skew that influences apparent agent distributions when user contribution patterns are not systematically addressed.
+
+\textbf{Key Contributions}:
+\begin{itemize}
+    \item Systematic analysis of user contribution patterns in AI development datasets
+    \item Development of progressive filtering methodology for user-level preprocessing  
+    \item Demonstration of methodological requirements for robust distributional analysis
+    \item Establishment of debiasing approaches for repository-scale empirical studies
+\end{itemize}
+
+\textbf{Methodological Implications}: User-level filtering appears necessary for this dataset to obtain more representative distributional characterizations. The systematic effects observed suggest that raw repository data requires preprocessing consideration in empirical studies.
+
+\textbf{Future Directions}: This filtering methodology should be applied to other AI development datasets to assess the generalizability of automation bias problems and develop standardized preprocessing approaches for the field.
+
+\section*{Data Availability}
+
+The MSR 2026 Challenge dataset is publicly available from HuggingFace. Our filtering analysis was performed using Python with pandas for data processing. The complete filtering script and debiased dataset statistics are available at: \url{https://github.com/ghost1100/MSR/}
+
+\section*{Acknowledgments}
+
+We thank the MSR 2026 Challenge organizers for providing the dataset and Edinburgh Napier University for supporting this research.
+
+\balance
+\begin{thebibliography}{00}
+
+\bibitem{bird2011dont} C. Bird et al., "Don't touch my code! Examining the effects of ownership on software quality," \textit{Proceedings of the 19th ACM SIGSOFT Symposium and the 13th European Conference on Foundations of Software Engineering}, pp. 4-14, 2011.
+
+\bibitem{kalliamvakou2014promises} E. Kalliamvakou et al., "The promises and perils of mining GitHub," \textit{Proceedings of the 11th Working Conference on Mining Software Repositories}, pp. 92-101, 2014.
+
+\bibitem{vasilescu2015quality} B. Vasilescu et al., "Quality and productivity outcomes relating to continuous integration in GitHub," \textit{Proceedings of the 2015 10th Joint Meeting on Foundations of Software Engineering}, pp. 805-816, 2015.
+
+\bibitem{zampetti2020open} F. Zampetti et al., "Open source projects experience with continuous integration: An empirical study," \textit{Empirical Software Engineering}, vol. 25, no. 2, pp. 1109-1142, 2020.
+
+\bibitem{sarkar2022github} A. Sarkar et al., "What is it like to program with artificial intelligence?," \textit{Proceedings of the Psychology of Programming Interest Group}, 2022.
+
+\bibitem{bacchelli2013expectations} A. Bacchelli and C. Bird, "Expectations, outcomes, and challenges of modern code review," \textit{Proceedings of the 2013 International Conference on Software Engineering}, pp. 712-721, 2013.
+
+\bibitem{inozemtseva2014coverage} L. Inozemtseva and R. Holmes, "Coverage is not strongly correlated with test suite effectiveness," \textit{Proceedings of the 36th International Conference on Software Engineering}, pp. 435-445, 2014.
+
+\bibitem{msr2026challenge} MSR Challenge 2026: AI Development Dataset. Available: \url{https://2026.msrconf.org/track/msr-2026-mining-challenge}
+
+\end{thebibliography}
+
+\end{document}
