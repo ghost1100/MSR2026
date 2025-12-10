@@ -108,7 +108,7 @@ We apply a multi-stage filtering process to remove automation artifacts:
 
 \textbf{Stage 1 - Concentration Analysis}: Compute formal concentration metrics (Gini coefficient, top-1\% share) to quantify user contribution skew in the raw dataset. This stage is diagnostic only and does not remove any accounts.
 
-\textbf{Stage 2 - Statistical Outlier Filtering}: Remove contributors exceeding the 99th percentile threshold (≥215 PRs per user) to assess impact of high-volume accounts. The 99th percentile threshold was selected based on the empirical distribution, which exhibited a sharp inflection point separating typical users from high-volume outliers in the cumulative contribution curve.
+\textbf{Stage 2 - Statistical Outlier Filtering}: Remove contributors exceeding the 99th percentile threshold ($\geq$215 PRs per user) to assess impact of high-volume accounts. The 99th percentile threshold was selected based on the empirical distribution, which exhibited a sharp inflection point separating typical users from high-volume outliers in the cumulative contribution curve.
 
 \textbf{Stage 3 - Pattern-Based Filtering}: Remove accounts matching systematic patterns (usernames containing 'bot', '[bot]', organizational indicators) to assess institutional automation effects.
 
@@ -180,7 +180,7 @@ Removal of accounts exceeding the 99th percentile demonstrates measurable distri
 \label{tab:filtering_effects}
 \begin{tabular}{@{}lrrr@{}}
 \toprule
-\textbf{Agent} & \textbf{Raw \%} & \textbf{Filtered \%} & \textbf{Δ\%} \\
+\textbf{Agent} & \textbf{Raw \%} & \textbf{Filtered \%} & \textbf{$\Delta$\%} \\
 \midrule
 OpenAI Codex & 87.3 & 82.1 & -5.2 \\
 GitHub Copilot & 5.4 & 7.2 & +1.8 \\
