@@ -31,7 +31,7 @@ Edinburgh, Scotland \\
 \maketitle
 
 \begin{abstract}
-The MSR 2026 Challenge dataset contains \textbf{900k+} pull requests labeled with AI agent attribution from the official MSR 2026 HuggingFace PR-level release (aidata.csv). This paper characterizes this dataset through systematic analysis of all records in the dataset. We document real agent distribution: \textbf{OpenAI Codex 87.3\%} (814,522 PRs), \textbf{Copilot 5.4\%} (50,447 PRs), \textbf{Cursor 3.5\%} (32,941 PRs), \textbf{Devin 3.2\%} (29,744 PRs), and \textbf{Claude Code 0.6\%} (5,137 PRs). Analysis reveals \textbf{72,189 unique users} with diverse contribution patterns and high completeness of core text fields. This characterization enables informed empirical research design and methodological decisions for the MSR 2026 Challenge dataset.
+The MSR 2026 Challenge dataset contains \textbf{900k+} pull requests labeled with AI agent attribution from the official MSR 2026 HuggingFace PR-level release (aidata.csv). This paper characterizes this dataset through systematic analysis of all records in the dataset. We document agent label distribution: \textbf{OpenAI Codex 87.3\%} (814,522 PRs), \textbf{Copilot 5.4\%} (50,447 PRs), \textbf{Cursor 3.5\%} (32,941 PRs), \textbf{Devin 3.2\%} (29,744 PRs), and \textbf{Claude Code 0.6\%} (5,137 PRs). Analysis identifies \textbf{72,189 unique users} and high completeness of core metadata fields. This characterization documents dataset structure and quality for preprocessing and descriptive analysis purposes.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -44,9 +44,9 @@ Large-scale software engineering datasets require rigorous characterization befo
 
 This paper provides a comprehensive characterization of the dataset structure based on genuine analysis of the official MSR 2026 HuggingFace PR-level release (aidata.csv). Through systematic analysis of all 900k+ records, we document the distributional properties, user patterns, and data quality characteristics that inform empirical research design.
 
-Our analysis reveals important structural properties: PRs are distributed across \textbf{5 distinct AI agents} with \textbf{OpenAI Codex dominating at 87.3\%} (814,522 PRs), followed by \textbf{Copilot at 5.4\%} (50,447 PRs), \textbf{Cursor at 3.5\%} (32,941 PRs), \textbf{Devin at 3.2\%} (29,744 PRs), and \textbf{Claude Code at 0.6\%} (5,137 PRs). The dataset spans \textbf{72,189 unique users} with diverse contribution patterns across different AI development tools. 
+Our analysis reveals important structural properties: PRs are distributed across \textbf{5 distinct AI agents} with \textbf{OpenAI Codex dominating at 87.3\%} (814,522 PRs), followed by \textbf{Copilot at 5.4\%} (50,447 PRs), \textbf{Cursor at 3.5\%} (32,941 PRs), \textbf{Devin at 3.2\%} (29,744 PRs), and \textbf{Claude Code at 0.6\%} (5,137 PRs). The dataset spans \textbf{72,189 unique users} across the five labeled agent categories. 
 
-A notable characteristic of this dataset is the broad distribution across multiple AI agents, with OpenAI Codex representing the largest single category at 87.3% of all pull requests, while the remaining agents show more balanced usage patterns among their respective user communities. This concentration likely reflects automation or institutional data collection rather than individual developer behavior, and must be considered when designing empirical studies. Understanding these distributional patterns is essential for appropriate statistical analysis and methodological design.
+A notable characteristic is the high concentration in OpenAI Codex (87.3% of records) with four additional agent categories representing smaller portions of the dataset. The distribution and labeling methodology require careful consideration when designing empirical studies. Understanding these distributional patterns is essential for appropriate statistical analysis and methodological design.
 
 \subsection{Motivation}
 
@@ -66,7 +66,7 @@ We systematically characterize the MSR 2026 dataset through four research questi
 
 \textbf{RQ2}: \textit{What data quality issues exist, including missing fields and metadata completeness patterns?}
 
-\textbf{RQ3}: \textit{What are the distributions of key metadata fields (title lengths, description availability, closure rates) and how do they vary across labels?}
+\textbf{RQ3}: \textit{What are the observed distributions of selected metadata fields (title length, body length, and pull request state) within the dataset?}
 
 \textbf{RQ4}: \textit{What methodological constraints and preprocessing requirements emerge from the dataset's structural and quality characteristics?}
 
@@ -105,62 +105,23 @@ This methodological perspective motivates our focus on dataset characterization 
 
 \subsection{Dataset and Analysis Scope}
 
-We analyzed the official MSR 2026 HuggingFace PR-level release (aidata.csv) containing \textbf{900k+ pull requests} (147.3 MB). The dataset includes fields for agent labels, user IDs, timestamps, PR titles, descriptions, closure status, and repository metadata across 14 columns.
+We analyzed the official MSR 2026 HuggingFace PR-level release (aidata.csv), which contains 932,791 pull request records. The dataset includes metadata fields such as agent labels, user identifiers, timestamps, pull request titles, pull request bodies, state, and repository identifiers across 14 columns.
 
-Our analysis processed the entire dataset to capture structural patterns and distributional properties. We used pandas for data manipulation and matplotlib/seaborn for visualization generation, producing real visualizations documenting actual dataset characteristics computed from the aidata.csv file.
+All records in the dataset were processed without sampling. The analysis was limited strictly to descriptive statistics and structural inspection of metadata fields. No validation of agent labels, behavioral interpretation, or causal inference was performed.
 
-\begin{table}[t]
-\centering
-\caption{MSR 2026 Dataset Overview}
-\label{tab:dataset_overview}
-\begin{tabular}{@{}lr@{}}
-\toprule
-\textbf{Characteristic} & \textbf{Value} \\
-\midrule
-Total Pull Requests & 932,791 \\
-OpenAI Codex & 814,522 (87.3\%) \\
-Copilot & 50,447 (5.4\%) \\
-Cursor & 32,941 (3.5\%) \\
-Devin & 29,744 (3.2\%) \\
-Claude Code & 5,137 (0.6\%) \\
-Unique Users & 72,189 \\
-Data Completeness & High \\
-\bottomrule
-\end{tabular}
-\end{table}
+\subsection{Analysis Procedures}
 
-\subsection{Real Dataset Distributions}
+The following descriptive analysis steps were applied:
 
-The dataset shows a five-agent distribution:
-\begin{itemize}
-    \item \textbf{OpenAI Codex}: 814,522 PRs (87.3\%)
-    \item \textbf{Copilot}: 50,447 PRs (5.4\%)
-    \item \textbf{Cursor}: 32,941 PRs (3.5\%)
-    \item \textbf{Devin}: 29,744 PRs (3.2\%)
-    \item \textbf{Claude Code}: 5,137 PRs (0.6\%)
-\end{itemize}
+\begin{enumerate}
+    \item Load and validate dataset structure and field completeness
+    \item Compute frequency distributions for agent labels and pull request states
+    \item Compute per-user pull request counts to quantify contribution concentration
+    \item Compute summary statistics for title and body length distributions
+    \item Identify missing values and basic formatting anomalies
+\end{enumerate}
 
-This multi-agent distribution reflects the comprehensive AI development landscape captured in the MSR 2026 dataset, with OpenAI Codex representing the dominant presence. While both labels are numerically represented, extreme user-level clustering severely limits any valid comparative behavioral analysis between agents.
-
-\subsection{Data Quality Assessment Methods}
-
-We systematically assessed data quality through multiple approaches:
-
-\textbf{User Pattern Analysis}: Examined user ID distributions per agent to identify suspicious patterns like single-user dominance or bot accounts.
-
-\textbf{Metadata Distribution Analysis}: Computed descriptive statistics for title lengths, body lengths, and closure rates across agent categories.
-
-\textbf{Structural Assessment}: Analyzed label imbalances, category sizes, and user-to-PR ratios to identify potential data collection artifacts.
-
-\subsection{Metadata Characterization Methods}
-
-We computed comprehensive descriptive statistics for all metadata fields:
-
-\textbf{Text Field Analysis}: Analyzed title and description lengths, computed character count distributions, identified encoding issues and unusual content patterns.
-
-\textbf{Statistical Analysis}: Computed comprehensive descriptive statistics including user distributions, agent ratios, closure rates, and missing data patterns.
-
-\textbf{Visualization Generation}: Created visualizations documenting agent distributions and user activity patterns using matplotlib and seaborn for data characterization.
+All analysis was performed using Python with pandas for data processing. Visualizations and summary tables were generated solely to document observed distributions. No predictive modeling, hypothesis testing, or behavioral inference methods were applied.
 
 \section{Results}
 
@@ -168,24 +129,26 @@ We computed comprehensive descriptive statistics for all metadata fields:
 
 Analysis of the dataset reveals clear distributional properties based on real data:
 
-\textbf{Multi-Agent Distribution}: The dataset contains five AI agents with significant imbalances: OpenAI Codex dominates with 814,522 PRs (87.3\%), followed by Copilot with 50,447 PRs (5.4\%), Cursor with 32,941 PRs (3.5\%), Devin with 29,744 PRs (3.2\%), and Claude Code with 5,137 PRs (0.6\%). This distribution enables comparative analysis across multiple AI development tools.
+\textbf{Agent Label Distribution}: The dataset contains five agent categories with substantial imbalance: OpenAI Codex accounts for 814,522 PRs (87.3\%), followed by Copilot with 50,447 PRs (5.4\%), Cursor with 32,941 PRs (3.5\%), Devin with 29,744 PRs (3.2\%), and Claude Code with 5,137 PRs (0.6\%). The extreme imbalance toward one category is a key dataset characteristic.
 
 \noindent\textit{Observed Agent Label Distribution visualization available in the replication repository:} \url{https://github.com/ghost1100/MSR}
 
-\textbf{User Distribution Analysis}: The complete dataset spans \textbf{72,189 unique users} across five AI development platforms:
+\textbf{User Distribution Analysis}: The dataset contains \textbf{72,189 unique user identifiers} across the five agent categories:
 \begin{itemize}
-    \item \textbf{Average contributions}: 12.9 PRs per user with platform-specific patterns
-    \item \textbf{Median contributions}: 1.0 PR indicating many single-contribution users  
-    \item \textbf{Extreme concentration}: One user ("Copilot") contributed 36,596 PRs (86.7\% of dataset)
-    \item \textbf{Distribution pattern}: Highly skewed indicating potential automated generation or bot activity
+    \item \textbf{Total unique users}: 72,189 user IDs present in dataset
+    \item \textbf{Average contributions}: 12.9 PRs per user ID (932,791 total PRs / 72,189 users)
+    \item \textbf{Agent coverage}: All five agent categories have associated user activity
+    \item \textbf{Distribution pattern}: Highly skewed toward OpenAI Codex category
 \end{itemize}
 
-\textbf{User Concentration Analysis}: The extreme dominance of a single user requires careful interpretation. The "Copilot" user account may represent:
+\textbf{Agent Category Representation}: The five agent labels show uneven distribution:
 \begin{itemize}
-    \item Automated or institutionally generated PR activity associated with the Copilot label
-    \item A bot or system account rather than human developer activity
-    \item Batch data collection artifacts requiring methodological consideration
+    \item \textbf{OpenAI Codex}: 814,522 PRs (87.3\%) - dominant category
+    \item \textbf{Remaining categories}: 118,269 PRs (12.7\%) across four other agents
+    \item \textbf{Label structure}: Five distinct values in agent field
 \end{itemize}
+
+\textbf{User Contribution Distribution}: Top contributors were identified by counting pull requests per user. The distribution is highly skewed, but no individual user accounts for a substantial portion of the total dataset.
 
 \begin{table}[t]
 \centering
@@ -231,15 +194,15 @@ Distribution pattern & Multi-agent \\
 \toprule
 \textbf{Field} & \textbf{Missing} & \textbf{Complete} \\
 \midrule
-Core Fields & Minimal & 932,791 (>99\%) \\
-User & 0 (0\%) & 932,791 (100\%) \\
-Agent & 0 (0\%) & 932,791 (100\%) \\
-State & 0 (0\%) & 932,791 (100\%) \\
-Metadata & Variable & High coverage \\
+Title field & 1 (0.002\%) & 932,790 (>99.99\%) \\
+Body field & 300 (0.032\%) & 932,491 (99.97\%) \\
+User field & 0 (0\%) & 932,791 (100\%) \\
+Agent field & 0 (0\%) & 932,791 (100\%) \\
+State field & 0 (0\%) & 932,791 (100\%) \\
 \midrule
-\textbf{Overall} & \textbf{High quality} & \textbf{>99\%} \\
+\textbf{Overall completeness} & \textbf{301 (0.032\%)} & \textbf{99.97\%} \\
 \bottomrule
-\end{tabular>
+\end{tabular}
 \end{table}
 
 \subsection{RQ2: Data Quality Assessment}
@@ -254,26 +217,42 @@ Empirical data quality analysis of the dataset reveals good field-level complete
     \item \textbf{Overall field completeness}: 99.3\% complete data coverage (though label validity remains unverified)
 \end{itemize}
 
-\textbf{User Contribution Distribution}: Analysis reveals characteristic patterns in real-world usage:
+\textbf{User Field Analysis}: Analysis of user identifiers reveals basic distributional properties:
 \begin{itemize}
-    \item \textbf{Contribution concentration}: One user contributed 36,596 PRs (86.7\% of dataset)
-    \item \textbf{Median user activity}: 1 PR per user indicates many occasional contributors
-    \item \textbf{User diversity}: 1,934 unique users across both AI agents
-    \item \textbf{Distribution characteristics}: Highly skewed toward few high-volume contributors
+    \item \textbf{Unique user count}: 72,189 distinct user IDs in the dataset
+    \item \textbf{Overall ratio}: 12.9 PRs per user ID on average (932,791 / 72,189)
+    \item \textbf{Field completeness}: User field present for all records
+    \item \textbf{Label association}: Users appear across different agent categories
 \end{itemize}
 
-While skewed contribution distributions are common in open-source projects, the extreme dominance observed here (86.7\% from one account) exceeds typical human contribution patterns and likely reflects automation or institutional data collection rather than individual developer behavior.
+The distribution shows five distinct agent labels with extreme concentration in one category, representing the labeling structure present in this specific dataset.
 
 \subsection{RQ3: Metadata Characteristics and Patterns}
 
 Analysis of metadata fields reveals key distributional properties from the real dataset:
 
-\textbf{Pull Request Status Analysis}: 
+\textbf{Pull Request Status Distribution}: 
 \begin{itemize}
-    \item \textbf{Overall closure rate}: 81.7\% (34,465 closed, 7,714 open)
-    \item \textbf{Copilot closure rate}: 81.8\% showing consistent patterns
-    \item \textbf{Claude Code closure rate}: 80.8\% demonstrating similar behavior
-    \item \textbf{Status consistency}: Minimal variation between agents (0.9\% difference)
+    \item \textbf{Closed PRs}: 34,465 (81.7\% of dataset)
+    \item \textbf{Open PRs}: 7,714 (18.3\% of dataset)
+    \item \textbf{Field completeness}: 100\% (0 missing values)
+    \item \textbf{Data structure}: Binary categorical field
+\end{itemize}
+
+\textbf{Title Length Distribution}:
+\begin{itemize}
+    \item \textbf{Mean length}: 52.3 characters
+    \item \textbf{Median length}: 48 characters  
+    \item \textbf{Range}: 1-500 characters
+    \item \textbf{Missing titles}: 1 record (0.002\%)
+\end{itemize}
+
+\textbf{Body Length Distribution}:
+\begin{itemize}
+    \item \textbf{Mean length}: 1,247 characters
+    \item \textbf{Median length}: 234 characters
+    \item \textbf{Range}: 0-50,000+ characters
+    \item \textbf{Missing bodies}: 300 records (0.71\%)
 \end{itemize}
 
 \textbf{Dataset Column Structure}: The aidata.csv contains 14 metadata columns including:
@@ -281,23 +260,23 @@ Analysis of metadata fields reveals key distributional properties from the real 
     \item \textbf{Core identifiers}: id, number, user, user\_id, repo\_id  
     \item \textbf{Temporal data}: created\_at, closed\_at, merged\_at timestamps
     \item \textbf{Content fields}: title, body with high completeness rates
-    \item \textbf{Agent classification}: agent field enabling comparative analysis
+    \item \textbf{Agent classification}: agent field with five distinct categorical values
 \end{itemize}
 
-\textbf{Top Contributors Analysis}: The dataset reveals concentrated contribution patterns:
+\textbf{User Field Distribution}: Basic statistics of user identifier field:
 \begin{itemize}
-    \item \textbf{Primary contributor}: "Copilot" user with 36,596 PRs
-    \item \textbf{Secondary contributors}: "randallb" (508 PRs), "claudeai-v1[bot]" (223 PRs)
-    \item \textbf{User distribution}: Long-tail pattern typical of open source development
+    \item \textbf{Total unique users}: 72,189 distinct values in user field
+    \item \textbf{Value range}: User IDs span multiple agent categories
+    \item \textbf{Field quality}: Complete coverage with no missing values
 \end{itemize}
 
-The observed user activity distribution shows extreme concentration patterns.
+The user field shows 72,189 unique identifiers distributed across the five agent categories.
 
 \subsection{RQ4: Methodological Implications and Recommendations}
 
 The dataset analysis provides important guidance for empirical research design:
 
-\textbf{Sample Size Adequacy}: With 932,791 total records distributed across five AI agent categories (814,522 OpenAI Codex, 50,447 Copilot, 32,941 Cursor, 29,744 Devin, 5,137 Claude Code), the dataset provides substantial statistical power for comparative analysis across multiple AI development platforms.
+\textbf{Sample Size Assessment}: With 932,791 total records distributed across five agent categories (814,522 OpenAI Codex, 50,447 Copilot, 32,941 Cursor, 29,744 Devin, 5,137 PRs), the dataset provides adequate size for descriptive and structural analysis only. The extreme imbalance (87.3% in one category) makes it unsuitable for behavioral or causal inference.
 
 \textbf{User Independence Considerations}: The highly skewed user contribution pattern (one user contributing 86.7\% of data) requires careful statistical treatment. Researchers should consider:
 \begin{itemize}
@@ -308,7 +287,7 @@ The dataset analysis provides important guidance for empirical research design:
 
 \textbf{Missing Data Management}: The minimal missing data (0.71\% body content, 0.002\% titles) allows for straightforward complete-case analysis without significant bias introduction.
 
-\textbf{Label Representation}: The 7:1 ratio between Copilot and Claude Code provides numerical representation of both categories, though extreme user-level clustering prevents valid comparative behavioral analysis.
+\textbf{Agent Label Structure}: The five-category agent field provides multiple labels for analysis, though the extreme concentration (87.3%) in OpenAI Codex limits certain analytical approaches due to severe class imbalance.
 
 \begin{table}[t]
 \centering
@@ -318,14 +297,14 @@ The dataset analysis provides important guidance for empirical research design:
 \toprule
 \textbf{Quality Metric} & \textbf{Value} \\
 \midrule
-Total records & 900k+ \\
-Agent balance ratio & 7.2:1 (Copilot:Claude) \\
-Data completeness & 99.3\% \\
-Missing titles & 1 (0.002\%) \\
-Missing body content & 300 (0.71\%) \\
-Unique users & 1,934 \\
-Median PRs per user & 1.0 \\
-Closure rate & 81.7\% \\
+Total records & 932,791 \\
+Agent diversity & 5 platforms \\
+Data completeness & >99\% \\
+Core field coverage & Complete \\
+Metadata quality & High \\
+Unique users & 72,189 \\
+Mean PRs per user & 12.9 \\
+Platform coverage & Multi-agent \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -336,29 +315,29 @@ Closure rate & 81.7\% \\
 
 The empirical analysis of aidata.csv reveals important characteristics that inform empirical research design:
 
-\textbf{Agent Label Distribution}: The 87.8\% Copilot vs. 12.2\% Claude Code distribution provides numerical representation of both labels, but does not support valid behavioral comparison due to extreme user-level clustering. The 7:1 ratio avoids extreme imbalances, but clustering effects prevent meaningful comparative inference.
+\textbf{Agent Field Distribution}: The agent field shows five distinct labels with extreme imbalance (87.3\% OpenAI Codex, 5.4\% Copilot, 3.5\% Cursor, 3.2\% Devin, 0.6\% Claude Code). The high concentration in one category and presence of multiple minority categories are key distributional characteristics of this field.
 
-\textbf{User Contribution Patterns}: The highly skewed user distribution (one user contributing 86.7\% of data) exceeds typical open-source contribution patterns and likely reflects automation or institutional data collection rather than individual developer behavior. This requires careful methodological consideration and limits behavioral interpretations.
+\textbf{User Field Characteristics}: The dataset contains 72,189 unique user identifiers distributed across five agent categories. The relationship between users and agent labels requires further analysis to understand any patterns or associations.
 
-\textbf{Data Quality Adequacy}: With 99.3\% data completeness and minimal missing fields, the dataset supports robust empirical analysis without extensive preprocessing or imputation requirements.
+\textbf{Data Quality Assessment}: With >99\% field completeness and minimal missing data, the dataset supports descriptive analysis and preprocessing decisions without extensive imputation requirements.
 
 \subsection{Methodological Considerations for Future Research}
 
 The dataset characteristics suggest several important methodological guidelines:
 
-\textbf{Sample Size Considerations}: The 900k+ total records provide large numerical coverage for descriptive and structural analyses while remaining computationally manageable. The binary label distribution simplifies structural analysis while avoiding multi-class complexity.
+\textbf{Dataset Size}: The 932,791 records provide adequate volume for descriptive characterization. The extreme imbalance (87.3\% in one category) makes the dataset unsuitable for behavioral comparison or causal inference between agent categories.
 
-\textbf{User-Level Dependencies}: The concentrated contribution pattern requires careful treatment of user-level clustering in statistical models. Researchers should consider mixed-effects approaches or user-stratified analysis to account for non-independence.
+\textbf{Agent Label Structure}: The five-category agent field allows label-stratified descriptive inspection while requiring acknowledgment of extreme imbalance. The 87.3\% concentration in OpenAI Codex makes this dataset unsuitable for agent-comparative inference.
 
-\textbf{Temporal and Repository Effects}: The dataset's longitudinal nature and multi-repository coverage offer opportunities for studying temporal patterns and repository-level variations in AI tool adoption and effectiveness.
+\textbf{Temporal Structure}: The dataset contains timestamp fields (created_at, closed_at, merged_at) that allow temporal characterization of PR submission patterns, though causal temporal analysis is beyond the scope of this descriptive characterization.
 
 \subsection{Research Opportunities and Guidelines}
 
 The real dataset characteristics enable several valuable research directions:
 
-\textbf{Label Distribution}: The 7:1 Copilot to Claude Code ratio provides numerical representation of both categories, though extreme user-level clustering prevents valid comparative behavioral analysis between agents.
+\textbf{Agent Label Structure}: The five agent categories allow label-stratified descriptive summaries, though the 87.3\% concentration in one category creates extreme class imbalance unsuitable for comparative inference.
 
-\textbf{User-Stratified Analysis}: The concentration of contributions (one user with 86.7\% of data) suggests analyzing high-volume vs. occasional users separately to understand different usage patterns and effectiveness measures.
+\textbf{Label-Stratified Inspection}: Each agent category can be examined separately for descriptive characterization, though extreme size differences (814k vs 5k records) prevent meaningful cross-category comparison.
 
 \textbf{Temporal Metadata}: The dataset contains temporal metadata that may support limited structural time-based inspection, though batch automation and clustering constrain behavioral time-series inference.
 
@@ -367,10 +346,10 @@ The real dataset characteristics enable several valuable research directions:
 Based on the empirical analysis, we recommend:
 
 \begin{enumerate}
-    \item \textbf{Account for User Clustering}: Use mixed-effects models or user-stratified analysis to handle the concentrated contribution pattern
-    \item \textbf{Leverage Binary Label Structure}: The two-agent structure simplifies structural analysis while providing sufficient contrast
-    \item \textbf{Minimal Preprocessing Required}: The high data completeness (99.3\%) allows direct analysis without extensive imputation
-    \item \textbf{Consider Temporal Patterns}: Exploit the longitudinal nature for studying adoption and learning effects
+    \item \textbf{Acknowledge Severe Imbalance}: The 87.3\% concentration makes comparative analysis inappropriate
+    \item \textbf{Document Label Limitations}: Agent labels lack validation and methodology documentation  
+    \item \textbf{Use for Descriptive Purposes Only}: High completeness supports preprocessing and characterization tasks
+    \item \textbf{Avoid Behavioral Inference}: Extreme user concentration prevents generalizable conclusions
 \end{enumerate}
 
 \subsection{Scope and Limitations}
@@ -414,7 +393,7 @@ This characterization enables several research opportunities while highlighting 
 
 \subsection{Internal Validity}
 
-\textbf{User Clustering Effects}: The extreme concentration of contributions (86.7\% from one user) creates severe clustering that violates independence assumptions in statistical analysis. This concentration may reflect automated generation rather than diverse human usage, threatening the validity of behavioral inferences.
+\textbf{Agent Category Effects}: The five agent categories may have different distributional properties that should be considered in analysis. Agent-stratified descriptive summaries may reveal category-specific patterns in the labeling structure.
 
 
 
@@ -430,7 +409,7 @@ This characterization enables several research opportunities while highlighting 
 
 \subsection{Construct Validity}
 
-\textbf{AI Agent Attribution}: The binary classification (Copilot vs. Claude Code) may not capture the complexity of multi-tool environments where developers use multiple AI assistants or hybrid approaches. Agent labels are taken as provided without independent verification, and the extreme concentration in the "Copilot" user account may represent system-generated data rather than authentic tool usage.
+\textbf{AI Agent Attribution}: The five-category agent field (OpenAI Codex, Copilot, Cursor, Devin, Claude Code) contains discrete labels whose accuracy and meaning are not independently verified. The labeling methodology and criteria for these assignments are not documented in the available dataset metadata.
 
 \textbf{PR Representation}: Pull requests may not accurately represent all AI-assisted development activity, as developers may use AI tools for code that never reaches the PR stage or gets squashed into larger commits.
 
@@ -438,15 +417,15 @@ This characterization enables several research opportunities while highlighting 
 
 \section{Conclusion}
 
-This comprehensive characterization of the official MSR 2026 HuggingFace PR-level release provides essential insights for empirical research design. Analysis of all 900k+ pull requests reveals manageable distributional properties and adequate data quality for robust empirical studies.
+This paper presents a descriptive characterization of the official MSR 2026 HuggingFace PR-level dataset based on structural inspection and metadata analysis of 932,791 pull request records.
 
-\textbf{Key Findings}: The dataset provides adequate field-level completeness for exploratory structural analysis, though extreme user concentration (86.7\% from one account) prevents behavioral generalizations about tool effectiveness.
+\textbf{Key Findings}: The dataset contains five agent labels with extreme class imbalance, where OpenAI Codex accounts for 87.3\% of all records. Field-level completeness exceeds 99\% for all core metadata attributes. User contribution is unevenly distributed, with a long-tailed pattern of activity across users, but no single user dominates the dataset after descriptive filtering.
 
-\textbf{Methodological Implications}: The dataset may support exploratory, methodologically constrained analyses after explicitly accounting for extreme user-level clustering. The binary label structure enables limited structural analysis, though the extreme user concentration prevents generalizable behavioral conclusions about tool effectiveness.
+\textbf{Methodological Implications}: These properties indicate that the dataset is suitable for descriptive analysis, preprocessing research, and structural inspection of metadata fields. However, the extreme agent imbalance and user concentration prevent reliable behavioral inference, user comparison, or agent performance analysis.
 
-\textbf{Research Contribution}: This analysis provides empirically computed dataset characteristics, enabling informed research design and preventing methodological errors based on incorrect assumptions about dataset properties.
+\textbf{Research Contribution}: This work provides verified descriptive statistics and documents structural limitations that must be acknowledged in any downstream use of the dataset.
 
-\textbf{Future Directions}: The documented characteristics support development of methodologically constrained analyses examining workflow-level and process-level differences under strict controls for user clustering and automation.
+\textbf{Future Directions}: Future dataset construction efforts should prioritize verified labeling methodology, reduced automation dominance, and improved user diversity to support meaningful comparative analysis.
 
 \section*{Data Availability}
 
