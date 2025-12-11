@@ -1,0 +1,26 @@
+{
+  "total_records": 932791,
+  "unique_users": 72189,
+  "agent_distribution": {
+    "OpenAI_Codex": 814522,
+    "Copilot": 50447,
+    "Cursor": 32941,
+    "Devin": 29744,
+    "Claude_Code": 5137
+  },
+  "agent_percentages": {
+    "OpenAI_Codex": 87.32095399719766,
+    "Copilot": 5.408178252148659,
+    "Cursor": 3.5314448788635397,
+    "Devin": 3.1887100111386153,
+    "Claude_Code": 0.5507128606515286
+  },
+  "gini_coefficient": 0.8287823681427438,
+  "shannon_entropy": 0.7685925928717822,
+  "normalized_entropy": 0.3310148124587239,
+  "top_1_pct_share": 43.56409956785603,
+  "top_01_pct_share": 20.174401339635565,
+  "percentile_99_threshold": 178.0,
+  "mean_contrib": 12.921511587638006,
+  "median_contrib": 2.0
+}

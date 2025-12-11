@@ -1,0 +1,20 @@
+{
+  "bot_accounts_detected": 166,
+  "bot_prs_removed": 1702,
+  "pattern_counts": {
+    ".*bot.*": 163,
+    ".*\\[bot\\].*": 12,
+    ".*-ci$": 1,
+    ".*-automation$": 1,
+    ".*dependabot.*": 1,
+    ".*renovate.*": 1,
+    ".*github-actions.*": 1,
+    ".*codecov.*": 1
+  },
+  "final_distribution": {
+    "OpenAI_Codex": 93.53778040704942,
+    "Cursor": 5.5309485415493835,
+    "Claude_Code": 0.8167705122944954,
+    "Copilot": 0.11450053910670496
+  }
+}

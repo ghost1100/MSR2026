@@ -1,0 +1,50 @@
+{
+  "accounts_removed": 725,
+  "prs_removed": 407074,
+  "prs_removed_pct": 43.64042963536312,
+  "filtering_changes": [
+    {
+      "agent": "OpenAI_Codex",
+      "raw_pct": 87.32095399719766,
+      "filtered_pct": 93.52313126644182,
+      "delta": 6.20217726924416
+    },
+    {
+      "agent": "Copilot",
+      "raw_pct": 5.408178252148659,
+      "filtered_pct": 0.11508092757129787,
+      "delta": -5.293097324577361
+    },
+    {
+      "agent": "Cursor",
+      "raw_pct": 3.5314448788635397,
+      "filtered_pct": 5.529971448516978,
+      "delta": 1.9985265696534382
+    },
+    {
+      "agent": "Devin",
+      "raw_pct": 3.1887100111386153,
+      "filtered_pct": 0,
+      "delta": -3.1887100111386153
+    },
+    {
+      "agent": "Claude_Code",
+      "raw_pct": 0.5507128606515286,
+      "filtered_pct": 0.8318163574698935,
+      "delta": 0.2811034968183649
+    }
+  ],
+  "original_distribution": {
+    "OpenAI_Codex": 87.32095399719766,
+    "Copilot": 5.408178252148659,
+    "Cursor": 3.5314448788635397,
+    "Devin": 3.1887100111386153,
+    "Claude_Code": 0.5507128606515286
+  },
+  "filtered_distribution": {
+    "OpenAI_Codex": 93.52313126644182,
+    "Cursor": 5.529971448516978,
+    "Claude_Code": 0.8318163574698935,
+    "Copilot": 0.11508092757129787
+  }
+}
