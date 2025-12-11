@@ -88,7 +88,7 @@ These studies establish the methodological foundation for our user-level debiasi
 
 \subsection{Dataset and Scope}
 
-We analyze the MSR 2026 AI Development dataset, which contains 932,791 pull request records with assigned AI agent labels across five categories: OpenAI Codex, GitHub Copilot, Cursor, Devin, and Claude Code. 
+We analyze the MSR 2026 AI Development dataset, which contains 932,791 pull request records with assigned AI agent labels across five categories: OpenAI_Codex, Copilot, Cursor, Devin, and Claude_Code. 
 
 \textbf{Dataset Limitations}: The agent label assignments in this dataset reflect the labeling methodology used by the MSR 2026 Challenge organizers. We do not independently validate the accuracy of these agent-to-PR assignments, treating them as given data for distributional analysis purposes.
 
@@ -110,7 +110,7 @@ We apply a multi-stage filtering process to remove automation artifacts:
 
 \textbf{Stage 1 - Concentration Analysis}: Compute formal concentration metrics (Gini coefficient, Shannon entropy, top-1\% share) to quantify user contribution skew and distributional diversity in the raw dataset. This stage is diagnostic only and does not remove any accounts.
 
-\textbf{Stage 2 - Statistical Outlier Filtering}: Remove contributors exceeding the 99th percentile threshold ($\geq$215 PRs per user) to assess impact of high-volume accounts. The 99th percentile threshold was selected as a conventional statistical outlier boundary. This choice represents one reasonable approach to identifying high-volume contributors, though other thresholds could be justified.
+\textbf{Stage 2 - Statistical Outlier Filtering}: Remove contributors exceeding the 99th percentile threshold ($\geq$178 PRs per user) to assess impact of high-volume accounts. The 99th percentile threshold was selected as a conventional statistical outlier boundary. This choice represents one reasonable approach to identifying high-volume contributors, though other thresholds could be justified.
 
 \textbf{Stage 3 - Pattern-Based Filtering}: Remove accounts matching systematic patterns (usernames containing 'bot', '[bot]', organizational indicators) to assess institutional automation effects.
 
@@ -146,11 +146,11 @@ Initial analysis of the MSR 2026 dataset reveals substantial user contribution i
 
 \textbf{Raw Agent Distribution}:
 \begin{itemize}
-    \item OpenAI Codex: 814,522 PRs (87.3\%)
-    \item GitHub Copilot: 50,447 PRs (5.4\%)  
+    \item OpenAI\_Codex: 814,522 PRs (87.3\%)
+    \item Copilot: 50,447 PRs (5.4\%)  
     \item Cursor: 32,941 PRs (3.5\%)
     \item Devin: 29,744 PRs (3.2\%)
-    \item Claude Code: 5,137 PRs (0.6\%)
+    \item Claude\_Code: 5,137 PRs (0.6\%)
 \end{itemize}
 
 \subsection{Stage 1: Concentration Metrics}
@@ -161,9 +161,9 @@ Formal analysis of user contribution concentration reveals measurable skew chara
 \begin{itemize}
     \item Gini coefficient: 0.829 (high inequality)
     \item Shannon entropy: 0.769 (low diversity, 33.1\% of maximum)
-    \item Top-1\% users (722 accounts): 42.3\% of total PRs
-    \item Top-0.1\% users (72 accounts): 14.0\% of total PRs
-    \item 99th percentile threshold: 215 PRs per user
+    \item Top-1\% users (721 accounts): 43.6\% of total PRs
+    \item Top-0.1\% users (72 accounts): 20.2\% of total PRs
+    \item 99th percentile threshold: 178 PRs per user
 \end{itemize}
 
 These metrics establish the baseline concentration level that motivates systematic filtering approaches.
@@ -174,9 +174,9 @@ Removal of accounts exceeding the 99th percentile demonstrates measurable distri
 
 \textbf{Filtering Impact}:
 \begin{itemize}
-    \item Accounts removed: 723 (1.0\% of users)
-    \item Pull requests removed: 394,610 (42.3\% of all PRs)
-    \item Mean user contribution after filtering: 7.5 PRs
+    \item Accounts removed: 725 (1.0\% of users)
+    \item Pull requests removed: 407,074 (43.6\% of all PRs)
+    \item Mean user contribution after filtering: 7.4 PRs
 \end{itemize}
 
 \begin{table}[t]
@@ -187,11 +187,11 @@ Removal of accounts exceeding the 99th percentile demonstrates measurable distri
 \toprule
 \textbf{Agent} & \textbf{Raw \%} & \textbf{Filtered \%} & \textbf{$\Delta$\%} \\
 \midrule
-OpenAI Codex & 87.3 & 82.1 & -5.2 \\
-GitHub Copilot & 5.4 & 7.2 & +1.8 \\
-Cursor & 3.5 & 4.8 & +1.3 \\
-Devin & 3.2 & 4.9 & +1.7 \\
-Claude Code & 0.6 & 1.0 & +0.4 \\
+OpenAI Codex & 87.3 & 93.5 & +6.2 \\
+Copilot & 5.4 & 0.1 & -5.3 \\
+Cursor & 3.5 & 5.5 & +2.0 \\
+Devin & 3.2 & 0.0 & -3.2 \\
+Claude Code & 0.6 & 0.8 & +0.3 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -202,12 +202,12 @@ Systematic removal of automated accounts reveals additional bias sources:
 
 \textbf{Automation Signatures Detected}:
 \begin{itemize}
-    \item Bot naming patterns: 147 accounts identified via regex patterns
-    \item Temporal submission anomalies: High-frequency burst patterns detected
-    \item Volume-based automation indicators: Accounts exceeding 215 PR threshold
+    \item Bot naming patterns: 166 accounts identified via regex patterns
+    \item Pattern categories: bot usernames (163), [bot] suffix (12), CI/automation (4 accounts)
+    \item Volume-based automation indicators: Accounts exceeding 178 PR threshold
 \end{itemize}
 
-\textbf{Final Debiased Distribution}: OpenAI Codex (81.2\%), GitHub Copilot (7.8\%), Cursor (5.1\%), Devin (5.0\%), Claude Code (0.9\%)
+\textbf{Final Debiased Distribution}: OpenAI\_Codex (93.5\%), Cursor (5.5\%), Claude\_Code (0.8\%), Copilot (0.1\%)
 
 \section{Discussion}
 
@@ -216,14 +216,14 @@ Systematic removal of automated accounts reveals additional bias sources:
 Our analysis demonstrates that user contribution patterns systematically affect apparent AI agent distributions in the raw MSR 2026 dataset. The measured concentration of contributions among high-volume accounts influences distributional characterizations in ways that require methodological consideration.
 
 \textbf{Research Question Answer}:
-In this dataset, user contribution filtering produces distributional changes averaging 2.5 percentage points across the five agent categories. Statistical outlier filtering (99th percentile) produces distributional changes ranging from 0.4 to 5.2 percentage points per agent. The practical significance of these changes depends on the specific research context and analysis goals.
+In this dataset, user contribution filtering produces distributional changes averaging 4.4 percentage points across the agent categories. Statistical outlier filtering (99th percentile) produces distributional changes ranging from 0.3 to 6.2 percentage points per agent. The most dramatic change is the near-elimination of high-volume Copilot and Devin contributions, suggesting these agents were associated with automated accounts. The practical significance of these changes depends on the specific research context and analysis goals.
 
 \textbf{Key Findings}:
 \begin{itemize}
     \item Raw distributions show high user contribution skew (Gini = 0.829) and low diversity (Shannon entropy = 0.769)
     \item Agent distribution exhibits low Shannon entropy (normalized = 0.331), confirming distributional imbalance
-    \item 99th percentile filtering changes agent distributions by 2.1\% mean absolute deviation
-    \item Pattern-based filtering identifies 147 accounts with automation-like characteristics (0.2\% of users)
+    \item 99th percentile filtering changes agent distributions by 4.4\% mean absolute deviation
+    \item Pattern-based filtering identifies 166 accounts with automation-like characteristics (0.2\% of users)
     \item Progressive filtering produces measurably different distributional characterizations
 \end{itemize}
 

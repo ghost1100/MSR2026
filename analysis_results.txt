@@ -1,0 +1,42 @@
+================================================================================
+MSR2026 FILTERING STUDY - COMPLETE ANALYSIS
+================================================================================
+Loading dataset...
+Loaded 932,791 records with 72,189 unique users
+
+============================================================
+STAGE 1: CONCENTRATION ANALYSIS
+============================================================
+Total records: 932,791
+Unique users: 72,189
+Mean contributions: 12.9 PRs per user
+Median contributions: 2.0 PRs per user
+Gini coefficient: 0.829
+Shannon entropy (agents): 0.769
+Normalized entropy: 0.331
+Top-1% users (721): 43.6% of PRs
+Top-0.1% users (72): 20.2% of PRs
+99th percentile threshold: 178 PRs per user
+
+============================================================
+STAGE 2: STATISTICAL OUTLIER FILTERING
+============================================================
+99th percentile threshold: 178 PRs per user
+Accounts removed: 725 (1.0% of users)
+PRs removed: 407,074 (43.6% of all PRs)
+New mean contribution: 7.4 PRs per user
+
+Agent Distribution Changes:
+Traceback (most recent call last):
+  File "C:\Users\Ahmed\Downloads\VScodeRepo\MSR2026\complete_filtering_analysis.py", line 299, in <module>
+    results = run_complete_filtering_analysis()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ahmed\Downloads\VScodeRepo\MSR2026\complete_filtering_analysis.py", line 254, in run_complete_filtering_analysis
+    stage2_results = analyze_stage_2_outlier_filtering(df)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ahmed\Downloads\VScodeRepo\MSR2026\complete_filtering_analysis.py", line 165, in analyze_stage_2_outlier_filtering
+    print(f"  {agent}: {orig_pct:.1f}% \u2192 {filt_pct:.1f}% ({change:+.1f}%)")
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 22: character maps to <undefined>
