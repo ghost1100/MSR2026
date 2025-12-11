@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.5)  10 DEC 2025 03:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.5)  11 DEC 2025 17:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -263,30 +263,30 @@ med/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 
 
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 111
+LaTeX Font Info:    Trying to load font information for U+msa on input line 113
 .
 
 (C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 111
+LaTeX Font Info:    Trying to load font information for U+msb on input line 113
 .
 
 (C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 1
-38.
+40.
 
 (C:\Users\Ahmed\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 138--139
+Underfull \hbox (badness 10000) in paragraph at lines 140--141
 []\OT1/ptm/m/n/10 Median con-tri-bu-tions: 2 pull re-quests per user
  []
 
 [2]
-Underfull \hbox (badness 3281) in paragraph at lines 220--221
+Underfull \hbox (badness 3281) in paragraph at lines 222--223
 []\OT1/ptm/m/n/10 Pattern-based fil-ter-ing iden-ti-fies 147 ac-counts with
  []
 
@@ -302,10 +302,6 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-
-Overfull \vbox (1.53986pt too high) has occurred while \output is active []
-
-
 [4] (MSR2026 Filtering Study.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
@@ -319,7 +315,7 @@ Here is how much of TeX's memory you used:
  25216 multiletter control sequences out of 15000+600000
  597623 words of font info for 110 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,9n,65p,1137b,296s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 56i,9n,65p,1102b,296s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmr8.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
 nts/cm/cmsy10.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/type1/pub
@@ -328,7 +324,7 @@ ype1/urw/times/utmb8a.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/t
 ype1/urw/times/utmbi8a.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/
 type1/urw/times/utmr8a.pfb><C:/Users/Ahmed/AppData/Local/Programs/MiKTeX/fonts/
 type1/urw/times/utmri8a.pfb>
-Output written on "MSR2026 Filtering Study.pdf" (4 pages, 109336 bytes).
+Output written on "MSR2026 Filtering Study.pdf" (4 pages, 110208 bytes).
 PDF statistics:
  51 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

@@ -98,7 +98,7 @@ The dataset spans 72,189 unique user identifiers. Our analysis focuses on how us
 
 We systematically analyze user-level contribution patterns to identify automation artifacts:
 
-\textbf{Volume Distribution Analysis}: Compute per-user pull request counts and formal concentration metrics including Gini coefficient and percentile shares to quantify contribution skew.
+\textbf{Volume Distribution Analysis}: Compute per-user pull request counts and formal concentration metrics including Gini coefficient, Shannon entropy, and percentile shares to quantify contribution skew and distributional diversity.
 
 \textbf{Human-Scale Activity Definition}: Define filtering thresholds based on statistical outlier detection (contributions exceeding 99th percentile) to identify accounts that warrant methodological attention.
 
@@ -108,7 +108,7 @@ We systematically analyze user-level contribution patterns to identify automatio
 
 We apply a multi-stage filtering process to remove automation artifacts:
 
-\textbf{Stage 1 - Concentration Analysis}: Compute formal concentration metrics (Gini coefficient, top-1\% share) to quantify user contribution skew in the raw dataset. This stage is diagnostic only and does not remove any accounts.
+\textbf{Stage 1 - Concentration Analysis}: Compute formal concentration metrics (Gini coefficient, Shannon entropy, top-1\% share) to quantify user contribution skew and distributional diversity in the raw dataset. This stage is diagnostic only and does not remove any accounts.
 
 \textbf{Stage 2 - Statistical Outlier Filtering}: Remove contributors exceeding the 99th percentile threshold ($\geq$215 PRs per user) to assess impact of high-volume accounts. The 99th percentile threshold was selected as a conventional statistical outlier boundary. This choice represents one reasonable approach to identifying high-volume contributors, though other thresholds could be justified.
 
@@ -138,7 +138,8 @@ Initial analysis of the MSR 2026 dataset reveals substantial user contribution i
     \item Total unique users: 72,189 accounts
     \item Mean contributions: 12.9 pull requests per user
     \item Median contributions: 2 pull requests per user (mean/median = 6.5×)
-    \item Gini coefficient: 0.846 indicating high concentration
+    \item Gini coefficient: 0.829 indicating high concentration
+    \item Shannon entropy: 0.769 (normalized: 0.331) indicating low diversity
     \item Top-1\% users contribute: 42.3\% of all pull requests
     \item Distribution pattern: Heavy-tailed with measurable concentration
 \end{itemize}
@@ -158,6 +159,8 @@ Formal analysis of user contribution concentration reveals measurable skew chara
 
 \textbf{Concentration Metrics}:
 \begin{itemize}
+    \item Gini coefficient: 0.829 (high inequality)
+    \item Shannon entropy: 0.769 (low diversity, 33.1\% of maximum)
     \item Top-1\% users (722 accounts): 42.3\% of total PRs
     \item Top-0.1\% users (72 accounts): 14.0\% of total PRs
     \item 99th percentile threshold: 215 PRs per user
@@ -217,7 +220,8 @@ In this dataset, user contribution filtering produces distributional changes ave
 
 \textbf{Key Findings}:
 \begin{itemize}
-    \item Raw distributions show high user contribution skew (Gini = 0.846)
+    \item Raw distributions show high user contribution skew (Gini = 0.829) and low diversity (Shannon entropy = 0.769)
+    \item Agent distribution exhibits low Shannon entropy (normalized = 0.331), confirming distributional imbalance
     \item 99th percentile filtering changes agent distributions by 2.1\% mean absolute deviation
     \item Pattern-based filtering identifies 147 accounts with automation-like characteristics (0.2\% of users)
     \item Progressive filtering produces measurably different distributional characterizations
@@ -269,7 +273,7 @@ The filtering approach developed here provides a template for addressing similar
 
 \section{Conclusion}
 
-This study examines how user-level contribution patterns may affect AI agent distribution analysis in repository datasets. The MSR 2026 dataset exhibits user contribution concentration (Gini = 0.846) that produces measurable changes in agent distributions when filtering is applied. Whether such changes represent meaningful bias depends on the specific research questions and analytical goals.
+This study examines how user-level contribution patterns may affect AI agent distribution analysis in repository datasets. The MSR 2026 dataset exhibits user contribution concentration (Gini = 0.829) and low distributional diversity (Shannon entropy = 0.769, normalized = 0.331) that produces measurable changes in agent distributions when filtering is applied. Whether such changes represent meaningful bias depends on the specific research questions and analytical goals.
 
 \textbf{Key Contributions}:
 \begin{itemize}
@@ -279,7 +283,7 @@ This study examines how user-level contribution patterns may affect AI agent dis
     \item Establishment of debiasing approaches for repository-scale empirical studies
 \end{itemize}
 
-\textbf{Methodological Implications}: User-level filtering appears necessary for this dataset to obtain more representative distributional characterizations. The systematic effects observed suggest that raw repository data requires preprocessing consideration in empirical studies.
+\textbf{Methodological Implications}: User-level filtering appears necessary for this dataset to obtain more representative distributional characterizations. The combination of high inequality (Gini = 0.829) and low diversity (Shannon entropy = 0.331) demonstrates that raw repository data requires preprocessing consideration in empirical studies.
 
 \textbf{Future Directions}: This filtering methodology should be applied to other AI development datasets to assess the generalizability of automation bias problems and develop standardized preprocessing approaches for the field.
 
