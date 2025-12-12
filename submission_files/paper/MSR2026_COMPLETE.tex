@@ -43,6 +43,10 @@ Invalid research conclusions about AI tool behavior can have serious consequence
 
 More broadly, the software engineering research community risks repeating historical mistakes where impressive-seeming large-scale studies later proved to be methodologically flawed. The appeal of "big data" can obscure fundamental validity threats, leading to confident conclusions based on unreliable evidence.
 
+\subsection{Motivating Example}
+
+Consider a typical scenario that illustrates why behavioral inference fails: A pull request labeled as "Copilot-generated" contains a comprehensive test suite with 47 unit tests and detailed documentation. Manual inspection reveals that (1) the repository uses mandatory PR templates requiring the word "test" in all descriptions, (2) the contributor is a power user with 3,847 previous PRs, and (3) the actual code changes include only configuration updates with no new test files. The "Copilot" label was applied automatically based on IDE session data, but the PR content reflects repository policies, human editing, and template requirements rather than AI capabilities. This single example demonstrates how agent attribution, keyword detection, and behavioral inference simultaneously break down in repository datasets.
+
 \subsection{The Appeal of Large Datasets}
 
 Large observational datasets offer compelling advantages that make them attractive to researchers and reviewers alike. First, \textbf{massive sample sizes} provide impressive statistical power, making even small effects detectable and creating confidence in findings. The AIDev dataset's 932,791 observations dwarfs typical controlled studies, which rarely exceed thousands of participants.
@@ -64,6 +68,10 @@ We address three methodological research questions:
 \textbf{RQ2: How do these validity threats manifest in practice using the AIDev dataset?} We provide concrete examples of each threat category with specific evidence.
 
 \textbf{RQ3: What methodological requirements are necessary for valid AI tool behavioral research?} We specify design principles for reliable causal inference.
+
+\subsection{Contributions}
+
+This paper makes four key contributions: (1) \textbf{Systematic documentation} of fundamental validity failures in PR-based behavioral inference, demonstrating why agent attribution, keyword detection, and statistical assumptions break down in repository datasets; (2) \textbf{Empirical quantification} of dataset structural biases including extreme user inequality (Gini coefficient 0.829) and automation contamination (44.2\% of data); (3) \textbf{Methodological taxonomy} providing a framework for identifying and categorizing validity threats in observational AI tool research; and (4) \textbf{Research guidelines} establishing prerequisites for valid AI tool evaluation, including assumption validation protocols and bias detection methods.
 
 \section{Methodology Failures in Observational AI Research}
 
@@ -185,7 +193,7 @@ Valid behavioral research about AI tools requires controlled experimental condit
 
 \section{A Taxonomy of Validity Threats in Observational AI Tool Research}
 
-To systematize the methodological challenges we have identified, we propose a taxonomy of validity threats specific to observational AI tool research. This framework can guide future researchers in identifying and addressing potential problems.
+To systematize the methodological challenges we have identified, we propose a taxonomy of validity threats specific to observational AI tool research. This framework organizes threats into three primary domains (Attribution, Measurement, Statistical) with specific manifestations and assessment criteria for each category. This taxonomic structure can guide future researchers in identifying and addressing potential problems.
 
 \subsection{Attribution Validity Threats}
 
@@ -443,7 +451,15 @@ This critique aims to improve research quality, not discourage investigation of 
 
 \section*{Threats to Validity}
 
-This work does not attempt to measure true testing behavior and therefore does not evaluate the correctness of any AI-generated code or tests. Our conclusions depend on the structure of the AIDev dataset, which lacks file-level diffs and commit histories; different datasets may permit deeper behavioral inference. Our identification of automation artifacts relies on volume thresholds and pattern-based heuristics, which may misclassify edge cases. However, none of these factors affect the central conclusion: PR-level metadata in this dataset is insufficient for valid behavioral inference.
+\textbf{Internal Validity}: Our conclusions depend on the specific structure of the AIDev dataset, which lacks file-level diffs and commit histories; different datasets with richer metadata may permit deeper behavioral inference.
+
+\textbf{Construct Validity}: We do not attempt to measure true testing behavior and therefore do not evaluate the correctness of any AI-generated code or tests. Our keyword-based detection serves only to demonstrate methodological limitations, not to establish behavioral ground truth.
+
+\textbf{External Validity}: Our identification of automation artifacts relies on volume thresholds and pattern-based heuristics specific to this dataset, which may misclassify edge cases in other repository contexts.
+
+\textbf{Conclusion Validity}: However, none of these factors affect the central conclusion: PR-level metadata in this dataset structure is insufficient for valid behavioral inference about AI agent testing practices.
+
+\textbf{Scope Limitations}: While this work provides a systematic critique of observational methods for AI tool research, we do not propose a complete alternative methodological pipeline. Our contribution is diagnostic rather than prescriptive, identifying what does not work without fully specifying what should replace current approaches. Future work must develop comprehensive frameworks for valid AI tool evaluation.
 
 \section*{Acknowledgments}
 
