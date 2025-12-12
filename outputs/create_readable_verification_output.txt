@@ -1,0 +1,48 @@
+=== Verification File Processing ===
+Script: create_readable_verification.py
+Timestamp: 2025-12-12 18:24:04.338320
+
+STDOUT:
+================================================================================
+CREATING READABLE VERIFICATION SAMPLE
+================================================================================
+Loaded sample: 500 PRs
+Enhanced detection distribution:
+enhanced_detected
+False    436
+True      64
+Name: count, dtype: int64
+
+Confidence distribution:
+enhanced_confidence
+none      436
+medium     34
+low        24
+high        6
+Name: count, dtype: int64
+
+================================================================================
+CREATING FOCUSED VERIFICATION SUBSETS
+================================================================================
+Created verification files:
+- verification_enhanced_detected.csv: 64 PRs (HIGH PRIORITY)
+- verification_enhanced_rejected_sample.csv: 100 PRs
+- verification_complete_readable.csv: 500 PRs (complete sample)
+Created verification_checklist.md
+
+================================================================================
+READABLE VERIFICATION FILES CREATED
+================================================================================
+Priority workflow:
+1. Start with verification_enhanced_detected.csv (64 PRs - most important)
+2. Review verification_checklist.md for guidance
+3. Verify sample of enhanced rejections
+4. Calculate precision/recall statistics
+
+Sample of HIGH PRIORITY cases to verify:
+- Compress duplicate tests with parameterization
+  Score: 13, Language: python
+- Expand GUI tests for sidebar actions
+  Score: 11, Language: python
+- Implement advanced DI container
+  Score: 11, Language: python

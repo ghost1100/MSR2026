@@ -1,0 +1,73 @@
+{
+  "research_execution": {
+    "pipeline_type": "Essential Research Pipeline",
+    "start_time": "2025-12-12T18:23:05.023248",
+    "end_time": "2025-12-12T18:24:06.458094",
+    "duration_seconds": 61.434846,
+    "duration_formatted": "0:01:01.434846",
+    "successful_stages": 4,
+    "failed_stages": 4,
+    "total_stages": 8,
+    "success_rate": "50.0%"
+  },
+  "stage_results": [
+    {
+      "stage": 1,
+      "script": "honest_analysis.py",
+      "description": "Dataset Statistics and Verification",
+      "success": false,
+      "timestamp": "2025-12-12T18:23:14.804353"
+    },
+    {
+      "stage": 2,
+      "script": "comprehensive_full_analysis.py",
+      "description": "Complete Dataset Analysis",
+      "success": true,
+      "timestamp": "2025-12-12T18:23:34.603436"
+    },
+    {
+      "stage": 3,
+      "script": "complete_filtering_analysis.py",
+      "description": "Statistical Filtering Analysis",
+      "success": false,
+      "timestamp": "2025-12-12T18:23:46.521968"
+    },
+    {
+      "stage": 4,
+      "script": "compute_filtering_values.py",
+      "description": "Filtering Study Computations",
+      "success": false,
+      "timestamp": "2025-12-12T18:23:47.761575"
+    },
+    {
+      "stage": 5,
+      "script": "real_dataset_analysis.py",
+      "description": "Final Research Results",
+      "success": true,
+      "timestamp": "2025-12-12T18:23:49.934493"
+    },
+    {
+      "stage": 6,
+      "script": "genuine_analysis.py",
+      "description": "Analysis Verification",
+      "success": false,
+      "timestamp": "2025-12-12T18:24:03.688009"
+    },
+    {
+      "stage": 7,
+      "script": "create_readable_verification.py",
+      "description": "Verification File Processing",
+      "success": true,
+      "timestamp": "2025-12-12T18:24:04.338948"
+    },
+    {
+      "stage": 8,
+      "script": "analyze_enhanced_detection.py",
+      "description": "Enhanced Detection Analysis",
+      "success": true,
+      "timestamp": "2025-12-12T18:24:06.458094"
+    }
+  ],
+  "output_directory": "C:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR2026\\outputs",
+  "research_status": "PARTIAL"
+}

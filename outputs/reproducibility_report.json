@@ -1,0 +1,42 @@
+{
+  "reproducibility_check": {
+    "timestamp": "2025-12-12T18:28:18.931875",
+    "essential_files_present": true,
+    "missing_files": [],
+    "dataset_size": "932,791 PRs",
+    "output_directory": "C:\\Users\\Ahmed\\Downloads\\VScodeRepo\\MSR2026\\outputs",
+    "research_status": "READY FOR REPRODUCTION"
+  },
+  "available_scripts": {
+    "core_analysis": [
+      "honest_analysis.py",
+      "comprehensive_full_analysis.py",
+      "complete_filtering_analysis.py"
+    ],
+    "enhanced_detection": [],
+    "verification_files": []
+  },
+  "outputs_available": [
+    "complete_filtering_analysis.json",
+    "COMPLETE_STUDY_RESULTS.json",
+    "comprehensive_full_dataset_analysis.json",
+    "eda_insights.json",
+    "execution_report.json",
+    "filtering_study_results.json",
+    "genuine_analysis_results.json",
+    "output_inventory.json",
+    "real_paper_statistics.json",
+    "reproducibility_report.json",
+    "research_execution_summary.json",
+    "rq1_test_contribution_results.json",
+    "sensitivity_codex.json",
+    "test_detection_augmentation.json",
+    "test_rates_from_csv.json"
+  ],
+  "research_components": {
+    "dataset_analysis": "\u2713",
+    "filtering_study": "\u2713",
+    "enhanced_detection": "\u2717",
+    "verification_system": "\u2717"
+  }
+}

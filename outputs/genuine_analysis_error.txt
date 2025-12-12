@@ -1,0 +1,25 @@
+ERROR in genuine_analysis.py
+Exit code: 1
+STDERR:
+Traceback (most recent call last):
+  File "C:\Users\Ahmed\Downloads\VScodeRepo\MSR2026\genuine_analysis.py", line 268, in <module>
+    main()
+  File "C:\Users\Ahmed\Downloads\VScodeRepo\MSR2026\genuine_analysis.py", line 234, in main
+    df = load_real_dataset()
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ahmed\Downloads\VScodeRepo\MSR2026\genuine_analysis.py", line 42, in load_real_dataset
+    print(f"\u2713 Dataset loaded successfully!")
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 0: character maps to <undefined>
+
+STDOUT:
+GENUINE DATASET ANALYSIS
+Computing REAL statistics from actual aidata.csv file
+This replaces all fabricated numbers with genuine analysis
+================================================================================
+LOADING ACTUAL DATASET FROM aidata.csv
+================================================================================
+Loading dataset from: data/raw/aidata.csv
+

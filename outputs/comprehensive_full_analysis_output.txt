@@ -1,0 +1,61 @@
+=== Complete Dataset Analysis ===
+Script: comprehensive_full_analysis.py
+Timestamp: 2025-12-12 18:23:34.603436
+
+STDOUT:
+================================================================================
+COMPREHENSIVE ANALYSIS: COMPLETE AIDEV DATASET
+================================================================================
+
+1. Loading complete dataset...
+Loading dataset from local file: data/raw/aidata.csv
+Loading complete dataset (932,791 records)...
+Loaded full dataset: 932,791 rows
+Memory usage: 1607.3 MB
+Dataset loaded successfully!
+Total records: 932,791
+Memory usage: 1607.3 MB
+
+2. Dataset Overview:
+   Columns: ['id', 'number', 'title', 'user', 'user_id', 'state', 'created_at', 'closed_at', 'merged_at', 'repo_url', 'repo_id', 'html_url', 'body', 'agent']
+   Unique agents: 5
+   Unique users: 72189
+
+3. Agent Distribution Analysis:
+   OpenAI_Codex: 814,522 PRs (87.3%)
+   Copilot: 50,447 PRs (5.4%)
+   Cursor: 32,941 PRs (3.5%)
+   Devin: 29,744 PRs (3.2%)
+   Claude_Code: 5,137 PRs (0.6%)
+
+4. Test Behavior Analysis:
+   Analyzing test-related keywords in titles and descriptions...
+   Total test-related PRs: 872,046 (93.5%)
+
+5. Agent-Specific Behavioral Analysis:
+
+   Comprehensive Agent Behavior Summary:
+   ====================================================================================================
+   Agent           PRs        Test%    Closed%    Users      AvgTitle     AvgBody   
+   ----------------------------------------------------------------------------------------------------
+   OpenAI_Codex    814,522.0  98.5     93.4       61,653.0   33           313       
+   Copilot         50,447.0   79.6     79.7       379.0      68           3328      
+   Claude_Code     5,137.0    76.7     92.2       1,643.0    57           2169      
+   Devin           29,744.0   66.6     94.4       1.0        49           1539      
+   Cursor          32,941.0   18.7     78.6       9,658.0    39           553       
+
+6. Statistical Significance Analysis:
+   Chi-square test:
+ERROR: Analysis failed with exception: 'charmap' codec can't encode character '\u03c7' in position 3: character maps to <undefined>
+
+STDERR:
+Traceback (most recent call last):
+  File "C:\Users\Ahmed\Downloads\VScodeRepo\MSR2026\comprehensive_full_analysis.py", line 330, in main
+    df, results = analyze_complete_dataset()
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ahmed\Downloads\VScodeRepo\MSR2026\comprehensive_full_analysis.py", line 127, in analyze_complete_dataset
+    print(f"   \u03c7² = {chi2:,.1f}, p-value = {p_value:.2e}")
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u03c7' in position 3: character maps to <undefined>
