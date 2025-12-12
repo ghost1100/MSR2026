@@ -289,7 +289,7 @@ def run_complete_filtering_analysis():
     print("ANALYSIS COMPLETE!")
     print(f"Results saved to: {output_file}")
     print(f"Original dataset: {len(df):,} records")
-    print(f"Final filtered dataset: {len(stage3_results['final_dataset']):,} records")
+    print(f"Final filtered dataset: {all_results['metadata']['total_final_records']:,} records")
     print(f"Overall retention rate: {all_results['metadata']['total_retention_rate']:.1%}")
     print("="*80)
     

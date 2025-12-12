@@ -50,12 +50,19 @@ def load_aidev(local_path="data/raw/aidata.csv", from_huggingface=False, config=
                 'title': 'string',
                 'body': 'string'
             }
-            df = pd.read_csv(local_path, low_memory=False, dtype=dtype_optimizations)
+            try:
+                df = pd.read_csv(local_path, low_memory=False, dtype=dtype_optimizations, encoding='utf-8')
+            except UnicodeDecodeError:
+                print("UTF-8 encoding failed, trying latin-1...")
+                df = pd.read_csv(local_path, low_memory=False, dtype=dtype_optimizations, encoding='latin-1')
             print(f"Loaded full dataset: {len(df):,} rows")
             print(f"Memory usage: {df.memory_usage(deep=True).sum() / 1024**2:.1f} MB")
         elif sample_size:
             # Legacy sampling mode
-            df_full = pd.read_csv(local_path, low_memory=False)
+            try:
+                df_full = pd.read_csv(local_path, low_memory=False, encoding='utf-8')
+            except UnicodeDecodeError:
+                df_full = pd.read_csv(local_path, low_memory=False, encoding='latin-1')
             if len(df_full) <= sample_size:
                 df = df_full
                 print(f"Loaded full dataset: {len(df)} rows")
@@ -64,7 +71,10 @@ def load_aidev(local_path="data/raw/aidata.csv", from_huggingface=False, config=
                 print(f"Loaded random sample of {sample_size} rows from {len(df_full)} total")
         else:
             # Default full dataset load
-            df = pd.read_csv(local_path, low_memory=False)
+            try:
+                df = pd.read_csv(local_path, low_memory=False, encoding='utf-8')
+            except UnicodeDecodeError:
+                df = pd.read_csv(local_path, low_memory=False, encoding='latin-1')
     
     return df
 

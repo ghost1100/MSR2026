@@ -12,7 +12,11 @@ def compute_honest_statistics():
     print("HONEST ANALYSIS - ONLY VERIFIED STATISTICS")
     print("=" * 80)
     
-    df = pd.read_csv('data/raw/aidata.csv')
+    try:
+        df = pd.read_csv('data/raw/aidata.csv', encoding='utf-8')
+    except UnicodeDecodeError:
+        print("UTF-8 encoding failed, trying latin-1...")
+        df = pd.read_csv('data/raw/aidata.csv', encoding='latin-1')
     
     # Basic facts we can verify
     print(f"Dataset size: {len(df):,}")

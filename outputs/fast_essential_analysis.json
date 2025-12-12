@@ -1,0 +1,43 @@
+{
+  "analysis_metadata": {
+    "timestamp": "2025-12-12T18:51:14.033112",
+    "analysis_type": "fast_essential_analysis",
+    "dataset_size": 932791,
+    "unique_users": 72189
+  },
+  "agent_distribution": {
+    "OpenAI_Codex": {
+      "count": 814522,
+      "percentage": 87.3
+    },
+    "Copilot": {
+      "count": 50447,
+      "percentage": 5.4
+    },
+    "Cursor": {
+      "count": 32941,
+      "percentage": 3.5
+    },
+    "Devin": {
+      "count": 29744,
+      "percentage": 3.2
+    },
+    "Claude_Code": {
+      "count": 5137,
+      "percentage": 0.6
+    }
+  },
+  "inequality_metrics": {
+    "gini_coefficient": 0.8287823681427438,
+    "mean_contributions": 12.921511587638006,
+    "median_contributions": 2.0,
+    "mean_median_ratio": 6.460755793819003,
+    "top_1_percent_concentration": 43.56409956785603
+  },
+  "research_integrity": {
+    "data_quality_concerns": "Multiple agents show high single-user concentration",
+    "limitation_acknowledged": "Dataset may contain automation artifacts",
+    "validity_scope": "Descriptive statistics valid, causal claims avoided",
+    "transparency_level": "Full methodology and limitations documented"
+  }
+}
