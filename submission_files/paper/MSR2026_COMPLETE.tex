@@ -441,6 +441,10 @@ Our systematic examination revealed three categories of fatal validity threats:
 
 This critique aims to improve research quality, not discourage investigation of AI tools' impact on software development. By identifying common pitfalls and establishing validity requirements, we can build a more reliable evidence base for AI tool evaluation and evidence-based software engineering practice. The stakes are too high—for practitioners, organizations, and the research community—to accept methodologically flawed conclusions simply because they emerge from impressively large datasets.
 
+\section*{Threats to Validity}
+
+This work does not attempt to measure true testing behavior and therefore does not evaluate the correctness of any AI-generated code or tests. Our conclusions depend on the structure of the AIDev dataset, which lacks file-level diffs and commit histories; different datasets may permit deeper behavioral inference. Our identification of automation artifacts relies on volume thresholds and pattern-based heuristics, which may misclassify edge cases. However, none of these factors affect the central conclusion: PR-level metadata in this dataset is insufficient for valid behavioral inference.
+
 \section*{Acknowledgments}
 
 We thank H. Li et al. for making the AIDev dataset publicly available, enabling this methodological analysis. We hope this critique contributes to improved research practices in software engineering tool evaluation.
