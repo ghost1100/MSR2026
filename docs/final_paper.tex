@@ -2,7 +2,6 @@
 % Title: A Large-Scale Analysis of AI-Assisted Pull Requests: Observations, Biases, and Limits of Behavioral Inference
 
 \documentclass[conference]{IEEEtran}
-\usepackage{hyperref}
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{booktabs}
@@ -51,28 +50,7 @@ This study uses the AIDev dataset released as part of the MSR 2026 Mining Challe
 The dataset was obtained directly from the official MSR 2026 challenge release and was used without modification to its original labels or structure, except where explicitly noted for analysis and validation purposes.
 
 \subsection{Dataset Scope and Composition}
-The full dataset contains:
-\begin{itemize}
-    \item 932,791 pull requests
-    \item 72,189 unique users
-    \item Five AI agent labels:
-    \begin{itemize}
-        \item OpenAI Codex
-        \item GitHub Copilot
-        \item Cursor
-        \item Devin
-        \item Claude Code
-    \end{itemize}
-    \item Each pull request record includes:
-    \begin{itemize}
-        \item Agent label
-        \item User identifier
-        \item Repository information
-        \item Pull request title and description
-        \item Timestamps and merge status
-        \item Links to the original GitHub PR (when available)
-    \end{itemize}
-\end{itemize}
+The full dataset contains 932,791 pull requests, 72,189 unique users, and five AI agent labels (OpenAI Codex, GitHub Copilot, Cursor, Devin, and Claude Code). Each pull request record includes an agent label, user identifier, repository information, pull request title and description, timestamps and merge status, and links to the original GitHub PR (when available).
 
 The dataset spans a large number of repositories, programming languages, and development contexts, providing broad coverage of real-world AI-assisted development activity.
 
