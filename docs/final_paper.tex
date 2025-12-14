@@ -26,7 +26,7 @@ Through this analysis, the paper examines whether large-scale observational pull
 \section{Introduction}
 AI-powered coding assistants are now embedded in everyday software development workflows. Tools such as GitHub Copilot, OpenAI Codex, Cursor, Devin, and Claude Code are used by millions of developers and are increasingly credited with accelerating development, improving productivity, and influencing software quality practices. As these tools become pervasive, understanding how they shape real-world development behavior—particularly testing practices—has become an important empirical question for both researchers and practitioners.
 
-Recent software engineering research has responded to this need by leveraging large observational datasets derived from development platforms such as GitHub. These datasets appear especially attractive: they capture real production activity at unprecedented scale, promise high statistical power, and seemingly allow direct comparison of AI agent behavior "in the wild." In particular, pull request (PR) datasets labeled with AI agent information have been used to make claims about differences in testing behavior, development style, and quality practices across tools.
+Recent software engineering research has responded to this need by leveraging large-scale datasets derived from development platforms such as GitHub. These datasets appear especially attractive: they capture real production activity at unprecedented scale, promise high statistical power, and seemingly allow direct comparison of AI agent behavior ``in the wild''. In particular, pull request (PR) datasets labeled with AI agent information have been used to make claims about differences in testing behavior, development style, and quality practices across tools.
 
 This study began with exactly that motivation. Our original goal was to determine whether different AI coding agents exhibit systematically different testing behaviors. Using a large PR dataset with agent labels, we initially observed striking patterns: some agents appeared to include tests in nearly all PRs, while others rarely did so. Standard statistical analysis suggested large, statistically significant differences, seemingly supporting the narrative that AI agents differ meaningfully in how they support testing.
 
@@ -34,14 +34,14 @@ However, as the analysis progressed, these early findings raised a more fundamen
 
 Closer inspection of the data revealed unexpected and troubling characteristics. Contribution activity was extremely concentrated, with a small number of users responsible for a disproportionate fraction of PRs. Some agent categories were dominated by single accounts producing thousands of PRs. A substantial portion of PRs were no longer accessible, preventing direct verification of their contents. Manual inspection further showed that keyword-based indicators of testing often failed to correspond to actual test files or meaningful test quality.
 
-These observations forced a reassessment of the original research question. Rather than asking whether AI agents behave differently, this work reframes the problem: can observational PR datasets, as currently constructed, support valid behavioral inference about AI coding agents at all?
+These observations forced a reassessment of the original research question. Rather than asking whether AI agents behave differently, this work reframes the problem: can such PR datasets, as currently constructed, support valid agent behavior analysis at all?
 
 In response, this paper presents a structured empirical investigation that combines large-scale quantitative analysis with targeted manual validation. We document what the dataset clearly shows—such as adoption patterns and extreme contribution inequality—while also identifying where inference breaks down due to attribution ambiguity, measurement error, automation, and missing data. Rather than advancing unsupported behavioral claims, this study offers a methodological account of how seemingly compelling results emerge, why they are fragile, and how future research can avoid similar pitfalls.
 
 By telling the full analytical story—from initial hypothesis, through failure, to methodological insight—this work contributes both empirical observations and a cautionary framework for AI tool research based on large observational datasets.
 
 \subsection{Research Questions}
-This study investigates whether large-scale observational pull request datasets labeled with AI agent information can support valid behavioral inference about AI coding agents. Specifically, it examines (i) whether such datasets satisfy the assumptions required for agent-level behavioral comparison, (ii) which structural and measurement properties undermine inference, (iii) the reliability of metadata- and keyword-based proxies for testing behavior, and (iv) which empirical properties remain valid despite these limitations. Based on these findings, the study derives methodological guidance for future empirical research on AI-assisted software development.
+This study investigates whether large-scale observational pull request datasets labeled with AI agent information can support valid agent behavior claims. Specifically, it examines (i) whether such datasets satisfy the assumptions required for agent-level behavioral comparison, (ii) which structural and measurement properties undermine inference, (iii) the reliability of metadata- and keyword-based proxies for testing behavior, and (iv) which empirical properties remain valid despite these limitations. Based on these findings, the study derives methodological guidance for future empirical research on AI-assisted software development.
 
 \section{Dataset Analysis}
 \subsection{Dataset Source}
@@ -97,7 +97,7 @@ Bidirectional validation shows that automated test detection systematically over
 Applying user-level filtering alters aggregate adoption statistics, shifting agent shares and increasing distributional diversity. Raw PR counts are unstable indicators of adoption or behavior.
 
 \subsection{Summary of Empirical Findings}
-In summary, the results show extreme contribution concentration, significant data loss, heterogeneous testing practices, error-prone detection, and distorted aggregate statistics. These describe dataset properties rather than agent behaviors.
+In summary, the results show extreme contribution concentration, significant data loss, heterogeneous testing practices, error-prone detection, and distorted aggregate statistics. These describe dataset properties rather than agent behaviors. For example, initial chi-square tests comparing keyword-detected test presence across agents yielded statistically significant differences (p < 0.001), but these results were invalidated after accounting for user-level dependence and measurement error.
 
 \section{Threats to Validity}
 
@@ -117,7 +117,7 @@ Conclusion validity is threatened by structural dependence, violating independen
 
 \section{Impact and Implications}
 
-This work impacts empirical research practice, dataset construction, and industrial interpretation of AI tool studies. Its contribution lies in establishing what can and cannot be responsibly inferred from large observational pull request datasets.
+This work impacts empirical research practice, dataset construction, and industrial interpretation of AI tool studies. Its contribution lies in establishing what can and cannot be responsibly inferred from large PR datasets.
 
 \subsection{Impact on Empirical Software Engineering Research}
 The primary impact is methodological. It demonstrates how apparently strong results can emerge from observational datasets even when core assumptions are violated. By documenting the analytical trajectory, this work provides a cautionary framework for interpreting future AI-assisted programming studies.
@@ -133,7 +133,7 @@ This study argues for treating methodological failure as a valid research outcom
 
 \section{Related Work and Methodological Foundations}
 
-This work draws on empirical software engineering methodology, large-scale observational datasets, and AI-assisted programming studies.
+This work draws on empirical software engineering methodology, large-scale repository datasets, and AI-assisted programming studies.
 
 \subsection{Empirical Software Engineering Methodology and Validity}
 Foundational work emphasizes valid measurement and sampling~\cite{wohlin2012experimentation, kitchenham2002preliminary}. Sampling practices follow precedents like Naghashzadeh et al.~\cite{naghashzadeh2022developer}.
@@ -152,11 +152,11 @@ This study contributes methodological analysis of AI-assisted PR datasets, clari
 
 \section{Conclusion}
 
-This paper demonstrates why certain behavioral questions about AI coding agents cannot be answered using observational pull request datasets, providing empirical techniques for detecting invalid inference.
+This paper demonstrates why certain behavioral questions about AI coding agents cannot be answered using such PR datasets, providing empirical techniques for detecting invalid inference.
 
 Initial analysis revealed apparent differences in testing practices across tools, but deeper investigation showed these patterns do not support valid behavioral conclusions due to attribution ambiguity, structural dependence, and measurement limitations.
 
-The methodological contribution lies in establishing baseline validation techniques for AI-assisted development datasets, emphasizing empirical verification over assumption-driven analysis. Future work should focus on instrumented studies and longitudinal designs to enable reliable behavioral inference.
+The methodological contribution lies in establishing baseline validation techniques for AI-assisted development datasets, emphasizing empirical verification over assumption-driven analysis. Future work should focus on instrumented studies and longitudinal designs to enable reliable agent behavior analysis.
 
 
 \bibliographystyle{IEEEtran}
