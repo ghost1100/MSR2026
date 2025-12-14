@@ -88,17 +88,12 @@ def main():
         ("honest_analysis.py", "Dataset Statistics and Verification", ["data/raw/aidata.csv"]),
         ("comprehensive_full_analysis.py", "Complete Dataset Analysis", ["data/raw/aidata.csv"]),
         ("complete_filtering_analysis.py", "Statistical Filtering Analysis", ["data/raw/aidata.csv"]),
-        ("compute_filtering_values.py", "Filtering Study Computations", ["data/raw/aidata.csv"]),
-        ("real_dataset_analysis.py", "Final Research Results", None),
-        ("genuine_analysis.py", "Analysis Verification", ["data/raw/aidata.csv"]),
+        ("complete_research_journey.py", "Complete Research Journey", None),
+        ("fast_essential_analysis.py", "Fast Essential Analysis", None),
     ]
     
     # Additional scripts if verification files exist
-    if os.path.exists("enhanced_verification_sample.csv"):
-        pipeline.append(("create_readable_verification.py", "Verification File Processing", ["enhanced_verification_sample.csv"]))
-    
-    if os.path.exists("verification_enhanced_detected.csv"):
-        pipeline.append(("analyze_enhanced_detection.py", "Enhanced Detection Analysis", ["verification_enhanced_detected.csv"]))
+    # Note: Additional verification scripts removed during cleanup
     
     print(f"Executing {len(pipeline)} essential research stages...")
     

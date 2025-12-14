@@ -210,7 +210,7 @@ def generate_filtering_table(stage1_results, stage2_results):
     orig_dist = stage2_results['original_distribution']
     filt_dist = stage2_results['filtered_distribution']
     
-    print("Agent           Raw %   Filtered %   Δ%")
+    print("Agent           Raw %   Filtered %   D%")
     print("-" * 45)
     
     table_data = []

@@ -2,15 +2,15 @@ ERROR in honest_analysis.py
 Exit code: 1
 STDERR:
 Traceback (most recent call last):
-  File "C:\Users\Ahmed\Downloads\VScodeRepo\MSR2026\honest_analysis.py", line 398, in <module>
+  File "C:\Users\Ahmed\Downloads\VScodeRepo\MSR2026\honest_analysis.py", line 402, in <module>
     results = compute_honest_statistics()
               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Ahmed\Downloads\VScodeRepo\MSR2026\honest_analysis.py", line 96, in compute_honest_statistics
-    print(f"    \u2192 Arithmetic average: Total PRs ÷ Unique users = {total:,} ÷ {df['user_id'].nunique():,}")
+  File "C:\Users\Ahmed\Downloads\VScodeRepo\MSR2026\honest_analysis.py", line 105, in compute_honest_statistics
+    print(f"    -> Interpretation: Half of all users contribute \u22642 PRs (low-volume majority)")
   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
     return codecs.charmap_encode(input,self.errors,encoding_table)[0]
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 4: character maps to <undefined>
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2264' in position 52: character maps to <undefined>
 
 STDOUT:
 ================================================================================
@@ -47,4 +47,8 @@ DETAILED STATISTICAL ANALYSIS EXPLANATION
 
 USER CONTRIBUTION STATISTICS - IN-DEPTH ANALYSIS:
   Mean contributions per user: 12.9
+    -> Arithmetic average: Total PRs ÷ Unique users = 932,791 ÷ 72,189
+    -> Interpretation: Average user contributes ~13 PRs across all repositories
+  Median contributions per user: 2.0
+    -> Middle value when users sorted by contribution count
 
