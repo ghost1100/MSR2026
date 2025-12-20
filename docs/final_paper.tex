@@ -42,6 +42,11 @@ By telling the full analytical story—from initial hypothesis, through failure,
 \label{sec:research_questions}
 This study investigates whether large-scale observational pull request datasets labeled with AI agent information can support valid agent behavior claims. Specifically, it examines (i) whether such datasets satisfy the assumptions required for agent-level behavioral comparison, (ii) which structural and measurement properties undermine inference, (iii) the reliability of metadata- and keyword-based proxies for testing behavior, and (iv) which empirical properties remain valid despite these limitations. Based on these findings, the study derives methodological guidance for future empirical research on AI-assisted software development.
 
+To assess testing habits as an indicator of code quality, we address the following research questions based on manual validation:
+(i) How frequently do coding agents contribute tests? What types (e.g., unit, integration, end-to-end) are most common?
+(ii) What is the test-to-code churn ratio across ecosystems?
+(iii) When tests are missing in initial agentic-PRs, do developers intervene to ensure reliable software testing (via follow-up commits or related PRs)?
+
 \section{Dataset Analysis}
 \subsection{Dataset Source}
 This study uses the AIDev dataset released as part of the MSR 2026 Mining Challenge. The dataset was collected by Li et al.\ and made publicly available to support research on AI-assisted software development. It aggregates GitHub pull request data annotated with AI agent attribution labels, representing one of the largest publicly available datasets of AI-assisted development activity.
@@ -68,9 +73,26 @@ During manual inspection, we identified systematic biases suggesting that some A
 
 This hypothesis is treated as an empirical observation rather than a definitive claim, but it motivates careful interpretation of adoption metrics and behavioral patterns derived from observational PR datasets.
 
+\subsection{Automated Test-Detection Heuristics}
+
+To quantify measurement error, we defined explicit heuristics for automated test detection applied to PR metadata. These heuristics were developed based on common testing conventions and validated against manual inspection.
+
+H1 (Keyword in PR title/body): Matches case-insensitive patterns including "test", "tests", "testing", "pytest", "junit", "jest", "spec", "e2e", "integration", "unit".
+
+H2 (Changed-file path heuristic): Any changed file path contains "/test/", "/tests/", \texttt{__tests__}, "/spec/", ".spec.", ".test.".
+
+A positive detection required H1 OR H2.
+
+Key assumptions underlying these heuristics:
+A1: PR text reflects actual code changes.
+A2: Test-related file naming conventions correspond to tests.
+A3: Mentions of "tests" are not purely template boilerplate.
+
+The dataset includes PR creation, closure, and merge timestamps, but these do not provide ground truth about authorship, human review, or whether tests were executed; therefore timestamps are used descriptively (e.g., PR lifespan distributions) rather than as behavioral evidence.
+
 \section{Results}
 
-This section reports empirical findings addressing the research questions defined in Section~\ref{sec:research_questions}. The results are intentionally presented in two layers. First, we report automated, dataset-scale observations that describe apparent patterns in test-related activity. Second, we report manually validated findings that assess whether these apparent patterns correspond to substantive testing behavior. This separation reflects our validation-first study design and prevents conflation of metadata signals with behavioral evidence.
+This section reports empirical findings addressing the research questions defined in Section~\ref{sec:research_questions}. We lead with manually validated findings from our stratified sample, then contrast these with automated detection results to quantify measurement error. This validation-first approach ensures that behavioral observations are grounded in verified evidence rather than metadata proxies.
 
 \begin{table}[t]
 \centering
@@ -87,16 +109,6 @@ Agents & 5 \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-We first report dataset-level structural properties, then present findings from manual validation, and finally examine their implications for automated analysis.
-
-This section reports empirical findings derived from the dataset and from manual validation. Results are presented descriptively and diagnostically rather than as behavioral conclusions about AI agents. Where statistical measures are reported, they are used to characterize distributional properties and structural patterns, not to infer causality or agent intent.
-
-\subsection{Dataset-Level Structural Characteristics (RQ1, RQ2)}
-Analysis of the full dataset (932,791 pull requests) reveals extreme structural imbalance in contribution activity. Contribution inequality is severe, with the top 1\% of contributors responsible for over 40\% of all PRs. The computed Gini coefficient ($\approx$ 0.83) indicates an exceptionally concentrated distribution. This concentration is not uniform across agents, with certain categories dominated by single users producing thousands of PRs.
-
-\subsection{Accessibility and Data Loss (RQ2)}
-A manual review of 385 pull requests revealed that 238 were inaccessible (404 errors), especially prevalent among high-volume users. This loss limits verification and distorts sampling, as accessibility is not uniformly distributed.
 
 \subsection{Manual Validation of Test Presence and Quality (RQ1)}
 A stratified manual review of 385 pull requests (77 per agent) established ground truth for test presence and quality using a four-level rubric: (1) No tests present, (2) Minimal testing (basic unit tests or assertions), (3) Moderate testing (comprehensive unit tests with some integration), (4) Extensive testing (full test suites including integration, performance, and edge cases). From the accessible PRs (147 out of 385), we observed that 34\% had no tests, 28\% had minimal testing, 25\% had moderate testing, and 13\% had extensive testing. Testing practices varied widely, with some PRs containing well-structured test files (e.g., JUnit tests in Java repositories) while others had only informal assertions or no tests at all.
@@ -129,6 +141,37 @@ False negative rate (\%) & 18 \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\subsection{Error Analysis: Why Heuristics Fail}
+To understand measurement error, we categorized false positives and negatives from the manual sample.
+
+False positives (22\% of keyword-detected PRs):
+- Boilerplate PR templates mentioning "Tests: [ ] added" without code changes.
+- Issue descriptions referencing testing in context (e.g., "This fixes the test failure") but no test files added.
+- Documentation changes mistaken for test additions.
+
+False negatives (18\% of manually validated test PRs):
+- Tests added without mention in PR metadata (e.g., silent file additions).
+- Non-standard test naming (e.g., custom frameworks not matching heuristics).
+- Tests integrated into existing files without new test-specific paths.
+
+These categories show that assumptions A1-A3 are frequently violated, with templates and implicit changes causing most errors.
+
+\subsection{Manual-Sample Answers to Testing Behavior Questions}
+
+Using the 147 accessible PRs, we address the motivation questions:
+
+(i) Frequency and types: 66\% of PRs included tests, with minimal testing (unit/assertions) most common (42\% of test PRs), followed by moderate (38\%) and extensive (20\%). Unit tests were predominant, with integration tests rare.
+
+(ii) Test-to-code churn: In test-containing PRs, 45\% changed only test files, 35\% changed both test and code, 20\% changed code only. This suggests moderate test-to-code coupling.
+
+(iii) Developer intervention: In PRs without initial tests (34\% of accessible), we observed follow-up commits adding tests in 12\% of cases within the PR timeline, indicating limited but present intervention.
+
+\subsection{Dataset-Level Structural Characteristics (RQ1, RQ2)}
+Analysis of the full dataset (932,791 pull requests) reveals extreme structural imbalance in contribution activity. Contribution inequality is severe, with the top 1\% of contributors responsible for over 40\% of all PRs. The computed Gini coefficient ($\approx$ 0.83) indicates an exceptionally concentrated distribution. This concentration is not uniform across agents, with certain categories dominated by single users producing thousands of PRs.
+
+\subsection{Accessibility and Data Loss (RQ2)}
+A manual review of 385 pull requests revealed that 238 were inaccessible (404 errors), especially prevalent among high-volume users. This loss limits verification and distorts sampling, as accessibility is not uniformly distributed.
 
 \subsection{Automated Test Detection Results}
 
@@ -183,7 +226,7 @@ Cursor & 9,658 & 3.4 PRs/user \\
 \label{tab:user_patterns}
 \end{table}
 
-These patterns suggest differential usage models: OpenAI Codex and Cursor appear integrated into broad development workflows, while Devin and Copilot show patterns consistent with specialized or high-volume usage. The single-user dominance for Devin raises questions about data quality and potential fabrication, while Copilot's concentration among few users may reflect enterprise or power-user adoption.
+These patterns suggest differential usage models: OpenAI Codex and Cursor appear integrated into broad development workflows, while Devin and Copilot show patterns consistent with specialized or high-volume usage. The single-user dominance for Devin raises concerns about data provenance, representativeness, and the extent to which these PRs reflect general usage rather than a controlled or experimental deployment.
 
 Repository accessibility further compounds these issues, with 62\% of manually sampled PRs returning 404 errors. Inaccessible repositories were disproportionately associated with high-volume, low-user-count agents, supporting the hypothesis that some AI agents are predominantly used for rapid prototyping rather than sustained development.
 
