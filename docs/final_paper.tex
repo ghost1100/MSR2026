@@ -6,14 +6,8 @@
 \usepackage{graphicx}
 \usepackage{booktabs}
 
-\title{A Large-Scale Analysis of AI-Assisted Pull Requests: Observations, Biases, and Limits of Behavioral Inference}
+\title{A Large-Scale Analysis of AI-Assisted Pull Requests: Observations, Biases, and the Limits of Behavioral Inference}
 
-\author{\IEEEauthorblockN{Ahmed Mursal}
-\IEEEauthorblockA{\textit{School of Computing} \\
-	\textit{Edinburgh Napier University}\\
-Edinburgh, Scotland \\
-40646515@live.napier.ac.uk}
-}
 
 \begin{document}
 \maketitle
@@ -27,6 +21,8 @@ This paper examines the empirical foundations of large-scale observational studi
 AI-powered coding assistants are now embedded in everyday software development workflows. Tools such as GitHub Copilot, OpenAI Codex, Cursor, Devin, and Claude Code are used by millions of developers and are increasingly credited with accelerating development, improving productivity, and influencing software quality practices. As these tools become pervasive, understanding how they shape real-world development behavior—particularly testing practices—has become an important empirical question for both researchers and practitioners.
 
 Recent software engineering research has responded to this need by leveraging large-scale datasets derived from development platforms such as GitHub. These datasets appear especially attractive: they capture real production activity at unprecedented scale, promise high statistical power, and seemingly allow direct comparison of AI agent behavior ``in the wild''. In particular, pull request (PR) datasets labeled with AI agent information have been used to make claims about differences in testing behavior, development style, and quality practices across tools.
+
+However, as our analysis demonstrates, initial automated detection suggests high overall test rates (93.49\% across 932,791 PRs) with apparent agent differences ranging from 98.5\% for OpenAI Codex to 18.8\% for Cursor. These statistical patterns initially appear compelling but dissolve under manual validation, which reveals systematic measurement error and structural dataset biases that undermine behavioral inference.
 
 This study began with exactly that motivation. Our original goal was to determine whether different AI coding agents exhibit systematically different testing behaviors. Using a large PR dataset with agent labels, we initially observed striking patterns: some agents appeared to include tests in nearly all PRs, while others rarely did so. Standard statistical analysis suggested large, statistically significant differences, seemingly supporting the narrative that AI agents differ meaningfully in how they support testing.
 
@@ -43,6 +39,7 @@ In response, this paper presents a structured empirical investigation that combi
 By telling the full analytical story—from initial hypothesis, through failure, to methodological insight—this work contributes both empirical observations and a cautionary framework for AI tool research based on large observational datasets.
 
 \subsection{Research Questions}
+\label{sec:research_questions}
 This study investigates whether large-scale observational pull request datasets labeled with AI agent information can support valid agent behavior claims. Specifically, it examines (i) whether such datasets satisfy the assumptions required for agent-level behavioral comparison, (ii) which structural and measurement properties undermine inference, (iii) the reliability of metadata- and keyword-based proxies for testing behavior, and (iv) which empirical properties remain valid despite these limitations. Based on these findings, the study derives methodological guidance for future empirical research on AI-assisted software development.
 
 \section{Dataset Analysis}
@@ -65,7 +62,15 @@ However, as this study demonstrates, the suitability of the dataset for such inf
 \section{Methodology}
 To systematically investigate the dataset's properties, we employed a multi-stage analytical approach combining quantitative aggregation, statistical testing, and manual validation. First, we computed distributional statistics across the full dataset, including Gini coefficients for contribution inequality and frequency distributions of PRs per user. Second, we performed accessibility checks by attempting to retrieve PR content via GitHub API and direct links, identifying 238 inaccessible PRs out of 385 sampled (62\% success rate). Third, for manual validation, we stratified a sample of 385 PRs (77 per agent) to ensure representation, then applied a four-level rubric for test presence and quality: (1) No tests, (2) Minimal tests (e.g., basic assertions), (3) Moderate tests (comprehensive coverage), (4) Extensive tests (integration and edge cases). Each PR was inspected by examining the PR description, file changes, and linked commits. Manual validation was treated as the primary empirical evidence in this study. Automated detection methods were applied only after manual inspection, and solely to quantify measurement error rather than to support behavioral inference. Finally, we conducted bidirectional validation, comparing automated detection against manual ground truth to quantify measurement error rates. We did not operationalize PR lifespan as an automation proxy, as preliminary inspection showed substantial overlap between human-reviewed and automated PR durations.
 
+\subsection{Prototyping Hypothesis and Dataset Biases}
+
+During manual inspection, we identified systematic biases suggesting that some AI agents are predominantly used for rapid prototyping workflows. High PR volumes from few users, combined with elevated 404 error rates, indicate that many PRs originate from transient repositories created for experimentation and subsequently deleted. This "prototyping hypothesis" explains the combination of apparent agent activity with poor data persistence and questions the representativeness of aggregate statistics for production development practices.
+
+This hypothesis is treated as an empirical observation rather than a definitive claim, but it motivates careful interpretation of adoption metrics and behavioral patterns derived from observational PR datasets.
+
 \section{Results}
+
+This section reports empirical findings addressing the research questions defined in Section~\ref{sec:research_questions}. The results are intentionally presented in two layers. First, we report automated, dataset-scale observations that describe apparent patterns in test-related activity. Second, we report manually validated findings that assess whether these apparent patterns correspond to substantive testing behavior. This separation reflects our validation-first study design and prevents conflation of metadata signals with behavioral evidence.
 
 \begin{table}[t]
 \centering
@@ -87,13 +92,13 @@ We first report dataset-level structural properties, then present findings from 
 
 This section reports empirical findings derived from the dataset and from manual validation. Results are presented descriptively and diagnostically rather than as behavioral conclusions about AI agents. Where statistical measures are reported, they are used to characterize distributional properties and structural patterns, not to infer causality or agent intent.
 
-\subsection{Dataset-Level Structural Characteristics}
+\subsection{Dataset-Level Structural Characteristics (RQ1, RQ2)}
 Analysis of the full dataset (932,791 pull requests) reveals extreme structural imbalance in contribution activity. Contribution inequality is severe, with the top 1\% of contributors responsible for over 40\% of all PRs. The computed Gini coefficient ($\approx$ 0.83) indicates an exceptionally concentrated distribution. This concentration is not uniform across agents, with certain categories dominated by single users producing thousands of PRs.
 
-\subsection{Accessibility and Data Loss}
+\subsection{Accessibility and Data Loss (RQ2)}
 A manual review of 385 pull requests revealed that 238 were inaccessible (404 errors), especially prevalent among high-volume users. This loss limits verification and distorts sampling, as accessibility is not uniformly distributed.
 
-\subsection{Manual Validation of Test Presence and Quality}
+\subsection{Manual Validation of Test Presence and Quality (RQ1)}
 A stratified manual review of 385 pull requests (77 per agent) established ground truth for test presence and quality using a four-level rubric: (1) No tests present, (2) Minimal testing (basic unit tests or assertions), (3) Moderate testing (comprehensive unit tests with some integration), (4) Extensive testing (full test suites including integration, performance, and edge cases). From the accessible PRs (147 out of 385), we observed that 34\% had no tests, 28\% had minimal testing, 25\% had moderate testing, and 13\% had extensive testing. Testing practices varied widely, with some PRs containing well-structured test files (e.g., JUnit tests in Java repositories) while others had only informal assertions or no tests at all.
 
 Comparison between manual inspection and keyword-based detection revealed systematic discrepancies. In 22\% of cases, keyword indicators produced false positives, typically arising from boilerplate PR templates or issue descriptions referencing testing without accompanying test files. Conversely, 18\% of PRs containing tests were not identified by keyword-based methods, particularly when tests were added without explicit mention in PR metadata.
@@ -125,6 +130,29 @@ False negative rate (\%) & 18 \\
 \end{tabular}
 \end{table}
 
+\subsection{Automated Test Detection Results}
+
+To establish baseline detection rates across the full dataset, we applied keyword-based and convention-based heuristics to all 932,791 PRs. These automated methods revealed substantial apparent heterogeneity in testing behavior across agents, with overall test detection rates of 93.49\%.
+
+\begin{table}[ht]
+\centering
+\caption{Automated test detection rates by agent label. These rates reflect heuristic detection of test-related artifacts and do not imply verified test quality.}
+\begin{tabular}{lcc}
+\toprule
+Agent & Test Rate (\%) & PR Count \\
+\midrule
+OpenAI Codex & 98.5 & 814,522 \\
+Copilot & 79.7 & 50,447 \\
+Claude Code & 76.8 & 5,137 \\
+Devin & 66.6 & 29,744 \\
+Cursor & 18.8 & 32,941 \\
+\bottomrule
+\end{tabular}
+\label{tab:automated_rates}
+\end{table}
+
+These results initially suggested strong distributional differences in keyword-detected test presence across agent labels. However, statistical tests comparing these rates (chi-square = 389,068.7, p < 0.001, Cramér's V = 0.646) must be interpreted cautiously due to severe violations of independence assumptions. The dataset exhibits extreme user concentration, with Devin PRs generated entirely by a single user and Copilot PRs dominated by 379 users, invalidating standard statistical inference.
+
 \subsection{Measurement Error in Automated Detection}
 Bidirectional validation shows that automated test detection systematically overestimates test presence, varying by language and repository conventions. This reflects inherent limitations in PR-level metadata.
 
@@ -133,6 +161,31 @@ Applying user-level filtering alters aggregate adoption statistics, shifting age
 
 \subsection{Summary of Empirical Findings}
 The empirical analysis yields several concrete observations about AI-assisted pull requests. Contribution activity is highly concentrated, testing practices are heterogeneous and often minimal, and testing quality varies more strongly by user and repository context than by agent label. Automated metadata-based detection methods systematically misclassify test presence when compared against manual inspection. These results characterize dataset-level and user-level properties that constrain agent-level inference. For example, initial chi-square tests comparing keyword-detected test presence across agents yielded statistically significant differences (p < 0.001), but these results were invalidated after accounting for user-level dependence and measurement error.
+
+\subsection{Dataset Structural Properties and User Adoption Patterns (RQ2)}
+
+The dataset exhibits extreme structural biases that constrain behavioral inference about AI agents. User adoption patterns show dramatic inequality, with OpenAI Codex adopted by 61,653 unique users while Devin was used exclusively by a single user. Copilot shows moderate concentration (379 users), while Cursor and Claude Code demonstrate broader adoption (9,658 and 1,643 users respectively).
+
+\begin{table}[ht]
+\centering
+\caption{User adoption patterns by agent label, showing concentration ratios (PRs per user). Extreme concentration suggests specialized usage models rather than broad adoption.}
+\begin{tabular}{lcc}
+\toprule
+Agent & Unique Users & Concentration Ratio \\
+\midrule
+OpenAI Codex & 61,653 & 13.2 PRs/user \\
+Copilot & 379 & 133.1 PRs/user \\
+Claude Code & 1,643 & 3.1 PRs/user \\
+Devin & 1 & 29,744 PRs/user \\
+Cursor & 9,658 & 3.4 PRs/user \\
+\bottomrule
+\end{tabular}
+\label{tab:user_patterns}
+\end{table}
+
+These patterns suggest differential usage models: OpenAI Codex and Cursor appear integrated into broad development workflows, while Devin and Copilot show patterns consistent with specialized or high-volume usage. The single-user dominance for Devin raises questions about data quality and potential fabrication, while Copilot's concentration among few users may reflect enterprise or power-user adoption.
+
+Repository accessibility further compounds these issues, with 62\% of manually sampled PRs returning 404 errors. Inaccessible repositories were disproportionately associated with high-volume, low-user-count agents, supporting the hypothesis that some AI agents are predominantly used for rapid prototyping rather than sustained development.
 
 \section{Threats to Validity}
 
@@ -191,23 +244,11 @@ This paper demonstrates both what can be empirically observed in large-scale AI-
 
 Initial analysis revealed apparent differences in testing practices across tools, but deeper investigation showed these patterns do not support valid behavioral conclusions due to attribution ambiguity, structural dependence, and measurement limitations.
 
-The methodological contribution lies in establishing baseline validation techniques for AI-assisted development datasets, emphasizing empirical verification over assumption-driven analysis. Future work should focus on instrumented studies and longitudinal designs to enable reliable agent behavior analysis.
+The methodological contribution lies in establishing baseline validation techniques for AI-assisted development datasets, emphasizing empirical verification over assumption-driven analysis. Future work should prioritize instrumented and longitudinal studies, repository archiving, and controlled task-based evaluations to complement observational datasets and enable defensible analysis of AI agent behavior.
 
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
-\nocite{wohlin2012experimentation}
-\nocite{kitchenham2002preliminary}
-\nocite{naghashzadeh2022developer}
-\nocite{baltes2018sotorrent}
-\nocite{asaduzzaman2013answer}
-\nocite{vaithilingam2022expectation}
-\nocite{finnie2022robots}
-\nocite{chen2021evaluating}
-\nocite{calefato2018ask}
-\nocite{mi2017empirical}
-\nocite{cohen1988statistical}
-\nocite{agresti2018introduction}
 
 
 \end{document}

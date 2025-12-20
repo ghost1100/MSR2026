@@ -347,4 +347,165 @@ These recommendations and future directions aim to advance both the practical in
 
 ### 6. Meta-Observation (Why This Paper Is Valuable)
 The failure of Phase 1 is itself a result. This paper documents how misleading conclusions emerge and how to prevent them. This is a methodological contribution, not a negative result.
+
+## 9. Automated Analysis Results (Jupyter Notebooks)
+
+### Overview
+In addition to manual verification, comprehensive automated analyses were conducted using Jupyter notebooks to analyze the full AIDev dataset (932,791 PRs). These analyses provide quantitative insights across all research questions, complementing the manual qualitative assessment.
+
+### RQ1: Agent Distribution & Test Contribution Frequency
+
+**Key Findings:**
+- **Overall Test Rate**: 93.49% of AI-generated PRs contain test-related content (872,046/932,791)
+- **Agent-Specific Test Rates**:
+  - OpenAI_Codex: 98.5% (801,959/814,522 PRs) - **Highest test contribution**
+  - Copilot: 79.7% (40,177/50,447 PRs)
+  - Claude_Code: 76.8% (3,940/5,137 PRs)
+  - Devin: 66.6% (19,798/29,744 PRs)
+  - Cursor: 18.8% (6,172/32,941 PRs) - **Lowest test contribution**
+
+**Agent Distribution:**
+- OpenAI_Codex dominates with 87.3% of all PRs (814,522)
+- Copilot: 5.4% (50,447 PRs)
+- Cursor: 3.5% (32,941 PRs)
+- Devin: 3.2% (29,744 PRs)
+- Claude_Code: 0.6% (5,137 PRs)
+
+**Statistical Significance:**
+- Chi-square test: 389,068.7 (p < 0.001) ⚠️ **POTENTIALLY MISLEADING**
+- Cramér's V: 0.646 (large effect size)
+- **Critical Issue**: Chi-square test may be invalid due to independence violations
+
+### ⚠️ Chi-Square Test Concerns
+
+**Why the Chi-Square Test May Be Wrong:**
+
+1. **Independence Assumption Violation**: Multiple PRs from same users/repositories violate independence
+   - Devin: All 29,744 PRs from 1 user
+   - Copilot: 50,447 PRs from 379 users (highly concentrated)
+   - This creates clustering that invalidates the test
+
+2. **Sample Size Effect**: With 932,791 observations, even tiny differences become "significant"
+   - p < 0.001 is meaningless with this sample size
+   - Would detect differences smaller than practically relevant
+
+3. **Data Quality Issues**: 
+   - High rate of 404 errors and ghost users
+   - Metadata reliability concerns
+   - Potential for fabricated or shortcut data (especially Devin)
+
+4. **Practical vs. Statistical Significance**:
+   - Large Cramér's V (0.646) suggests strong association
+   - But may reflect dataset artifacts rather than real agent differences
+
+**Recommendation**: Treat chi-square results with extreme caution. Manual verification suggests agent differences exist, but statistical tests on this dataset may be unreliable due to data quality and independence issues.
+
+### RQ2: Test-to-Code Churn Ratio
+
+**Status**: Framework implemented but requires GitHub API integration for actual code change metrics
+**Current Analysis**: Test frequency analysis completed (see RQ1)
+**Next Steps**: Integration with GitHub API to measure lines added/deleted in test vs. non-test files
+
+### RQ3: Code Change Patterns
+
+**Methodology**: Using description complexity as proxy for change scope (no direct GitHub API access)
+**Key Findings:**
+- **Description Complexity Metrics**:
+  - Average title length: 66.5 characters
+  - Average body length: 3,189.5 characters
+  - Total description complexity varies significantly by agent
+
+**Agent-Specific Patterns**:
+- Copilot: Highest description complexity (3,328.5 avg body chars)
+- Claude_Code: Moderate complexity (2,168.7 avg body chars)
+- Devin: Lower complexity (1,538.6 avg body chars)
+- Cursor: Lowest complexity (552.9 avg body chars)
+
+**Change Size Categories**:
+- Small changes: Q1 complexity threshold
+- Medium changes: Q2 complexity threshold
+- Large changes: Q3 complexity threshold
+
+### RQ4: Description Consistency
+
+**Status**: NLP framework established but analysis incomplete
+**Planned Analysis**:
+- Title-body coherence scoring
+- Technical term frequency analysis
+- Description completeness metrics
+- Agent-specific communication patterns
+
+**Current Metrics**:
+- Average title word count: 9.0 words
+- Average body word count: 398.3 words
+- Requires spaCy/NLTK for full implementation
+
+### RQ5: User Adoption Patterns
+
+**Key Findings:**
+- **Total Unique Users**: 72,189 across all PRs
+- **User Activity Patterns**:
+  - Most users are one-time contributors
+  - Small number of highly active users generate majority of PRs
+  - Agent preference varies by user experience level
+
+**Agent-Specific User Distribution**:
+- OpenAI_Codex: 61,653 unique users
+- Copilot: 379 unique users (highly concentrated)
+- Devin: 1 unique user (single user generated all Devin PRs)
+- Cursor: 9,658 unique users
+- Claude_Code: 1,643 unique users
+
+**Adoption Insights**:
+- Devin shows extreme centralization (single user)
+- Copilot shows high user concentration
+- OpenAI_Codex and Cursor show broader user adoption
+
+### Summary Dashboard Results
+
+**Executive Summary**:
+- **Primary Finding**: 93.5% of AI PRs include test contributions (contrasts with manual sample showing more variability)
+- **Caution Signal**: Even high test rates don't guarantee quality or effectiveness
+- **Agent Diversity**: 5 distinct AI agents with significantly different behavior patterns
+- **Data Quality**: 95%+ completeness across key metrics
+
+**Research Implications**:
+- AI agents show inconsistent testing practices despite high overall rates
+- Trust frameworks needed for safe AI-human collaboration
+- Quality assurance processes require AI-specific adaptations
+- Developer education on AI tool limitations essential
+
+### Automated vs. Manual Analysis Comparison
+
+**Complementary Findings**:
+- **Automated Analysis**: Shows high overall test rates (93.5%) and clear agent differences
+- **Manual Analysis**: Reveals quality spectrum and accessibility issues (404 errors)
+- **Convergence**: Both methods identify Cursor as having lowest test contribution
+- **Divergence**: Automated analysis suggests higher test rates than manual verification revealed
+
+**Threats Identified**:
+- **Ghost Users**: Many PRs from deleted/inactive accounts (explains 404 errors)
+- **Metadata Reliability**: Titles/bodies may not reflect actual code changes
+- **Sample Bias**: Inaccessible PRs may skew automated statistics
+- **Quality vs. Quantity**: High test rates don't guarantee test effectiveness
+
+### Recommendations for Future Research
+
+**Dataset Improvements**:
+- Require persistent user account activity
+- Archive PR content at collection time
+- Implement stratified sampling to ensure representation
+- Include direct code change metrics (additions/deletions)
+
+**Analysis Enhancements**:
+- Combine automated and manual verification
+- Implement GitHub API integration for code metrics
+- Develop NLP models for description consistency
+- Track user adoption over time
+
+**Methodological Lessons**:
+- Large datasets don't compensate for invalid measurements
+- Manual verification is essential for validation
+- Agent attribution must be instrumented, not inferred
+- Process decisions should not rely solely on raw metrics
 ```
