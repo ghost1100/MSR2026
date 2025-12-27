@@ -80,3 +80,15 @@ If you'd like, I can:
 - Train a quick logistic regression classifier on textual features to try to improve precision,
 - Or produce a short report (Markdown or PDF) with example FP/FN cases and suggested rule updates.
 
+
+## Automation: run the full pipeline
+A convenience orchestration script is available at `scripts/run_pipeline.py` which:
+1. Generates `comprehensive_pr_manual_verification_dataset.csv` (using `create_comprehensive_pr_dataset.py`).
+2. Waits for manual verification (interactive prompt) or can poll until a percent threshold of manual labels is filled.
+3. Runs evaluation, FP/FN extraction, SQL breakdown and plotting, and writes a final markdown report at `outputs/final_run_report.md`.
+
+Usage examples:
+- Interactive: `python scripts/run_pipeline.py` (it will generate the dataset, then wait for you to finish manual verification and press ENTER)
+- Auto-poll: `python scripts/run_pipeline.py --poll-seconds 60 --threshold 80` (continues once 80% of rows have manual labels)
+- Skip wait: `python scripts/run_pipeline.py --no-wait` (runs analysis immediately; use only if manual labels are already complete)
+

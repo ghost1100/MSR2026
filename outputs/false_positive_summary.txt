@@ -1,35 +1,7 @@
-False Positives: 82
+False Positives: 0
 
 Top testing keywords found in FP rows:
-  test: 81
-  testing: 71
-  tests: 44
-  spec: 25
-  should: 16
-  expect: 13
-  pytest: 12
-  unit test: 11
-  coverage: 8
-  jest: 5
-  mock: 5
-  test file: 5
-  test suite: 3
-  assert: 2
-  integration test: 2
-  test case: 2
-  it(: 2
-  spy: 1
-  e2e test: 1
-  bdd: 1
-  stub: 1
-  describe: 1
 
-Top languages in FPs (using manual_language_detected):
-  : 82
+Top languages in FPs (using repo_language):
 
 Top agents in FPs:
-  Devin: 31
-  OpenAI_Codex: 21
-  Claude_Code: 14
-  Copilot: 12
-  Cursor: 4

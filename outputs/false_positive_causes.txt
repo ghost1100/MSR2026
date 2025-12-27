@@ -1,5 +1,1 @@
 Likely causes (heuristic counts):
-  ci / workflow mention: 43
-  ambiguous keyword usage: 39
-  documentation changes: 33
-  infra / docker mention: 4

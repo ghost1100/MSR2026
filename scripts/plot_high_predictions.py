@@ -111,56 +111,72 @@ def main():
     top_cats = high_df['manual_category'].value_counts().head(6).index.tolist()
     stacked_cat = high_df[high_df['manual_category'].isin(top_cats)].copy()
     pivot_cat = pd.crosstab(stacked_cat['manual_category'], stacked_cat['manual_norm'])
-    # Ensure columns order
+    # Ensure columns order and handle missing data
     for c in ['yes','no','partial','']:
         if c not in pivot_cat.columns:
             pivot_cat[c]=0
     pivot_cat = pivot_cat[['yes','no','partial','']]
-    pivot_cat.plot(kind='barh', stacked=True, figsize=(10,5), colormap='tab20')
-    plt.title('Top manual categories among High predictions (stacked by manual_norm)')
-    plt.xlabel('Count')
-    plt.ylabel('Manual category')
-    plt.legend(title='Manual norm')
-    plt.tight_layout()
-    p2 = os.path.join(args.outdir, 'high_by_manual_category_stacked.png')
-    plt.savefig(p2, dpi=200)
-    plt.close()
+
+    if pivot_cat.empty or pivot_cat.sum().sum() == 0:
+        print('Warning: no data for stacked manual category plot, skipping stacked plot')
+    else:
+        pivot_cat.plot(kind='barh', stacked=True, figsize=(10,5), colormap='tab20')
+        plt.title('Top manual categories among High predictions (stacked by manual_norm)')
+        plt.xlabel('Count')
+        plt.ylabel('Manual category')
+        plt.legend(title='Manual norm')
+        plt.tight_layout()
+        p2 = os.path.join(args.outdir, 'high_by_manual_category_stacked.png')
+        plt.savefig(p2, dpi=200, bbox_inches='tight')
+        plt.close()
 
     # Plot 4: Pie - proportion of High predictions by explicit category (top 6 combined, others grouped)
     pie_df = cat_counts.copy()
-    top6 = pie_df.head(6)
-    others_sum = pie_df.sum() - top6.sum()
-    labels = list(top6.index) + ['other']
-    sizes = list(top6.values) + [others_sum]
-    plt.figure(figsize=(7,7))
-    # choose colors
-    colors = sns.color_palette('tab10', len(labels))
+    if pie_df.sum()==0 or pie_df.empty:
+        print('Warning: no data for pie chart, skipping pie chart')
+    else:
+        top6 = pie_df.head(6)
+        others_sum = pie_df.sum() - top6.sum()
+        labels = list(top6.index) + ['other']
+        sizes = list(top6.values) + [others_sum]
+        plt.figure(figsize=(7,7))
+        # choose colors
+        colors = sns.color_palette('tab10', len(labels))
 
-    # draw pie without slice labels (we'll use legend for names)
-    wedges, texts, autotexts = plt.pie(sizes, labels=None, autopct='%1.1f%%', startangle=140, colors=colors, textprops={'color':'white'})
-    plt.title('High predictions by manual category (top 6 + other)')
+        try:
+            # draw pie without slice labels (we'll use legend for names)
+            wedges, texts, autotexts = plt.pie(sizes, labels=None, autopct='%1.1f%%', startangle=140, colors=colors, textprops={'color':'white'})
+            plt.title('High predictions by manual category (top 6 + other)')
 
-    # Create legend with color-coded entries and labels
-    from matplotlib.patches import Patch
-    legend_labels = [f"{lab} ({val})" for lab, val in zip(labels, sizes)]
-    patches = [Patch(facecolor=colors[i], label=legend_labels[i]) for i in range(len(labels))]
-    plt.legend(handles=patches, bbox_to_anchor=(1.05, 1), loc='upper left')
+            # Force equal aspect so pie is drawn as a circle
+            plt.axis('equal')
 
-    # Improve layout and save
-    plt.tight_layout()
-    p3 = os.path.join(args.outdir, 'high_pie_manual_category.png')
-    plt.savefig(p3, dpi=200, bbox_inches='tight')
-    plt.close()
+            # Create legend with color-coded entries and labels
+            from matplotlib.patches import Patch
+            legend_labels = [f"{lab} ({val})" for lab, val in zip(labels, sizes)]
+            patches = [Patch(facecolor=colors[i], label=legend_labels[i]) for i in range(len(labels))]
+            # place legend to the right with a clear title and larger font
+            leg = plt.legend(handles=patches, bbox_to_anchor=(1.05, 1), loc='upper left', title='Manual category (count)', fontsize=10, title_fontsize=11)
+            leg.set_frame_on(False)
+
+            # Improve layout and save
+            plt.tight_layout()
+            p3 = os.path.join(args.outdir, 'high_pie_manual_category.png')
+            plt.savefig(p3, dpi=200, bbox_inches='tight')
+            plt.close()
+        except Exception as e:
+            print('Error creating pie chart:', e)
+            plt.close()
+
+    saved = [p1, p_cat]
+    if 'p2' in locals():
+        saved.append(p2)
+    if 'p3' in locals():
+        saved.append(p3)
 
     print('Plots saved:')
-    print(' -', p1)
-    print(' -', p_cat)
-    print(' -', p2)
-    print(' -', p3)
-    print('Plots saved:')
-    print(' -', p1)
-    print(' -', p2)
-    print(' -', p3)
+    for s in saved:
+        print(' -', s)
 
 if __name__ == '__main__':
     main()

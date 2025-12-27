@@ -107,6 +107,11 @@ def main():
         end = script.find(';', start)
         create_view_stmt = script[start:end+1]
         try:
+            # drop view if it already exists to avoid "view already exists" error
+            try:
+                conn.execute('DROP VIEW IF EXISTS pr_norm')
+            except Exception:
+                pass
             conn.executescript(create_view_stmt)
         except Exception as e:
             print('Warning: failed to create view with error:', e)
@@ -126,8 +131,15 @@ def main():
     cat_df.to_csv(cat_out, index=False)
 
     # Create human-friendly Markdown
-    total_high = int(pd.read_sql_query("SELECT COUNT(*) AS cnt FROM pr_norm WHERE auto_conf='high'", conn)['cnt'][0])
-    manual_yes_in_high = int(pd.read_sql_query("SELECT SUM(CASE WHEN lower(\"was test included Y/N\") LIKE '%testing included%' OR lower(\"was test included Y/N\") LIKE '%comprehensive testing%' OR lower(\"was test included Y/N\") LIKE '%extensive testing%' OR lower(\"was test included Y/N\") LIKE '%testing%' OR lower(\"was test included Y/N\") LIKE '%included%' THEN 1 ELSE 0 END) AS cnt FROM pr_norm WHERE auto_conf='high'", conn)['cnt'][0])
+    # Safely fetch numeric counts (handle None)
+    total_high_df = pd.read_sql_query("SELECT COUNT(*) AS cnt FROM pr_norm WHERE auto_conf='high'", conn)
+    total_high = int(total_high_df['cnt'][0]) if not total_high_df['cnt'].isnull().all() else 0
+
+    manual_yes_df = pd.read_sql_query(
+        "SELECT SUM(CASE WHEN lower(\"was test included Y/N\") LIKE '%testing included%' OR lower(\"was test included Y/N\") LIKE '%comprehensive testing%' OR lower(\"was test included Y/N\") LIKE '%extensive testing%' OR lower(\"was test included Y/N\") LIKE '%testing%' OR lower(\"was test included Y/N\") LIKE '%included%' THEN 1 ELSE 0 END) AS cnt FROM pr_norm WHERE auto_conf='high'",
+        conn
+    )
+    manual_yes_in_high = int(manual_yes_df['cnt'][0]) if (not manual_yes_df['cnt'].isnull().all() and manual_yes_df['cnt'][0] is not None) else 0
 
     md_lines = []
     md_lines.append('# High-Prediction Breakdown')
