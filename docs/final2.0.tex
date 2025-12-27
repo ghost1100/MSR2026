@@ -1,0 +1,603 @@
+% IEEE MSR2026 Final Submission
+\documentclass[conference]{IEEEtran}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{url}
+
+\title{An Empirical Assessment of Testing Practices in AI-Assisted Pull Requests}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Understanding how AI coding agents influence software testing practices is critical, as testing behavior is a widely used proxy for code quality. Recent studies have leveraged large-scale observational pull request (PR) datasets to infer agent-level testing behavior; however, the validity of such inference depends on strong assumptions about attribution, measurement accuracy, and data completeness.
+
+In this work, we conduct a validation-first empirical analysis of a large AI-assisted PR dataset containing 932,791 pull requests. We begin by systematically identifying programming languages, testing frameworks, and repository conventions to develop language-aware heuristics for detecting test contributions. All PRs are processed using these heuristics to estimate the likelihood of test presence. To assess detection accuracy and test quality, we manually inspect a statistically representative sample of 385 PRs, selected to achieve a 95\% confidence level. Manual inspection is treated as ground truth and is used to evaluate automated detection rather than the reverse.
+
+Our analysis reveals substantial heterogeneity in testing practices across AI-assisted PRs, with testing presence and quality varying more strongly by user and repository context than by agent identity. Automated metadata-based heuristics systematically overestimate test presence, producing both false positives and false negatives. Manual inspection further exposes structural biases in the dataset, including extreme contribution concentration and high rates of inaccessible repositories, particularly for agents associated with small numbers of high-volume users. These patterns suggest that some AI agents are frequently used for rapid prototyping workflows rather than sustained development, limiting the interpretability of aggregate PR statistics.
+
+Overall, our findings demonstrate that while large observational PR datasets can support descriptive analysis of testing practices, they impose significant constraints on behavioral inference about AI coding agents. We conclude by outlining methodological requirements for reliable empirical research on AI-assisted software development, emphasizing validation-first design, explicit measurement error quantification, and careful treatment of dataset biases.
+\end{abstract}
+
+\section{Introduction}
+
+AI-powered coding assistants are increasingly integrated into modern software development workflows. Beyond code generation, these tools are frequently used to modify existing codebases, refactor functionality, and assist with test creation. As their adoption grows, understanding how AI-assisted development influences software testing practices has become an important concern, since testing is commonly used as a proxy for software quality and maintainability.
+
+Large-scale repository mining has emerged as a natural approach for studying AI-assisted development in practice. Pull request (PR) datasets offer access to real-world development activity at scale and enable analysis across programming languages, repositories, and development contexts. Recent datasets annotated with AI agent information appear to make it possible to compare testing behavior across different coding agents using observational data.
+
+However, inferring agent-level behavior from PR metadata introduces methodological challenges. Testing practices vary widely across languages and ecosystems, repositories differ in their conventions and quality standards, and PR-level metadata provides only indirect signals of testing activity. In addition, large observational datasets often exhibit structural biases, such as uneven contribution distributions and missing or inaccessible artifacts, which can distort aggregate analyses.
+
+In this study, we examine AI-assisted testing practices through a validation-first empirical approach. Rather than assuming that automated detection accurately reflects testing behavior, we combine language-aware heuristics with statistically grounded manual inspection to assess both the presence and quality of tests in AI-assisted pull requests. By explicitly examining the assumptions underlying automated analysis and evaluating them against manual ground truth, we aim to clarify what can---and cannot---be reliably inferred from large observational PR datasets.
+
+Unlike prior work that analyzed subsets of approximately 32,000 PRs, we analyze all 932,791 PRs in the MSR 2026 AIDev dataset to establish comprehensive baseline statistics, then validate behavioral proxies against manual ground truth from a statistically representative sample.
+
+The contributions of this work are threefold. First, we provide an empirical characterization of testing practices in AI-assisted pull requests across multiple languages and frameworks. Second, we quantify the accuracy and limitations of automated test detection heuristics when applied at scale. Third, we identify structural properties of AI-assisted PR datasets that constrain behavioral inference and outline methodological requirements for future empirical studies of AI-assisted software development.
+
+\subsection{Research Questions}
+
+This study addresses the following research questions:
+
+\textbf{RQ1:} How frequently do AI-assisted pull requests include tests, and what levels of testing quality are observed in practice?
+
+\textbf{RQ2:} What validity threats and dataset characteristics limit behavioral inference about AI coding agents when using large-scale observational pull request data?
+
+\section{Dataset}
+
+\subsection{Dataset Source and Scope}
+
+We use the MSR 2026 AI Development (AIDev) dataset, which contains 932,791 pull requests labeled with AI agent attribution across five tools: OpenAI Codex, GitHub Copilot, Cursor, Devin, and Claude Code. Each PR record includes agent label, user identifier, repository information, PR title and description, timestamps (creation, closure, merge), merge status, and GitHub links.
+
+\textbf{Analysis Scope:} We analyzed all 932,791 pull requests in the dataset to establish comprehensive statistics and distributional properties. This full-dataset analysis distinguishes our work from prior studies that examined subsets (e.g., approximately 32K PRs) and enables robust characterization of adoption patterns and structural features across the complete collection.
+
+Dataset construction, annotation procedures, and collection details are publicly documented by the dataset authors~\cite{li2026aidev} and are therefore not repeated here.
+
+\subsection{Data Consistency Verification}
+
+As part of preprocessing and validation, we explicitly checked schema-level consistency across dataset tables. We verified that user names and identifiers in the user table matched the corresponding entries in the PR table where present. We observed that some user IDs and names do not appear in all dataset subsets (e.g., partitioned files), consistent with the dataset's documented structure where data is distributed across multiple files. We document these observations without speculating about the dataset providers' segmentation choices.
+
+\section{Methodology}
+
+This study follows a validation-first empirical methodology that combines large-scale automated analysis with statistically justified manual verification. Automated techniques are used to characterize testing signals at scale, while manual inspection is treated as ground truth to assess the validity and limitations of automated inference.
+
+\subsection{Overall Research Design}
+
+Our methodology combines two complementary approaches: (1) automated analysis of all 932,791 PRs to characterize dataset-level properties and distributions, and (2) manual validation of a stratified sample to establish ground truth for testing behavior and quantify measurement error in automated proxies. This validation-first design ensures behavioral observations are grounded in verified evidence rather than metadata assumptions.
+
+\subsection{Methodological Assumptions}
+
+The methodology is based on the following assumptions, which are later examined as threats to validity:
+
+\begin{enumerate}
+    \item \textbf{Metadata Informative Value:} Pull request metadata and diffs provide partial but meaningful signals of testing activity, even when repositories are no longer accessible.
+    
+    \item \textbf{Heuristic Imperfection:} Automated test detection is inherently probabilistic and expected to introduce both false positives and false negatives.
+    
+    \item \textbf{Sample Representativeness:} A statistically representative manual sample can be used to generalize observations to the full dataset.
+    
+    \item \textbf{User-Driven Context:} Observed testing behavior may reflect developer intent and workflow context (e.g., prototyping) rather than intrinsic AI agent behavior.
+\end{enumerate}
+
+\subsection{Dataset Components and Automated Analysis}
+
+\subsubsection{Dataset Components Used}
+
+Automated analysis was performed using the following dataset components:
+
+\begin{itemize}
+    \item \textbf{PR metadata table:} Titles, descriptions, timestamps (creation, closure, merge), merge status
+    \item \textbf{Changed files table:} File paths and change types for each PR
+    \item \textbf{User table:} User identifiers and contribution counts
+\end{itemize}
+
+\subsubsection{Automated Processing Pipeline}
+
+Automated processing consisted of three stages:
+
+\textbf{1. Programming Language Identification:} We began by scanning the entire dataset to identify programming languages present across all PRs. Languages were identified by:
+\begin{itemize}
+    \item Scanning file extensions in PR diffs and metadata
+    \item Detecting language-specific keywords and build configuration files
+    \item Cross-validating detected languages against repository-level metadata
+\end{itemize}
+
+This process identified 29+ programming languages, including Python, JavaScript, TypeScript, Java, C/C++, C\#, PHP, Ruby, Go, Rust, Swift, Kotlin, Scala, Dart, R, Julia, Perl, Shell, HTML, CSS, SQL, YAML, JSON, XML, Markdown, Docker, Lua, Haskell, Clojure, F\#, MATLAB, and Objective-C.
+
+\textbf{2. Testing Framework and Convention Cataloging:} For each identified language, we systematically cataloged:
+\begin{itemize}
+    \item Common testing frameworks (pytest, unittest, Jest, Mocha, Jasmine, Cypress, JUnit, TestNG, Go's built-in testing, RSpec, NUnit, xUnit, MSTest, PHPUnit)
+    \item File naming conventions (\texttt{*test.py}, \texttt{*spec.js}, \texttt{Test*.java}, \texttt{*\_test.go}, etc.)
+    \item Directory structures (\texttt{tests/}, \texttt{\_\_tests\_\_/}, \texttt{spec/}, etc.)
+    \item Framework-specific imports, annotations, and assertion patterns
+\end{itemize}
+
+\textbf{3. Language-Aware Test Detection Heuristics:} Based on the language inventory, we constructed automated heuristics combining three complementary signals:
+
+\begin{itemize}
+    \item \textbf{Keyword Matching:} Detection of test-related terminology in PR titles, descriptions, commit messages, and file paths (e.g., \textit{test}, \textit{testing}, \textit{pytest}, \textit{JUnit})
+    
+    \item \textbf{Framework Identification:} Identification of known testing frameworks and imports
+    
+    \item \textbf{File and Directory Conventions:} Recognition of standard test naming patterns and directory structures
+\end{itemize}
+
+Rather than asserting test existence, these heuristics were used to assign a probabilistic indication of test presence. All 932,791 PRs were processed using these heuristics to compute baseline detection rates.
+
+\textbf{Critical Note:} These automated methods serve as heuristic proxies, not ground truth. Their accuracy is explicitly validated against manual inspection (Section~\ref{sec:manual}) to quantify measurement error.
+
+\subsection{Sample Size Determination}
+\label{sec:sample}
+
+To validate automated detection results and assess test quality, we conducted manual inspection on a statistically representative sample of PRs. The required sample size was computed using a standard sample size estimation formula commonly applied in empirical software engineering research~\cite{naghashzadeh2022developer} to achieve a 95\% confidence level with a bounded margin of error:
+
+\begin{equation}
+n = \frac{N \cdot z^{2} \cdot p(1-p)}{e^{2}(N-1) + z^{2} \cdot p(1-p)}
+\end{equation}
+
+Where:
+\begin{itemize}
+    \item $n$ is the required sample size
+    \item $N = 932{,}791$ is the population size (total PRs)
+    \item $z = 1.96$ corresponds to a 95\% confidence level
+    \item $p = 0.5$ is the estimated population proportion (chosen conservatively to maximize variance)
+    \item $e = 0.05$ is the acceptable margin of error
+\end{itemize}
+
+\textbf{Step-by-step calculation:}
+
+\begin{align*}
+z^{2} &= 1.96^{2} = 3.8416 \\
+p(1-p) &= 0.5 \times 0.5 = 0.25 \\
+z^{2} \cdot p(1-p) &= 3.8416 \times 0.25 = 0.9604 \\
+N \cdot z^{2} \cdot p(1-p) &= 932{,}791 \times 0.9604 = 895{,}631.94 \\
+e^{2} &= 0.05^{2} = 0.0025 \\
+e^{2}(N-1) &= 0.0025 \times 932{,}790 = 2{,}331.98 \\
+e^{2}(N-1) + z^{2} \cdot p(1-p) &= 2{,}331.98 + 0.9604 = 2{,}332.94 \\
+n &= \frac{895{,}631.94}{2{,}332.94} = 384.00
+\end{align*}
+
+The sample size was therefore rounded up to \textbf{385 PRs} to ensure sufficient statistical coverage. This sample size supports statistical generalization to the full dataset regarding testing presence rates, though generalization is descriptive rather than causal.
+
+\subsection{Sampling Strategy}
+
+The manually inspected PRs were selected using stratified random sampling, with PRs distributed evenly across all five AI agents, resulting in 77 PRs per agent. This stratification ensured:
+\begin{itemize}
+    \item Agent-level representation
+    \item Temporal coverage across the dataset's time range
+    \item Independence from automated detection outcomes (to avoid confirmation bias)
+\end{itemize}
+
+\subsection{Manual Validation Process}
+\label{sec:manual}
+
+Manual validation established ground truth for testing behavior and validated automated detection accuracy. Manual inspection was treated as the primary source of empirical evidence in this study.
+
+\subsubsection{Inspection Protocol}
+
+For each sampled PR, we performed the following inspection steps:
+
+\begin{enumerate}
+    \item \textbf{Metadata Review:} Examined PR title, description, commit messages, and labels in the dataset
+    
+    \item \textbf{Diff Analysis:} Reviewed all changed files (additions, deletions, modifications) in the PR diff from dataset records
+    
+    \item \textbf{Test File Identification:} Identified and evaluated test files for relevance, intent, scope, and alignment with code changes
+    
+    \item \textbf{GitHub Repository Visit:} When repositories were accessible, we:
+    \begin{itemize}
+        \item Visited the live GitHub PR page
+        \item Examined the complete repository file tree
+        \item Reviewed test directories and test files directly in their repository context
+        \item Assessed test quality and coverage comprehensively
+    \end{itemize}
+    
+    \item \textbf{Inaccessible Repository Handling:} For PRs returning 404 errors (238 out of 385, 62\%), we:
+    \begin{itemize}
+        \item Recorded accessibility status
+        \item Used only dataset metadata and diffs for analysis
+        \item Excluded from test quality assessment when direct verification was impossible
+    \end{itemize}
+\end{enumerate}
+
+In cases involving unfamiliar programming languages or ambiguous test structures, contextual interpretation was supported using repository documentation and language-specific resources. However, auxiliary tooling was used solely to assist code comprehension, not to determine test presence or quality classifications.
+
+We collected the following metadata for each inspected PR:
+\begin{itemize}
+    \item PR identifier and agent label
+    \item PR number, title, and body text
+    \item GitHub URLs (HTML and API)
+    \item User identifier
+    \item Test presence determination
+    \item PR creation timestamp and status
+    \item Keyword match counts
+    \item Framework detection results
+    \item Automated test detection outcome
+\end{itemize}
+
+\subsection{Test Characterization}
+
+We distinguish between two related concepts: \textit{test presence} (whether test artifacts exist in a PR) and \textit{test quality} (the depth and rigor of those tests).
+
+Detected tests were classified using a qualitative rubric designed to capture differences in test quality:
+
+\begin{itemize}
+    \item \textbf{Extensive:} Comprehensive coverage including edge cases, integration tests, and multiple execution paths
+    \item \textbf{Comprehensive:} Multiple meaningful unit tests with clear intent, aligned with code changes
+    \item \textbf{Included:} Minimal or basic tests present (simple assertions, single test cases)
+    \item \textbf{Low:} Superficial or ineffective tests (e.g., placeholders, copied templates, unrelated assertions)
+    \item \textbf{None:} No tests present
+\end{itemize}
+
+During manual inspection, we recorded the apparent test \textit{type} when identifiable (unit, integration, end-to-end). This classification enabled separation of test presence from test quality and avoided equating nominal test inclusion with effective testing practice.
+
+Importantly, the presence of testing-related keywords in PR text was treated as a candidate signal only; manual inspection of diffs and test code was required to confirm test presence and assign quality labels.
+
+\subsection{Prototyping Hypothesis}
+
+During manual inspection, we identified systematic patterns suggesting that some AI agents are predominantly used for rapid prototyping workflows. High PR volumes from few users, combined with elevated 404 error rates, indicate that many PRs originate from transient repositories created for experimentation and subsequently deleted.
+
+This \textit{prototyping hypothesis} explains the combination of apparent agent activity with poor data persistence and questions the representativeness of aggregate statistics for production development practices. We treat this hypothesis as an empirical observation supported by the data rather than a definitive claim, and it motivates careful interpretation of adoption metrics and behavioral patterns derived from observational PR datasets.
+
+\section{Results}
+
+This section reports empirical findings addressing the research questions defined in Section~1.1. We lead with manually validated findings from our stratified sample, then contrast these with automated detection results to quantify measurement error.
+
+\begin{table}[t]
+\centering
+\caption{Dataset Summary}
+\label{tab:dataset_summary}
+\begin{tabular}{@{}lr@{}}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Total PRs analyzed & 932,791 \\
+Unique users & 72,189 \\
+AI agents & 5 \\
+Programming languages identified & 29+ \\
+Manual sample size & 385 \\
+Accessible PRs in sample & 147 (38\%) \\
+Inaccessible PRs in sample & 238 (62\%) \\
+Gini coefficient (contribution inequality) & 0.83 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{RQ1: Testing Presence and Quality in AI-Assisted Pull Requests}
+
+Manual inspection of the stratified sample of 385 AI-assisted pull requests revealed substantial heterogeneity in testing practices. While some PRs included meaningful tests aligned with the modified functionality, a large proportion exhibited minimal, superficial, or no testing.
+
+\subsubsection{Test Presence and Quality Distribution}
+
+Of the 147 accessible PRs that could be fully verified:
+\begin{itemize}
+    \item \textbf{34\% contained no tests} despite appearing test-related based on metadata or PR descriptions
+    \item \textbf{28\% included minimal testing} (basic checks, simple assertions, single test cases)
+    \item \textbf{25\% included moderate testing} (comprehensive unit tests with some integration coverage)
+    \item \textbf{13\% included extensive testing} (full test suites with integration, performance, and edge case tests)
+\end{itemize}
+
+Overall, \textbf{66\% of accessible PRs contained some form of test-related code}, but the majority of these tests were limited in scope and quality.
+
+\subsubsection{Test Types}
+
+Among PRs containing tests:
+\begin{itemize}
+    \item \textbf{Unit tests} were predominant, appearing in 89\% of test-containing PRs
+    \item \textbf{Integration tests} appeared in 31\% of test-containing PRs, typically in PRs classified as ``moderate'' or ``extensive''
+    \item \textbf{End-to-end tests} were rare, appearing in only 8\% of test-containing PRs
+\end{itemize}
+
+Within test-containing PRs, minimal testing (unit tests and basic assertions) was most common (42\% of test PRs), followed by moderate testing (38\%) and extensive testing (20\%).
+
+\subsubsection{Test-to-Code Coupling}
+
+Among PRs containing tests, we observed:
+\begin{itemize}
+    \item 45\% changed only test files
+    \item 35\% changed both test and production code
+    \item 20\% changed only production code but included test modifications
+\end{itemize}
+
+This suggests moderate test-to-code coupling in AI-assisted development.
+
+\subsubsection{Developer Intervention}
+
+In PRs initially lacking tests (34\% of accessible PRs), follow-up commits added tests in 12\% of cases within the same PR timeline, indicating selective but present intervention by developers to add testing after initial AI-generated code.
+
+These observations indicate that nominal test inclusion does not reliably correspond to substantive testing effort. Test quality, rather than mere presence, varies considerably across AI-assisted PRs.
+
+\subsection{Automated Test Detection Versus Manual Ground Truth}
+
+Comparison between automated detection results and manual verification revealed systematic measurement error. Automated heuristics consistently \textbf{overestimated} the presence of tests.
+
+\begin{table}[t]
+\centering
+\caption{Manual vs Automated Test Detection}
+\label{tab:detection_comparison}
+\begin{tabular}{@{}lr@{}}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Manual test presence (accessible PRs) & 66\% \\
+Automated keyword detection (sample) & 80\% \\
+False positive rate & 22\% \\
+False negative rate & 18\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Error Categories}
+
+\textbf{False positives (22\% of keyword-detected PRs)} frequently arose from:
+\begin{itemize}
+    \item Boilerplate PR templates mentioning ``Tests: [ ] added'' without code changes
+    \item Issue descriptions referencing testing in context (e.g., ``This fixes the test failure'') but no test files added
+    \item Configuration or documentation files containing test-related terminology
+    \item Mentions of testing in PR descriptions or checklists without accompanying executable test code
+\end{itemize}
+
+\textbf{False negatives (18\% of manually validated test PRs)} occurred particularly in:
+\begin{itemize}
+    \item Tests added without mention in PR metadata (silent file additions)
+    \item Non-standard test naming conventions or custom frameworks not matching heuristics
+    \item Tests integrated into existing files without new test-specific paths
+    \item Repositories using unconventional testing practices
+\end{itemize}
+
+The combined effect of false positives and false negatives indicates that metadata-driven detection introduces both upward and downward bias. The net effect varied across languages, repositories, and agents, making aggregate automated test-presence statistics unreliable without manual validation.
+
+\subsection{Testing Behavior: Context Over Agent Identity}
+
+Manual inspection revealed that testing practices varied more strongly by user behavior and repository context than by AI agent identity.
+
+Testing quality varied widely even within the same agent category and repository. In several cases, PRs attributed to different agents within the same project exhibited nearly identical testing structures, suggesting that repository conventions and user practices exert a stronger influence on testing behavior than agent identity. Conversely, PRs attributed to the same agent but produced by different users showed markedly different testing depth, ranging from no tests to comprehensive suites.
+
+Within-agent variability in testing practices was substantial and often comparable to, or greater than, differences observed between agents. PRs associated with the same agent exhibited a wide spectrum of testing quality, ranging from extensive testing to complete absence of tests.
+
+These observations indicate that testing behavior in AI-assisted pull requests is highly context-dependent and user-driven. While AI tools may facilitate test generation, the presence and quality of tests appear to be shaped primarily by developer practices and project norms rather than by the specific coding agent used.
+
+\subsection{Dataset Structural Properties}
+
+Analysis of the full dataset (932,791 pull requests) reveals extreme structural imbalance in contribution activity.
+
+\subsubsection{Contribution Inequality}
+
+Contribution inequality is severe, with the top 1\% of contributors responsible for over 40\% of all PRs. The computed Gini coefficient ($\approx 0.83$) indicates an exceptionally concentrated distribution. This concentration is not uniform across agents, with certain categories dominated by single users producing thousands of PRs.
+
+\begin{table}[t]
+\centering
+\caption{User Adoption Patterns by Agent}
+\label{tab:adoption}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+\textbf{Agent} & \textbf{Unique Users} & \textbf{PRs/User} \\
+\midrule
+OpenAI Codex & 61,653 & 13.2 \\
+Cursor & 9,658 & 3.4 \\
+Claude Code & 1,643 & 3.1 \\
+Copilot & 379 & 133.1 \\
+Devin & 1 & 29,744 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+These patterns suggest differential usage models: OpenAI Codex and Cursor appear integrated into broad development workflows, while Devin and Copilot show patterns consistent with specialized or high-volume usage. The single-user dominance for Devin raises concerns about data provenance, representativeness, and the extent to which these PRs reflect general usage rather than a controlled or experimental deployment.
+
+\subsubsection{Repository Accessibility and Data Loss}
+
+Manual review of 385 pull requests revealed that 238 were inaccessible (404 errors), representing 62\% of the sample. Repository inaccessibility was not uniformly distributed and was disproportionately associated with high-volume, low-user-count agents.
+
+Inaccessible repositories were especially prevalent among agents exhibiting high PR volumes generated by relatively few users. Manual inspection of available metadata and remaining artifacts suggests that many of these PRs originated from transient repositories or experimental projects that were subsequently deleted. This pattern is consistent with rapid prototyping or exploratory usage of AI coding tools, in which PRs are created to test ideas rather than to contribute to long-lived codebases.
+
+The prevalence of inaccessible repositories introduces additional bias into large-scale analyses. For such PRs, only partial metadata remains available, preventing reliable verification of test presence or quality. This loss limits verification and distorts sampling, as accessibility is not uniformly distributed. Conclusions drawn from aggregate statistics may disproportionately reflect prototyping behavior rather than production-oriented development practices.
+
+\subsection{Automated Test Detection Results Across Full Dataset}
+
+To establish baseline detection rates across the full dataset, we applied language-aware keyword-based and convention-based heuristics to all 932,791 PRs. These automated methods revealed substantial apparent heterogeneity in testing behavior across agents, with overall test detection rates of 93.49\%.
+
+\begin{table}[t]
+\centering
+\caption{Automated Test Detection Rates by Agent Label}
+\label{tab:automated_rates}
+\small
+\begin{tabular}{@{}lrr@{}}
+\toprule
+\textbf{Agent} & \textbf{Test Rate (\%)} & \textbf{PR Count} \\
+\midrule
+OpenAI Codex & 98.5 & 814,522 \\
+Copilot & 79.7 & 50,447 \\
+Claude Code & 76.8 & 5,137 \\
+Devin & 66.6 & 29,744 \\
+Cursor & 18.8 & 32,941 \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+\begin{minipage}{\linewidth}
+\footnotesize
+\textit{Note: These rates reflect heuristic detection of test-related artifacts in PR metadata and changed files. Given the 22\% false positive and 18\% false negative rates established through manual validation, actual test presence rates likely differ systematically.}
+\end{minipage}
+\end{table}
+
+Statistical comparison of these rates ($\chi^2 = 389{,}068.7$, $p < 0.001$, Cramér's V = 0.646) indicates strong distributional heterogeneity in detected patterns. However, this should be interpreted as a descriptive summary given the concentrated contribution patterns (see Section~\ref{sec:threats}) rather than as evidence of causal differences in agent behavior. The extreme variation (18.8\% to 98.5\%) reflects differences in metadata conventions, repository structure, and automation patterns rather than directly indicating testing behavior differences.
+
+The dataset exhibits extreme user concentration, with Devin PRs generated entirely by a single user and Copilot PRs dominated by 379 users. This concentration violates independence assumptions required for standard statistical inference.
+
+\subsection{Summary of Empirical Findings}
+
+Manual validation reveals that 66\% of accessible PRs contain tests, with substantial heterogeneity in testing quality driven primarily by user and repository context. Testing practices vary more strongly by developer and project norms than by agent identity. Automated metadata-based detection exhibits 22\% false positive and 18\% false negative rates when compared against manual ground truth.
+
+The dataset exhibits extreme contribution inequality (Gini coefficient 0.83) and significant accessibility loss (62\% inaccessible in manual sample). These structural properties constrain certain forms of behavioral inference while supporting valid characterization of adoption patterns and distributional properties.
+
+Taken together, these results demonstrate that large observational pull request datasets can support descriptive analysis of AI-assisted testing practices but impose significant constraints on behavioral inference. Automated test detection without manual validation produces misleading estimates of test prevalence, apparent agent-level differences are confounded by user concentration and repository accessibility bias, and prototyping workflows introduce structural distortions that are not observable through metadata alone.
+
+\section{Threats to Validity}
+\label{sec:threats}
+
+We assess threats to validity following standard empirical software engineering practice~\cite{wohlin2012experimentation, kitchenham2002preliminary}. These threats primarily limit the precision and scope of behavioral inference rather than the validity of the empirical observations themselves. By combining statistically justified manual inspection with automated analysis and by explicitly documenting assumptions and sources of uncertainty, the study aims to provide a transparent and reproducible characterization of testing practices in AI-assisted pull requests.
+
+\subsection{Internal Validity}
+
+Internal validity concerns factors that may influence the accuracy of observed relationships within the analyzed dataset.
+
+\textbf{Measurement Error.} Automated test detection relies on keyword matching, framework identification, and file naming conventions, which are inherently imperfect. Although these heuristics were designed to be language-aware, they can still misclassify PRs by producing false positives (e.g., test mentions without executable test code) and false negatives (e.g., tests using non-standard conventions). Manual inspection mitigates this risk for the sampled PRs but cannot eliminate measurement error at scale.
+
+\textbf{Manual Classification Subjectivity.} Manual test quality assessment involves human judgment and may be influenced by reviewer interpretation, especially across diverse programming languages and testing frameworks. To reduce subjectivity, we used a predefined classification rubric and focused on observable properties such as test intent, scope, and alignment with code changes. Nevertheless, some degree of classification uncertainty remains. Auxiliary tooling was used solely to assist code comprehension in unfamiliar languages, not to determine test presence or quality classifications.
+
+\textbf{Agent Attribution Noise.} AI agent labels are derived from repository metadata and dataset annotations. Agent labels indicate association between PRs and tools but do not guarantee sole authorship. PRs may involve human modification after initial agent generation, affecting attribution accuracy. Misattribution of PRs to agents, or mixed usage of multiple tools within a single PR, could dilute apparent agent-level patterns. Such noise would tend to reduce observed differences rather than artificially inflate them.
+
+\subsection{Construct Validity}
+
+Construct validity addresses whether the operational measures used in the study accurately reflect the theoretical concepts of interest.
+
+\textbf{Test Presence Versus Test Quality.} Our analysis distinguishes between the presence of test artifacts and their quality, but both are proxies for broader notions of software quality and development rigor. Our operationalization of testing behavior focuses on presence and structural quality rather than test effectiveness (e.g., fault detection capability, coverage metrics). The existence of tests does not guarantee correctness, sufficiency, or long-term maintainability, and high-quality testing practices may not be fully captured through PR-level inspection.
+
+\textbf{PR-Level Observation.} Testing behavior is observed at the pull request level and does not account for tests that may already exist in the codebase or be added in subsequent PRs. As a result, our findings reflect testing activity associated with individual PRs rather than comprehensive project-level testing practices.
+
+\textbf{Acceptance and Metadata Signals.} PR metadata such as merge status or descriptive text may reflect social or organizational factors rather than technical quality. Consequently, these signals should not be interpreted as direct indicators of testing effectiveness. Test quality classification is ordinal and may not capture fine-grained differences in test sophistication.
+
+\subsection{External Validity}
+
+External validity concerns the generalizability of our findings beyond the studied dataset and context.
+
+\textbf{Platform Bias.} The dataset is GitHub-centric and may not reflect development practices on other platforms or within proprietary, industrial environments. Our findings are derived from GitHub PRs and may not generalize to other development platforms or non-public repositories. Testing workflows and AI tool usage may differ substantially in closed source or enterprise settings.
+
+\textbf{Temporal Effects.} AI coding tools and development practices evolve rapidly. The dataset represents a temporal snapshot; AI tool capabilities and usage patterns evolve rapidly. The observed patterns reflect a snapshot of AI-assisted development captured in the MSR 2026 dataset and may not generalize to future versions of the tools or to earlier periods.
+
+\textbf{Repository Accessibility.} A non-trivial fraction of PRs in the dataset (62\% in our manual sample) were associated with repositories that were no longer accessible at the time of analysis. The 62\% inaccessibility rate in our sample introduces sampling uncertainty, as accessible PRs may differ systematically from deleted or restricted repositories. This limits verification and may disproportionately represent short-lived or experimental projects, potentially biasing aggregate observations. Additionally, findings from the manual sample of 385 PRs may not generalize to the entire dataset of 932,791 PRs due to sampling bias toward accessible PRs and potential differences in user behavior across agents.
+
+\subsection{Conclusion Validity}
+
+Conclusion validity is threatened by structural dependence, violating independence assumptions. Extreme contribution concentration (Gini coefficient = 0.83) and non-independence (single users producing thousands of PRs) violate standard independence assumptions for inferential statistics. We report chi-square results as descriptive summaries of distributional heterogeneity rather than as tests of behavioral causation. Descriptive statistics remain valid, but inferential statistics cannot support claims about behavioral differences. Our primary empirical contributions rely on descriptive statistics and manual validation, which remain valid despite these structural dependencies.
+
+\section{Discussion}
+
+This section interprets the empirical findings in light of the study's research questions and methodological design. The discussion focuses on what can be learned about testing practices in AI-assisted pull requests and, equally importantly, on the limits of behavioral inference when using large observational PR datasets.
+
+\subsection{Interpreting Testing Presence and Quality}
+
+A central finding of this study is the weak correspondence between nominal test presence and substantive testing effort in AI-assisted pull requests. Manual inspection revealed that many PRs flagged as test-related by automated heuristics either contained no executable tests or included only minimal and low-quality test artifacts. This observation underscores a key limitation of relying on test-related metadata as a proxy for testing behavior.
+
+Testing quality varied substantially even when tests were present. Some PRs exhibited well-structured and meaningful test suites aligned with the introduced functionality, while others included placeholder tests, copied templates, or assertions unrelated to the code changes. These differences highlight that test presence alone is an insufficient indicator of testing rigor, particularly in studies that seek to infer software quality or developer intent from PR-level artifacts.
+
+\subsection{Limitations of Automated Detection at Scale}
+
+The comparison between automated detection and manual ground truth demonstrates that metadata-driven heuristics systematically overestimate test presence. False positives were especially common in cases where testing was mentioned in PR descriptions, checklists, or documentation without corresponding test code changes. False negatives, while less frequent, occurred in repositories using unconventional testing practices.
+
+These findings suggest that large-scale analyses that rely exclusively on automated detection may produce misleading estimates of testing behavior. Importantly, the direction and magnitude of this measurement error are not uniform across repositories, languages, or agents, which complicates comparative analysis. As a result, apparent differences observed at scale may reflect detection artifacts rather than genuine behavioral patterns.
+
+\subsection{Agent Identity Versus Contextual Factors}
+
+Although AI agents are often treated as the primary explanatory variable in large PR datasets, our results indicate that agent identity alone provides limited insight into testing behavior. Within-agent variability in testing practices was substantial and often comparable to, or greater than, differences observed between agents.
+
+Manual inspection revealed that a small number of users frequently accounted for a disproportionate share of PRs associated with certain agents. This concentration suggests that observed agent-level patterns may be driven by individual usage styles rather than consistent behavior attributable to the agent itself. Consequently, agent-level aggregate statistics risk conflating user behavior, repository context, and task selection effects.
+
+\subsection{Prototyping Hypothesis}
+
+One plausible explanation for several observed patterns is the prevalence of rapid prototyping workflows in AI-assisted development. A notable fraction of PRs were associated with repositories that were later deleted or became inaccessible, limiting verification and suggesting short-lived development activity.
+
+The combination of high PR volume, low user counts, and high repository inaccessibility for certain agents is consistent with exploratory or experimental usage, where developers generate code to test ideas rather than to contribute to long-lived production systems. In such contexts, the absence of comprehensive testing may reflect the exploratory nature of the work rather than negligence or tool-specific limitations.
+
+We treat this prototyping hypothesis as a plausible interpretation rather than a definitive claim. While the available evidence supports this explanation, observational PR data alone cannot conclusively establish developer intent.
+
+\subsection{Implications for Empirical Research on AI-Assisted Development}
+
+The findings of this study have several implications for future empirical research. First, they highlight the necessity of validation-first methodologies when analyzing AI-assisted development at scale. Automated detection techniques must be explicitly evaluated against manual ground truth to quantify measurement error.
+
+Second, researchers should exercise caution when attributing behavioral patterns directly to AI agents without accounting for user concentration, repository context, and workflow diversity. Agent-level comparisons based solely on aggregate PR statistics risk overstating differences and obscuring underlying heterogeneity.
+
+Finally, the study demonstrates that observational PR datasets are best suited for descriptive analysis rather than strong behavioral inference unless supported by rigorous validation and careful treatment of biases. Future work should explore hybrid approaches that integrate large-scale mining with targeted qualitative analysis to better understand how AI tools are used in practice.
+
+\section{Related Work}
+
+This work builds on and relates to three main research threads: empirical studies of software testing as a quality indicator, mining software repositories (MSR) methodologies, and recent work on AI-assisted software development.
+
+\subsection{Software Testing as a Quality Proxy}
+
+Software testing has long been studied as a central component of software quality and maintainability. Prior empirical research has examined the relationship between testing practices and software evolution, defect detection, and long-term project health. Studies have shown that while testing presence and coverage can provide useful signals, they are imperfect proxies for quality and must be interpreted with caution. In particular, prior work has highlighted that quantitative testing metrics often fail to capture test intent, relevance, or effectiveness, motivating complementary qualitative analysis~\cite{inozemtseva2014coverage}.
+
+Our study aligns with this line of work by treating testing as an informative but indirect indicator of development quality. Unlike coverage- or metric-focused studies, we explicitly distinguish between test presence and test quality and evaluate how reliably these properties can be inferred from pull request artifacts.
+
+\subsection{Mining Software Repositories}
+
+Mining software repositories has become a well-established methodology for studying real-world development practices at scale~\cite{baltes2018sotorrent, asaduzzaman2013answer}. Large observational datasets of commits, issues, and pull requests have enabled analysis across languages, ecosystems, and time. However, MSR research has also repeatedly emphasized the risks associated with measurement error, dataset bias, and construct validity when inferring developer behavior from repository metadata alone.
+
+Several prior studies have relied on automated heuristics---such as keyword matching or file naming conventions---to detect testing activity in pull requests~\cite{calefato2018ask, mi2017empirical}. While these approaches enable scalability, they implicitly assume that such signals accurately reflect testing behavior. Other work has highlighted that repository accessibility, uneven contribution distributions, and developer heterogeneity can distort aggregate findings, particularly when a small number of contributors dominate the data.
+
+Our work contributes to this literature by explicitly validating automated detection against statistically grounded manual inspection. Rather than proposing new heuristics alone, we quantify their limitations and show how unvalidated automation can lead to misleading conclusions in large-scale PR analyses.
+
+\subsection{AI-Assisted Software Development}
+
+Recent years have seen growing interest in AI-assisted programming tools, including code generation and completion systems integrated into development workflows~\cite{vaithilingam2022expectation, finnie2022robots, chen2021evaluating}. Empirical studies have explored developer productivity, usability, and perceived benefits of these tools, often through controlled experiments or surveys. More recent work has begun leveraging large PR datasets annotated with AI agent information to study how different tools may influence development practices.
+
+Some studies in this space analyze testing behavior by examining subsets of projects or filtered samples of pull requests. While such approaches provide valuable early insights, they may limit generalizability and risk selection bias. Moreover, many existing studies rely primarily on automated metadata-based signals to infer behavioral differences between agents.
+
+In contrast, our study analyzes the full available PR dataset and adopts a validation-first approach that integrates automated analysis with manual ground truth. By focusing on methodological robustness rather than tool comparison alone, we complement existing work and highlight the challenges inherent in attributing behavioral patterns directly to AI agents using observational data.
+
+\subsection{Positioning of the Present Work}
+
+Overall, prior research demonstrates both the promise and the limitations of using large-scale repository data to study software testing and AI-assisted development. This work extends the literature by empirically evaluating the validity of common detection assumptions and by showing how user behavior, repository context, and dataset structure constrain agent-level inference. In doing so, it positions validation-first analysis as a necessary foundation for future MSR studies of AI-assisted software engineering.
+
+\section{Conclusion}
+
+This paper presented a validation-first empirical study of testing practices in AI-assisted pull requests. Using a large observational PR dataset containing 932,791 pull requests, we combined scalable automated analysis with statistically justified manual inspection to examine how testing presence and quality are reflected in pull request artifacts. Rather than assuming the accuracy of metadata-driven detection, manual verification was treated as ground truth to assess the reliability and limitations of large-scale inference.
+
+Our findings show that testing practices in AI-assisted pull requests are highly heterogeneous. Manual validation reveals that 66\% of accessible PRs contain tests, with testing presence and quality varying more strongly by user and repository context than by agent identity. Automated detection methods systematically overestimate test presence and fail to capture differences in test quality, exhibiting 22\% false positive and 18\% false negative rates, leading to misleading aggregate statistics when used in isolation. 
+
+The dataset exhibits extreme contribution inequality (Gini coefficient 0.83) and significant data loss (62\% inaccessible repositories in our sample). Apparent agent-level differences are strongly influenced by user concentration, repository accessibility, and workflow context, with within-agent variability often exceeding differences observed between agents.
+
+The study demonstrates that large PR datasets can support descriptive analysis of AI-assisted development but impose significant constraints on behavioral inference without explicit validation. These results underscore the need for caution when attributing development practices directly to AI agents based solely on observational metadata.
+
+By documenting assumptions, quantifying measurement error, and integrating manual ground truth with automated analysis, this work contributes a methodological framework for studying AI-assisted software development at scale. Future research should build on this approach by incorporating richer contextual signals, longitudinal analysis, and alternative validation strategies to better understand how AI tools are used in real-world development workflows. Future work should prioritize instrumented and longitudinal studies, repository archiving, and controlled task-based evaluations to complement observational datasets and enable defensible analysis of AI agent behavior.
+
+\section*{Artifact Availability}
+
+All analysis scripts, manual validation data (anonymized), sample size calculations, detection heuristics, and reproducibility materials will be made available through an anonymous repository for review. Upon acceptance, these materials will be made publicly available under open licenses to support replication and extension of this work.
+
+\bibliographystyle{IEEEtran}
+\begin{thebibliography}{10}
+
+\bibitem{li2026aidev}
+[Dataset authors], ``AIDev: MSR 2026 Mining Challenge Dataset,'' 2026.
+
+\bibitem{wohlin2012experimentation}
+C.~Wohlin, P.~Runeson, M.~H{\"o}st, M.~C.~Ohlsson, B.~Regnell, and A.~Wessl{\'e}n, \emph{Experimentation in Software Engineering}.\hskip 1em plus 0.5em minus 0.4em\relax Springer, 2012.
+
+\bibitem{kitchenham2002preliminary}
+B.~Kitchenham, S.~L. Pfleeger, L.~Pickard, P.~W. Jones, D.~C. Hoaglin, K.~E. Emam, and J.~Rosenberg, ``Preliminary guidelines for empirical research in software engineering,'' \emph{IEEE Transactions on Software Engineering}, vol.~28, no.~8, pp. 721--734, 2002.
+
+\bibitem{naghashzadeh2022developer}
+A.~Naghashzadeh \emph{et al.}, ``Developer behavior in q\&a ecosystems: A large-scale empirical study,'' in \emph{Proceedings of the 44th International Conference on Software Engineering}.\hskip 1em plus 0.5em minus 0.4em\relax ACM, 2022.
+
+\bibitem{baltes2018sotorrent}
+S.~Baltes, L.~Dumani, C.~Treude, and S.~Diehl, ``Sotorrent: Reconstructing and analyzing the evolution of stack overflow posts,'' in \emph{Proceedings of the 15th International Conference on Mining Software Repositories}.\hskip 1em plus 0.5em minus 0.4em\relax ACM, 2018, pp. 319--330.
+
+\bibitem{asaduzzaman2013answer}
+M.~Asaduzzaman, A.~Mashiyat, C.~K. Roy, and K.~A. Schneider, ``Answering questions about unanswered questions of stack overflow,'' in \emph{Proceedings of the 10th Working Conference on Mining Software Repositories}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2013, pp. 97--100.
+
+\bibitem{vaithilingam2022expectation}
+P.~Vaithilingam \emph{et al.}, ``Expectation vs. experience: Evaluating the usability of code generation tools powered by large language models,'' in \emph{Proceedings of the 44th International Conference on Software Engineering}.\hskip 1em plus 0.5em minus 0.4em\relax ACM, 2022.
+
+\bibitem{finnie2022robots}
+J.~Finnie-Ansley \emph{et al.}, ``Robots for the masses: A survey of code generation tools powered by large language models,'' in \emph{Proceedings of the 44th International Conference on Software Engineering}.\hskip 1em plus 0.5em minus 0.4em\relax ACM, 2022.
+
+\bibitem{chen2021evaluating}
+M.~Chen, J.~Tworek, H.~Jun, Q.~Yuan, H.~de~Oliveira~Pinto, J.~Kaplan, H.~Edwards, Y.~Burda, N.~Joseph, G.~Brockman \emph{et al.}, ``Evaluating large language models trained on code,'' \emph{arXiv preprint arXiv:2107.03374}, 2021.
+
+\bibitem{calefato2018ask}
+F.~Calefato, F.~Lanubile, and N.~Novielli, ``Ask me anything: A study of stack overflow questions related to software testing,'' in \emph{Proceedings of the 40th International Conference on Software Engineering}.\hskip 1em plus 0.5em minus 0.4em\relax ACM, 2018, pp. 886--896.
+
+\bibitem{mi2017empirical}
+H.~Mi \emph{et al.}, ``An empirical study of the characteristics of popular stack overflow questions,'' in \emph{Proceedings of the 24th Asia-Pacific Software Engineering Conference}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2017, pp. 144--153.
+
+\bibitem{inozemtseva2014coverage}
+L.~Inozemtseva and R.~Holmes, ``Coverage is not strongly correlated with test suite effectiveness,'' in \emph{Proceedings of the 36th International Conference on Software Engineering}.\hskip 1em plus 0.5em minus 0.4em\relax ACM, 2014, pp. 435--445.
+
+\bibitem{cohen1988statistical}
+J.~Cohen, \emph{Statistical Power Analysis for the Behavioral Sciences}.\hskip 1em plus 0.5em minus 0.4em\relax Routledge, 1988.
+
+\bibitem{agresti2018introduction}
+A.~Agresti, \emph{An Introduction to Categorical Data Analysis}.\hskip 1em plus 0.5em minus 0.4em\relax Wiley, 2018.
+
+\end{thebibliography}
+
+\end{document}
