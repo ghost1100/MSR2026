@@ -15,7 +15,7 @@ def main():
     
     print("="*80)
     print("MSR2026 QUICK REPRODUCIBILITY DEMONSTRATION")
-    print("Edinburgh Napier University - December 2025")
+    print("[REDACTED INSTITUTION] - December 2025")
     print("="*80)
     
     output_dir = Path("outputs")

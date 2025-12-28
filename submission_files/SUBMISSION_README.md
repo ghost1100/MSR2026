@@ -96,13 +96,13 @@ The paper serves as a **methodological warning** about challenges in AI tool eva
 
 ## Contact Information
 
-**Author**: Ahmed Mursal  
-**Institution**: Edinburgh Napier University  
-**Email**: 40646515@live.napier.ac.uk  
+**Author**: [REDACTED AUTHOR]  
+**Institution**: [REDACTED INSTITUTION]  
+**Email**: [REDACTED EMAIL]  
 **Repository**: https://github.com/ghost1100/MSR2026
 
 ## Acknowledgments
 
 - H. Li et al. for the AIDev dataset
 - Dr. Ashkan Sami (supervisor)
-- Edinburgh Napier University for computational resources
+- [REDACTED INSTITUTION] for computational resources

@@ -1,0 +1,39 @@
+Anonymization report
+=====================
+
+Changed files:
+ - clean_replication.py: 1 replacements
+ - COMPLETE_PROJECT_SUMMARY.md: 3 replacements
+ - complete_research_journey.py: 1 replacements
+ - fast_essential_analysis.py: 1 replacements
+ - quick_reproducibility_check.py: 1 replacements
+ - README.md: 3 replacements
+ - REPRODUCIBILITY_GUIDE.md: 3 replacements
+ - REPRODUCIBILITY_STATUS.md: 1 replacements
+ - run_complete_research.py: 1 replacements
+ - setup_reproducibility.py: 4 replacements
+ - archive\development_files\complete_research_journey.py: 1 replacements
+ - archive\development_files\REPRODUCIBILITY_GUIDE.md: 3 replacements
+ - archive\development_files\REPRODUCIBILITY_STATUS.md: 1 replacements
+ - archive\legacy_scripts\master_replication.py: 1 replacements
+ - archive\legacy_scripts\quick_reproducibility_check.py: 1 replacements
+ - archive\legacy_scripts\run_complete_research.py: 1 replacements
+ - archive\legacy_scripts\setup_reproducibility.py: 4 replacements
+ - archive\old_notebooks\MSR2026_Complete_Filtering_Analysis.ipynb: 2 replacements
+ - data\raw\aidata.csv: 11 replacements
+ - docs\MSR2026 Descriptive analysis complete.tex: 5 replacements
+ - docs\MSR2026 Filtering Study.tex: 5 replacements
+ - docs\MSR2026_COMPREHENSIVE_STUDY.tex: 5 replacements
+ - scripts\anonymize_repo.py: 9 replacements
+ - submission_files\SUBMISSION_README.md: 4 replacements
+ - submission_files\paper\MSR2026_4p.tex: 3 replacements
+ - submission_files\paper\MSR2026_4p_methodology.tex: 3 replacements
+ - submission_files\paper\MSR2026_COMPLETE.tex: 3 replacements
+ - submission_files\paper\MSR2026_COMPLETE_methodology.tex: 3 replacements
+
+Summary by pattern:
+ - Edinburgh Napier University: 39
+ - Ahmed Mursal: 16
+ - 40646515@live\.napier\.ac\.uk: 14
+ - \bNapier\b: 13
+ - \b40646515\b: 2

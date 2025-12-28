@@ -220,7 +220,7 @@ def main():
     
     print("="*100)
     print("MSR2026 COMPLETE RESEARCH REPRODUCIBILITY PIPELINE")
-    print("Edinburgh Napier University - December 2025")
+    print("[REDACTED INSTITUTION] - December 2025")
     print("="*100)
     
     # Define research pipeline
@@ -407,8 +407,8 @@ For manual verification of enhanced detection:
 ## 🤝 Contributing
 
 This research is submission-ready. For questions or collaboration:
-- Author: Ahmed Mursal (40646515@live.napier.ac.uk)
-- Institution: Edinburgh Napier University
+- Author: [REDACTED AUTHOR] ([REDACTED EMAIL])
+- Institution: [REDACTED INSTITUTION]
 - Conference: MSR 2026
 
 ---

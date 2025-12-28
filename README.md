@@ -96,8 +96,8 @@ For manual verification of enhanced detection:
 ## 🤝 Contributing
 
 This research is submission-ready. For questions or collaboration:
-- Author: Ahmed Mursal (40646515@live.napier.ac.uk)
-- Institution: Edinburgh Napier University
+- Author: [REDACTED AUTHOR] ([REDACTED EMAIL])
+- Institution: [REDACTED INSTITUTION]
 - Conference: MSR 2026
 
 ---

@@ -303,8 +303,8 @@ This research project maintains complete scientific integrity:
 ## 📧 Contact & Support
 
 For questions about reproduction:
-- **Primary Author**: Ahmed Mursal (40646515@live.napier.ac.uk)
-- **Institution**: Edinburgh Napier University
+- **Primary Author**: [REDACTED AUTHOR] ([REDACTED EMAIL])
+- **Institution**: [REDACTED INSTITUTION]
 - **Repository**: https://github.com/ghost1100/MSR2026
 
 ---

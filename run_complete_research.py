@@ -80,7 +80,7 @@ def main():
     
     print("="*100)
     print("MSR2026 ESSENTIAL RESEARCH PIPELINE")
-    print("Edinburgh Napier University - December 2025") 
+    print("[REDACTED INSTITUTION] - December 2025") 
     print("="*100)
     
     # Essential pipeline - only scripts that work standalone

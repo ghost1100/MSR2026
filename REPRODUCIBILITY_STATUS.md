@@ -85,4 +85,4 @@ python run_complete_research.py
 
 ---
 
-*MSR2026 Research Project - Edinburgh Napier University - December 2025*
+*MSR2026 Research Project - [REDACTED INSTITUTION] - December 2025*
