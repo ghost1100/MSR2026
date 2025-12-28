@@ -1,7 +1,0 @@
-[
-    {
-        "key": "ctrl+alt+b",
-        "command": "latex-workshop.build",
-        "when": "editorTextFocus && editorLangId == latex"
-    }
-]
